@@ -87,18 +87,22 @@ function scrw_fix_graph_node( $node ) {
 			$is_org = true;
 		}
 	}
-	if ( $is_org && ! isset( $node['parentOrganization'] ) ) {
+	// Recurse into children first, then attach the group link. Adding
+	// parentOrganization before recursing made the new Organization node get
+	// its own parentOrganization, and so on forever (stack overflow).
+	foreach ( $node as $k => $v ) {
+		if ( 'parentOrganization' !== $k && is_array( $v ) ) {
+			$node[ $k ] = scrw_fix_graph_node( $v );
+		}
+	}
+
+	$is_group = isset( $node['url'] ) && untrailingslashit( (string) $node['url'] ) === untrailingslashit( SCRW_GROUP_URL );
+	if ( $is_org && ! $is_group && ! isset( $node['parentOrganization'] ) ) {
 		$node['parentOrganization'] = array(
 			'@type' => 'Organization',
 			'name'  => 'Sound Creations Ltd',
 			'url'   => SCRW_GROUP_URL,
 		);
-	}
-
-	foreach ( $node as $k => $v ) {
-		if ( is_array( $v ) ) {
-			$node[ $k ] = scrw_fix_graph_node( $v );
-		}
 	}
 	return $node;
 }
