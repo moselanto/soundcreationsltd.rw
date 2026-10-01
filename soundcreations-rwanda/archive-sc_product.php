@@ -199,7 +199,7 @@ while ( $scrw_q->have_posts() ) {
 	if ( '' !== $brand ) {
 		$scrw_brands[ sanitize_title( $brand ) ] = $brand;
 	}
-	$specs = array_slice( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) get_post_meta( $pid, '_sc_specs', true ) ) ) ), 0, 2 );
+	$specs = array_slice( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) get_post_meta( $pid, '_sc_specs', true ) ) ) ), 0, 3 );
 	$scrw_items[] = array(
 		'id'    => $pid,
 		'title' => get_the_title(),
@@ -220,32 +220,51 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 <section class="sc-section scrw-cat" id="catalogue" data-scrw-cat>
 	<div class="sc-container">
 		<div class="scrw-cat__head">
-			<p class="sc-eyebrow"><?php esc_html_e( 'Products available in Rwanda', 'soundcreations-rwanda' ); ?></p>
-			<h2><?php esc_html_e( 'Shop our product range.', 'soundcreations-rwanda' ); ?></h2>
-			<p class="sc-lead"><?php esc_html_e( 'Genuine equipment with full manufacturer specifications, in stock or available to order from our Kigali showroom, with warranty and local support.', 'soundcreations-rwanda' ); ?></p>
+			<div>
+				<p class="sc-eyebrow"><?php esc_html_e( 'Products available in Rwanda', 'soundcreations-rwanda' ); ?></p>
+				<h2><?php esc_html_e( 'Shop our product range.', 'soundcreations-rwanda' ); ?></h2>
+				<p class="sc-lead"><?php esc_html_e( 'Genuine equipment with full manufacturer specifications, in stock or available to order from our Kigali showroom, with warranty and local support.', 'soundcreations-rwanda' ); ?></p>
+			</div>
+			<ul class="scrw-cat__trust">
+				<li><span aria-hidden="true">&#10003;</span><?php esc_html_e( 'Genuine products, full warranty', 'soundcreations-rwanda' ); ?></li>
+				<li><span aria-hidden="true">&#10003;</span><?php esc_html_e( 'Authorised Yamaha distributor', 'soundcreations-rwanda' ); ?></li>
+				<li><span aria-hidden="true">&#10003;</span><?php esc_html_e( 'Installation and support in Rwanda', 'soundcreations-rwanda' ); ?></li>
+			</ul>
 		</div>
+
 		<div class="scrw-cat__bar">
 			<div class="scrw-cat__chips" role="group" aria-label="<?php esc_attr_e( 'Filter by category', 'soundcreations-rwanda' ); ?>">
-				<button type="button" class="scrw-chip<?php echo '' === $scrw_active ? ' is-active' : ''; ?>" data-cat=""><?php esc_html_e( 'All', 'soundcreations-rwanda' ); ?> <span><?php echo count( $scrw_items ); ?></span></button>
+				<button type="button" class="scrw-chip<?php echo '' === $scrw_active ? ' is-active' : ''; ?>" data-cat=""><?php esc_html_e( 'All products', 'soundcreations-rwanda' ); ?></button>
 				<?php foreach ( $scrw_cats as $slug => $name ) : ?>
 					<button type="button" class="scrw-chip<?php echo $slug === $scrw_active ? ' is-active' : ''; ?>" data-cat="<?php echo esc_attr( $slug ); ?>"><?php echo esc_html( $name ); ?></button>
 				<?php endforeach; ?>
 			</div>
 			<div class="scrw-cat__tools">
-				<select data-scrw-brand aria-label="<?php esc_attr_e( 'Filter by brand', 'soundcreations-rwanda' ); ?>">
+				<label class="scrw-field scrw-field--search">
+					<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+					<input type="search" data-scrw-search placeholder="<?php esc_attr_e( 'Search model or product', 'soundcreations-rwanda' ); ?>" aria-label="<?php esc_attr_e( 'Search products', 'soundcreations-rwanda' ); ?>">
+				</label>
+				<select class="scrw-field" data-scrw-brand aria-label="<?php esc_attr_e( 'Filter by brand', 'soundcreations-rwanda' ); ?>">
 					<option value=""><?php esc_html_e( 'All brands', 'soundcreations-rwanda' ); ?></option>
 					<?php foreach ( $scrw_brands as $slug => $name ) : ?>
 						<option value="<?php echo esc_attr( $slug ); ?>"><?php echo esc_html( $name ); ?></option>
 					<?php endforeach; ?>
 				</select>
-				<input type="search" data-scrw-search placeholder="<?php esc_attr_e( 'Search products or models', 'soundcreations-rwanda' ); ?>" aria-label="<?php esc_attr_e( 'Search products', 'soundcreations-rwanda' ); ?>">
+				<select class="scrw-field" data-scrw-sort aria-label="<?php esc_attr_e( 'Sort products', 'soundcreations-rwanda' ); ?>">
+					<option value="default"><?php esc_html_e( 'Featured', 'soundcreations-rwanda' ); ?></option>
+					<option value="az"><?php esc_html_e( 'Name A-Z', 'soundcreations-rwanda' ); ?></option>
+					<option value="brand"><?php esc_html_e( 'Brand', 'soundcreations-rwanda' ); ?></option>
+				</select>
 			</div>
 		</div>
+		<p class="scrw-cat__count" data-scrw-count aria-live="polite"></p>
 
-		<div class="scrw-pgrid">
-			<?php foreach ( $scrw_items as $it ) : ?>
-				<article class="scrw-pcard" data-cat="<?php echo esc_attr( $it['cat'] ); ?>" data-brand="<?php echo esc_attr( sanitize_title( $it['brand'] ) ); ?>" data-text="<?php echo esc_attr( strtolower( $it['title'] . ' ' . $it['model'] . ' ' . $it['brand'] . ' ' . $it['catn'] ) ); ?>">
+		<div class="scrw-pgrid" data-scrw-grid>
+			<?php foreach ( $scrw_items as $i => $it ) : ?>
+				<?php $scrw_is_yamaha = ( 'yamaha' === strtolower( $it['brand'] ) ); ?>
+				<article class="scrw-pcard" data-order="<?php echo (int) $i; ?>" data-title="<?php echo esc_attr( strtolower( $it['title'] ) ); ?>" data-cat="<?php echo esc_attr( $it['cat'] ); ?>" data-brand="<?php echo esc_attr( sanitize_title( $it['brand'] ) ); ?>" data-text="<?php echo esc_attr( strtolower( $it['title'] . ' ' . $it['model'] . ' ' . $it['brand'] . ' ' . $it['catn'] ) ); ?>">
 					<a class="scrw-pcard__plate" href="<?php echo esc_url( $it['url'] ); ?>" tabindex="-1" aria-hidden="true">
+						<?php if ( $scrw_is_yamaha ) : ?><span class="scrw-pcard__badge"><?php esc_html_e( 'Authorised distributor', 'soundcreations-rwanda' ); ?></span><?php endif; ?>
 						<?php if ( $it['img'] ) : ?>
 							<img src="<?php echo esc_url( $it['img'] ); ?>" alt="<?php echo esc_attr( $it['title'] ); ?>" loading="lazy" decoding="async" width="600" height="600">
 						<?php else : ?>
@@ -253,46 +272,76 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 						<?php endif; ?>
 					</a>
 					<div class="scrw-pcard__body">
-						<p class="scrw-pcard__meta"><?php echo esc_html( trim( $it['brand'] . ( $it['catn'] ? ' · ' . $it['catn'] : '' ) ) ); ?></p>
-						<h2 class="scrw-pcard__title"><a href="<?php echo esc_url( $it['url'] ); ?>"><?php echo esc_html( $it['title'] ); ?></a></h2>
+						<p class="scrw-pcard__meta"><span class="scrw-pcard__brand"><?php echo esc_html( $it['brand'] ); ?></span><?php if ( $it['catn'] ) : ?><span class="scrw-pcard__cat"><?php echo esc_html( $it['catn'] ); ?></span><?php endif; ?></p>
+						<h3 class="scrw-pcard__title"><a href="<?php echo esc_url( $it['url'] ); ?>"><?php echo esc_html( $it['title'] ); ?></a></h3>
 						<?php if ( $it['specs'] ) : ?>
-							<ul class="scrw-pcard__specs">
-								<?php foreach ( $it['specs'] as $s ) : ?><li><?php echo esc_html( $s ); ?></li><?php endforeach; ?>
-							</ul>
+							<dl class="scrw-pcard__specs">
+								<?php foreach ( $it['specs'] as $s ) : ?>
+									<?php
+									$scrw_parts = explode( ':', $s, 2 );
+									$scrw_lab   = trim( preg_replace( '/^.*?\s-\s/', '', $scrw_parts[0] ) );
+									$scrw_val   = isset( $scrw_parts[1] ) ? trim( $scrw_parts[1] ) : '';
+									?>
+									<div><dt><?php echo esc_html( $scrw_lab ); ?></dt><dd><?php echo esc_html( $scrw_val ); ?></dd></div>
+								<?php endforeach; ?>
+							</dl>
 						<?php endif; ?>
 						<div class="scrw-pcard__actions">
-							<a class="scrw-pcard__link" href="<?php echo esc_url( $it['url'] ); ?>"><?php esc_html_e( 'View details', 'soundcreations-rwanda' ); ?> &rarr;</a>
-							<a class="scrw-pcard__quote" href="<?php echo esc_url( add_query_arg( 'product', rawurlencode( $it['title'] ), home_url( '/request-a-quote/' ) ) ); ?>"><?php esc_html_e( 'Get a quote', 'soundcreations-rwanda' ); ?></a>
+							<a class="scrw-btn scrw-btn--ghost" href="<?php echo esc_url( $it['url'] ); ?>"><?php esc_html_e( 'View details', 'soundcreations-rwanda' ); ?></a>
+							<a class="scrw-btn scrw-btn--primary" href="<?php echo esc_url( add_query_arg( 'product', rawurlencode( $it['title'] ), home_url( '/request-a-quote/' ) ) ); ?>"><?php esc_html_e( 'Get a quote', 'soundcreations-rwanda' ); ?></a>
 						</div>
 					</div>
 				</article>
 			<?php endforeach; ?>
 		</div>
-		<p class="scrw-cat__empty" data-scrw-empty hidden><?php esc_html_e( 'No products match. Try another category or contact us, we can source it for you.', 'soundcreations-rwanda' ); ?></p>
-		<p class="scrw-cat__note"><?php esc_html_e( 'Specifications are indicative; confirm the current datasheet before ordering. Prices on request.', 'soundcreations-rwanda' ); ?></p>
+		<p class="scrw-cat__empty" data-scrw-empty hidden><?php esc_html_e( 'No products match your filters. Try another category, or ask us: we can source most professional audio equipment for you.', 'soundcreations-rwanda' ); ?></p>
+
+		<div class="scrw-cat__help">
+			<div>
+				<h3><?php esc_html_e( 'Can’t find what you need?', 'soundcreations-rwanda' ); ?></h3>
+				<p><?php esc_html_e( 'This is a selection of our range. Tell us the model or the job and our Kigali team will advise, quote and source it.', 'soundcreations-rwanda' ); ?></p>
+			</div>
+			<div class="scrw-cat__help-actions">
+				<a class="scrw-btn scrw-btn--primary" href="<?php echo esc_url( home_url( '/request-a-quote/' ) ); ?>"><?php esc_html_e( 'Request a quote', 'soundcreations-rwanda' ); ?></a>
+				<?php $scrw_wa = function_exists( 'sc_setting' ) ? preg_replace( '/[^0-9]/', '', (string) sc_setting( 'whatsapp' ) ) : ''; ?>
+				<?php if ( '' !== $scrw_wa ) : ?><a class="scrw-btn scrw-btn--ghost" href="<?php echo esc_url( 'https://wa.me/' . $scrw_wa ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'WhatsApp us', 'soundcreations-rwanda' ); ?></a><?php endif; ?>
+			</div>
+		</div>
+		<p class="scrw-cat__note"><?php esc_html_e( 'Specifications are from the manufacturers and indicative; confirm the current datasheet before ordering. Prices on request.', 'soundcreations-rwanda' ); ?></p>
 	</div>
 </section>
 
 <script>
 (function(){
-	var root=document.querySelector('[data-scrw-cat]'); if(!root){return;}
-	var chips=root.querySelectorAll('.scrw-chip'), cards=root.querySelectorAll('.scrw-pcard');
-	var brand=root.querySelector('[data-scrw-brand]'), search=root.querySelector('[data-scrw-search]'), empty=root.querySelector('[data-scrw-empty]');
-	var cat=(root.querySelector('.scrw-chip.is-active')||{}).getAttribute ? root.querySelector('.scrw-chip.is-active').getAttribute('data-cat') : '';
+	var root=document.querySelector('[data-scrw-cat]'); if(root===null){return;}
+	var grid=root.querySelector('[data-scrw-grid]'), chips=root.querySelectorAll('.scrw-chip'), cards=Array.prototype.slice.call(root.querySelectorAll('.scrw-pcard'));
+	var brand=root.querySelector('[data-scrw-brand]'), search=root.querySelector('[data-scrw-search]'), sort=root.querySelector('[data-scrw-sort]'), empty=root.querySelector('[data-scrw-empty]'), count=root.querySelector('[data-scrw-count]');
+	var act=root.querySelector('.scrw-chip.is-active'); var cat=act ? act.getAttribute('data-cat') : '';
 	function apply(){
 		var b=brand.value, t=search.value.trim().toLowerCase(), shown=0;
-		for(var i=0;i<cards.length;i++){
-			var c=cards[i];
+		cards.forEach(function(c){
 			var ok=(cat===''||c.getAttribute('data-cat')===cat)&&(b===''||c.getAttribute('data-brand')===b)&&(t===''||c.getAttribute('data-text').indexOf(t)>-1);
 			c.hidden=(ok===false); if(ok){shown++;}
-		}
+		});
 		empty.hidden=shown>0;
+		count.textContent=shown+(shown===1?' product':' products');
 	}
-	for(var i=0;i<chips.length;i++){chips[i].addEventListener('click',function(){
-		for(var j=0;j<chips.length;j++){chips[j].classList.remove('is-active');}
-		this.classList.add('is-active'); cat=this.getAttribute('data-cat'); apply();
+	function order(){
+		var m=sort.value, list=cards.slice();
+		list.sort(function(a,b){
+			if(m==='az'){return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));}
+			if(m==='brand'){var x=a.getAttribute('data-brand').localeCompare(b.getAttribute('data-brand')); return x===0 ? a.getAttribute('data-title').localeCompare(b.getAttribute('data-title')) : x;}
+			return a.getAttribute('data-order')-b.getAttribute('data-order');
+		});
+		list.forEach(function(c){grid.appendChild(c);});
+	}
+	chips.forEach ? chips.forEach(bind) : Array.prototype.forEach.call(chips,bind);
+	function bind(ch){ch.addEventListener('click',function(){
+		Array.prototype.forEach.call(chips,function(x){x.classList.remove('is-active');});
+		ch.classList.add('is-active'); cat=ch.getAttribute('data-cat'); apply();
 	});}
-	brand.addEventListener('change',apply); search.addEventListener('input',apply); apply();
+	brand.addEventListener('change',apply); search.addEventListener('input',apply); sort.addEventListener('change',function(){order();apply();});
+	apply();
 })();
 </script>
 <section class="sc-section">
