@@ -40,8 +40,8 @@ function scrw_settings() {
 		'footer_address'     => "KN1 Rd, Muhima\nKigali, Rwanda\n+250 783 141 050 | +250 782 739 889",
 		'footer_hours_label' => 'Open Hours',
 		'footer_hours'       => "Mon - Fri: 9 am - 6 pm\nSat - Sun: Closed",
-		'footer_about'       => 'Sound Creations Ltd Rwanda designs, supplies, installs and supports professional audio, lighting, studio and acoustic solutions for venues across Kigali and Rwanda, backed by the engineering depth of the Sound Creations Ltd group.',
-		'footer_solutions'   => "Lighting Solutions | /solutions/lighting-solutions/\nStudio Solutions | /solutions/studio-solutions/\nArchitectural Acoustics | /solutions/architectural-acoustics/\nService and Backup | /solutions/service-and-backup/",
+		'footer_about'       => 'Sound Creations Ltd Rwanda designs, supplies, installs and supports professional audio, DJ, lighting, studio and acoustic solutions for venues across Kigali and Rwanda, backed by the engineering depth of the Sound Creations Ltd group.',
+		'footer_solutions'   => "DJ Solutions | /solutions/dj-solutions/\nLighting Solutions | /solutions/lighting-solutions/\nStudio Solutions | /solutions/studio-solutions/\nArchitectural Acoustics | /solutions/architectural-acoustics/\nService and Backup | /solutions/service-and-backup/",
 		'footer_explore'     => "Home | /\nSolutions | /solutions/\nBrands & Products | /brands/\nProjects | /projects/\nAbout | /about/\nContact | /contact/\nRequest a Quote | /request-a-quote/",
 
 		// Homepage.

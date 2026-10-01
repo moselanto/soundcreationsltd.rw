@@ -12,16 +12,31 @@ if ( \! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_CONTENT_VERSION', 'rw-content-1' );
+define( 'SCRW_CONTENT_VERSION', 'rw-content-2' );
 
 /**
- * The four Rwanda service areas, with full copy (proposal section B).
+ * The five Rwanda service areas, with full copy (proposal section B).
  * Slug => array( title, excerpt, html ).
  */
 function scrw_services() {
 	$cta = '<p><a href="/request-a-quote/">Request a quote</a> or <a href="/request-a-consultation/">book a site consultation</a> with our Kigali team. Call <a href="tel:+250783141050">+250 783 141 050</a> or message us on <a href="https://wa.me/250783141050">WhatsApp</a>.</p>';
 
 	return array(
+		'dj-solutions'            => array(
+			'DJ Solutions',
+			'DJ controllers, mixers, players, monitors and complete DJ booths for clubs, lounges, hotels, events and mobile DJs in Kigali and across Rwanda.',
+			'<p>From a mobile DJ starting out to a club or hotel lounge that needs a reliable booth every night, Sound Creations Ltd Rwanda supplies and sets up DJ systems that sound professional and stand up to heavy use.</p>
+<h2>What we deliver</h2>
+<ul>
+<li><strong>DJ controllers and mixers</strong> - all-in-one controllers, club mixers and players for every level, from first gig to residency.</li>
+<li><strong>DJ monitoring and PA</strong> - booth monitors, headphones and powered speakers sized for your venue or event.</li>
+<li><strong>Club and lounge booths</strong> - complete DJ booth design and installation for clubs, bars, hotels and event spaces, integrated with the venue sound and lighting.</li>
+<li><strong>Accessories and cabling</strong> - genuine cables, stands, cases and spares so a set never stops because of a small part.</li>
+</ul>
+<h2>Advice from people who know the gear</h2>
+<p>Visit or call our Kigali team to compare options, get honest advice on what fits your budget and style, and buy genuine equipment with manufacturer warranty and local after-sales support.</p>
+' + $cta,
+		),
 		'lighting-solutions'      => array(
 			'Lighting Solutions',
 			'Stage, architectural, event and church lighting for venues in Kigali and across Rwanda - designed, supplied, installed and programmed.',

@@ -28,7 +28,7 @@ The Kenya child theme (`soundcreations-child/`) is deliberately not included her
 | File | Purpose |
 | --- | --- |
 | `inc/settings-seed.php` | Writes Rwanda phone, email, address, hours, WhatsApp, map link, footer and homepage/About copy into Settings. Only fills fields that are empty or still hold the Kenya default, so editor changes are never overwritten. Routes all enquiry and quote forms to sales@soundcreationsltd.com. |
-| `inc/content-seed.php` | Creates the four Rwanda service pages with full copy and calls to action (Lighting Solutions, Studio Solutions, Architectural Acoustics, Service and Backup); drafts the overlapping generic starter solutions; replaces the Kenya-law Privacy and Terms pages with Rwanda versions; stops the Core plugin seeding Kenya case studies. |
+| `inc/content-seed.php` | Creates the five Rwanda service pages with full copy and calls to action (DJ Solutions, Lighting Solutions, Studio Solutions, Architectural Acoustics, Service and Backup); drafts the overlapping generic starter solutions; replaces the Kenya-law Privacy and Terms pages with Rwanda versions; stops the Core plugin seeding Kenya case studies. |
 | `inc/seo.php` | Retargets page titles from Kenya to Kigali/Rwanda, corrects LocalBusiness/Organization schema to a Kigali RW address, links the entity to the group site (`parentOrganization`), adds Kigali geo meta. |
 | `inc/analytics.php` | GA4 and Search Console verification fields under **Settings -> General**. |
 | `inc/elementor.php`, `inc/elementor-widgets.php` | Elementor integration: full-width routing for Elementor-built pages, brand Site Kit, Sound Creations widgets. See "Editing pages with Elementor". |
