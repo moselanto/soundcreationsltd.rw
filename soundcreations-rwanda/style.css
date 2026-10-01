@@ -110,3 +110,10 @@ Text Domain:  soundcreations-rwanda
 .scrw-fane-contact__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .scrw-fane-contact__tile--wa .scrw-fane-contact__icon { background: rgba(37,211,102,.14); color: #25D366; }
 @media (max-width: 640px) { .scrw-fane-contact__grid { grid-template-columns: 1fr; } }
+
+/* Product photos: clean white studio plate so every packshot reads clearly */
+.scrw-pcard__plate { background: #fff; border-bottom: 1px solid var(--sc-border); }
+.scrw-pcard__plate img { padding: 8%; object-fit: contain; image-rendering: auto; }
+.scrw-pcard__ph { color: #555; }
+.single-sc_product .sc-detail__media { background: #fff; border-radius: 14px; padding: 1.5rem; text-align: center; }
+.single-sc_product .sc-detail__media img { max-height: 520px; width: auto; max-width: 100%; object-fit: contain; }

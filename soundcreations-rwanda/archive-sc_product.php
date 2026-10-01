@@ -204,7 +204,7 @@ while ( $scrw_q->have_posts() ) {
 		'id'    => $pid,
 		'title' => get_the_title(),
 		'url'   => get_permalink(),
-		'img'   => has_post_thumbnail() ? get_the_post_thumbnail_url( $pid, 'medium_large' ) : '',
+		'img'   => scrw_product_image_url( $pid, 'large' ),
 		'brand' => $brand,
 		'model' => (string) get_post_meta( $pid, '_sc_model', true ),
 		'cat'   => $cat ? $cat->slug : '',
@@ -247,7 +247,7 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 				<article class="scrw-pcard" data-cat="<?php echo esc_attr( $it['cat'] ); ?>" data-brand="<?php echo esc_attr( sanitize_title( $it['brand'] ) ); ?>" data-text="<?php echo esc_attr( strtolower( $it['title'] . ' ' . $it['model'] . ' ' . $it['brand'] . ' ' . $it['catn'] ) ); ?>">
 					<a class="scrw-pcard__plate" href="<?php echo esc_url( $it['url'] ); ?>" tabindex="-1" aria-hidden="true">
 						<?php if ( $it['img'] ) : ?>
-							<img src="<?php echo esc_url( $it['img'] ); ?>" alt="" loading="lazy" decoding="async" width="400" height="400">
+							<img src="<?php echo esc_url( $it['img'] ); ?>" alt="<?php echo esc_attr( $it['title'] ); ?>" loading="lazy" decoding="async" width="600" height="600">
 						<?php else : ?>
 							<span class="scrw-pcard__ph"><?php echo esc_html( $it['brand'] ? $it['brand'] : $it['title'] ); ?></span>
 						<?php endif; ?>
