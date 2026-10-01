@@ -1,0 +1,114 @@
+/* ============================================================
+   Sound Creations design tokens.
+
+   Brand palette: purple #624489, red #BA0B0B, white.
+
+   Role split -- this is the whole system, so keep to it:
+     PURPLE  brand and structure. Utility band, section eyebrows, focus
+             rings, surface washes, selection. It appears on every page, so
+             it is what makes the site feel like the logo.
+     RED     action only, kept deliberately scarce. Primary CTAs, active
+             nav, link hover. Scarcity is what makes red read as premium
+             rather than shouty.
+     WHITE   content.
+
+   Never put red and purple in direct competition inside one component
+   (red text on a purple band, for example) -- it clashes and it muddies
+   which colour means "click me".
+
+   Every brand value below is theme-independent. Only the SEMANTIC tokens
+   flip between dark and light, so a component styled with a semantic token
+   is correct in both themes automatically.
+   ============================================================ */
+
+:root {
+  /* ---- Brand ramp (identical in both themes) ---- */
+  --sc-purple: #624489;        /* logo purple */
+  --sc-purple-600: #533A74;    /* hover / pressed */
+  --sc-purple-700: #46305F;    /* deep, for bands on dark */
+  --sc-purple-300: #A98BD6;    /* lightened for text on dark */
+  --sc-purple-200: #C9B6E6;
+  --sc-red: #BA0B0B;           /* logo red */
+  --sc-red-600: #9C0909;       /* hover / pressed on light */
+  --sc-red-500: #D81414;       /* hover on dark */
+  --sc-red-300: #E8697A;       /* lightened for text on dark */
+
+  /* Channel triplets so alpha washes can be composed from the brand hues
+     instead of hardcoding rgba() values that drift out of sync. */
+  --sc-purple-rgb: 98, 68, 137;
+  --sc-red-rgb: 186, 11, 11;
+
+  --sc-indigo: #624489;        /* legacy alias -> brand purple */
+
+  --sc-radius: 10px;
+  --sc-radius-lg: 18px;
+  --sc-container: 1180px;
+  --sc-gutter: clamp(1rem, 0.5rem + 2vw, 1.5rem);
+  --sc-font-display: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --sc-font-body: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --sc-ease: cubic-bezier(.2,.7,.2,1);
+}
+
+:root,
+[data-theme="dark"] {
+  --sc-bg: #0B0B0F;
+  --sc-surface: #131318;
+  --sc-surface-2: #1B1B22;
+  --sc-border: #26262F;
+  --sc-text: #F5F5F7;
+  --sc-muted: #A0A0AC;
+  --sc-header-bg: rgba(11,11,15,.72);
+  --sc-shadow: 0 20px 60px rgba(0,0,0,.45);
+
+  /* ---- Semantic roles: dark ---- */
+  --sc-eyebrow: var(--sc-purple-300);   /* 6.7:1 on #0B0B0F */
+  --sc-focus: var(--sc-purple-300);
+  --sc-accent: var(--sc-red);
+  --sc-accent-hover: var(--sc-red-500);
+  --sc-accent-soft: var(--sc-red-300);
+  --sc-brand-mark: var(--sc-purple-300);
+  --sc-brand-tint: rgba(98, 68, 137, .18);
+  --sc-brand-tint-soft: rgba(98, 68, 137, .10);
+  --sc-brand-line: rgba(169, 139, 214, .30);
+  --sc-selection-bg: rgba(98, 68, 137, .55);
+  --sc-selection-fg: #FFFFFF;
+
+  /* Utility band stays #624489 in BOTH themes: a masthead colour that
+     shifts with the theme stops reading as the brand. */
+  --sc-utility-bg: #624489;
+  --sc-utility-fg: rgba(255, 255, 255, .88);   /* 6.3:1 on the band */
+  --sc-utility-strong: #FFFFFF;                /* 7.8:1 on the band */
+  --sc-utility-line: rgba(255, 255, 255, .16);
+}
+
+[data-theme="light"] {
+  --sc-bg: #FBFBFD;
+  --sc-surface: #FFFFFF;
+  --sc-surface-2: #F2F2F5;
+  --sc-border: #E4E4EA;
+  --sc-text: #14141A;
+  --sc-muted: #5A5A66;
+  --sc-header-bg: rgba(255,255,255,.8);
+  --sc-shadow: 0 20px 60px rgba(20,20,40,.12);
+
+  /* ---- Semantic roles: light ----
+     The full-strength purple is used here because #624489 on white is
+     7.8:1, while the lightened #A98BD6 would fail badly. This flip is the
+     reason eyebrows and focus rings stay readable in both themes. */
+  --sc-eyebrow: var(--sc-purple);
+  --sc-focus: var(--sc-purple);
+  --sc-accent: var(--sc-red);
+  --sc-accent-hover: var(--sc-red-600);
+  --sc-accent-soft: var(--sc-red-600);
+  --sc-brand-mark: var(--sc-purple);
+  --sc-brand-tint: rgba(98, 68, 137, .07);
+  --sc-brand-tint-soft: rgba(98, 68, 137, .04);
+  --sc-brand-line: rgba(98, 68, 137, .20);
+  --sc-selection-bg: rgba(98, 68, 137, .22);
+  --sc-selection-fg: #14141A;
+
+  --sc-utility-bg: #624489;
+  --sc-utility-fg: rgba(255, 255, 255, .92);
+  --sc-utility-strong: #FFFFFF;
+  --sc-utility-line: rgba(255, 255, 255, .22);
+}

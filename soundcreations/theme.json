@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "appearanceTools": true,
+    "layout": { "contentSize": "760px", "wideSize": "1200px" },
+    "color": {
+      "defaultPalette": false,
+      "custom": true,
+      "palette": [
+        { "slug": "background", "color": "#0B0B0F", "name": "Background" },
+        { "slug": "surface", "color": "#131318", "name": "Surface" },
+        { "slug": "surface-2", "color": "#1B1B22", "name": "Surface 2" },
+        { "slug": "border", "color": "#26262F", "name": "Border" },
+        { "slug": "text", "color": "#F5F5F7", "name": "Text" },
+        { "slug": "muted", "color": "#A0A0AC", "name": "Muted" },
+        { "slug": "accent", "color": "#E11D2A", "name": "SC Red" },
+        { "slug": "secondary", "color": "#5A4FCF", "name": "SC Indigo" }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "customFontSize": true,
+      "fontFamilies": [
+        { "slug": "display", "name": "Display", "fontFamily": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif" },
+        { "slug": "body", "name": "Body", "fontFamily": "\"Inter\", ui-sans-serif, system-ui, sans-serif" }
+      ],
+      "fontSizes": [
+        { "slug": "small", "size": "0.875rem", "name": "Small" },
+        { "slug": "medium", "size": "1rem", "name": "Medium" },
+        { "slug": "large", "size": "1.25rem", "name": "Large" },
+        { "slug": "x-large", "size": "clamp(1.75rem, 1.2rem + 2.5vw, 2.75rem)", "name": "XL" },
+        { "slug": "xx-large", "size": "clamp(2.5rem, 1.5rem + 4.5vw, 4.5rem)", "name": "XXL" }
+      ]
+    },
+    "spacing": {
+      "units": ["px", "em", "rem", "vh", "vw", "%"],
+      "spacingSizes": [
+        { "slug": "20", "size": "0.5rem", "name": "1" },
+        { "slug": "30", "size": "1rem", "name": "2" },
+        { "slug": "40", "size": "1.5rem", "name": "3" },
+        { "slug": "50", "size": "2.5rem", "name": "4" },
+        { "slug": "60", "size": "4rem", "name": "5" },
+        { "slug": "70", "size": "6rem", "name": "6" }
+      ]
+    }
+  },
+  "styles": {
+    "color": { "background": "#0B0B0F", "text": "#F5F5F7" },
+    "typography": { "fontFamily": "var(--wp--preset--font-family--body)", "lineHeight": "1.6" },
+    "elements": {
+      "heading": { "typography": { "fontFamily": "var(--wp--preset--font-family--display)", "fontWeight": "600", "lineHeight": "1.12" } },
+      "link": { "color": { "text": "#F5F5F7" }, "typography": { "textDecoration": "none" } }
+    }
+  }
+}

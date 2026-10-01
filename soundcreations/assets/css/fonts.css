@@ -1,0 +1,8 @@
+/* Self-hosted Inter - no render-blocking external Google Fonts request.
+   inter-600.woff2 is the Inter *variable* Latin file (wght axis 100-900);
+   the single variable @font-face below exposes the full weight range
+   (400-900) the type system uses. */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(../fonts/inter-600.woff2) format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 500; font-display: swap; src: url(../fonts/space-grotesk-500.woff2) format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 600; font-display: swap; src: url(../fonts/space-grotesk-600.woff2) format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 700; font-display: swap; src: url(../fonts/space-grotesk-700.woff2) format("woff2"); }

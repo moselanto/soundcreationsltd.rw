@@ -1,0 +1,168 @@
+/* ============================================================
+   Sound Creations loader / activity indicators.
+
+   Two separate things live here, for two different jobs:
+
+     1. .sc-preload  -- the full-page brand loader shown on the first
+        navigation of a session only.
+     2. .sc-orb      -- a small reusable dotted "wavefront" indicator for
+        async states (form submission, filtering), drawn on canvas by
+        assets/js/loader.js.
+
+   PERFORMANCE NOTE -- read before changing anything here.
+   This file is INLINED into <head> by inc/enqueue.php alongside tokens.css
+   and fonts.css, so it costs no extra request. The overlay animation is
+   deliberately pure CSS and uses ONLY transform and opacity, so it runs on
+   the compositor and never triggers layout or paint on the main thread. Do
+   not add width/height/top/left animation, box-shadow animation, or filters
+   here -- a loader that makes the page slower is worse than no loader.
+
+   The overlay is hidden by default and only revealed when the inline
+   bootstrap script adds .sc-loading to <html>. That means:
+     - no JavaScript  -> no overlay, ever (content is never trapped behind it)
+     - reduced motion -> no overlay
+     - second page view in a session -> no overlay
+   ============================================================ */
+
+/* ---- 1. Full-page brand loader ------------------------------------- */
+
+.sc-preload {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: grid;
+  place-items: center;
+  gap: 1.75rem;
+  align-content: center;
+  background: var(--sc-bg, #0B0B0F);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.45s var(--sc-ease, cubic-bezier(0.4, 0, 0.2, 1)),
+              visibility 0.45s;
+}
+
+html.sc-loading .sc-preload {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Hold the page still while the overlay is up, without a layout shift when
+   it lifts: scrollbar-gutter keeps the gutter reserved in both states. */
+html.sc-loading {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+/* ---- The wavefront: concentric rings leaving a driver --------------- */
+
+.sc-wavefront {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+}
+
+/* Each ring is a wavefront travelling outward and losing energy as it goes,
+   which is the actual physical behaviour we are illustrating. */
+.sc-wavefront__ring {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--sc-purple-300, #A98BD6);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.28);
+  animation: sc-wavefront 2.4s var(--sc-ease, cubic-bezier(0.4, 0, 0.2, 1)) infinite;
+  will-change: transform, opacity;
+}
+
+.sc-wavefront__ring:nth-child(2) { animation-delay: 0.6s; }
+.sc-wavefront__ring:nth-child(3) { animation-delay: 1.2s; }
+.sc-wavefront__ring:nth-child(4) { animation-delay: 1.8s; }
+
+@keyframes sc-wavefront {
+  0%   { transform: scale(0.28); opacity: 0; }
+  12%  { opacity: 0.85; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* The driver itself: a small solid core that pulses in time with the rings,
+   so the rings read as being emitted rather than just appearing. */
+.sc-wavefront__core {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--sc-accent, #BA0B0B);
+  transform: scale(1);
+  animation: sc-driver 2.4s var(--sc-ease, cubic-bezier(0.4, 0, 0.2, 1)) infinite;
+  will-change: transform;
+}
+
+@keyframes sc-driver {
+  0%, 100% { transform: scale(1); }
+  8%       { transform: scale(1.5); }
+  30%      { transform: scale(0.94); }
+}
+
+.sc-preload__label {
+  margin: 0;
+  font-family: var(--sc-font-display, system-ui), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sc-muted, #9A9AA6);
+}
+
+/* ---- 2. Inline dotted orb (canvas, drawn by loader.js) ------------- */
+
+.sc-orb {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.sc-orb--lg { width: 56px; height: 56px; }
+
+.sc-orb canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Buttons that are mid-submit: swap the label for the orb in place, keeping
+   the button's box identical so nothing around it moves. */
+.sc-btn[data-sc-busy="1"] {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.sc-btn[data-sc-busy="1"] .sc-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---- 3. Reduced motion --------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-preload {
+    transition: none;
+  }
+  .sc-wavefront__ring,
+  .sc-wavefront__core {
+    animation: none;
+  }
+  /* Show a single static wavefront so the mark still reads as itself. */
+  .sc-wavefront__ring:first-child {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
