@@ -24,6 +24,7 @@ require_once SCRW_DIR . 'inc/content-seed.php';
 require_once SCRW_DIR . 'inc/pages-seed.php';
 require_once SCRW_DIR . 'inc/projects-seed.php';
 require_once SCRW_DIR . 'inc/menu.php';
+require_once SCRW_DIR . 'inc/offices.php';
 require_once SCRW_DIR . 'inc/products-seed.php';
 require_once SCRW_DIR . 'inc/seo.php';
 require_once SCRW_DIR . 'inc/analytics.php';

@@ -59,6 +59,11 @@ $sc_contacts_map = array(
 	'kinshasa' => $sc_ke_contact,
 	'dubai'    => $sc_ke_contact,
 );
+
+// Filterable so a site built on this theme (e.g. the Rwanda site) can put its
+// own office first and give each office its correct contact details.
+$sc_offices      = apply_filters( 'sc_offices', $sc_offices );
+$sc_contacts_map = apply_filters( 'sc_office_contacts', $sc_contacts_map );
 ?>
 
 <section class="sc-section sc-section--tight sc-section--compact sc-contactpage-hero">
