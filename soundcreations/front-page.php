@@ -89,17 +89,9 @@ $sc_hero_poster = sc_setting( 'home_hero_poster', SC_THEME_URI . '/assets/img/he
 					if ( has_post_thumbnail() ) {
 						$sc_svc_img = (string) get_the_post_thumbnail_url( get_the_ID(), 'large' );
 					}
-					if ( strlen( $sc_svc_img ) === 0 ) {
-						// The Core seeder stores _sc_image as a path relative to
-						// assets/img/ (e.g. "solutions/consultation.jpg"). Used raw it
-						// becomes a broken relative URL, so resolve it to the theme.
-						$sc_raw = ltrim( (string) get_post_meta( get_the_ID(), '_sc_image', true ), '/' );
-						if ( preg_match( '#^(https?:)?//#', $sc_raw ) ) {
-							$sc_svc_img = $sc_raw;
-						} elseif ( '' !== $sc_raw && file_exists( SC_THEME_DIR . '/assets/img/' . $sc_raw ) ) {
-							$sc_svc_img = SC_THEME_URI . '/assets/img/' . $sc_raw;
-						}
-					}
+					// No _sc_image fallback here: the Core seeder's keys point at large
+					// JPGs (up to 170 KB). Without a Featured Image the card keeps the
+					// lighter bundled WebP default set in $sc_services below.
 					$sc_service_links[] = array(
 						't'   => strtolower( get_the_title() ),
 						'u'   => get_permalink(),
