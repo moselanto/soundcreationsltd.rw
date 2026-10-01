@@ -19,6 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'SCRW_PRODUCTS_VERSION', 'rw-products-1' );
 
+require_once __DIR__ . '/products-data.php';
+
 add_action(
 	'init',
 	function () {
@@ -183,4 +185,65 @@ add_action(
 		flush_rewrite_rules( false );
 	},
 	50
+);
+
+/*
+ * rw-products-2: replace the catalogue-PDF descriptions and short specs with
+ * the official manufacturer data (inc/products-data.php), and swap in the
+ * official product photo where one is bundled in assets/img/products-official/.
+ * A product is only updated while its specs still match what rw-products-1
+ * seeded, so anything edited by hand in wp-admin is left alone.
+ */
+function scrw_update_products_official() {
+	if ( ! function_exists( 'scrw_catalogue_official' ) ) {
+		return;
+	}
+	$official = scrw_catalogue_official();
+	foreach ( scrw_catalogue() as $p ) {
+		list( $slug, $title, $brand, $model, $cat, $desc, $specs ) = $p;
+		if ( ! isset( $official[ $slug ] ) ) {
+			continue;
+		}
+		$post = get_page_by_path( $slug, OBJECT, 'sc_product' );
+		if ( ! $post ) {
+			continue;
+		}
+		$cur = trim( str_replace( "\r", '', (string) get_post_meta( $post->ID, '_sc_specs', true ) ) );
+		if ( '' !== $cur && trim( $specs ) !== $cur ) {
+			continue; // Edited by hand.
+		}
+		list( $odesc, $ospecs, $ourl ) = $official[ $slug ];
+		$content = '<p>' . esc_html( $odesc ) . '</p>'
+			. '<p>Available from Sound Creations Ltd Rwanda in Kigali, with manufacturer warranty and local after-sales support.</p>';
+		if ( '' !== $ourl ) {
+			$content .= '<p><a href="' . esc_url( $ourl ) . '" target="_blank" rel="noopener">' . esc_html( $brand ) . ' product page</a></p>';
+		}
+		wp_update_post(
+			array(
+				'ID'           => $post->ID,
+				'post_excerpt' => $odesc,
+				'post_content' => $content,
+			)
+		);
+		if ( '' !== trim( $ospecs ) ) {
+			update_post_meta( $post->ID, '_sc_specs', $ospecs );
+		}
+		$aid = scrw_import_theme_image( 'products-official', $slug, $title, $title . ' - ' . $cat . ' available from Sound Creations Rwanda' );
+		if ( $aid ) {
+			wp_update_post( array( 'ID' => $aid, 'post_parent' => $post->ID ) );
+			set_post_thumbnail( $post->ID, $aid );
+		}
+	}
+}
+
+add_action(
+	'admin_init',
+	function () {
+		if ( 'rw-products-1' !== get_option( 'scrw_products_ver' ) ) {
+			return; // Runs once, right after the first seed has completed.
+		}
+		scrw_update_products_official();
+		update_option( 'scrw_products_ver', 'rw-products-2' );
+	},
+	51
 );
