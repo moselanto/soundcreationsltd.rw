@@ -258,3 +258,120 @@ add_action(
 	},
 	12
 );
+
+
+/*
+ * Homepage "Solutions" cards: the parent theme shows the Kenya trio
+ * (Professional Audio, Acoustics, Integration). Show the Rwanda service
+ * areas instead, linked to the Rwanda solution pages. Photos can be
+ * replaced per card in Sound Creations -> Settings (home_sol1_img ...).
+ * Image paths are relative to the parent theme's assets/img/home/.
+ */
+add_filter(
+	'sc_home_solutions',
+	function () {
+		return array(
+			array( '../solutions/audio-live.jpg', 'DJ Solutions', 'DJ controllers, mixers, monitors and complete DJ booths for clubs, lounges, hotels and events.', '/solutions/dj-solutions/', 'home_sol1_img', array( 'dj' ) ),
+			array( '../solutions/lighting.jpg', 'Lighting Solutions', 'Stage, church, event and architectural lighting, designed, installed and programmed.', '/solutions/lighting-solutions/', 'home_sol2_img', array( 'lighting' ) ),
+			array( '../solutions/broadcast.jpg', 'Studio Solutions', 'Recording, broadcast, podcast and streaming studios, treated, equipped and commissioned.', '/solutions/studio-solutions/', 'home_sol3_img', array( 'studio' ) ),
+			array( 'solution-acoustics.jpg', 'Architectural Acoustics', 'Acoustic measurement, design and treatment for clear speech and music in any room.', '/solutions/architectural-acoustics/', 'home_sol4_img', array( 'acoustic' ) ),
+			array( 'service-aftersale-rack.webp', 'Service and Backup', 'Maintenance, repairs, warranty support, equipment backup and operator training in Rwanda.', '/solutions/service-and-backup/', 'home_sol5_img', array( 'service', 'backup' ) ),
+		);
+	}
+);
+
+/*
+ * Catalogue: the Core plugin seeds the Kenya brand list, products and Kenya
+ * case studies. On the Rwanda site keep only the brands the Kigali office
+ * carries (confirmed by the Rwanda team, 1 Oct 2026), add the two that are
+ * not in the Kenya list, and unpublish Kenya projects. Items are set to
+ * draft, never deleted, so they can be republished from wp-admin.
+ */
+define( 'SCRW_CATALOG_VERSION', 'rw-catalog-1' );
+
+function scrw_brands() {
+	// slug => array( title, category, menu_order ).
+	return array(
+		'yamaha'            => array( 'Yamaha', 'Pro Audio & Musical Instruments', 1 ),
+		'bose-professional' => array( 'Bose Professional', 'Loudspeakers & Conferencing', 2 ),
+		'digico'            => array( 'DiGiCo', 'Digital Mixing Consoles', 3 ),
+		'db-technologies'   => array( 'dB Technologies', 'Loudspeakers & Amplification', 4 ),
+		'shure'             => array( 'Shure', 'Microphones & Wireless', 5 ),
+		'behringer'         => array( 'Behringer', 'Mixing & Amplification', 6 ),
+	);
+}
+
+function scrw_sync_catalog() {
+	$keep = scrw_brands();
+
+	foreach ( $keep as $slug => $b ) {
+		$post = get_page_by_path( $slug, OBJECT, 'sc_brand' );
+		if ( null === $post ) {
+			$id = wp_insert_post(
+				array(
+					'post_title'  => $b[0],
+					'post_name'   => $slug,
+					'post_status' => 'publish',
+					'post_type'   => 'sc_brand',
+					'menu_order'  => $b[2],
+				)
+			);
+			if ( is_int( $id ) && $id > 0 ) {
+				update_post_meta( $id, '_sc_category', $b[1] );
+			}
+		} else {
+			wp_update_post( array( 'ID' => $post->ID, 'menu_order' => $b[2] ) );
+		}
+	}
+
+	$brands = get_posts( array( 'post_type' => 'sc_brand', 'post_status' => 'publish', 'numberposts' => -1 ) );
+	$keep_names = array();
+	foreach ( $keep as $b ) {
+		$keep_names[] = strtolower( $b[0] );
+	}
+	foreach ( $brands as $br ) {
+		if ( \! isset( $keep[ $br->post_name ] ) ) {
+			wp_update_post( array( 'ID' => $br->ID, 'post_status' => 'draft' ) );
+		}
+	}
+
+	// Products belonging to brands the Rwanda office does not carry.
+	$products = get_posts( array( 'post_type' => 'sc_product', 'post_status' => 'publish', 'numberposts' => -1 ) );
+	foreach ( $products as $pr ) {
+		$brand = strtolower( trim( (string) get_post_meta( $pr->ID, '_sc_brand_name', true ) ) );
+		if ( '' === $brand ) {
+			$terms = get_the_terms( $pr->ID, 'sc_brand_tax' );
+			if ( $terms && \! is_wp_error( $terms ) ) {
+				$brand = strtolower( reset( $terms )->name );
+			}
+		}
+		if ( '' \!== $brand && \! in_array( $brand, $keep_names, true ) ) {
+			wp_update_post( array( 'ID' => $pr->ID, 'post_status' => 'draft' ) );
+		}
+	}
+
+	// Kenya case studies.
+	$projects = get_posts( array( 'post_type' => 'sc_project', 'post_status' => 'publish', 'numberposts' => -1 ) );
+	foreach ( $projects as $pj ) {
+		$loc = (string) get_post_meta( $pj->ID, '_sc_location', true );
+		if ( preg_match( '/kenya|nairobi|westlands|kahawa/i', $loc ) ) {
+			wp_update_post( array( 'ID' => $pj->ID, 'post_status' => 'draft' ) );
+		}
+	}
+}
+
+add_action(
+	'admin_init',
+	function () {
+		if ( get_option( 'scrw_catalog_ver' ) === SCRW_CATALOG_VERSION ) {
+			return;
+		}
+		// Wait until the Core plugin has seeded its catalogue (admin_init, priority 10).
+		if ( \! post_type_exists( 'sc_brand' ) || '' === (string) get_option( 'sc_core_seed_version', '' ) ) {
+			return;
+		}
+		scrw_sync_catalog();
+		update_option( 'scrw_catalog_ver', SCRW_CATALOG_VERSION );
+	},
+	30
+);

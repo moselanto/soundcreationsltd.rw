@@ -172,11 +172,13 @@ $sc_hero_poster = sc_setting( 'home_hero_poster', SC_THEME_URI . '/assets/img/he
 			// saved in Sound Creations -> Settings ("Solutions - ...: photo"), so if a
 			// card still shows an old image after changing the filename here, that
 			// setting is populated and is winning -- clear it or repoint it.
-			$sc_sols = array(
+			// Filterable so a site built on this theme (e.g. the Rwanda site) can
+			// show its own solution cards without editing this template.
+			$sc_sols = apply_filters( 'sc_home_solutions', array(
 				array( 'solution-db3.webp', 'Professional Audio', 'Powerful, intelligible and reliable sound systems designed around your room and application.', '/solutions/professional-audio/', 'home_sol1_img', array( 'professional audio', 'audio' ) ),
 				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/', 'home_sol2_img', array( 'acoustic' ) ),
 				array( 'solution-av-integration.jpg', 'Sound & Acoustic Integration', 'Professional sound and acoustic systems, installed, commissioned and calibrated by our technical team.', '/solutions/installation/', 'home_sol3_img', array( 'integ', 'installation' ) ),
-			);
+			) );
 			foreach ( $sc_sols as $sc_so ) :
 				$sc_img  = sc_setting( $sc_so[4], SC_THEME_URI . '/assets/img/home/' . $sc_so[0] );
 				$sc_href = home_url( $sc_so[3] );
