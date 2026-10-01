@@ -49,8 +49,8 @@ add_action(
 	'wp_footer',
 	function () {
 		echo '<div class="scrw-group-band"><div class="sc-container">'
-			. esc_html__( 'Sound Creations Ltd Rwanda is part of the Sound Creations Ltd group.', 'soundcreations-rwanda' )
-			. ' <a href="' . esc_url( SCRW_GROUP_URL ) . '">' . esc_html__( 'Visit the group website', 'soundcreations-rwanda' ) . '</a>'
+			. esc_html__( 'Sound Creations Ltd Rwanda is part of the Sound Creations Ltd.', 'soundcreations-rwanda' )
+			. ' <a href="' . esc_url( SCRW_GROUP_URL ) . '">' . esc_html__( 'Visit the SCL Kenya website', 'soundcreations-rwanda' ) . '</a>'
 			. '</div></div>';
 	},
 	5
