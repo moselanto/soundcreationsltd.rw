@@ -39,7 +39,7 @@ add_action(
 			'soundcreations-rwanda',
 			get_stylesheet_uri(),
 			array( 'sc-main' ),
-			SCRW_VERSION
+			(string) filemtime( get_stylesheet_directory() . '/style.css' ) // Changes on every upload, so browsers and caches fetch the new CSS.
 		);
 	},
 	30
