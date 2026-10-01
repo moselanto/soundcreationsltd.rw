@@ -103,3 +103,5 @@ Text Domain:  soundcreations-rwanda
 .scrw-fane-contact__label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--sc-muted); }
 .scrw-fane-contact__value { font-weight: 600; font-size: .98rem; overflow-wrap: anywhere; }
 @media (max-width: 760px) { .scrw-fane-contact__grid { grid-template-columns: 1fr; } }
+.scrw-cat__head { max-width: 64ch; margin-bottom: 1.6rem; }
+.scrw-cat__head h2 { margin: .2rem 0 .5rem; }
