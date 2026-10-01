@@ -1,8 +1,8 @@
 # Sound Creations Ltd Rwanda - Website
 
-Source for <https://rwanda.soundcreationsltd.com/>.
+Source for <https://soundcreationsltd.rw/>.
 
-Independent website for **Sound Creations Ltd Rwanda** at <https://rwanda.soundcreationsltd.com/>,
+Independent website for **Sound Creations Ltd Rwanda** at <https://soundcreationsltd.rw/>,
 built to the scope in *Sound Creations Rwanda - Website and SEO Proposal* (30 Sep 2026).
 
 ## Architecture decision
@@ -42,7 +42,7 @@ WordPress XML sitemap at `/wp-sitemap.xml`.
 ## Deployment (Rwanda hosting)
 
 1. Back up the current Rwanda site (files and database).
-2. Install a clean WordPress (6.4+, PHP 8.0+, HTTPS) on rwanda.soundcreationsltd.com.
+2. Install a clean WordPress (6.4+, PHP 8.0+, HTTPS) on soundcreationsltd.rw.
 3. Upload `soundcreations/` and `soundcreations-rwanda/` to `wp-content/themes/`.
 4. Upload `sound-creations-core/` and `sound-creations-enquiries/` to `wp-content/plugins/`.
 5. Activate **Sound Creations Core**, then **Sound Creations Enquiries**.

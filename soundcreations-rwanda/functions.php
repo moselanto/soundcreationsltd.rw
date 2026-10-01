@@ -3,7 +3,7 @@
  * Sound Creations Rwanda child theme.
  *
  * The Rwanda site is an independent WordPress install at
- * rwanda.soundcreationsltd.com. It runs the same parent theme and the same
+ * soundcreationsltd.rw. It runs the same parent theme and the same
  * two first-party plugins as soundcreationsltd.com, so both sites read as one
  * group brand, while everything below makes this install speak for the
  * Kigali operation: its own contact details, content, titles and schema.

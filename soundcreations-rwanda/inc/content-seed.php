@@ -156,7 +156,7 @@ function scrw_legal_pages() {
 	$contact = '<p>Sound Creations Ltd Rwanda, KN1 Rd, Muhima, Kigali, Rwanda - sales@soundcreationsltd.com - +250 783 141 050.</p>';
 
 	return array(
-		'privacy-policy' => '<p>This policy explains how Sound Creations Ltd Rwanda ("we", "us") collects and uses personal data through rwanda.soundcreationsltd.com. It is designed to align with Law N° 058/2021 of 13/10/2021 relating to the protection of personal data and privacy in Rwanda.</p>
+		'privacy-policy' => '<p>This policy explains how Sound Creations Ltd Rwanda ("we", "us") collects and uses personal data through soundcreationsltd.rw. It is designed to align with Law N° 058/2021 of 13/10/2021 relating to the protection of personal data and privacy in Rwanda.</p>
 <h2>What we collect</h2>
 <p>When you submit an enquiry, quote or consultation request we collect the details you provide: your name, organisation, email address, phone number, country and the content of your message, plus any file you choose to attach. Our website also records basic technical data (such as IP address and browser type) for security and, where you consent, anonymous analytics.</p>
 <h2>Why we use it</h2>
@@ -169,7 +169,7 @@ function scrw_legal_pages() {
 <p>You may ask to access, correct or delete your personal data, object to its use, or withdraw consent at any time. You may also lodge a complaint with the National Cyber Security Authority (NCSA), Rwanda\'s data protection supervisory authority.</p>
 <h2>Contact</h2>
 ' . $contact,
-		'terms'          => '<p>These terms govern your use of rwanda.soundcreationsltd.com and quotations issued by Sound Creations Ltd Rwanda.</p>
+		'terms'          => '<p>These terms govern your use of soundcreationsltd.rw and quotations issued by Sound Creations Ltd Rwanda.</p>
 <h2>Website content</h2>
 <p>Information on this website is provided for general guidance. Product specifications, availability and prices may change without notice; a written quotation from us is the only binding statement of price and scope.</p>
 <h2>Quotations and orders</h2>
