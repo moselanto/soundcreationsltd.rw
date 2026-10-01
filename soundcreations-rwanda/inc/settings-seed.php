@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_SEED_VERSION', 'rw-settings-2' );
+define( 'SCRW_SEED_VERSION', 'rw-settings-3' );
 
 /**
  * Rwanda values. Contact details are taken from the current live Rwanda site.
@@ -45,10 +45,10 @@ function scrw_settings() {
 		'footer_explore'     => "Home | /\nSolutions | /solutions/\nBrands & Products | /brands/\nProjects | /projects/\nAbout | /about/\nContact | /contact/\nRequest a Quote | /request-a-quote/",
 
 		// Homepage.
-		'home_hero_title'     => 'Professional sound, lighting and acoustics for Rwanda.',
-		'home_whatwedo_title' => 'One partner, from first consultation to long-term support.',
-		'home_whatwedo_lead'  => 'From our Kigali office we help churches, hotels, conference centres, schools, studios and event venues across Rwanda get systems that sound right, look right and keep working. We consult and design, supply genuine equipment from world-class brands, integrate and commission on site, and stay on hand for service, training and backup.',
-		'home_solutions_title'=> 'Expertise solutions and services in Rwanda.',
+		'home_hero_title'     => '', // No visible headline, as on the group site.
+		'home_whatwedo_title' => '',
+		'home_whatwedo_lead'  => 'If it sounds good, it’s Sound Creations. From acoustic design and system engineering to equipment, integration, commissioning and support, we deliver world-class technology and expertise across Rwanda, Africa and the Middle East.',
+		'home_solutions_title'=> '',
 		'home_projects_title' => 'Real spaces. Real results.',
 		'home_stat1_num'      => '22+',
 		'home_stat1_label'    => 'Years of Group Experience',
@@ -83,6 +83,11 @@ function scrw_superseded_settings() {
 	return array(
 		'hours_sat'    => array( 'Sat: Closed' ),
 		'footer_hours' => array( "Mon - Fri: 9 am - 6 pm\nSat - Sun: Closed" ),
+		// rw-settings-3: homepage copy aligned with the group site.
+		'home_hero_title'      => array( 'Professional sound, lighting and acoustics for Rwanda.' ),
+		'home_whatwedo_title'  => array( 'One partner, from first consultation to long-term support.' ),
+		'home_whatwedo_lead'   => array( 'From our Kigali office we help churches, hotels, conference centres, schools, studios and event venues across Rwanda get systems that sound right, look right and keep working. We consult and design, supply genuine equipment from world-class brands, integrate and commission on site, and stay on hand for service, training and backup.' ),
+		'home_solutions_title' => array( 'Expertise solutions and services in Rwanda.' ),
 	);
 }
 

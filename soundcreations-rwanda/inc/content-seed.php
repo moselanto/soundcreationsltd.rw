@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_CONTENT_VERSION', 'rw-content-2' );
+define( 'SCRW_CONTENT_VERSION', 'rw-content-3' );
 
 /**
  * The five Rwanda service areas, with full copy (proposal section B).
@@ -124,24 +124,13 @@ function scrw_seed_services() {
 		);
 	}
 
-	// Draft the overlapping Core starter solutions, but only while they still
-	// hold the one-line starter text (an edited post is left alone). Drafts
-	// still occupy their slug, so Core will not re-create them.
-	if ( function_exists( 'sc_core_starter_solutions' ) ) {
-		$starter = array();
-		foreach ( sc_core_starter_solutions() as $row ) {
-			$starter[ $row[1] ] = $row[2];
-		}
-		foreach ( scrw_duplicate_core_solutions() as $slug ) {
-			$post = get_page_by_path( $slug, OBJECT, 'sc_solution' );
-			if ( $post && 'publish' === $post->post_status && isset( $starter[ $slug ] ) && trim( $post->post_content ) === $starter[ $slug ] ) {
-				wp_update_post(
-					array(
-						'ID'          => $post->ID,
-						'post_status' => 'draft',
-					)
-				);
-			}
+	// rw-content-3: the homepage now matches the group site, whose Solutions
+	// cards link to the Core solutions (Professional Audio, Acoustics,
+	// Integration). Republish the Core solutions earlier versions drafted.
+	foreach ( scrw_duplicate_core_solutions() as $slug ) {
+		$post = get_page_by_path( $slug, OBJECT, 'sc_solution' );
+		if ( $post && 'draft' === $post->post_status ) {
+			wp_update_post( array( 'ID' => $post->ID, 'post_status' => 'publish' ) );
 		}
 	}
 }
@@ -261,24 +250,11 @@ add_action(
 
 
 /*
- * Homepage "Solutions" cards: the parent theme shows the Kenya trio
- * (Professional Audio, Acoustics, Integration). Show the Rwanda service
- * areas instead, linked to the Rwanda solution pages. Photos can be
- * replaced per card in Sound Creations -> Settings (home_sol1_img ...).
- * Image paths are relative to the parent theme's assets/img/home/.
+ * Homepage "Solutions" cards: same as the group site (the parent theme's
+ * Professional Audio, Acoustics, Sound & Acoustic Integration trio), so no
+ * sc_home_solutions override here. The five Rwanda solution pages stay
+ * published and are linked from the Solutions menu.
  */
-add_filter(
-	'sc_home_solutions',
-	function () {
-		return array(
-			array( '../solutions/audio-live.jpg', 'DJ Solutions', 'DJ controllers, mixers, monitors and complete DJ booths for clubs, lounges, hotels and events.', '/solutions/dj-solutions/', 'home_sol1_img', array( 'dj' ) ),
-			array( '../solutions/lighting.jpg', 'Lighting Solutions', 'Stage, church, event and architectural lighting, designed, installed and programmed.', '/solutions/lighting-solutions/', 'home_sol2_img', array( 'lighting' ) ),
-			array( '../solutions/broadcast.jpg', 'Studio Solutions', 'Recording, broadcast, podcast and streaming studios, treated, equipped and commissioned.', '/solutions/studio-solutions/', 'home_sol3_img', array( 'studio' ) ),
-			array( 'solution-acoustics.jpg', 'Architectural Acoustics', 'Acoustic measurement, design and treatment for clear speech and music in any room.', '/solutions/architectural-acoustics/', 'home_sol4_img', array( 'acoustic' ) ),
-			array( 'service-aftersale-rack.webp', 'Service and Backup', 'Maintenance, repairs, warranty support, equipment backup and operator training in Rwanda.', '/solutions/service-and-backup/', 'home_sol5_img', array( 'service', 'backup' ) ),
-		);
-	}
-);
 
 /*
  * Catalogue. The Rwanda office carries the same brand line-up as the group

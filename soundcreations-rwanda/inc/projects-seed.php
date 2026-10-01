@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_PROJECTS_VERSION', 'rw-projects-1' );
+define( 'SCRW_PROJECTS_VERSION', 'rw-projects-2' );
 
 function scrw_projects() {
 	return array(
@@ -205,11 +205,12 @@ function scrw_seed_projects() {
 		}
 	}
 
-	// The Core starter "RPF Rubavu Multipurpose Hall" is the same venue as
-	// Intare Kivu Arena; keep one live entry (draft, not delete).
-	$dup = get_page_by_path( 'rpf-rubavu-hall', OBJECT, 'sc_project' );
-	if ( $dup && 'publish' === $dup->post_status && get_page_by_path( 'intare-kivu-arena', OBJECT, 'sc_project' ) ) {
-		wp_update_post( array( 'ID' => $dup->ID, 'post_status' => 'draft' ) );
+	// RPF Rubavu Multipurpose Hall (Core starter project, Rubavu) is a Rwanda
+	// project and is featured on the homepage, as on the group site.
+	// rw-projects-1 had drafted it; publish it again.
+	$rpf = get_page_by_path( 'rpf-rubavu-hall', OBJECT, 'sc_project' );
+	if ( $rpf && 'draft' === $rpf->post_status ) {
+		wp_update_post( array( 'ID' => $rpf->ID, 'post_status' => 'publish' ) );
 	}
 }
 
