@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_SEED_VERSION', 'rw-settings-6' );
+define( 'SCRW_SEED_VERSION', 'rw-settings-7' );
 
 /**
  * Rwanda values. Contact details are taken from the current live Rwanda site.
@@ -34,6 +34,8 @@ function scrw_settings() {
 		// FANE page: same FANE Africa accounts as the group site.
 		'fane_facebook'      => 'https://web.facebook.com/profile.php?id=61593413537880',
 		'fane_instagram'     => 'https://www.instagram.com/faneloudspeakers_africa/',
+		'fane_social_title'  => 'Talk to FANE in Rwanda',
+		'fane_social_text'   => 'Buying, specifying or stocking FANE loudspeakers in Rwanda? Email, call or WhatsApp our Kigali team.',
 		'email'              => 'sales@soundcreationsltd.com',
 		'address'            => 'KN1 Rd, Muhima, Kigali, Rwanda',
 		'hours_week'         => 'Mon-Fri: 9:00 AM - 6:00 PM',

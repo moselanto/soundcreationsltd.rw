@@ -247,3 +247,43 @@ add_action(
 	},
 	51
 );
+
+/*
+ * rw-products-3: more official photos bundled in assets/img/products-official/
+ * (Shure, DSPPA, AVer, Yamaha keyboards). Swap them in for any product still
+ * showing its catalogue-PDF photo; a photo chosen by hand is left alone.
+ */
+function scrw_update_products_photos() {
+	foreach ( scrw_catalogue() as $p ) {
+		list( $slug, $title, $brand, $model, $cat ) = $p;
+		$post = get_page_by_path( $slug, OBJECT, 'sc_product' );
+		if ( ! $post ) {
+			continue;
+		}
+		$thumb = (int) get_post_thumbnail_id( $post->ID );
+		$src   = $thumb ? (string) get_post_meta( $thumb, '_scrw_source', true ) : '';
+		if ( $thumb && 'products/' . $slug !== $src ) {
+			continue; // Already official, or replaced by hand.
+		}
+		$aid = scrw_import_theme_image( 'products-official', $slug, $title, $title . ' - ' . $cat . ' available from Sound Creations Rwanda' );
+		if ( $aid ) {
+			wp_update_post( array( 'ID' => $aid, 'post_parent' => $post->ID ) );
+			set_post_thumbnail( $post->ID, $aid );
+		}
+	}
+}
+
+add_action(
+	'admin_init',
+	function () {
+		if ( 'rw-products-2' !== get_option( 'scrw_products_ver' ) ) {
+			return;
+		}
+		if ( function_exists( 'set_time_limit' ) ) {
+			@set_time_limit( 300 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+		}
+		scrw_update_products_photos();
+		update_option( 'scrw_products_ver', 'rw-products-3' );
+	},
+	52
+);

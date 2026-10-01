@@ -105,3 +105,8 @@ Text Domain:  soundcreations-rwanda
 @media (max-width: 760px) { .scrw-fane-contact__grid { grid-template-columns: 1fr; } }
 .scrw-cat__head { max-width: 64ch; margin-bottom: 1.6rem; }
 .scrw-cat__head h2 { margin: .2rem 0 .5rem; }
+/* FANE contact tiles now replace the social buttons: no divider, 2 x 2 grid */
+.scrw-fane-contact { margin-top: .4rem; padding-top: 0; border-top: 0; }
+.scrw-fane-contact__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.scrw-fane-contact__tile--wa .scrw-fane-contact__icon { background: rgba(37,211,102,.14); color: #25D366; }
+@media (max-width: 640px) { .scrw-fane-contact__grid { grid-template-columns: 1fr; } }

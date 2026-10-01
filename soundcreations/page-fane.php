@@ -173,6 +173,8 @@ foreach ( $sc_fane_soc as $sc_s ) {
 		$sc_fane_links[] = $sc_s;
 	}
 }
+$sc_fane_links = apply_filters( 'sc_fane_social_links', $sc_fane_links );
+
 // Optional contact block under the social links (e.g. the Rwanda site's
 // email and phone tiles). Filterable so a child theme can supply it.
 $sc_fane_contact = (string) apply_filters( 'sc_fane_contact_html', '' );

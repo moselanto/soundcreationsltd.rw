@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_PAGES_VERSION', 'rw-pages-1' );
+define( 'SCRW_PAGES_VERSION', 'rw-pages-2' );
 
 /** slug => array( title, content ). */
 function scrw_core_pages() {
@@ -25,6 +25,7 @@ function scrw_core_pages() {
 		'about'                  => array( 'About', '<p>Sound Creations Ltd Rwanda is the Kigali operation of the Sound Creations Ltd group, delivering professional audio, visual, lighting and acoustic solutions across Rwanda.</p>' ),
 		'contact'                => array( 'Contact', '<p>Talk to our Kigali team about your project.</p>' ),
 		'request-a-consultation' => array( 'Request a Consultation', '<p>Tell us about your space and application and our Kigali team will help you specify the right system.</p>' ),
+		'fane'                   => array( 'FANE', '<p>FANE professional loudspeaker components, available in Rwanda from Sound Creations Ltd Rwanda.</p>' ),
 		'request-a-quote'        => array( 'Request a Quote', '<p>Tell us what you need and our Kigali sales team will come back with pricing and availability.</p>[sc_enquiry_form type="quote"]' ),
 	);
 	if ( function_exists( 'scrw_legal_pages' ) ) {
@@ -90,4 +91,24 @@ add_action(
 		update_option( 'scrw_pages_ver', SCRW_PAGES_VERSION );
 	},
 	55
+);
+
+/*
+ * /brands/fane/ (the generic brand page) -> /fane/ (the full FANE page, same
+ * as the group site). Only once the FANE page exists, otherwise WordPress
+ * would send /fane/ back to /brands/fane/ and loop.
+ */
+add_action(
+	'template_redirect',
+	function () {
+		if ( ! is_singular( 'sc_brand' ) || 'fane' !== get_post_field( 'post_name', get_queried_object_id() ) ) {
+			return;
+		}
+		$page = get_page_by_path( 'fane', OBJECT, 'page' );
+		if ( $page && 'publish' === $page->post_status ) {
+			wp_safe_redirect( get_permalink( $page ), 301 );
+			exit;
+		}
+	},
+	5
 );
