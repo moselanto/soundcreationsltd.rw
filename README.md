@@ -53,7 +53,7 @@ WordPress XML sitemap at `/wp-sitemap.xml`.
 
 ## Still needed from the Rwanda team (proposal section 4)
 
-- Photographs and short descriptions of completed Rwanda projects -> add as **Projects** (set location e.g. `Kigali, Rwanda`).
+- More Rwanda projects: six showcase projects from the 2025 company profile are seeded by `inc/projects-seed.php` (MINECOFIN, Intare Kivu Arena, Ntare Louisenlund, Christian Life Assembly, Atelier du Vin, Romantic Garden). Add further ones as **Projects** (set location e.g. `Kigali, Rwanda`).
 - Key client names/logos cleared for publication.
 - Any Rwanda-specific brand/partner logos -> **Brands**.
 - Yamaha logo (Sound Creations Rwanda is the authorised Yamaha distributor): add `soundcreations/assets/img/brands/logos/yamaha.png` or set it as the Yamaha brand's Featured Image. Until then the brand shows as a text wordmark.
