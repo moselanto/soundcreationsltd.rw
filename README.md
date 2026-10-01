@@ -31,6 +31,7 @@ The Kenya child theme (`soundcreations-child/`) is deliberately not included her
 | `inc/content-seed.php` | Creates the four Rwanda service pages with full copy and calls to action (Lighting Solutions, Studio Solutions, Architectural Acoustics, Service and Backup); drafts the overlapping generic starter solutions; replaces the Kenya-law Privacy and Terms pages with Rwanda versions; stops the Core plugin seeding Kenya case studies. |
 | `inc/seo.php` | Retargets page titles from Kenya to Kigali/Rwanda, corrects LocalBusiness/Organization schema to a Kigali RW address, links the entity to the group site (`parentOrganization`), adds Kigali geo meta. |
 | `inc/analytics.php` | GA4 and Search Console verification fields under **Settings -> General**. |
+| `inc/elementor.php`, `inc/elementor-widgets.php` | Elementor integration: full-width routing for Elementor-built pages, brand Site Kit, Sound Creations widgets. See "Editing pages with Elementor". |
 | `functions.php` | Loads the above, adds a footer band linking to the group site. |
 
 Already provided by the shared theme and active once Settings are filled: header with phone,
@@ -72,3 +73,43 @@ studio equipment Rwanda, stage lighting Kigali, church sound system Rwanda, conf
 - [ ] Add a link from soundcreationsltd.com (Kigali branch / contact page) to the Rwanda site
 - [ ] Compress and upload project photos (WebP, under 200 KB each, descriptive alt text)
 - [ ] Legal review of the Rwanda Privacy and Terms pages
+
+
+## Editing pages with Elementor
+
+The Rwanda site is set up for **Elementor** (free version is enough; Elementor Pro adds a theme builder for headers and footers).
+
+### Setup (once)
+
+1. **Plugins -> Add New**, search **Elementor**, install and activate. (A reminder notice shows in wp-admin until you do.)
+2. Reload wp-admin once. The theme then automatically:
+   - sets the Elementor Site Kit to the brand: purple `#624489`, deep purple `#46305F`, action red `#BA0B0B`, Inter typography, 1180px content width;
+   - turns off Elementor's own default colours/fonts and its Google Fonts (Inter is served locally, which is faster);
+   - enables Elementor on Pages, Posts, Solutions, Projects and Services.
+
+### Editing a page
+
+- Open any page and click **Edit with Elementor**.
+- As soon as a page is built with Elementor it switches to a full-width layout that keeps the site header and footer. This works for the homepage, About, Contact and every other page. If you switch a page back to the normal editor, its original design comes back.
+- Elementor's own **Canvas** (no header/footer) and **Full Width** templates are respected if you choose them under Page Settings.
+
+### Sound Creations widgets
+
+In the Elementor panel, the **Sound Creations** section has ready-made blocks that pull live data, so contact details are never retyped:
+
+| Widget | What it shows |
+| --- | --- |
+| SC Contact Card | Phone, email, address, hours and WhatsApp button from Sound Creations -> Settings |
+| SC Enquiry / Quote Form | The spam-protected enquiry system (quote, consultation, contact, support, dealer), routed by Enquiry Routing |
+| SC Projects Grid | Latest Projects, optionally filtered by location (e.g. "Rwanda") |
+| SC Brands & Partners | The partner logo strip from Brands |
+| SC Call-to-Action Band | Branded CTA band with heading, text, button and optional background photo |
+
+Change a phone number once in **Sound Creations -> Settings** and every page using these widgets updates.
+
+### Good practice
+
+- Use the Site Kit colours and fonts (the globe icon in Elementor) rather than picking custom colours, so pages stay on brand.
+- Keep images under ~200 KB (WebP preferred) and always fill in the image alt text.
+- Use one H1 per page (the page headline), then H2/H3 for sections - this matters for SEO.
+- Templates: save good sections as Elementor templates (right-click -> Save as Template) to reuse them across pages.

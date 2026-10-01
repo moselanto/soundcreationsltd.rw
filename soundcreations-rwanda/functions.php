@@ -15,7 +15,7 @@ if ( \! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_VERSION', '1.0.0' );
+define( 'SCRW_VERSION', '1.1.0' );
 define( 'SCRW_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 
@@ -23,6 +23,7 @@ require_once SCRW_DIR . 'inc/settings-seed.php';
 require_once SCRW_DIR . 'inc/content-seed.php';
 require_once SCRW_DIR . 'inc/seo.php';
 require_once SCRW_DIR . 'inc/analytics.php';
+require_once SCRW_DIR . 'inc/elementor.php';
 
 add_action(
 	'wp_enqueue_scripts',

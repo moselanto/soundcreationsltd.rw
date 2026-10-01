@@ -4,7 +4,7 @@ Theme URI:    https://rwanda.soundcreationsltd.com/
 Description:  Child theme for the independent Sound Creations Ltd Rwanda website. Uses the group parent theme (soundcreations) so both sites share one visual identity, and layers Rwanda-specific business details, content, local SEO and structured data on top.
 Author:       Sound Creations Ltd
 Template:     soundcreations
-Version:      1.0.0
+Version:      1.1.0
 Requires PHP: 8.0
 License:      GPL-2.0-or-later
 Text Domain:  soundcreations-rwanda
@@ -23,3 +23,35 @@ Text Domain:  soundcreations-rwanda
 	color: inherit;
 	text-decoration: underline;
 }
+
+/* ---- Elementor-built pages ---------------------------------------- */
+.scrw-elementor-page .sc-fullwidth { padding: 0; }
+.scrw-elementor-page .elementor { font-family: var(--sc-font-body); color: var(--sc-text); }
+.scrw-elementor-page .elementor a:not(.sc-btn):not(.elementor-button) { color: var(--sc-accent-soft); }
+
+/* Sound Creations widgets */
+.scrw-proj-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 20px;
+}
+.scrw-proj-grid .sc-project { width: auto; flex: none; }
+.scrw-proj-more { margin-top: 18px; }
+.scrw-contact-card {
+	background: var(--sc-surface);
+	border: 1px solid var(--sc-border);
+	border-radius: var(--sc-radius-lg);
+	padding: 28px;
+}
+.scrw-contact-card__title { margin: 0 0 16px; }
+.scrw-contact-card__list { list-style: none; margin: 0 0 20px; padding: 0; }
+.scrw-contact-card__list li { padding: 10px 0; border-bottom: 1px solid var(--sc-border); }
+.scrw-contact-card__list li span {
+	display: block;
+	font-size: 12px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	color: var(--sc-eyebrow);
+	margin-bottom: 2px;
+}
+.scrw-empty { color: var(--sc-muted); }
