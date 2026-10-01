@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="sc-utility">
 	<div class="sc-container sc-utility__inner">
 		<div class="sc-utility__zone sc-utility__zone--left"><span class="sc-utility__regions"><?php echo esc_html( sc_setting( 'regions' ) ); ?></span></div>
-		<div class="sc-utility__zone sc-utility__zone--center"><a href="tel:<?php echo esc_attr( sc_setting( 'phone_link' ) ); ?>"><?php echo esc_html( sc_setting( 'phone' ) ); ?></a><?php if ( sc_setting( 'phone2' ) ) : ?><span class="sc-utility__dot" aria-hidden="true"> / </span><a href="tel:<?php echo esc_attr( sc_setting( 'phone2_link' ) ); ?>"><?php echo esc_html( sc_setting( 'phone2' ) ); ?></a><?php endif; ?><span class="sc-utility__dot" aria-hidden="true"> &middot; </span><a href="mailto:<?php echo esc_attr( sc_setting( 'email' ) ); ?>"><?php echo esc_html( sc_setting( 'email' ) ); ?></a></div>
+		<div class="sc-utility__zone sc-utility__zone--center"><a href="tel:<?php echo esc_attr( sc_setting( 'phone_link' ) ); ?>"><?php echo esc_html( sc_setting( 'phone' ) ); ?></a><span class="sc-utility__dot" aria-hidden="true"> &middot; </span><a href="mailto:<?php echo esc_attr( sc_setting( 'email' ) ); ?>"><?php echo esc_html( sc_setting( 'email' ) ); ?></a></div>
 		<div class="sc-utility__zone sc-utility__zone--right"><span class="sc-utility__hours"><?php echo esc_html( sc_setting( 'hours_week' ) ); ?></span><span class="sc-utility__social"><?php sc_utility_social(); ?></span></div>
 	</div>
 </div>
