@@ -27,8 +27,8 @@ The Kenya child theme (`soundcreations-child/`) is deliberately not included her
 
 | File | Purpose |
 | --- | --- |
-| `inc/settings-seed.php` | Writes Rwanda phone, email, address, hours, WhatsApp, map link, footer and homepage/About copy into Settings. Only fills fields that are empty or still hold the Kenya default, so editor changes are never overwritten. Routes all enquiry and quote forms to sales@soundcreationsltd.com. |
-| `inc/content-seed.php` | Creates the five Rwanda service pages with full copy and calls to action (DJ Solutions, Lighting Solutions, Studio Solutions, Architectural Acoustics, Service and Backup); drafts the overlapping generic starter solutions; replaces the Kenya-law Privacy and Terms pages with Rwanda versions; stops the Core plugin seeding Kenya case studies. |
+| `inc/settings-seed.php` | Writes Rwanda phone, email, address, hours (Mon-Fri 9 am - 6 pm, Sat 9 am - 1:30 pm, Sun closed, Kigali time), WhatsApp, map link, footer and homepage/About copy into Settings. Only fills fields that are empty or still hold the Kenya default, so editor changes are never overwritten. Routes all enquiry and quote forms to sales@soundcreationsltd.com. |
+| `inc/content-seed.php` | Keeps the full group brand line-up and adds Yamaha first, labelled Authorised Distributor in Rwanda. Creates the five Rwanda service pages with full copy and calls to action (DJ Solutions, Lighting Solutions, Studio Solutions, Architectural Acoustics, Service and Backup); drafts the overlapping generic starter solutions; replaces the Kenya-law Privacy and Terms pages with Rwanda versions; stops the Core plugin seeding Kenya case studies. |
 | `inc/seo.php` | Retargets page titles from Kenya to Kigali/Rwanda, corrects LocalBusiness/Organization schema to a Kigali RW address, links the entity to the group site (`parentOrganization`), adds Kigali geo meta. |
 | `inc/analytics.php` | GA4 and Search Console verification fields under **Settings -> General**. |
 | `inc/elementor.php`, `inc/elementor-widgets.php` | Elementor integration: full-width routing for Elementor-built pages, brand Site Kit, Sound Creations widgets. See "Editing pages with Elementor". |
@@ -53,10 +53,11 @@ WordPress XML sitemap at `/wp-sitemap.xml`.
 
 ## Still needed from the Rwanda team (proposal section 4)
 
-- Photographs and short descriptions of completed Rwanda projects -> add as **Projects** (set location e.g. `Kigali, Rwanda`).
+- More Rwanda projects: six showcase projects from the 2025 company profile are seeded by `inc/projects-seed.php` (MINECOFIN, Intare Kivu Arena, Ntare Louisenlund, Christian Life Assembly, Atelier du Vin, Romantic Garden). Add further ones as **Projects** (set location e.g. `Kigali, Rwanda`).
 - Key client names/logos cleared for publication.
 - Any Rwanda-specific brand/partner logos -> **Brands**.
-- Confirm Saturday hours (seeded as Closed) and whether +250 782 739 889 should also appear in the header.
+- Yamaha logo (Sound Creations Rwanda is the authorised Yamaha distributor): add `soundcreations/assets/img/brands/logos/yamaha.png` or set it as the Yamaha brand's Featured Image. Until then the brand shows as a text wordmark.
+- Confirm whether +250 782 739 889 should also appear in the header.
 - Rwanda social media links if separate from the group accounts (otherwise the group links show).
 - Kigali office latitude/longitude for map schema (left blank rather than guessed).
 

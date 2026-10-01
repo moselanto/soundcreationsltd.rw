@@ -21,7 +21,7 @@
  * @package SoundCreationsRwanda
  */
 
-if ( \! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -34,11 +34,11 @@ function scrw_elementor_active() {
 
 /** Was this post built with Elementor? */
 function scrw_built_with_elementor( $post_id ) {
-	if ( \! $post_id || \! scrw_elementor_active() ) {
+	if ( ! $post_id || ! scrw_elementor_active() ) {
 		return false;
 	}
 	$plugin = \Elementor\Plugin::$instance;
-	if ( \! isset( $plugin->documents ) ) {
+	if ( ! isset( $plugin->documents ) ) {
 		return false;
 	}
 	$doc = $plugin->documents->get( $post_id );
@@ -49,11 +49,11 @@ function scrw_built_with_elementor( $post_id ) {
 add_filter(
 	'template_include',
 	function ( $template ) {
-		if ( \! is_singular() ) {
+		if ( ! is_singular() ) {
 			return $template;
 		}
 		$id = (int) get_queried_object_id();
-		if ( \! scrw_built_with_elementor( $id ) ) {
+		if ( ! scrw_built_with_elementor( $id ) ) {
 			return $template;
 		}
 		// Respect Elementor's own Canvas / Full Width page templates.
@@ -121,7 +121,7 @@ add_action(
 function scrw_configure_elementor() {
 	// Post types editable with Elementor.
 	$cpts = get_option( 'elementor_cpt_support', array( 'page', 'post' ) );
-	if ( \! is_array( $cpts ) ) {
+	if ( ! is_array( $cpts ) ) {
 		$cpts = array( 'page', 'post' );
 	}
 	$cpts = array_values( array_unique( array_merge( $cpts, array( 'page', 'post', 'sc_solution', 'sc_project', 'sc_service' ) ) ) );
@@ -137,7 +137,7 @@ function scrw_configure_elementor() {
 		return false;
 	}
 	$s = get_post_meta( $kit_id, '_elementor_page_settings', true );
-	if ( \! is_array( $s ) ) {
+	if ( ! is_array( $s ) ) {
 		$s = array();
 	}
 	$s['system_colors'] = array(
@@ -173,7 +173,7 @@ function scrw_configure_elementor() {
 add_action(
 	'admin_init',
 	function () {
-		if ( \! scrw_elementor_active() || get_option( 'scrw_elementor_ver' ) === SCRW_ELEMENTOR_VERSION ) {
+		if ( ! scrw_elementor_active() || get_option( 'scrw_elementor_ver' ) === SCRW_ELEMENTOR_VERSION ) {
 			return;
 		}
 		if ( scrw_configure_elementor() ) {
@@ -187,7 +187,7 @@ add_action(
 add_action(
 	'admin_notices',
 	function () {
-		if ( scrw_elementor_active() || \! current_user_can( 'install_plugins' ) ) {
+		if ( scrw_elementor_active() || ! current_user_can( 'install_plugins' ) ) {
 			return;
 		}
 		$url = admin_url( 'plugin-install.php?s=elementor&tab=search&type=term' );

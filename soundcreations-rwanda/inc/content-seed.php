@@ -8,7 +8,7 @@
  * @package SoundCreationsRwanda
  */
 
-if ( \! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -205,7 +205,7 @@ function scrw_seed_legal() {
 			continue;
 		}
 		$cur     = (string) $page->post_content;
-		$untouch = ( '' === trim( $cur ) || false \!== strpos( $cur, 'Mpaka Plaza' ) || false \!== strpos( $cur, '[CONTENT TO BE CONFIRMED' ) );
+		$untouch = ( '' === trim( $cur ) || false !== strpos( $cur, 'Mpaka Plaza' ) || false !== strpos( $cur, '[CONTENT TO BE CONFIRMED' ) );
 		if ( $untouch ) {
 			wp_update_post(
 				array(
@@ -250,7 +250,7 @@ add_action(
 		if ( get_option( 'scrw_content_ver' ) === SCRW_CONTENT_VERSION ) {
 			return;
 		}
-		if ( \! post_type_exists( 'sc_solution' ) ) {
+		if ( ! post_type_exists( 'sc_solution' ) ) {
 			return; // Core plugin not active yet; try again next admin load.
 		}
 		scrw_seed_content();
@@ -281,72 +281,93 @@ add_filter(
 );
 
 /*
- * Catalogue: the Core plugin seeds the Kenya brand list, products and Kenya
- * case studies. On the Rwanda site keep only the brands the Kigali office
- * carries (confirmed by the Rwanda team, 1 Oct 2026), add the two that are
- * not in the Kenya list, and unpublish Kenya projects. Items are set to
- * draft, never deleted, so they can be republished from wp-admin.
+ * Catalogue. The Rwanda office carries the same brand line-up as the group
+ * (the brands the Core plugin seeds), plus Yamaha, for which Sound Creations
+ * Rwanda is the authorised distributor (confirmed 1 Oct 2026). Kenya case
+ * studies are unpublished so the projects page only shows Rwanda work once it
+ * is added. Items are set to draft, never deleted, so they can be republished
+ * from wp-admin.
+ *
+ * rw-catalog-2 reverses rw-catalog-1, which had restricted the site to a
+ * shorter six-brand list: group brands and products drafted by that run are
+ * republished, and DiGiCo (added only by rw-catalog-1) is drafted.
  */
-define( 'SCRW_CATALOG_VERSION', 'rw-catalog-1' );
+define( 'SCRW_CATALOG_VERSION', 'rw-catalog-2' );
 
-function scrw_brands() {
-	// slug => array( title, category, menu_order ).
+/** Rwanda-only brands, on top of the group brands seeded by Core. */
+function scrw_extra_brands() {
 	return array(
-		'yamaha'            => array( 'Yamaha', 'Pro Audio & Musical Instruments', 1 ),
-		'bose-professional' => array( 'Bose Professional', 'Loudspeakers & Conferencing', 2 ),
-		'digico'            => array( 'DiGiCo', 'Digital Mixing Consoles', 3 ),
-		'db-technologies'   => array( 'dB Technologies', 'Loudspeakers & Amplification', 4 ),
-		'shure'             => array( 'Shure', 'Microphones & Wireless', 5 ),
-		'behringer'         => array( 'Behringer', 'Mixing & Amplification', 6 ),
+		'yamaha' => array(
+			'title'    => 'Yamaha',
+			'origin'   => 'Japan',
+			'category' => 'Authorised Distributor in Rwanda',
+			'tagline'  => 'Sound Creations Rwanda is the authorised Yamaha distributor in Rwanda: mixing consoles, loudspeakers, amplifiers, installed sound and musical instruments, with local warranty and support.',
+			'order'    => 1, // Group brands start at 10, so Yamaha leads the list.
+			'logo'     => 'yamaha', // assets/img/brands/logos/yamaha.png, or set a Featured Image.
+			'website'  => 'https://usa.yamaha.com/products/proaudio/',
+		),
 	);
 }
 
-function scrw_sync_catalog() {
-	$keep = scrw_brands();
+/** Brands added by rw-catalog-1 that the Rwanda office does not carry. */
+function scrw_retired_brands() {
+	return array( 'digico' );
+}
 
-	foreach ( $keep as $slug => $b ) {
+function scrw_sync_catalog() {
+	foreach ( scrw_extra_brands() as $slug => $b ) {
 		$post = get_page_by_path( $slug, OBJECT, 'sc_brand' );
 		if ( null === $post ) {
 			$id = wp_insert_post(
 				array(
-					'post_title'  => $b[0],
-					'post_name'   => $slug,
-					'post_status' => 'publish',
-					'post_type'   => 'sc_brand',
-					'menu_order'  => $b[2],
+					'post_title'   => $b['title'],
+					'post_name'    => $slug,
+					'post_status'  => 'publish',
+					'post_type'    => 'sc_brand',
+					'post_content' => $b['tagline'],
+					'menu_order'   => $b['order'],
 				)
 			);
-			if ( is_int( $id ) && $id > 0 ) {
-				update_post_meta( $id, '_sc_category', $b[1] );
-			}
 		} else {
-			wp_update_post( array( 'ID' => $post->ID, 'menu_order' => $b[2] ) );
+			$id = (int) $post->ID;
+			wp_update_post(
+				array(
+					'ID'          => $id,
+					'post_status' => 'publish',
+					'menu_order'  => $b['order'],
+				)
+			);
 		}
-	}
-
-	$brands = get_posts( array( 'post_type' => 'sc_brand', 'post_status' => 'publish', 'numberposts' => -1 ) );
-	$keep_names = array();
-	foreach ( $keep as $b ) {
-		$keep_names[] = strtolower( $b[0] );
-	}
-	foreach ( $brands as $br ) {
-		if ( \! isset( $keep[ $br->post_name ] ) ) {
-			wp_update_post( array( 'ID' => $br->ID, 'post_status' => 'draft' ) );
-		}
-	}
-
-	// Products belonging to brands the Rwanda office does not carry.
-	$products = get_posts( array( 'post_type' => 'sc_product', 'post_status' => 'publish', 'numberposts' => -1 ) );
-	foreach ( $products as $pr ) {
-		$brand = strtolower( trim( (string) get_post_meta( $pr->ID, '_sc_brand_name', true ) ) );
-		if ( '' === $brand ) {
-			$terms = get_the_terms( $pr->ID, 'sc_brand_tax' );
-			if ( $terms && \! is_wp_error( $terms ) ) {
-				$brand = strtolower( reset( $terms )->name );
+		if ( is_int( $id ) && $id > 0 ) {
+			update_post_meta( $id, '_sc_origin', $b['origin'] );
+			update_post_meta( $id, '_sc_category', $b['category'] );
+			update_post_meta( $id, '_sc_tagline', $b['tagline'] );
+			update_post_meta( $id, '_sc_logo', $b['logo'] );
+			if ( '' === (string) get_post_meta( $id, '_sc_website', true ) ) {
+				update_post_meta( $id, '_sc_website', $b['website'] );
 			}
 		}
-		if ( '' \!== $brand && \! in_array( $brand, $keep_names, true ) ) {
-			wp_update_post( array( 'ID' => $pr->ID, 'post_status' => 'draft' ) );
+	}
+
+	// Undo rw-catalog-1: republish the group brands and products it drafted.
+	if ( 'rw-catalog-1' === get_option( 'scrw_catalog_ver' ) ) {
+		$retired = scrw_retired_brands();
+		$drafts  = get_posts( array( 'post_type' => 'sc_brand', 'post_status' => 'draft', 'numberposts' => -1 ) );
+		foreach ( $drafts as $br ) {
+			if ( ! in_array( $br->post_name, $retired, true ) ) {
+				wp_update_post( array( 'ID' => $br->ID, 'post_status' => 'publish' ) );
+			}
+		}
+		$products = get_posts( array( 'post_type' => 'sc_product', 'post_status' => 'draft', 'numberposts' => -1 ) );
+		foreach ( $products as $pr ) {
+			wp_update_post( array( 'ID' => $pr->ID, 'post_status' => 'publish' ) );
+		}
+	}
+
+	foreach ( scrw_retired_brands() as $slug ) {
+		$post = get_page_by_path( $slug, OBJECT, 'sc_brand' );
+		if ( $post && 'publish' === $post->post_status ) {
+			wp_update_post( array( 'ID' => $post->ID, 'post_status' => 'draft' ) );
 		}
 	}
 
@@ -367,7 +388,7 @@ add_action(
 			return;
 		}
 		// Wait until the Core plugin has seeded its catalogue (admin_init, priority 10).
-		if ( \! post_type_exists( 'sc_brand' ) || '' === (string) get_option( 'sc_core_seed_version', '' ) ) {
+		if ( ! post_type_exists( 'sc_brand' ) || '' === (string) get_option( 'sc_core_seed_version', '' ) ) {
 			return;
 		}
 		scrw_sync_catalog();

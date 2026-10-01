@@ -10,7 +10,7 @@
  * @package SoundCreationsRwanda
  */
 
-if ( \! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -59,7 +59,7 @@ class SCRW_Widget_Contact_Card extends SCRW_Widget_Base {
 		$addr  = scrw_s( 'address' );
 		$wa    = function_exists( 'sc_whatsapp_url' ) ? sc_whatsapp_url() : '';
 		echo '<div class="scrw-contact-card">';
-		if ( \! empty( $st['heading'] ) ) {
+		if ( ! empty( $st['heading'] ) ) {
 			echo '<h3 class="scrw-contact-card__title">' . esc_html( $st['heading'] ) . '</h3>';
 		}
 		echo '<ul class="scrw-contact-card__list">';
@@ -120,7 +120,7 @@ class SCRW_Widget_Enquiry_Form extends SCRW_Widget_Base {
 	}
 	protected function render() {
 		$st = $this->get_settings_for_display();
-		if ( \! function_exists( 'sc_enq_render_form' ) ) {
+		if ( ! function_exists( 'sc_enq_render_form' ) ) {
 			echo '<p>Activate the Sound Creations Enquiries plugin to show this form.</p>';
 			return;
 		}
@@ -156,7 +156,7 @@ class SCRW_Widget_Projects_Grid extends SCRW_Widget_Base {
 			'no_found_rows'  => true,
 		);
 		$loc = trim( (string) $st['location'] );
-		if ( '' \!== $loc ) {
+		if ( '' !== $loc ) {
 			$args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 				array(
 					'key'     => '_sc_location',
@@ -166,7 +166,7 @@ class SCRW_Widget_Projects_Grid extends SCRW_Widget_Base {
 			);
 		}
 		$q = new WP_Query( $args );
-		if ( \! $q->have_posts() ) {
+		if ( ! $q->have_posts() ) {
 			echo '<p class="scrw-empty">Projects will appear here once they are added under Projects in wp-admin.</p>';
 			return;
 		}
@@ -181,7 +181,7 @@ class SCRW_Widget_Projects_Grid extends SCRW_Widget_Base {
 				echo '<span class="sc-project__media"><img src="' . esc_url( $img ) . '" alt="' . esc_attr( get_the_title() ) . '" loading="lazy" decoding="async" width="400" height="250"></span>';
 			}
 			echo '<h3 class="sc-project__title">' . esc_html( get_the_title() ) . '</h3>';
-			if ( '' \!== $pl ) {
+			if ( '' !== $pl ) {
 				echo '<p class="sc-project__loc">' . esc_html( $pl ) . '</p>';
 			}
 			echo '</a>';
@@ -237,21 +237,21 @@ class SCRW_Widget_CTA_Band extends SCRW_Widget_Base {
 	}
 	protected function render() {
 		$st  = $this->get_settings_for_display();
-		$bg  = ( \! empty( $st['image']['url'] ) ) ? $st['image']['url'] : '';
-		$url = ( \! empty( $st['btn_url']['url'] ) ) ? $st['btn_url']['url'] : '/request-a-quote/';
+		$bg  = ( ! empty( $st['image']['url'] ) ) ? $st['image']['url'] : '';
+		$url = ( ! empty( $st['btn_url']['url'] ) ) ? $st['btn_url']['url'] : '/request-a-quote/';
 		if ( 0 === strpos( $url, '/' ) ) {
 			$url = home_url( $url );
 		}
 		$cls = $bg ? 'sc-cta-band sc-cta-band--photo' : 'sc-cta-band';
 		$sty = $bg ? ' style="background-image:url(\'' . esc_url( $bg ) . '\');"' : '';
 		echo '<div class="' . esc_attr( $cls ) . '"' . $sty . '><div class="sc-cta-band__inner">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $sty built from esc_url.
-		if ( \! empty( $st['title'] ) ) {
+		if ( ! empty( $st['title'] ) ) {
 			echo '<h2>' . esc_html( $st['title'] ) . '</h2>';
 		}
-		if ( \! empty( $st['text'] ) ) {
+		if ( ! empty( $st['text'] ) ) {
 			echo '<p>' . esc_html( $st['text'] ) . '</p>';
 		}
-		if ( \! empty( $st['btn_label'] ) ) {
+		if ( ! empty( $st['btn_label'] ) ) {
 			echo '<a class="sc-btn sc-btn--primary" href="' . esc_url( $url ) . '">' . esc_html( $st['btn_label'] ) . '</a>';
 		}
 		echo '</div></div>';

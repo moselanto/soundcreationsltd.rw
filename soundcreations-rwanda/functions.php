@@ -11,7 +11,7 @@
  * @package SoundCreationsRwanda
  */
 
-if ( \! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -21,6 +21,7 @@ define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 
 require_once SCRW_DIR . 'inc/settings-seed.php';
 require_once SCRW_DIR . 'inc/content-seed.php';
+require_once SCRW_DIR . 'inc/projects-seed.php';
 require_once SCRW_DIR . 'inc/seo.php';
 require_once SCRW_DIR . 'inc/analytics.php';
 require_once SCRW_DIR . 'inc/elementor.php';
@@ -61,7 +62,7 @@ add_action(
 add_action(
 	'init',
 	function () {
-		if ( \! ini_get( 'zlib.output_compression' ) ) {
+		if ( ! ini_get( 'zlib.output_compression' ) ) {
 			return;
 		}
 		remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );
