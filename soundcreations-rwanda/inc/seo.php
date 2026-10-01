@@ -7,7 +7,7 @@
  * @package SoundCreationsRwanda
  */
 
-if ( \! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -61,7 +61,7 @@ add_filter(
 );
 
 function scrw_fix_graph_node( $node ) {
-	if ( \! is_array( $node ) ) {
+	if ( ! is_array( $node ) ) {
 		return $node;
 	}
 
@@ -83,11 +83,11 @@ function scrw_fix_graph_node( $node ) {
 	$types = isset( $node['@type'] ) ? (array) $node['@type'] : array();
 	$is_org = false;
 	foreach ( $types as $t ) {
-		if ( is_string( $t ) && ( 'Organization' === $t || false \!== strpos( $t, 'Business' ) || 'ProfessionalService' === $t || 'Store' === $t ) ) {
+		if ( is_string( $t ) && ( 'Organization' === $t || false !== strpos( $t, 'Business' ) || 'ProfessionalService' === $t || 'Store' === $t ) ) {
 			$is_org = true;
 		}
 	}
-	if ( $is_org && \! isset( $node['parentOrganization'] ) ) {
+	if ( $is_org && ! isset( $node['parentOrganization'] ) ) {
 		$node['parentOrganization'] = array(
 			'@type' => 'Organization',
 			'name'  => 'Sound Creations Ltd',

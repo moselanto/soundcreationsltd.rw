@@ -7,7 +7,7 @@
  * @package SoundCreationsRwanda
  */
 
-if ( \! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -60,7 +60,7 @@ add_action(
 	'wp_head',
 	function () {
 		$gsc = (string) get_option( 'scrw_gsc_code', '' );
-		if ( '' \!== $gsc ) {
+		if ( '' !== $gsc ) {
 			echo '<meta name="google-site-verification" content="' . esc_attr( $gsc ) . '">' . "\n";
 		}
 		$ga = (string) get_option( 'scrw_ga4_id', '' );

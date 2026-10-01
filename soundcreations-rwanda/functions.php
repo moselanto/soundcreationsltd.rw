@@ -11,7 +11,7 @@
  * @package SoundCreationsRwanda
  */
 
-if ( \! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -61,7 +61,7 @@ add_action(
 add_action(
 	'init',
 	function () {
-		if ( \! ini_get( 'zlib.output_compression' ) ) {
+		if ( ! ini_get( 'zlib.output_compression' ) ) {
 			return;
 		}
 		remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );

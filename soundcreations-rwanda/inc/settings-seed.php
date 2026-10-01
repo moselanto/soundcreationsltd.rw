@@ -12,11 +12,11 @@
  * @package SoundCreationsRwanda
  */
 
-if ( \! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_SEED_VERSION', 'rw-settings-1' );
+define( 'SCRW_SEED_VERSION', 'rw-settings-2' );
 
 /**
  * Rwanda values. Contact details are taken from the current live Rwanda site.
@@ -31,7 +31,7 @@ function scrw_settings() {
 		'email'              => 'sales@soundcreationsltd.com',
 		'address'            => 'KN1 Rd, Muhima, Kigali, Rwanda',
 		'hours_week'         => 'Mon-Fri: 9:00 AM - 6:00 PM',
-		'hours_sat'          => 'Sat: Closed', // CONFIRM.
+		'hours_sat'          => 'Sat: 9:00 AM - 1:30 PM',
 		'hours_sun'          => 'Sun: Closed',
 		'regions'            => 'Kigali · Rwanda · Part of the Sound Creations Ltd group',
 		'whatsapp'           => '250783141050',
@@ -39,7 +39,7 @@ function scrw_settings() {
 		'map_url'            => 'https://www.google.com/maps/search/?api=1&query=Sound+Creations+Ltd+KN1+Rd+Muhima+Kigali',
 		'footer_address'     => "KN1 Rd, Muhima\nKigali, Rwanda\n+250 783 141 050 | +250 782 739 889",
 		'footer_hours_label' => 'Open Hours',
-		'footer_hours'       => "Mon - Fri: 9 am - 6 pm\nSat - Sun: Closed",
+		'footer_hours'       => "Mon - Fri: 9 am - 6 pm\nSat: 9 am - 1:30 pm\nSunday: CLOSED",
 		'footer_about'       => 'Sound Creations Ltd Rwanda designs, supplies, installs and supports professional audio, DJ, lighting, studio and acoustic solutions for venues across Kigali and Rwanda, backed by the engineering depth of the Sound Creations Ltd group.',
 		'footer_solutions'   => "DJ Solutions | /solutions/dj-solutions/\nLighting Solutions | /solutions/lighting-solutions/\nStudio Solutions | /solutions/studio-solutions/\nArchitectural Acoustics | /solutions/architectural-acoustics/\nService and Backup | /solutions/service-and-backup/",
 		'footer_explore'     => "Home | /\nSolutions | /solutions/\nBrands & Products | /brands/\nProjects | /projects/\nAbout | /about/\nContact | /contact/\nRequest a Quote | /request-a-quote/",
@@ -71,19 +71,37 @@ function scrw_settings() {
 }
 
 /**
- * Write Rwanda values into empty or still-Kenya-default fields.
+ * Values written by earlier Rwanda seed versions that have since been
+ * corrected. A field still holding one of these was never edited by hand, so
+ * it is safe to replace with the current value.
+ *
+ * rw-settings-2 (1 Oct 2026): Rwanda keeps the same opening pattern as Kenya
+ * (weekdays plus Saturday morning, Sunday closed) on Kigali time, with
+ * weekdays running 9 am - 6 pm.
+ */
+function scrw_superseded_settings() {
+	return array(
+		'hours_sat'    => array( 'Sat: Closed' ),
+		'footer_hours' => array( "Mon - Fri: 9 am - 6 pm\nSat - Sun: Closed" ),
+	);
+}
+
+/**
+ * Write Rwanda values into empty, still-Kenya-default or superseded fields.
  */
 function scrw_seed_settings() {
 	$opts = get_option( 'soundcreations_settings', array() );
-	if ( \! is_array( $opts ) ) {
+	if ( ! is_array( $opts ) ) {
 		$opts = array();
 	}
-	$kenya = function_exists( 'sc_default_settings' ) ? sc_default_settings() : array();
+	$kenya      = function_exists( 'sc_default_settings' ) ? sc_default_settings() : array();
+	$superseded = scrw_superseded_settings();
 
 	foreach ( scrw_settings() as $key => $val ) {
 		$cur = isset( $opts[ $key ] ) ? trim( (string) $opts[ $key ] ) : '';
 		$def = isset( $kenya[ $key ] ) ? trim( (string) $kenya[ $key ] ) : null;
-		if ( '' === $cur || ( null \!== $def && $cur === $def ) ) {
+		$old = isset( $superseded[ $key ] ) ? $superseded[ $key ] : array();
+		if ( '' === $cur || ( null !== $def && $cur === $def ) || in_array( $cur, $old, true ) ) {
 			$opts[ $key ] = $val;
 		}
 	}
@@ -91,7 +109,7 @@ function scrw_seed_settings() {
 
 	// Enquiry and quote forms route to the Rwanda sales inbox (proposal section D).
 	$routing = get_option( 'sc_enq_recipients', array() );
-	if ( \! is_array( $routing ) ) {
+	if ( ! is_array( $routing ) ) {
 		$routing = array();
 	}
 	if ( empty( $routing['default'] ) ) {
