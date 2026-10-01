@@ -35,7 +35,7 @@ function scrw_services() {
 </ul>
 <h2>Advice from people who know the gear</h2>
 <p>Visit or call our Kigali team to compare options, get honest advice on what fits your budget and style, and buy genuine equipment with manufacturer warranty and local after-sales support.</p>
-' + $cta,
+' . $cta,
 		),
 		'lighting-solutions'      => array(
 			'Lighting Solutions',
@@ -50,7 +50,7 @@ function scrw_services() {
 </ul>
 <h2>How we work</h2>
 <p>We start with a site visit in Rwanda to understand the room, the rigging points, the power available and how the space is used. We then design the lighting plot, specify fixtures from trusted global brands, install and focus them, programme the scenes and train your operators. After handover, our local team is on hand for service and backup.</p>
-' + $cta,
+' . $cta,
 		),
 		'studio-solutions'        => array(
 			'Studio Solutions',
@@ -65,7 +65,7 @@ function scrw_services() {
 </ul>
 <h2>Built for Rwandan studios</h2>
 <p>We specify equipment for the realities of the local market: reliable power protection, serviceable components, and genuine equipment with manufacturer warranty, supported by a team that is based in Kigali rather than overseas.</p>
-' + $cta,
+' . $cta,
 		),
 		'architectural-acoustics' => array(
 			'Architectural Acoustics',
@@ -80,7 +80,7 @@ function scrw_services() {
 </ul>
 <h2>Verified results</h2>
 <p>Every acoustic project ends with a measurement against the original baseline, so you can see the improvement in numbers as well as hear it.</p>
-' + $cta,
+' . $cta,
 		),
 		'service-and-backup'      => array(
 			'Service and Backup',
@@ -95,7 +95,7 @@ function scrw_services() {
 </ul>
 <h2>Support in Rwanda, backed by the group</h2>
 <p>Our Kigali team handles day-to-day service and is backed by the wider Sound Creations Ltd engineering team for complex faults and specialist work.</p>
-' + $cta,
+' . $cta,
 		),
 	);
 }
