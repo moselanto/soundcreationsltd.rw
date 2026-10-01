@@ -15,42 +15,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_MENU_VERSION', 'rw-menu-1' );
+define( 'SCRW_MENU_VERSION', 'rw-menu-2' );
 
-/** Label => array( path, children ). */
+/*
+ * rw-menu-2: same top-level menu as soundcreationsltd.com (flat, no
+ * sub-menus). "Products" opens the Rwanda product catalogue; the last item
+ * links to the group site, where the Kenya site links to Rwanda.
+ */
 function scrw_menu_tree() {
 	return array(
-		array( 'Solutions', '/solutions/', array(
-			array( 'All Solutions', '/solutions/' ),
-			array( 'DJ Solutions', '/solutions/dj-solutions/' ),
-			array( 'Lighting Solutions', '/solutions/lighting-solutions/' ),
-			array( 'Studio Solutions', '/solutions/studio-solutions/' ),
-			array( 'Architectural Acoustics', '/solutions/architectural-acoustics/' ),
-			array( 'Service and Backup', '/solutions/service-and-backup/' ),
-		) ),
-		array( 'Brands', '/brands/', array(
-			array( 'All Brands & Products', '/brands/' ),
-			array( 'Yamaha - Authorised Distributor', '/brands/yamaha/' ),
-			array( 'dB Technologies', '/brands/db-technologies/' ),
-			array( 'Shure', '/brands/shure/' ),
-			array( 'Bose Professional', '/brands/bose-professional/' ),
-			array( 'Allen & Heath', '/brands/allen-heath/' ),
-			array( 'FANE', '/fane/' ),
-		) ),
-		array( 'Services', '/service/consultancy/', array(
-			array( 'Consultancy & Design', '/service/consultancy/' ),
-			array( 'Distribution & Dealership', '/service/distribution-dealership/' ),
-			array( 'Integration', '/service/integration/' ),
-			array( 'After-Sale Services', '/service/after-sale-services/' ),
-		) ),
+		array( 'Home', '/', array() ),
+		array( 'Solutions', '/solutions/', array() ),
+		array( 'Products', '/products/', array() ),
 		array( 'Projects', '/projects/', array() ),
-		array( 'About Us', '/about/', array(
-			array( 'About Sound Creations Rwanda', '/about/' ),
-			array( 'Request a Consultation', '/request-a-consultation/' ),
-			array( 'Request a Quote', '/request-a-quote/' ),
-			array( 'Sound Creations Group', 'https://soundcreationsltd.com/' ),
-		) ),
+		array( 'FANE AFRICA', '/fane/', array() ),
+		array( 'About', '/about/', array() ),
+		array( 'Videos', '/videos/', array() ),
 		array( 'Contact', '/contact/', array() ),
+		array( 'Kenya', 'https://soundcreationsltd.com/', array() ),
 	);
 }
 
@@ -60,15 +42,21 @@ function scrw_menu_url( $path ) {
 
 function scrw_seed_menu() {
 	$locs = get_nav_menu_locations();
-	if ( ! empty( $locs['primary'] ) ) {
-		$items = wp_get_nav_menu_items( (int) $locs['primary'] );
-		if ( is_array( $items ) && count( $items ) > 0 ) {
-			return; // Team already has a primary menu; leave it alone.
-		}
-	}
-
 	$name = 'Rwanda Main Menu';
 	$menu = wp_get_nav_menu_object( $name );
+	if ( ! empty( $locs['primary'] ) && ( ! $menu || (int) $locs['primary'] !== (int) $menu->term_id ) ) {
+		$items = wp_get_nav_menu_items( (int) $locs['primary'] );
+		if ( is_array( $items ) && count( $items ) > 0 ) {
+			return; // Team assigned a menu of their own; leave it alone.
+		}
+	}
+	// Our own menu from an earlier version: clear it so it is rebuilt.
+	if ( $menu ) {
+		$old = wp_get_nav_menu_items( (int) $menu->term_id, array( 'post_status' => 'any' ) );
+		foreach ( (array) $old as $item ) {
+			wp_delete_post( $item->ID, true );
+		}
+	}
 	$id   = $menu ? (int) $menu->term_id : (int) wp_create_nav_menu( $name );
 	if ( $id < 1 ) {
 		return;
@@ -86,6 +74,7 @@ function scrw_seed_menu() {
 					'menu-item-type'     => 'custom',
 					'menu-item-status'   => 'publish',
 					'menu-item-position' => ++$pos,
+					'menu-item-target'   => ( 0 === strpos( $top[1], 'http' ) ) ? '_blank' : '',
 				)
 			);
 			if ( is_wp_error( $parent ) ) {
