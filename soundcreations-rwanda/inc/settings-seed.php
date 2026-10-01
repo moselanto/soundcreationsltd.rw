@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_SEED_VERSION', 'rw-settings-4' );
+define( 'SCRW_SEED_VERSION', 'rw-settings-5' );
 
 /**
  * Rwanda values. Contact details are taken from the current live Rwanda site.
@@ -66,7 +66,7 @@ function scrw_settings() {
 
 		// About.
 		'about_hero_title'    => 'If it sounds good, it’s Sound Creations Rwanda',
-		'about_journey_p1'    => 'Sound Creations Ltd Rwanda is the Kigali operation of the Sound Creations Ltd group, a professional audio, visual, lighting and acoustic company founded in Nairobi in 2004 and today working across Kenya, Rwanda, the DR Congo and the UAE. In Rwanda we bring the group’s selection philosophy, technology, reliability, ease of use and affordability, to every project, with a local team that consults, supplies, installs and supports on the ground.',
+		'about_journey_p1'    => 'Sound Creations began in Nairobi in 1989 as Nipul Electronics and became Sound Creations Ltd in 2004. The group opened its Rwanda operation in 2018, began work in the DR Congo in 2022 and partnered with LC Acoustic in Dubai in 2024. From our office on KN1 Road, Muhima, our Kigali team consults, supplies, installs and supports professional audio, acoustic, lighting and visual systems for houses of worship, corporate and commercial spaces, education institutions and entertainment venues across Rwanda.',
 		'about_process_items' => "Consultation & Design | We listen, visualise with you, propose, agree and represent the solution. | /request-a-consultation/\nDistribution | From the most affordable to the substantial investments, we supply genuine equipment with warranty. | /brands/\nIntegration | Installation, commissioning and calibration by a certified technical team. | /solutions/\nSupport & Training | Training, maintenance and fast backup for systems across Rwanda. | /solutions/service-and-backup/",
 
 		'projects_lead'       => 'A selection of professional audio, lighting, studio and acoustics projects delivered in Rwanda and across the Sound Creations Ltd group.',
@@ -86,6 +86,8 @@ function scrw_superseded_settings() {
 	return array(
 		'hours_sat'    => array( 'Sat: Closed' ),
 		'footer_hours' => array( "Mon - Fri: 9 am - 6 pm\nSat - Sun: Closed" ),
+		// rw-settings-5: About story from the SCL RW Company Profile 2025.
+		'about_journey_p1'     => array( 'Sound Creations Ltd Rwanda is the Kigali operation of the Sound Creations Ltd group, a professional audio, visual, lighting and acoustic company founded in Nairobi in 2004 and today working across Kenya, Rwanda, the DR Congo and the UAE. In Rwanda we bring the group’s selection philosophy, technology, reliability, ease of use and affordability, to every project, with a local team that consults, supplies, installs and supports on the ground.' ),
 		// rw-settings-4: phones moved out of the address into phone / phone2.
 		'footer_address'       => array( "KN1 Rd, Muhima\nKigali, Rwanda\n+250 783 141 050 | +250 782 739 889" ),
 		// rw-settings-3: homepage copy aligned with the group site.
