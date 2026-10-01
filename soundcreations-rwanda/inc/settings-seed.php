@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_SEED_VERSION', 'rw-settings-3' );
+define( 'SCRW_SEED_VERSION', 'rw-settings-4' );
 
 /**
  * Rwanda values. Contact details are taken from the current live Rwanda site.
@@ -28,6 +28,9 @@ function scrw_settings() {
 		'tagline'            => 'Audio Visual, Lighting & Acoustic Solutions in Kigali, Rwanda',
 		'phone'              => '+250 783 141 050',
 		'phone_link'         => '+250783141050',
+		'phone2'             => '+250 782 739 889',
+		'phone2_link'        => '+250782739889',
+		'instagram'          => 'https://www.instagram.com/soundcreations_rwanda/',
 		'email'              => 'sales@soundcreationsltd.com',
 		'address'            => 'KN1 Rd, Muhima, Kigali, Rwanda',
 		'hours_week'         => 'Mon-Fri: 9:00 AM - 6:00 PM',
@@ -37,7 +40,7 @@ function scrw_settings() {
 		'whatsapp'           => '250783141050',
 		'whatsapp_prefill'   => 'Hello Sound Creations Rwanda, I would like to enquire about your services.',
 		'map_url'            => 'https://www.google.com/maps/search/?api=1&query=Sound+Creations+Ltd+KN1+Rd+Muhima+Kigali',
-		'footer_address'     => "KN1 Rd, Muhima\nKigali, Rwanda\n+250 783 141 050 | +250 782 739 889",
+		'footer_address'     => "KN1 Rd, Muhima\nKigali, Rwanda", // Both phones now show as their own lines.
 		'footer_hours_label' => 'Open Hours',
 		'footer_hours'       => "Mon - Fri: 9 am - 6 pm\nSat: 9 am - 1:30 pm\nSunday: CLOSED",
 		'footer_about'       => 'Sound Creations Ltd Rwanda designs, supplies, installs and supports professional audio, DJ, lighting, studio and acoustic solutions for venues across Kigali and Rwanda, backed by the engineering depth of the Sound Creations Ltd group.',
@@ -83,6 +86,8 @@ function scrw_superseded_settings() {
 	return array(
 		'hours_sat'    => array( 'Sat: Closed' ),
 		'footer_hours' => array( "Mon - Fri: 9 am - 6 pm\nSat - Sun: Closed" ),
+		// rw-settings-4: phones moved out of the address into phone / phone2.
+		'footer_address'       => array( "KN1 Rd, Muhima\nKigali, Rwanda\n+250 783 141 050 | +250 782 739 889" ),
 		// rw-settings-3: homepage copy aligned with the group site.
 		'home_hero_title'      => array( 'Professional sound, lighting and acoustics for Rwanda.' ),
 		'home_whatwedo_title'  => array( 'One partner, from first consultation to long-term support.' ),

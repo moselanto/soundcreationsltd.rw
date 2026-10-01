@@ -82,7 +82,7 @@ $sc_contacts_map = array(
 			<ul class="sc-getintouch__list sc-teamcard__contact">
 				<li>
 					<span class="sc-getintouch__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_i_call; ?></svg></span>
-					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Phone', 'soundcreations' ); ?></span><a href="tel:<?php echo esc_attr( $sc_phone_link ); ?>" data-sc-phone><?php echo esc_html( $sc_phone ); ?></a></div>
+					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Phone', 'soundcreations' ); ?></span><a href="tel:<?php echo esc_attr( $sc_phone_link ); ?>" data-sc-phone><?php echo esc_html( $sc_phone ); ?></a><?php if ( sc_setting( 'phone2' ) ) : ?><br><a href="tel:<?php echo esc_attr( sc_setting( 'phone2_link' ) ); ?>"><?php echo esc_html( sc_setting( 'phone2' ) ); ?></a><?php endif; ?></div>
 				</li>
 				<li>
 					<span class="sc-getintouch__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_i_mail; ?></svg></span>

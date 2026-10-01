@@ -78,6 +78,9 @@ $sc_email   = sc_setting( 'email' );
 				<?php if ( $sc_phone ) : ?>
 					<a href="tel:<?php echo esc_attr( $sc_phone_l ); ?>"><?php echo esc_html( $sc_phone ); ?></a>
 				<?php endif; ?>
+				<?php if ( sc_setting( 'phone2' ) ) : ?>
+					<a href="tel:<?php echo esc_attr( sc_setting( 'phone2_link' ) ); ?>"><?php echo esc_html( sc_setting( 'phone2' ) ); ?></a>
+				<?php endif; ?>
 				<?php if ( $sc_email ) : ?>
 					<a href="mailto:<?php echo esc_attr( $sc_email ); ?>"><?php echo esc_html( $sc_email ); ?></a>
 				<?php endif; ?>

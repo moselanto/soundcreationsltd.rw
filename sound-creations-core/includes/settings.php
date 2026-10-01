@@ -20,6 +20,8 @@ function sc_core_settings_fields() {
 		'tagline'              => array( 'Tagline', 'text' ),
 		'phone'                => array( 'Phone (display)', 'text' ),
 		'phone_link'           => array( 'Phone (tel: digits, e.g. +254715754758)', 'text' ),
+		'phone2'               => array( 'Second phone (display, optional)', 'text' ),
+		'phone2_link'          => array( 'Second phone (tel: digits, optional)', 'text' ),
 		'email'                => array( 'Email', 'text' ),
 		'address'              => array( 'Address', 'text' ),
 		'hours_week'           => array( 'Hours - weekdays', 'text' ),
@@ -31,7 +33,7 @@ function sc_core_settings_fields() {
 		'x'                    => array( 'X (Twitter) URL', 'text' ),
 		'linkedin'             => array( 'LinkedIn URL', 'text' ),
 		'youtube'              => array( 'YouTube URL', 'text' ),
-			'instagram'            => array( 'Instagram URL', 'text' ),
+		'instagram'            => array( 'Instagram URL', 'text' ),
 		'hero_video'           => array( 'Hero background video URL (MP4)', 'image' ),
 
 		// Geo + branch data feeding LocalBusiness structured data.

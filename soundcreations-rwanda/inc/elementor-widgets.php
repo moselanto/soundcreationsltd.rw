@@ -64,7 +64,10 @@ class SCRW_Widget_Contact_Card extends SCRW_Widget_Base {
 		}
 		echo '<ul class="scrw-contact-card__list">';
 		if ( $phone ) {
-			echo '<li><span>Phone</span><a href="' . esc_url( 'tel:' . $tel ) . '">' . esc_html( $phone ) . '</a></li>';
+			$p2  = scrw_s( 'phone2' );
+			$t2  = scrw_s( 'phone2_link' );
+			$alt = $p2 ? '<br><a href="' . esc_url( 'tel:' . $t2 ) . '">' . esc_html( $p2 ) . '</a>' : '';
+			echo '<li><span>Phone</span><a href="' . esc_url( 'tel:' . $tel ) . '">' . esc_html( $phone ) . '</a>' . $alt . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
 		}
 		if ( $email ) {
 			echo '<li><span>Email</span><a href="' . esc_url( 'mailto:' . $email ) . '">' . esc_html( $email ) . '</a></li>';
