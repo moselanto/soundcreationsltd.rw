@@ -283,6 +283,8 @@ $sc_hero_poster = sc_setting( 'home_hero_poster', SC_THEME_URI . '/assets/img/he
 	</script>
 </section>
 
+<?php do_action( 'sc_home_after_projects' ); // e.g. the Rwanda site's Our Clients logo wall. ?>
+
 <?php
 // Proof stats. These were hardcoded in this template, which meant the four
 // "Proof stat" fields in Sound Creations -> Settings had no effect at all.

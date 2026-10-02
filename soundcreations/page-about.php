@@ -130,6 +130,8 @@ $sc_proc_icons = array(
 	</div>
 </section>
 
+<?php do_action( 'sc_about_after_brands' ); ?>
+
 <section class="sc-section sc-section--tight" id="company-profiles">
 	<div class="sc-container">
 		<?php echo do_shortcode( '[sc_profiles]' ); ?>
