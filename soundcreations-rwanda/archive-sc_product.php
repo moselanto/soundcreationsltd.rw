@@ -214,6 +214,10 @@ while ( $scrw_q->have_posts() ) {
 }
 wp_reset_postdata();
 asort( $scrw_cats );
+// FANE Products first, straight after "All products".
+if ( isset( $scrw_cats['fane-products'] ) ) {
+	$scrw_cats = array( 'fane-products' => $scrw_cats['fane-products'] ) + $scrw_cats;
+}
 asort( $scrw_brands );
 $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : '';
 ?>

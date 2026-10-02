@@ -5,7 +5,7 @@
  * page; checked 2 Oct 2026). Updates the Core plugin's FANE stubs, replaces
  * the Imperium 18XL with the Colossus Prime 18XS, renames the Sovereign 15-600
  * to the current Sovereign Pro 15-600, and files all five under their own
- * "FANE Loudspeaker Components" category so they have a FANE filter on
+ * "FANE Products" category so they have a FANE filter on
  * /products/. Photos: assets/img/products-official/{slug}.webp.
  *
  * @package SoundCreationsRwanda
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_FANE_VERSION', 'rw-fane-1' );
+define( 'SCRW_FANE_VERSION', 'rw-fane-2' );
 
 /** slug, title, model, description, specs, FANE URL, order. */
 function scrw_fane_products() {
@@ -29,7 +29,7 @@ function scrw_fane_products() {
 }
 
 function scrw_sync_fane_products() {
-	$cat = 'FANE Loudspeaker Components';
+	$cat = 'FANE Products';
 	foreach ( scrw_fane_products() as $p ) {
 		list( $slug, $title, $model, $desc, $specs, $url, $order ) = $p;
 		$content = '<p>' . esc_html( $desc ) . '</p>'
