@@ -181,19 +181,55 @@ $y_projects = array(
 </section>
 
 <section class="sc-section scrw-yalt" id="yamaha-showroom">
-	<div class="sc-container scrw-yshow">
-		<div class="scrw-yshow__media"><img src="<?php echo esc_url( $y_img . 'about-hero-showroom.webp' ); ?>" alt="<?php esc_attr_e( 'Guitars, keyboards and Yamaha mixers at the Sound Creations Rwanda showroom', 'soundcreations-rwanda' ); ?>" loading="lazy" decoding="async"></div>
-		<div class="scrw-yshow__copy">
-			<p class="sc-eyebrow"><?php esc_html_e( 'Visit the showroom', 'soundcreations-rwanda' ); ?></p>
-			<h2><?php esc_html_e( 'See, hear and play Yamaha in Kigali.', 'soundcreations-rwanda' ); ?></h2>
-			<p class="sc-lead"><?php esc_html_e( 'Come in to try mixers, monitors, keyboards, pianos and guitars, and talk to our team about the right setup for your church, school, studio or venue.', 'soundcreations-rwanda' ); ?></p>
-			<ul class="scrw-yshow__list">
-				<li><strong><?php esc_html_e( 'Address', 'soundcreations-rwanda' ); ?></strong><span>KN1 Rd, Muhima, Kigali</span></li>
-				<li><strong><?php esc_html_e( 'Hours', 'soundcreations-rwanda' ); ?></strong><span><?php esc_html_e( 'Mon–Fri 9:00 AM–6:00 PM · Sat 9:00 AM–1:30 PM', 'soundcreations-rwanda' ); ?></span></li>
-			</ul>
-			<p class="scrw-yshow__k"><?php esc_html_e( 'Talk to our Yamaha team', 'soundcreations-rwanda' ); ?></p>
-			<?php echo (string) apply_filters( 'sc_fane_contact_html', '' ); // phpcs:ignore -- built and escaped in inc/fane-contact.php ?>
-			<a class="scrw-ylink scrw-yshow__map" href="<?php echo esc_url( $y_map ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Get directions to the showroom', 'soundcreations-rwanda' ); ?> <?php echo $y_arrow; // phpcs:ignore ?></a>
+	<div class="sc-container">
+		<div class="scrw-yvisit">
+			<div class="scrw-yvisit__media">
+				<img src="<?php echo esc_url( $y_img . 'about-hero-showroom.webp' ); ?>" alt="<?php esc_attr_e( 'Guitars, keyboards and Yamaha mixers at the Sound Creations Rwanda showroom', 'soundcreations-rwanda' ); ?>" loading="lazy" decoding="async">
+				<span class="scrw-yvisit__pin"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><?php esc_html_e( 'KN1 Rd, Muhima, Kigali', 'soundcreations-rwanda' ); ?></span>
+			</div>
+			<div class="scrw-yvisit__copy">
+				<p class="sc-eyebrow"><?php esc_html_e( 'Visit the showroom', 'soundcreations-rwanda' ); ?></p>
+				<h2><?php esc_html_e( 'See, hear and play Yamaha in Kigali.', 'soundcreations-rwanda' ); ?></h2>
+				<p class="sc-lead"><?php esc_html_e( 'Try mixers, monitors, keyboards, pianos and guitars, and talk to our team about the right setup for your church, school, studio or venue.', 'soundcreations-rwanda' ); ?></p>
+				<div class="scrw-yvisit__facts">
+					<div class="scrw-yvisit__fact">
+						<span class="scrw-yvisit__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+						<div><strong><?php esc_html_e( 'Address', 'soundcreations-rwanda' ); ?></strong><span>KN1 Rd, Muhima, Kigali</span><a href="<?php echo esc_url( $y_map ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Get directions', 'soundcreations-rwanda' ); ?> &rarr;</a></div>
+					</div>
+					<div class="scrw-yvisit__fact">
+						<span class="scrw-yvisit__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+						<div><strong><?php esc_html_e( 'Opening hours', 'soundcreations-rwanda' ); ?></strong><span><?php esc_html_e( 'Mon–Fri 9:00 AM – 6:00 PM', 'soundcreations-rwanda' ); ?></span><span><?php esc_html_e( 'Sat 9:00 AM – 1:30 PM · Sun closed', 'soundcreations-rwanda' ); ?></span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="scrw-ycontact">
+			<p class="scrw-ycontact__title"><?php esc_html_e( 'Talk to our Yamaha team', 'soundcreations-rwanda' ); ?></p>
+			<div class="scrw-ycontact__grid">
+				<?php
+				$y_lines = array(
+					array( __( 'Main line', 'soundcreations-rwanda' ), $y_phone, $y_tel ),
+					array( __( 'Second line', 'soundcreations-rwanda' ), $y_phone2, $y_tel2 ),
+				);
+				foreach ( $y_lines as $ln ) :
+					$y_digits = preg_replace( '/[^0-9]/', '', (string) $ln[2] );
+					?>
+					<div class="scrw-ycontact__card">
+						<span class="scrw-ycontact__k"><?php echo esc_html( $ln[0] ); ?></span>
+						<a class="scrw-ycontact__num" href="tel:<?php echo esc_attr( $ln[2] ); ?>"><?php echo esc_html( $ln[1] ); ?></a>
+						<div class="scrw-ycontact__btns">
+							<a class="scrw-ycontact__btn" href="tel:<?php echo esc_attr( $ln[2] ); ?>"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><?php esc_html_e( 'Call', 'soundcreations-rwanda' ); ?></a>
+							<a class="scrw-ycontact__btn scrw-ycontact__btn--wa" href="<?php echo esc_url( 'https://wa.me/' . $y_digits . '?text=' . rawurlencode( 'Hello Sound Creations Rwanda, I would like to enquire about Yamaha products.' ) ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg><?php esc_html_e( 'WhatsApp', 'soundcreations-rwanda' ); ?></a>
+						</div>
+					</div>
+				<?php endforeach; ?>
+				<div class="scrw-ycontact__card">
+					<span class="scrw-ycontact__k"><?php esc_html_e( 'Email', 'soundcreations-rwanda' ); ?></span>
+					<a class="scrw-ycontact__mail" href="mailto:<?php echo esc_attr( $y_mail ); ?>"><?php echo esc_html( $y_mail ); ?></a>
+					<?php if ( $y_mail2 ) : ?><a class="scrw-ycontact__mail" href="mailto:<?php echo esc_attr( $y_mail2 ); ?>"><?php echo esc_html( $y_mail2 ); ?></a><?php endif; ?>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
