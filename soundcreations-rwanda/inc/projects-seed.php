@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_PROJECTS_VERSION', 'rw-projects-2' );
+define( 'SCRW_PROJECTS_VERSION', 'rw-projects-3' );
 
 function scrw_projects() {
 	return array(
@@ -38,7 +38,7 @@ function scrw_projects() {
 			'title'      => 'Intare Kivu Arena',
 			'slug'       => 'intare-kivu-arena',
 			'industry'   => 'Events',
-			'images'     => array( 'intare-kivu-arena', 'intare-kivu-arena-2' ),
+			'images'     => array( 'intare-kivu-arena-exterior', 'intare-kivu-arena-hall', 'intare-kivu-arena-hall-2', 'intare-kivu-arena', 'intare-kivu-arena-2' ),
 			'summary'    => 'Acoustic design, sound, AV and lighting for the Intare Kivu Arena in Rubavu, built for clear speech and even coverage at every kind of event.',
 			'client'     => 'RPF Rubavu',
 			'location'   => 'Gisenyi, Rubavu, Rwanda',
@@ -202,6 +202,27 @@ function scrw_seed_projects() {
 		if ( $ids ) {
 			set_post_thumbnail( $pid, $ids[0] );
 			update_post_meta( $pid, '_sc_gallery', implode( ',', $ids ) );
+		}
+	}
+
+	// rw-projects-3: new Rubavu photos (building exterior + two hall views).
+	// The exterior becomes the cover; the new photos lead the gallery and the
+	// earlier ones stay after them.
+	$ika = get_page_by_path( 'intare-kivu-arena', OBJECT, 'sc_project' );
+	if ( $ika ) {
+		$new = array();
+		foreach ( array( 'intare-kivu-arena-exterior', 'intare-kivu-arena-hall', 'intare-kivu-arena-hall-2' ) as $img ) {
+			$aid = scrw_import_project_image( $img, 'Intare Kivu Arena' );
+			if ( $aid ) {
+				$new[] = $aid;
+				wp_update_post( array( 'ID' => $aid, 'post_parent' => $ika->ID ) );
+			}
+		}
+		if ( $new ) {
+			$old = array_filter( array_map( 'intval', explode( ',', (string) get_post_meta( $ika->ID, '_sc_gallery', true ) ) ) );
+			$all = array_values( array_unique( array_merge( $new, $old ) ) );
+			update_post_meta( $ika->ID, '_sc_gallery', implode( ',', $all ) );
+			set_post_thumbnail( $ika->ID, $new[0] );
 		}
 	}
 
