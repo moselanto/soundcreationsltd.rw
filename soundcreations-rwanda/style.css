@@ -254,3 +254,19 @@ img, video, iframe, svg { max-width: 100%; }
 img, video { height: auto; }
 /* Horizontal card rows keep the first card aligned with the page edge when scrolled. */
 .sc-carousel__track, .sc-brands, .sc-prod-track, .sc-cat-row { scroll-padding-inline: var(--sc-gutter); }
+
+/* Top-bar social icons: on hover the circle turns white and the icon shows in
+ * brand purple. (The parent's hover colour resolved to white, so the icon
+ * vanished into the white circle.) Same look in light and dark mode. */
+.sc-utility .sc-utility__soc { transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s ease; }
+.sc-utility .sc-utility__soc:hover,
+.sc-utility .sc-utility__soc:focus-visible {
+	background: #ffffff;
+	border-color: #ffffff;
+	color: #624489;
+	text-decoration: none;
+	transform: translateY(-1px);
+}
+.sc-utility .sc-utility__soc:hover svg,
+.sc-utility .sc-utility__soc:focus-visible svg { color: #624489; }
+.sc-utility .sc-utility__soc:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; }
