@@ -127,7 +127,7 @@ add_filter(
 add_filter(
 	'nav_menu_item_title',
 	function ( $title, $item, $args, $depth ) {
-		if ( (int) $depth < 1 || empty( $args->theme_location ) || 'primary' \!== $args->theme_location ) {
+		if ( (int) $depth < 1 || empty( $args->theme_location ) || 'primary' !== $args->theme_location ) {
 			return $title;
 		}
 		$notes = array(
