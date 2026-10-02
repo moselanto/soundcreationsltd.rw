@@ -122,3 +122,29 @@ add_filter(
 	10,
 	2
 );
+
+/* Main menu dropdowns: a short description under each sub-item. */
+add_filter(
+	'nav_menu_item_title',
+	function ( $title, $item, $args, $depth ) {
+		if ( (int) $depth < 1 || empty( $args->theme_location ) || 'primary' \!== $args->theme_location ) {
+			return $title;
+		}
+		$notes = array(
+			'/yamaha/'                     => 'Authorised distributor in Rwanda',
+			'/fane/'                       => 'Professional loudspeaker components',
+			'/brands/'                     => 'Every global brand we supply',
+			'/about/'                      => 'Our story, team and Kigali office',
+			'/videos/'                     => 'Installations, demos and events',
+			'https://soundcreationsltd.com/' => 'Visit the group website',
+		);
+		$url  = (string) $item->url;
+		$path = ( 0 === strpos( $url, 'https://soundcreationsltd.com' ) ) ? 'https://soundcreationsltd.com/' : (string) wp_parse_url( $url, PHP_URL_PATH );
+		if ( isset( $notes[ $path ] ) ) {
+			$title = '<span class="scrw-sub__t">' . $title . '</span><span class="scrw-sub__d">' . esc_html( $notes[ $path ] ) . '</span>';
+		}
+		return $title;
+	},
+	10,
+	4
+);
