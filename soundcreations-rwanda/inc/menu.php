@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_MENU_VERSION', 'rw-menu-6' ); // rw-menu-6: Home back as the first item.
+define( 'SCRW_MENU_VERSION', 'rw-menu-7' ); // rw-menu-7: Brands in the main bar, Products under About.
 
 /*
  * rw-menu-2: same top-level menu as soundcreationsltd.com (flat, no
@@ -26,7 +26,7 @@ function scrw_menu_tree() {
 	return array(
 		array( 'Home', '/', array() ),
 		array( 'Solutions', '/solutions/', array() ),
-		array( 'Products', '/products/', array() ),
+		array( 'Brands', '/brands/', array() ),
 		array( 'Projects', '/projects/', array() ),
 		array( 'YAMAHA', '/yamaha/', array(), 'scrw-nav-brand scrw-nav-brand--yamaha' ),
 		array( 'FANE AFRICA', '/fane/', array(), 'scrw-nav-brand scrw-nav-brand--fane' ),
@@ -35,7 +35,7 @@ function scrw_menu_tree() {
 			'/about/',
 			array(
 				array( 'About Sound Creations Rwanda', '/about/' ),
-				array( 'All brands we carry', '/brands/' ),
+				array( 'Products', '/products/' ),
 				array( 'Videos', '/videos/' ),
 				array( 'Sound Creations Kenya ↗', 'https://soundcreationsltd.com/' ),
 			),

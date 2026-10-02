@@ -135,6 +135,7 @@ add_filter(
 			'/yamaha/'                     => 'Authorised distributor in Rwanda',
 			'/fane/'                       => 'Professional loudspeaker components',
 			'/brands/'                     => 'Every global brand we supply',
+			'/products/'                   => 'Full catalogue with search and filters',
 			'/about/'                      => 'Our story, team and Kigali office',
 			'/videos/'                     => 'Installations, demos and events',
 			'https://soundcreationsltd.com/' => 'Visit the group website',

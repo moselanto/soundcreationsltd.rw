@@ -774,3 +774,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 .scrw-done__values span { font-size: 13.5px; line-height: 1.5; color: var(--sc-muted); }
 [data-theme="light"] .scrw-done__vico { color: #624489; }
 @media (max-width: 900px) { .scrw-done__head { grid-template-columns: 1fr; } }
+
+
+/* Products page: catalogue heading is now the page h1 */
+.scrw-cat .sc-crumb { margin-bottom: .8rem; }
+.scrw-cat__title { margin: .3rem 0 .6rem; font-size: clamp(2rem, 1.2rem + 2.4vw, 3rem); line-height: 1.06; letter-spacing: -.03em; }

@@ -1,8 +1,8 @@
 <?php
 /**
- * Rwanda /products/ page: the group brands page (What we offer, represented
- * brands, Why professionals trust our products) followed by the Rwanda
- * product catalogue with category, brand and text filters.
+ * Rwanda /products/ page: the product catalogue only (category, brand and
+ * text filters). The brand sections (What we offer, represented brands, Why
+ * professionals trust our products, Become a partner) live on /brands/.
  *
  * Based on the parent theme's brand archive. Owns the /brands/ URL (sc_brand CPT has_archive => brands).
  * The brand grid is data-driven from published sc_brand posts, ordered by the
@@ -51,128 +51,6 @@ $sc_stats = array(
 
 $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
 ?>
-
-<section class="sc-support-hero sc-brands-hero" style="background-image:url('<?php echo esc_url( $sc_hero_img ); ?>');">
-	<span class="sc-support-hero__scrim" aria-hidden="true"></span>
-	<div class="sc-container sc-support-hero__inner">
-		<nav class="sc-crumb" aria-label="Breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> <span aria-hidden="true">&rsaquo;</span> <span class="sc-crumb__cur"><?php esc_html_e( 'Products', 'soundcreations' ); ?></span></nav>
-		<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'products_eyebrow', 'What we offer' ) ); ?></p>
-		<?php
-		// This archive had NO h1 at all, while every sibling archive
-		// (solutions, projects, videos) has one. A crawl on 29 Sep 2026
-		// confirmed /brands/ was the only landing page on the site with
-		// zero h1, so the strongest on-page heading signal for every
-		// brand-and-distribution query was simply absent. Default copy
-		// leads with the category rather than a slogan, matching the
-		// title tag generated in seo-titles.php.
-		?>
-		<h1 class="sc-support-hero__title"><?php echo esc_html( sc_setting( 'products_title', 'Professional audio, acoustic and AV brands.' ) ); ?></h1>
-		<p class="sc-lead sc-support-hero__lead"><?php echo esc_html( sc_setting( 'products_lead', 'Professional sound and acoustic solutions.' ) ); ?></p>
-	</div>
-</section>
-
-<section class="sc-section sc-fane-alt">
-	<div class="sc-container">
-		<div class="sc-res-head">
-			<div>
-				<p class="sc-eyebrow"><?php esc_html_e( 'Our represented products brands', 'soundcreations' ); ?></p>
-				<h2 style="margin:.15rem 0 0;"><?php echo esc_html( sc_setting( 'brands_grid_title', 'Partnering with the world class brands.' ) ); ?></h2>
-			</div>
-		</div>
-		<?php
-		$sc_q = new WP_Query(
-			array(
-				'post_type'      => 'sc_brand',
-				'post_status'    => 'publish',
-				'posts_per_page' => -1,
-				'orderby'        => array(
-					'menu_order' => 'ASC',
-					'title'      => 'ASC',
-				),
-				'no_found_rows'  => true,
-			)
-		);
-		if ( $sc_q->have_posts() ) :
-			?>
-			<div class="sc-brand-grid">
-				<?php
-				while ( $sc_q->have_posts() ) :
-					$sc_q->the_post();
-					$sc_id    = get_the_ID();
-					$sc_name  = get_the_title();
-					$sc_cat   = (string) get_post_meta( $sc_id, '_sc_category', true );
-					$sc_desc  = (string) get_post_meta( $sc_id, '_sc_tagline', true );
-					if ( '' === $sc_desc ) {
-						$sc_desc = wp_trim_words( wp_strip_all_tags( get_the_content() ), 22 );
-					}
-					$sc_logo  = (string) get_post_meta( $sc_id, '_sc_logo', true );
-					$sc_rel   = 'assets/img/brands/logos/' . $sc_logo . '.png';
-					$sc_logo_url = ( '' !== $sc_logo && file_exists( get_theme_file_path( $sc_rel ) ) ) ? get_theme_file_uri( $sc_rel ) : '';
-					// Prefer a logo set in wp-admin (Featured image) so brand-logo edits reflect on the front end.
-					if ( has_post_thumbnail( $sc_id ) ) {
-						$sc_logo_url = get_the_post_thumbnail_url( $sc_id, 'full' );
-					}
-
-					$sc_slug = get_post_field( 'post_name', $sc_id );
-					if ( 'fane' === $sc_slug ) {
-						$sc_href = home_url( '/fane/' );
-					} else {
-						$sc_href = get_permalink( $sc_id );
-					}
-					?>
-					<div class="sc-brand-card">
-						<div class="sc-brand-card__plate">
-							<?php if ( '' !== $sc_logo_url ) : ?>
-								<img class="sc-brand-card__img" src="<?php echo esc_url( $sc_logo_url ); ?>" alt="<?php echo esc_attr( $sc_name ); ?> logo" loading="lazy" decoding="async" />
-							<?php else : ?>
-								<span class="sc-brand-card__mark"><?php echo esc_html( $sc_name ); ?></span>
-							<?php endif; ?>
-						</div>
-						<div class="sc-brand-card__body">
-							<h3 class="sc-brand-card__name"><?php echo esc_html( $sc_name ); ?></h3>
-							<?php if ( '' !== $sc_cat ) : ?>
-								<p class="sc-brand-card__cat"><?php echo esc_html( $sc_cat ); ?></p>
-							<?php endif; ?>
-							<?php if ( '' !== $sc_desc ) : ?>
-								<p class="sc-brand-card__desc"><?php echo esc_html( $sc_desc ); ?></p>
-							<?php endif; ?>
-							<?php $sc_web = (string) get_post_meta( $sc_id, '_sc_website', true ); ?>
-							<?php if ( strlen( $sc_web ) > 0 ) : ?>
-								<a class="sc-brand-card__link" href="<?php echo esc_url( $sc_web ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Visit Website', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
-							<?php else : ?>
-								<a class="sc-brand-card__link" href="<?php echo esc_url( $sc_href ); ?>"><?php esc_html_e( 'View Brand', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
-							<?php endif; ?>
-						</div>
-					</div>
-					<?php
-				endwhile;
-				wp_reset_postdata();
-				?>
-			</div>
-		<?php else : ?>
-			<p class="sc-empty"><?php esc_html_e( 'Brands will appear here soon. In wp-admin, open Sound Creations → Sample Catalog and run it to populate the brand list.', 'soundcreations' ); ?></p>
-		<?php endif; ?>
-	</div>
-</section>
-
-<section class="sc-section">
-	<div class="sc-container sc-brands-why">
-		<div class="sc-brands-why__intro">
-			<p class="sc-eyebrow"><?php esc_html_e( 'Why professionals trust our products', 'soundcreations' ); ?></p>
-			<h2><?php echo esc_html( sc_setting( 'brands_why_title', 'Global technology. Local expertise.' ) ); ?></h2>
-			<p><?php echo esc_html( sc_setting( 'brands_why_body', 'We partner with leading global manufacturers to bring you reliable, innovative and performance-driven solutions for every project.' ) ); ?></p>
-		</div>
-		<div class="sc-brands-stats">
-			<?php foreach ( $sc_stats as $s ) : ?>
-				<div class="sc-brands-stat">
-					<span class="sc-brands-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><?php echo $s[2]; ?></svg></span>
-					<strong><?php echo esc_html( $s[0] ); ?></strong>
-					<span><?php echo esc_html( $s[1] ); ?></span>
-				</div>
-			<?php endforeach; ?>
-		</div>
-	</div>
-</section>
 
 <?php
 $scrw_q = new WP_Query(
@@ -225,8 +103,9 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 	<div class="sc-container">
 		<div class="scrw-cat__head">
 			<div>
+				<nav class="sc-crumb" aria-label="Breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> <span aria-hidden="true">&rsaquo;</span> <span class="sc-crumb__cur"><?php esc_html_e( 'Products', 'soundcreations-rwanda' ); ?></span></nav>
 				<p class="sc-eyebrow"><?php esc_html_e( 'Products available in Rwanda', 'soundcreations-rwanda' ); ?></p>
-				<h2><?php esc_html_e( 'Shop our product range.', 'soundcreations-rwanda' ); ?></h2>
+				<h1 class="scrw-cat__title"><?php esc_html_e( 'Shop our product range.', 'soundcreations-rwanda' ); ?></h1>
 				<p class="sc-lead"><?php esc_html_e( 'Genuine equipment with full manufacturer specifications, in stock or available to order from our Kigali showroom, with warranty and local support.', 'soundcreations-rwanda' ); ?></p>
 			</div>
 			<ul class="scrw-cat__trust">
@@ -360,17 +239,6 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 	jump.addEventListener('click',function(e){ e.preventDefault(); var y=bar.getBoundingClientRect().top+window.pageYOffset-90; window.scrollTo({top:y,behavior:'smooth'}); var i=bar.querySelector('input'); if(i){setTimeout(function(){i.focus({preventScroll:true});},450);} });
 })();
 </script>
-<section class="sc-section">
-	<div class="sc-container">
-		<div class="sc-cta-band sc-cta-band--photo" style="background-image:url('<?php echo esc_url( $sc_brd . '/partner.jpg' ); ?>');">
-			<div class="sc-cta-band__inner">
-				<h2><?php echo esc_html( sc_setting( 'brands_cta_title', 'Become a partner' ) ); ?></h2>
-				<p class="sc-lead" style="margin:0 0 1.5rem;"><?php echo esc_html( sc_setting( 'brands_cta_text', 'Work with Sound Creations to bring your innovative products to the East Africa and Middle East markets.' ) ); ?></p>
-				<a class="sc-btn sc-btn--primary sc-brands-partner__btn" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>"><?php esc_html_e( 'Partner With Us', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
-			</div>
-		</div>
-	</div>
-</section>
 
 <?php
 get_footer();
