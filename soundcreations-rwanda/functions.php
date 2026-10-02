@@ -102,11 +102,11 @@ add_filter(
 	}
 );
 
-/* About page top-right photo: Intare Kivu Arena, Rubavu (acoustics, sound and lighting by Sound Creations Rwanda). */
+/* About page top-right photo: Sound Creations Rwanda showroom, KN1 Rd, Muhima, Kigali (guitars, keyboards, mixers and speakers). */
 add_filter(
 	'sc_about_hero_image',
 	function () {
-		return get_stylesheet_directory_uri() . '/assets/img/about-hero-rw.webp';
+		return get_stylesheet_directory_uri() . '/assets/img/about-hero-showroom.webp';
 	}
 );
 
