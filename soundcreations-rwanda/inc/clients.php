@@ -61,22 +61,49 @@ function scrw_render_clients() {
 	if ( ! $items ) {
 		return '';
 	}
+	// Each marquee track needs enough logos to overflow wide screens, so
+	// short lists are repeated; the track is then doubled for a seamless loop.
+	$fill = function ( $list ) {
+		$out = $list;
+		while ( count( $out ) < 10 ) {
+			$out = array_merge( $out, $list );
+		}
+		return $out;
+	};
+	$row1 = $fill( $items );
+	$row2 = $fill( array_reverse( $items ) );
+	$tile = function ( $c, $hidden ) {
+		return '<li class="scrw-clients__tile"' . ( $hidden ? ' aria-hidden="true"' : '' ) . '>'
+			. '<img src="' . esc_url( $c['src'] ) . '" alt="' . ( $hidden ? '' : esc_attr( $c['name'] ) ) . '" loading="lazy" decoding="async" width="400" height="220">'
+			. '<span class="scrw-clients__name">' . esc_html( $c['name'] ) . '</span></li>';
+	};
+	$track = function ( $list ) use ( $tile ) {
+		$html = '';
+		$unique = count( array_unique( array_column( $list, 'src' ) ) );
+		foreach ( array( false, true ) as $dup ) {
+			foreach ( $list as $i => $c ) {
+				$html .= $tile( $c, $dup || $i >= $unique );
+			}
+		}
+		return $html;
+	};
 	ob_start();
 	?>
 	<section class="sc-section scrw-clients" id="our-clients">
-		<div class="sc-container">
+		<div class="sc-container scrw-clients__intro">
 			<div class="scrw-clients__head">
 				<p class="sc-eyebrow"><?php esc_html_e( 'Our Clients', 'soundcreations-rwanda' ); ?></p>
 				<h2><?php esc_html_e( 'Trusted by organisations across Rwanda.', 'soundcreations-rwanda' ); ?></h2>
-				<p class="sc-lead"><?php esc_html_e( 'Churches, schools, cultural institutions, businesses and venues rely on Sound Creations Rwanda for their sound, lighting and acoustics.', 'soundcreations-rwanda' ); ?></p>
+				<p class="sc-lead"><?php esc_html_e( 'From ministries and embassies to churches, schools, hotels and the venues that host Kigali’s biggest nights, our clients rely on us for sound, lighting and acoustics that simply work.', 'soundcreations-rwanda' ); ?></p>
 			</div>
-			<ul class="scrw-clients__grid">
-				<?php foreach ( $items as $c ) : ?>
-					<li class="scrw-clients__item" title="<?php echo esc_attr( $c['name'] ); ?>">
-						<img src="<?php echo esc_url( $c['src'] ); ?>" alt="<?php echo esc_attr( $c['name'] ); ?>" loading="lazy" decoding="async" width="400" height="220">
-					</li>
-				<?php endforeach; ?>
-			</ul>
+			<div class="scrw-clients__stats">
+				<div><strong>70+</strong><span><?php esc_html_e( 'clients served in Rwanda', 'soundcreations-rwanda' ); ?></span></div>
+				<div><strong>6</strong><span><?php esc_html_e( 'sectors: worship, education, government, hospitality, corporate, events', 'soundcreations-rwanda' ); ?></span></div>
+			</div>
+		</div>
+		<div class="scrw-clients__stage">
+			<ul class="scrw-clients__track scrw-clients__track--a"><?php echo $track( $row1 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in $tile. ?></ul>
+			<ul class="scrw-clients__track scrw-clients__track--b"><?php echo $track( $row2 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in $tile. ?></ul>
 		</div>
 	</section>
 	<?php

@@ -190,12 +190,32 @@ Text Domain:  soundcreations-rwanda
 .single-sc_product .sc-specs th { width: 38%; color: var(--sc-muted); font-weight: 500; }
 .single-sc_product .sc-specs tr:nth-child(odd) { background: rgba(255,255,255,.025); }
 
-/* ---- Our Clients logo wall ----------------------------------------- */
-.scrw-clients__head { max-width: 64ch; margin-bottom: 1.8rem; }
-.scrw-clients__head h2 { margin: .25rem 0 .5rem; }
-.scrw-clients__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem; }
-.scrw-clients__item { display: grid; place-items: center; aspect-ratio: 20 / 11; padding: .9rem 1.1rem; background: #fff; border: 1px solid var(--sc-border); border-radius: 14px; transition: transform .25s ease, box-shadow .25s ease; }
-.scrw-clients__item img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(100%); opacity: .8; transition: filter .25s ease, opacity .25s ease; }
-.scrw-clients__item:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.25); }
-.scrw-clients__item:hover img { filter: none; opacity: 1; }
-@media (max-width: 520px) { .scrw-clients__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; } }
+/* ---- Our Clients: two-row logo showcase --------------------------- */
+.scrw-clients { position: relative; overflow: hidden; background: radial-gradient(1200px 400px at 50% 0%, rgba(98,68,137,.22), transparent 70%); }
+.scrw-clients__intro { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; align-items: end; margin-bottom: 2.4rem; }
+.scrw-clients__head h2 { margin: .25rem 0 .55rem; }
+.scrw-clients__head .sc-lead { margin: 0; max-width: 60ch; }
+.scrw-clients__stats { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+.scrw-clients__stats div { padding: 1.1rem 1.2rem; border: 1px solid var(--sc-border); border-radius: 16px; background: var(--sc-surface); }
+.scrw-clients__stats strong { display: block; font-size: clamp(1.8rem, 1.3rem + 1.6vw, 2.6rem); line-height: 1; color: var(--sc-text); letter-spacing: -.02em; }
+.scrw-clients__stats span { display: block; margin-top: .45rem; font-size: 12.5px; line-height: 1.45; color: var(--sc-muted); }
+
+.scrw-clients__stage { display: grid; gap: 1.1rem; padding: .4rem 0 .6rem; -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); }
+.scrw-clients__track { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.1rem; width: max-content; animation: scrw-marquee 48s linear infinite; }
+.scrw-clients__track--b { animation-direction: reverse; animation-duration: 56s; }
+.scrw-clients__stage:hover .scrw-clients__track { animation-play-state: paused; }
+@keyframes scrw-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.scrw-clients__tile { position: relative; flex: none; display: grid; place-items: center; width: 220px; height: 124px; padding: 1rem 1.3rem 1.5rem; background: #fff; border-radius: 18px; box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 10px 30px rgba(0,0,0,.28); transition: transform .3s ease, box-shadow .3s ease; }
+.scrw-clients__tile img { width: 100%; height: 100%; object-fit: contain; filter: saturate(.9); transition: filter .3s ease, transform .3s ease; }
+.scrw-clients__name { position: absolute; left: 0; right: 0; bottom: .45rem; padding: 0 .6rem; font-size: 10.5px; font-weight: 600; letter-spacing: .04em; text-align: center; color: #6b6b75; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.scrw-clients__tile:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 0 0 2px rgba(186,11,11,.55), 0 18px 40px rgba(0,0,0,.4); }
+.scrw-clients__tile:hover img { filter: none; transform: scale(1.04); }
+
+@media (max-width: 900px) { .scrw-clients__intro { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .scrw-clients__tile { width: 168px; height: 98px; border-radius: 14px; } .scrw-clients__stats { grid-template-columns: 1fr 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+	.scrw-clients__stage { -webkit-mask-image: none; mask-image: none; }
+	.scrw-clients__track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; padding: 0 1rem; }
+	.scrw-clients__track--b, .scrw-clients__tile[aria-hidden="true"] { display: none; }
+}
