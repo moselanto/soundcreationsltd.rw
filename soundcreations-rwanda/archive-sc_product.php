@@ -322,6 +322,7 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 	var grid=root.querySelector('[data-scrw-grid]'), chips=root.querySelectorAll('.scrw-chip'), cards=Array.prototype.slice.call(root.querySelectorAll('.scrw-pcard'));
 	var brand=root.querySelector('[data-scrw-brand]'), search=root.querySelector('[data-scrw-search]'), sort=root.querySelector('[data-scrw-sort]'), empty=root.querySelector('[data-scrw-empty]'), count=root.querySelector('[data-scrw-count]');
 	var act=root.querySelector('.scrw-chip.is-active'); var cat=act ? act.getAttribute('data-cat') : '';
+	try{ var qb=new URLSearchParams(window.location.search).get('brand'); if(qb){ brand.value=qb; if(brand.value===''){brand.value='';} } }catch(e){}
 	function apply(){
 		var b=brand.value, t=search.value.trim().toLowerCase(), shown=0;
 		cards.forEach(function(c){

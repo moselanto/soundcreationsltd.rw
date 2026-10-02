@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_PAGES_VERSION', 'rw-pages-2' );
+define( 'SCRW_PAGES_VERSION', 'rw-pages-3' ); // rw-pages-3: adds the Yamaha page.
 
 /** slug => array( title, content ). */
 function scrw_core_pages() {
@@ -26,6 +26,7 @@ function scrw_core_pages() {
 		'contact'                => array( 'Contact', '<p>Talk to our Kigali team about your project.</p>' ),
 		'request-a-consultation' => array( 'Request a Consultation', '<p>Tell us about your space and application and our Kigali team will help you specify the right system.</p>' ),
 		'fane'                   => array( 'FANE', '<p>FANE professional loudspeaker components, available in Rwanda from Sound Creations Ltd Rwanda.</p>' ),
+		'yamaha'                 => array( 'Yamaha', '<p>Sound Creations Ltd Rwanda is the authorised Yamaha distributor in Rwanda.</p>' ),
 		'request-a-quote'        => array( 'Request a Quote', '<p>Tell us what you need and our Kigali sales team will come back with pricing and availability.</p>[sc_enquiry_form type="quote"]' ),
 	);
 	if ( function_exists( 'scrw_legal_pages' ) ) {
@@ -105,6 +106,22 @@ add_action(
 			return;
 		}
 		$page = get_page_by_path( 'fane', OBJECT, 'page' );
+		if ( $page && 'publish' === $page->post_status ) {
+			wp_safe_redirect( get_permalink( $page ), 301 );
+			exit;
+		}
+	},
+	5
+);
+
+/* /brands/yamaha/ -> /yamaha/ (the full Yamaha page), once that page exists. */
+add_action(
+	'template_redirect',
+	function () {
+		if ( is_singular( 'sc_brand' ) === false || 'yamaha' !== get_post_field( 'post_name', get_queried_object_id() ) ) {
+			return;
+		}
+		$page = get_page_by_path( 'yamaha', OBJECT, 'page' );
 		if ( $page && 'publish' === $page->post_status ) {
 			wp_safe_redirect( get_permalink( $page ), 301 );
 			exit;

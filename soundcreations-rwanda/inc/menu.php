@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_MENU_VERSION', 'rw-menu-2' );
+define( 'SCRW_MENU_VERSION', 'rw-menu-3' ); // rw-menu-3: adds YAMAHA after FANE AFRICA.
 
 /*
  * rw-menu-2: same top-level menu as soundcreationsltd.com (flat, no
@@ -29,6 +29,7 @@ function scrw_menu_tree() {
 		array( 'Products', '/products/', array() ),
 		array( 'Projects', '/projects/', array() ),
 		array( 'FANE AFRICA', '/fane/', array() ),
+		array( 'YAMAHA', '/yamaha/', array() ),
 		array( 'About', '/about/', array() ),
 		array( 'Videos', '/videos/', array() ),
 		array( 'Contact', '/contact/', array() ),
