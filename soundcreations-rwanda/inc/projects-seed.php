@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_PROJECTS_VERSION', 'rw-projects-8' );
+define( 'SCRW_PROJECTS_VERSION', 'rw-projects-9' );
 
 function scrw_projects() {
 	return array(
@@ -22,7 +22,7 @@ function scrw_projects() {
 			'title'      => 'Ministry of Finance (MINECOFIN)',
 			'slug'       => 'minecofin-conference-system',
 			'industry'   => 'Corporate',
-			'images'     => array( 'minecofin' ),
+			'images'     => array( 'minecofin-hd' ),
 			'summary'    => 'A Shure Microflex Complete conferencing system for Rwanda’s Ministry of Finance and Economic Planning, bringing clear audio and simple meeting control to the boardroom.',
 			'client'     => 'Ministry of Finance and Economic Planning (MINECOFIN)',
 			'location'   => 'Kigali, Rwanda',
@@ -54,7 +54,7 @@ function scrw_projects() {
 			'title'      => 'Ntare Louisenlund School',
 			'slug'       => 'ntare-louisenlund-school',
 			'industry'   => 'Education',
-			'images'     => array( 'ntare-louisenland', 'ntare-louisenland-2' ),
+			'images'     => array( 'ntare-louisenlund-exterior-hd', 'ntare-louisenlund-hall-hd' ),
 			'summary'    => 'Acoustic treatment and a PA system that turn the school hall into a clear, professional space for assemblies, presentations and performances.',
 			'client'     => 'Ntare Louisenlund School',
 			'location'   => 'Rwanda',
@@ -264,6 +264,9 @@ function scrw_seed_projects() {
 	scrw_replace_project_photos( 'atelier-du-vin', 'Atelier du Vin', array( 'atelier-du-vin-interior-hd', 'atelier-du-vin-entrance-hd' ) );
 	// rw-projects-8: Romantic Garden cover swapped for the full-resolution original; exterior stays second.
 	scrw_replace_project_photos( 'romantic-garden', 'Romantic Garden', array( 'romantic-garden-interior-hd', 'romantic-garden-2' ) );
+	// rw-projects-9: full-resolution originals for MINECOFIN and Ntare Louisenlund (Mulindi Hall exterior cover, auditorium second).
+	scrw_replace_project_photos( 'minecofin-conference-system', 'Ministry of Finance (MINECOFIN)', array( 'minecofin-hd' ) );
+	scrw_replace_project_photos( 'ntare-louisenlund-school', 'Ntare Louisenlund School', array( 'ntare-louisenlund-exterior-hd', 'ntare-louisenlund-hall-hd' ) );
 
 	// RPF Rubavu Multipurpose Hall (Core starter project, Rubavu) is a Rwanda
 	// project and is featured on the homepage, as on the group site.
