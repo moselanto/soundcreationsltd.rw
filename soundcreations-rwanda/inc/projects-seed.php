@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_PROJECTS_VERSION', 'rw-projects-7' );
+define( 'SCRW_PROJECTS_VERSION', 'rw-projects-8' );
 
 function scrw_projects() {
 	return array(
@@ -102,7 +102,7 @@ function scrw_projects() {
 			'title'      => 'Romantic Garden',
 			'slug'       => 'romantic-garden',
 			'industry'   => 'Hospitality',
-			'images'     => array( 'romantic-garden', 'romantic-garden-2' ),
+			'images'     => array( 'romantic-garden-interior-hd', 'romantic-garden-2' ),
 			'summary'    => 'A scalable dB Technologies and Yamaha sound system for Romantic Garden, an events venue with clear audio for speeches and music.',
 			'client'     => 'Romantic Garden',
 			'location'   => 'Rwanda',
@@ -262,6 +262,8 @@ function scrw_seed_projects() {
 	// (interior with speakers as cover, entrance sign second), replacing the earlier
 	// low-resolution copies and the duplicate sign photo.
 	scrw_replace_project_photos( 'atelier-du-vin', 'Atelier du Vin', array( 'atelier-du-vin-interior-hd', 'atelier-du-vin-entrance-hd' ) );
+	// rw-projects-8: Romantic Garden cover swapped for the full-resolution original; exterior stays second.
+	scrw_replace_project_photos( 'romantic-garden', 'Romantic Garden', array( 'romantic-garden-interior-hd', 'romantic-garden-2' ) );
 
 	// RPF Rubavu Multipurpose Hall (Core starter project, Rubavu) is a Rwanda
 	// project and is featured on the homepage, as on the group site.
