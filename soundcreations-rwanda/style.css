@@ -339,3 +339,19 @@ img, video { height: auto; }
 	.scrw-hero__img, .scrw-hero__copy > * { transition: none \!important; animation: none \!important; }
 	.scrw-hero__video { display: none; }
 }
+
+
+/* Products catalogue: the search/filter panel scrolls with the page instead of
+ * sticking under the header. When it was sticky, its height (category chips +
+ * search + brand + sort) covered a large part of the screen, so the page looked
+ * frozen and only the product cards moved. A small "Search & filters" button
+ * appears bottom-left once the panel is scrolled past and brings it back. */
+.scrw-cat__bar { position: relative; top: auto; z-index: 1; }
+.scrw-cat__jump { position: fixed; left: max(1rem, env(safe-area-inset-left, 0px)); bottom: max(1.1rem, env(safe-area-inset-bottom, 0px)); z-index: 90;
+	display: inline-flex; align-items: center; gap: .5rem; padding: .7rem 1.1rem; border-radius: 999px;
+	background: #624489; color: #fff; font-size: 13.5px; font-weight: 600; text-decoration: none;
+	box-shadow: 0 10px 28px rgba(0,0,0,.35); transition: transform .2s ease, background .2s ease; }
+.scrw-cat__jump:hover { background: #46305F; color: #fff; transform: translateY(-2px); }
+.scrw-cat__jump:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.scrw-cat__jump[hidden] { display: none; }
+@media (max-width: 782px) { .scrw-cat__jump { bottom: calc(max(1.1rem, env(safe-area-inset-bottom, 0px)) + 64px); } }

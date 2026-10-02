@@ -315,6 +315,7 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 	</div>
 </section>
 
+<a class="scrw-cat__jump" href="#catalogue" data-scrw-jump hidden aria-label="<?php esc_attr_e( 'Back to search and filters', 'soundcreations-rwanda' ); ?>"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg><?php esc_html_e( 'Search & filters', 'soundcreations-rwanda' ); ?></a>
 <script>
 (function(){
 	var root=document.querySelector('[data-scrw-cat]'); if(root===null){return;}
@@ -346,6 +347,16 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 	});}
 	brand.addEventListener('change',apply); search.addEventListener('input',apply); sort.addEventListener('change',function(){order();apply();});
 	apply();
+})();
+
+(function(){
+	var bar=document.querySelector('.scrw-cat__bar'), jump=document.querySelector('[data-scrw-jump]'), sec=document.querySelector('[data-scrw-cat]');
+	if(bar===null||jump===null||sec===null||('IntersectionObserver' in window)===false){return;}
+	var barOut=false, inSec=false;
+	function upd(){ jump.hidden=(barOut&&inSec)===false; }
+	new IntersectionObserver(function(es){ barOut=es[0].isIntersecting===false && es[0].boundingClientRect.top<0; upd(); }).observe(bar);
+	new IntersectionObserver(function(es){ inSec=es[0].isIntersecting; upd(); },{rootMargin:'0px 0px -40% 0px'}).observe(sec);
+	jump.addEventListener('click',function(e){ e.preventDefault(); var y=bar.getBoundingClientRect().top+window.pageYOffset-90; window.scrollTo({top:y,behavior:'smooth'}); var i=bar.querySelector('input'); if(i){setTimeout(function(){i.focus({preventScroll:true});},450);} });
 })();
 </script>
 <section class="sc-section">
