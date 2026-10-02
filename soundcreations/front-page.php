@@ -15,6 +15,10 @@ get_header();
 
 $sc_hero_video  = sc_setting( 'hero_video' );
 $sc_hero_poster = sc_setting( 'home_hero_poster', SC_THEME_URI . '/assets/img/hero-poster.webp' );
+// A child theme can replace the whole hero (e.g. the Rwanda video / slides hero).
+if ( has_action( 'sc_home_hero' ) ) :
+	do_action( 'sc_home_hero' );
+else :
 ?>
 
 <section class="sc-hero sc-hero--video" style="background-image:url('<?php echo esc_url( $sc_hero_poster ); ?>');">
@@ -55,6 +59,7 @@ $sc_hero_poster = sc_setting( 'home_hero_poster', SC_THEME_URI . '/assets/img/he
 		<?php endif; ?>
 	</div>
 </section>
+<?php endif; ?>
 
 <section class="sc-section" id="services">
 	<div class="sc-container">
