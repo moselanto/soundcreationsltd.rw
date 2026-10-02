@@ -1,7 +1,9 @@
 <?php
 /**
- * Complete Projects: every completed job from the SCL RW Company Profile 2025,
- * grouped by sector, shown on the Projects page under the case studies.
+ * Complete Projects: completed jobs from the SCL RW Company Profile 2025,
+ * grouped by sector (no counts shown), on the Projects page under the case studies.
+ * A sector list on the left switches the projects shown on the right; on phones
+ * the sectors become a swipeable row.
  * Also available anywhere with the shortcode [scrw_complete_projects].
  *
  * To add a project: add the name to the right sector in scrw_complete_projects().
@@ -50,6 +52,18 @@ function scrw_complete_projects() {
 	);
 }
 
+/** Sector key => one-line description shown above its projects. */
+function scrw_complete_sector_notes() {
+	return array(
+		'worship'     => 'Clear speech, inspiring worship sound, stage lighting and screens for congregations of every size.',
+		'public'      => 'Conferencing, public address and acoustics for ministries, embassies and corporate headquarters.',
+		'hospitality' => 'Background music, DJ and live-performance sound for Kigali’s lounges, restaurants and clubs.',
+		'hotels'      => 'Conference, banqueting and background audio systems for hotels and their event spaces.',
+		'recreation'  => 'Powerful, dependable sound for event gardens, venues and fitness centres.',
+		'rental'      => 'Equipment, system design and backup for the rental and event companies behind Kigali’s events.',
+	);
+}
+
 /** Project name => case study path on this site. */
 function scrw_complete_case_studies() {
 	return array(
@@ -62,62 +76,59 @@ function scrw_complete_case_studies() {
 
 function scrw_render_complete_projects() {
 	$data  = scrw_complete_projects();
+	$notes = scrw_complete_sector_notes();
 	$cases = scrw_complete_case_studies();
-	$total = 0;
-	foreach ( $data as $sec ) {
-		$total += count( $sec[2] );
-	}
-	$show = 8; // Names shown before "Show all".
+	$first = (string) array_key_first( $data );
 	ob_start();
 	?>
 	<section class="sc-section scrw-done" id="complete-projects" data-scrw-done>
 		<div class="sc-container">
-			<div class="scrw-done__head">
-				<div>
-					<p class="sc-eyebrow"><?php esc_html_e( 'Complete Projects', 'soundcreations-rwanda' ); ?></p>
-					<h2><?php echo esc_html( sprintf( __( '%d completed projects across Rwanda.', 'soundcreations-rwanda' ), $total ) ); ?></h2>
-					<p class="sc-lead"><?php esc_html_e( 'Sound, acoustics, lighting and conferencing delivered for churches, government, hospitality, hotels, venues and the rental companies behind Kigali’s events.', 'soundcreations-rwanda' ); ?></p>
+			<header class="scrw-done__head">
+				<p class="sc-eyebrow"><?php esc_html_e( 'Complete Projects', 'soundcreations-rwanda' ); ?></p>
+				<h2><?php esc_html_e( 'Trusted on projects across Rwanda.', 'soundcreations-rwanda' ); ?></h2>
+				<p class="sc-lead"><?php esc_html_e( 'From churches and government to hotels, hospitality and the event companies behind Kigali’s biggest nights, these are some of the spaces our team has designed, supplied, installed and supports.', 'soundcreations-rwanda' ); ?></p>
+			</header>
+
+			<div class="scrw-done__layout">
+				<div class="scrw-done__rail" role="tablist" aria-label="<?php esc_attr_e( 'Sectors', 'soundcreations-rwanda' ); ?>" aria-orientation="vertical">
+					<?php foreach ( $data as $key => $sec ) : ?>
+						<?php $on = ( $key === $first ); ?>
+						<button type="button" class="scrw-done__tab<?php echo $on ? ' is-active' : ''; ?>" role="tab" id="scrw-tab-<?php echo esc_attr( $key ); ?>" aria-controls="scrw-panel-<?php echo esc_attr( $key ); ?>" aria-selected="<?php echo $on ? 'true' : 'false'; ?>" tabindex="<?php echo $on ? '0' : '-1'; ?>">
+							<span class="scrw-done__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><?php echo $sec[1]; // phpcs:ignore -- static SVG. ?></svg></span>
+							<span class="scrw-done__tab-label"><?php echo esc_html( $sec[0] ); ?></span>
+							<svg class="scrw-done__chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+						</button>
+					<?php endforeach; ?>
 				</div>
-				<dl class="scrw-done__stats">
-					<div><dt><?php echo (int) $total; ?></dt><dd><?php esc_html_e( 'Projects completed', 'soundcreations-rwanda' ); ?></dd></div>
-					<div><dt><?php echo (int) count( $data ); ?></dt><dd><?php esc_html_e( 'Sectors served', 'soundcreations-rwanda' ); ?></dd></div>
-					<div><dt><?php echo (int) count( $data['worship'][2] ); ?></dt><dd><?php esc_html_e( 'Houses of worship', 'soundcreations-rwanda' ); ?></dd></div>
-					<div><dt><?php echo (int) count( $data['hospitality'][2] ); ?></dt><dd><?php esc_html_e( 'Hospitality venues', 'soundcreations-rwanda' ); ?></dd></div>
-				</dl>
-			</div>
 
-			<div class="scrw-done__tabs" role="group" aria-label="<?php esc_attr_e( 'Filter by sector', 'soundcreations-rwanda' ); ?>">
-				<button type="button" class="scrw-done__tab is-active" data-sec=""><?php esc_html_e( 'All sectors', 'soundcreations-rwanda' ); ?><span><?php echo (int) $total; ?></span></button>
-				<?php foreach ( $data as $key => $sec ) : ?>
-					<button type="button" class="scrw-done__tab" data-sec="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $sec[0] ); ?><span><?php echo (int) count( $sec[2] ); ?></span></button>
-				<?php endforeach; ?>
-			</div>
-
-			<div class="scrw-done__grid">
-				<?php foreach ( $data as $key => $sec ) : ?>
-					<?php $n = count( $sec[2] ); ?>
-					<article class="scrw-done__card<?php echo $n > $show ? ' is-long' : ''; ?>" data-sec="<?php echo esc_attr( $key ); ?>">
-						<header class="scrw-done__card-head">
-							<span class="scrw-done__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><?php echo $sec[1]; // phpcs:ignore -- static SVG paths. ?></svg></span>
-							<h3><?php echo esc_html( $sec[0] ); ?></h3>
-							<span class="scrw-done__count"><?php echo (int) $n; ?></span>
-						</header>
-						<ul class="scrw-done__list">
-							<?php foreach ( $sec[2] as $i => $name ) : ?>
-								<li<?php echo $i >= $show ? ' class="is-extra"' : ''; ?>>
+				<div class="scrw-done__panels">
+					<?php foreach ( $data as $key => $sec ) : ?>
+						<?php $on = ( $key === $first ); ?>
+						<div class="scrw-done__panel<?php echo $on ? ' is-active' : ''; ?>" role="tabpanel" id="scrw-panel-<?php echo esc_attr( $key ); ?>" aria-labelledby="scrw-tab-<?php echo esc_attr( $key ); ?>" tabindex="0">
+							<div class="scrw-done__panel-head">
+								<span class="scrw-done__icon scrw-done__icon--lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><?php echo $sec[1]; // phpcs:ignore -- static SVG. ?></svg></span>
+								<div>
+									<h3><?php echo esc_html( $sec[0] ); ?></h3>
+									<?php if ( isset( $notes[ $key ] ) ) : ?><p><?php echo esc_html( $notes[ $key ] ); ?></p><?php endif; ?>
+								</div>
+							</div>
+							<ul class="scrw-done__items">
+								<?php foreach ( $sec[2] as $i => $name ) : ?>
 									<?php if ( isset( $cases[ $name ] ) ) : ?>
-										<a href="<?php echo esc_url( home_url( $cases[ $name ] ) ); ?>"><?php echo esc_html( $name ); ?><span class="scrw-done__case"><?php esc_html_e( 'Case study', 'soundcreations-rwanda' ); ?> &rarr;</span></a>
+										<li class="scrw-done__item scrw-done__item--case" style="--i:<?php echo (int) $i; ?>">
+											<a href="<?php echo esc_url( home_url( $cases[ $name ] ) ); ?>">
+												<span class="scrw-done__name"><?php echo esc_html( $name ); ?></span>
+												<span class="scrw-done__case"><?php esc_html_e( 'View case study', 'soundcreations-rwanda' ); ?> &rarr;</span>
+											</a>
+										</li>
 									<?php else : ?>
-										<span><?php echo esc_html( $name ); ?></span>
+										<li class="scrw-done__item" style="--i:<?php echo (int) $i; ?>"><span class="scrw-done__tick" aria-hidden="true"></span><span class="scrw-done__name"><?php echo esc_html( $name ); ?></span></li>
 									<?php endif; ?>
-								</li>
-							<?php endforeach; ?>
-						</ul>
-						<?php if ( $n > $show ) : ?>
-							<button type="button" class="scrw-done__more" aria-expanded="false" data-more="<?php echo esc_attr( sprintf( __( 'Show all %d', 'soundcreations-rwanda' ), $n ) ); ?>" data-less="<?php esc_attr_e( 'Show fewer', 'soundcreations-rwanda' ); ?>"><?php echo esc_html( sprintf( __( 'Show all %d', 'soundcreations-rwanda' ), $n ) ); ?></button>
-						<?php endif; ?>
-					</article>
-				<?php endforeach; ?>
+								<?php endforeach; ?>
+							</ul>
+						</div>
+					<?php endforeach; ?>
+				</div>
 			</div>
 
 			<div class="scrw-done__cta">
@@ -132,17 +143,23 @@ function scrw_render_complete_projects() {
 	<script>
 	(function(){
 		var root=document.querySelector('[data-scrw-done]'); if(root===null){return;}
-		var tabs=root.querySelectorAll('.scrw-done__tab'), cards=root.querySelectorAll('.scrw-done__card');
-		Array.prototype.forEach.call(tabs,function(t){ t.addEventListener('click',function(){
-			Array.prototype.forEach.call(tabs,function(x){x.classList.remove('is-active');}); t.classList.add('is-active');
-			var s=t.getAttribute('data-sec');
-			Array.prototype.forEach.call(cards,function(c){ var on=(s===''||c.getAttribute('data-sec')===s); c.hidden=(on===false); if(s!==''&&on){c.classList.add('is-open');} });
-			root.classList.toggle('is-single',s!=='');
-		}); });
-		Array.prototype.forEach.call(root.querySelectorAll('.scrw-done__more'),function(b){ b.addEventListener('click',function(){
-			var c=b.closest('.scrw-done__card'), open=c.classList.toggle('is-open');
-			b.setAttribute('aria-expanded',open?'true':'false'); b.textContent=open?b.getAttribute('data-less'):b.getAttribute('data-more');
-		}); });
+		root.classList.add('is-js');
+		var tabs=Array.prototype.slice.call(root.querySelectorAll('.scrw-done__tab')), panels=root.querySelectorAll('.scrw-done__panel');
+		function show(i,focus){
+			tabs.forEach(function(t,k){ var on=(k===i); t.classList.toggle('is-active',on); t.setAttribute('aria-selected',on?'true':'false'); t.tabIndex=on?0:-1; panels[k].classList.toggle('is-active',on); });
+			if(focus){tabs[i].focus();}
+			if(window.matchMedia('(max-width: 900px)').matches){ tabs[i].scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'}); }
+		}
+		tabs.forEach(function(t,i){
+			t.addEventListener('click',function(){show(i,false);});
+			t.addEventListener('keydown',function(e){
+				var n=tabs.length;
+				if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();show((i+1)%n,true);}
+				else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();show((i-1+n)%n,true);}
+				else if(e.key==='Home'){e.preventDefault();show(0,true);}
+				else if(e.key==='End'){e.preventDefault();show(n-1,true);}
+			});
+		});
 	})();
 	</script>
 	<?php
