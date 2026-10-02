@@ -208,3 +208,49 @@ Text Domain:  soundcreations-rwanda
 @keyframes scrw-clients-scroll { from { transform: translateX(0); } to { transform: translateX(calc(-50% - .625rem)); } }
 @media (max-width: 640px) { .scrw-clients__card { width: 160px; height: 90px; padding: .7rem .9rem; } .scrw-clients__track { gap: 1rem; } @keyframes scrw-clients-scroll { to { transform: translateX(calc(-50% - .5rem)); } } }
 @media (prefers-reduced-motion: reduce) { .scrw-clients__track { animation-duration: calc(var(--scrw-dur, 44s) * 3); } }
+
+/* ==== Side margins: one consistent system for every screen ===================
+ * Phones get a comfortable 20px edge, tablets and laptops grow smoothly to 48px,
+ * and the content column widens a little on large and ultra-wide monitors so it
+ * never looks lost in the middle. Every section (header, top bar, body, stats,
+ * client logos, footer) lines up on the same left and right edge. iPhone notch
+ * and rounded corners are respected in landscape. Works the same on Chrome,
+ * Edge, Firefox and Safari on Windows, Mac, Android and iOS.
+ */
+:root {
+	--sc-container: 1240px;
+	--sc-gutter: clamp(1.25rem, 0.55rem + 3.2vw, 3rem);
+}
+@media (min-width: 1600px) { :root { --sc-container: 1320px; } }
+@media (min-width: 2200px) { :root { --sc-container: 1440px; } }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { overflow-x: hidden; }
+@supports (overflow: clip) { body { overflow-x: clip; } }
+
+.sc-container {
+	width: 100%;
+	max-width: var(--sc-container);
+	margin-inline: auto;
+	padding-left: max(var(--sc-gutter), env(safe-area-inset-left, 0px));
+	padding-right: max(var(--sc-gutter), env(safe-area-inset-right, 0px));
+	box-sizing: border-box;
+}
+/* Footer and the stats band now sit on the same edges as the rest of the page. */
+.sc-footer .sc-container,
+.sc-stats--proof .sc-container { max-width: var(--sc-container); }
+.sc-stats--proof .sc-container {
+	padding-left: max(var(--sc-gutter), env(safe-area-inset-left, 0px));
+	padding-right: max(var(--sc-gutter), env(safe-area-inset-right, 0px));
+}
+/* Client logos scroll inside the content column and fade at its edges, instead of running into the window edge. */
+.scrw-clients__marquee {
+	width: min(calc(100% - 2 * var(--sc-gutter)), calc(var(--sc-container) - 2 * var(--sc-gutter)));
+	margin-inline: auto;
+}
+/* Long words, links and emails never push the page sideways on small phones. */
+.sc-container p, .sc-container li, .sc-container a, .sc-footer address { overflow-wrap: anywhere; }
+img, video, iframe, svg { max-width: 100%; }
+img, video { height: auto; }
+/* Horizontal card rows keep the first card aligned with the page edge when scrolled. */
+.sc-carousel__track, .sc-brands, .sc-prod-track, .sc-cat-row { scroll-padding-inline: var(--sc-gutter); }
