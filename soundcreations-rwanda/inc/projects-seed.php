@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_PROJECTS_VERSION', 'rw-projects-6' );
+define( 'SCRW_PROJECTS_VERSION', 'rw-projects-7' );
 
 function scrw_projects() {
 	return array(
@@ -86,7 +86,7 @@ function scrw_projects() {
 			'title'      => 'Atelier du Vin',
 			'slug'       => 'atelier-du-vin',
 			'industry'   => 'Hospitality',
-			'images'     => array( 'atelier-du-vin', 'atelier-du-vin-2', 'atelier-du-vin-exterior' ),
+			'images'     => array( 'atelier-du-vin-interior-hd', 'atelier-du-vin-entrance-hd' ),
 			'summary'    => 'A premium sound system for Atelier du Vin in Kigali, tuned for background music and live performance.',
 			'client'     => 'Atelier du Vin',
 			'location'   => 'Kigali, Rwanda',
@@ -180,6 +180,27 @@ function scrw_add_project_photos( $slug, $title, $images, $cover = true ) {
 	}
 }
 
+/** Replace an existing project's gallery with exactly these bundled photos; the first becomes the cover. */
+function scrw_replace_project_photos( $slug, $title, $images ) {
+	$post = get_page_by_path( $slug, OBJECT, 'sc_project' );
+	if ( ! $post ) {
+		return;
+	}
+	$ids = array();
+	foreach ( $images as $img ) {
+		$aid = scrw_import_project_image( $img, $title );
+		if ( $aid ) {
+			$ids[] = $aid;
+			wp_update_post( array( 'ID' => $aid, 'post_parent' => $post->ID ) );
+		}
+	}
+	if ( ! $ids ) {
+		return;
+	}
+	update_post_meta( $post->ID, '_sc_gallery', implode( ',', $ids ) );
+	set_post_thumbnail( $post->ID, $ids[0] );
+}
+
 function scrw_seed_projects() {
 	foreach ( scrw_projects() as $p ) {
 		$existing = function_exists( 'sc_core_find_seeded_post' )
@@ -237,8 +258,10 @@ function scrw_seed_projects() {
 	// rw-projects-3: Rubavu (Intare Kivu Arena). rw-projects-4/5: Christian Life Assembly.
 	scrw_add_project_photos( 'intare-kivu-arena', 'Intare Kivu Arena', array( 'intare-kivu-arena-exterior', 'intare-kivu-arena-hall', 'intare-kivu-arena-hall-2' ) );
 	scrw_add_project_photos( 'christian-life-assembly-church', 'Christian Life Assembly Church', array( 'christian-life-assembly-stage', 'christian-life-assembly-service', 'christian-life-assembly-worship', 'christian-life-assembly-preaching' ) );
-	// rw-projects-6: Atelier du Vin entrance sign, added after the interior photos (cover unchanged).
-	scrw_add_project_photos( 'atelier-du-vin', 'Atelier du Vin', array( 'atelier-du-vin-exterior' ), false );
+	// rw-projects-7: Atelier du Vin gets full-resolution originals of its two photos
+	// (interior with speakers as cover, entrance sign second), replacing the earlier
+	// low-resolution copies and the duplicate sign photo.
+	scrw_replace_project_photos( 'atelier-du-vin', 'Atelier du Vin', array( 'atelier-du-vin-interior-hd', 'atelier-du-vin-entrance-hd' ) );
 
 	// RPF Rubavu Multipurpose Hall (Core starter project, Rubavu) is a Rwanda
 	// project and is featured on the homepage, as on the group site.
