@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_MENU_VERSION', 'rw-menu-3' ); // rw-menu-3: adds YAMAHA after FANE AFRICA.
+define( 'SCRW_MENU_VERSION', 'rw-menu-4' ); // rw-menu-4: Brands and About dropdowns, 7 clean top-level items.
 
 /*
  * rw-menu-2: same top-level menu as soundcreationsltd.com (flat, no
@@ -28,12 +28,25 @@ function scrw_menu_tree() {
 		array( 'Solutions', '/solutions/', array() ),
 		array( 'Products', '/products/', array() ),
 		array( 'Projects', '/projects/', array() ),
-		array( 'FANE AFRICA', '/fane/', array() ),
-		array( 'YAMAHA', '/yamaha/', array() ),
-		array( 'About', '/about/', array() ),
-		array( 'Videos', '/videos/', array() ),
+		array(
+			'Brands',
+			'/brands/',
+			array(
+				array( 'Yamaha – Authorised Distributor', '/yamaha/' ),
+				array( 'FANE Africa', '/fane/' ),
+				array( 'All brands we carry', '/brands/' ),
+			),
+		),
+		array(
+			'About',
+			'/about/',
+			array(
+				array( 'About Sound Creations Rwanda', '/about/' ),
+				array( 'Videos', '/videos/' ),
+				array( 'Sound Creations Kenya ↗', 'https://soundcreationsltd.com/' ),
+			),
+		),
 		array( 'Contact', '/contact/', array() ),
-		array( 'Kenya', 'https://soundcreationsltd.com/', array() ),
 	);
 }
 
