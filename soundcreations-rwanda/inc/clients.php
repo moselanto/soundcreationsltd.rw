@@ -18,7 +18,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 /** File name (no extension) => client name, in display order. */
 function scrw_client_names() {
 	return array(
+		'minecofin'                        => 'Ministry of Finance and Economic Planning (MINECOFIN)',
+		'rwanda-correctional-service'      => 'Rwanda Correctional Service',
+		'intare-conference-arena'          => 'Intare Conference Arena',
 		'christian-life-assembly'          => 'Christian Life Assembly',
+		'new-life-bible-church'            => 'New Life Bible Church',
+		'ntare-louisenlund-school'         => 'Ntare Louisenlund School',
 		'goethe-institut'                  => 'Goethe-Institut Kigali',
 		'afriprecast'                      => 'Afriprecast',
 		'green-hills-academy'              => 'Green Hills Academy',
