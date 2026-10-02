@@ -232,6 +232,8 @@ foreach ( preg_split( '/\r\n|\r|\n/', $sc_pstat_raw ) as $sc_line ) {
 }
 if ( count( $sc_pstats ) > 0 ) :
 	?>
+<?php do_action( 'sc_projects_after_grid' ); // e.g. the Rwanda Complete Projects list. ?>
+
 <section class="sc-stats sc-stats--proof">
 	<div class="sc-container">
 		<div class="sc-stats__grid">
