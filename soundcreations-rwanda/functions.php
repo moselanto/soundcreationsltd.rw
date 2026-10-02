@@ -107,3 +107,16 @@ add_filter(
 		return get_stylesheet_directory_uri() . '/assets/img/about-hero-rw.webp';
 	}
 );
+
+/* Solutions card photos (homepage and /solutions/). Sound & Acoustic Integration: Christian Life Assembly stage, Kigali. */
+add_filter(
+	'sc_home_solution_img',
+	function ( $url, $key ) {
+		if ( 'home_sol3_img' === $key ) {
+			return get_stylesheet_directory_uri() . '/assets/img/solution-integration-rw.webp';
+		}
+		return $url;
+	},
+	10,
+	2
+);

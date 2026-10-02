@@ -44,7 +44,7 @@ $sc_cta_photo = SC_THEME_URI . '/assets/img/cta-building.webp';
 				array( 'solution-av-integration.jpg', 'Sound & Acoustic Integration', 'Professional sound and acoustic systems, installed, commissioned and calibrated by our technical team.', '/solutions/installation/', 'home_sol3_img' ),
 			);
 			foreach ( $sc_sols as $sc_so ) :
-				$sc_scimg = sc_setting( $sc_so[4], SC_THEME_URI . '/assets/img/home/' . $sc_so[0] );
+				$sc_scimg = apply_filters( 'sc_home_solution_img', sc_setting( $sc_so[4], SC_THEME_URI . '/assets/img/home/' . $sc_so[0] ), $sc_so[4] );
 				?>
 				<a class="sc-solcard" href="<?php echo esc_url( home_url( $sc_so[3] ) ); ?>">
 					<span class="sc-solcard__img"><img src="<?php echo esc_url( $sc_scimg ); ?>" alt="<?php echo esc_attr( $sc_so[1] ); ?>" loading="lazy" decoding="async" width="640" height="440"></span>

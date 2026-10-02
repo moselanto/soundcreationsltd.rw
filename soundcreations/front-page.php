@@ -180,7 +180,7 @@ $sc_hero_poster = sc_setting( 'home_hero_poster', SC_THEME_URI . '/assets/img/he
 				array( 'solution-av-integration.jpg', 'Sound & Acoustic Integration', 'Professional sound and acoustic systems, installed, commissioned and calibrated by our technical team.', '/solutions/installation/', 'home_sol3_img', array( 'integ', 'installation' ) ),
 			) );
 			foreach ( $sc_sols as $sc_so ) :
-				$sc_img  = sc_setting( $sc_so[4], SC_THEME_URI . '/assets/img/home/' . $sc_so[0] );
+				$sc_img  = apply_filters( 'sc_home_solution_img', sc_setting( $sc_so[4], SC_THEME_URI . '/assets/img/home/' . $sc_so[0] ), $sc_so[4] );
 				$sc_href = home_url( $sc_so[3] );
 				foreach ( $sc_solution_links as $sc_l ) {
 					$sc_hit = false;
