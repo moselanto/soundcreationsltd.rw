@@ -25,24 +25,22 @@ add_filter(
 		$ico_wa   = '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>';
 
 		$tiles = array();
-		$email = (string) sc_setting( 'email' );
-		if ( '' !== $email ) {
-			$tiles[] = array( 'Email', $email, 'mailto:' . $email, $ico_mail, '' );
-		}
-		$email2 = (string) sc_setting( 'email2' );
-		if ( '' !== $email2 ) {
-			$tiles[] = array( 'Email', $email2, 'mailto:' . $email2, $ico_mail, '' );
-		}
-		$wa = preg_replace( '/[^0-9]/', '', (string) sc_setting( 'whatsapp' ) );
-		if ( '' !== $wa ) {
-			$tiles[] = array( 'WhatsApp', '+' . $wa, 'https://wa.me/' . $wa, $ico_wa, 'wa' );
-		}
+		// Each Rwanda number gets a Call tile and a WhatsApp tile.
 		foreach ( array( array( 'phone', 'phone_link' ), array( 'phone2', 'phone2_link' ) ) as $k ) {
 			$num = (string) sc_setting( $k[0] );
-			if ( '' !== $num ) {
-				$tel     = (string) sc_setting( $k[1] );
-				$tel     = '' !== $tel ? $tel : preg_replace( '/[^0-9+]/', '', $num );
-				$tiles[] = array( 'Call', $num, 'tel:' . $tel, $ico_call, '' );
+			if ( '' === $num ) {
+				continue;
+			}
+			$tel    = (string) sc_setting( $k[1] );
+			$tel    = '' !== $tel ? $tel : preg_replace( '/[^0-9+]/', '', $num );
+			$digits = preg_replace( '/[^0-9]/', '', $tel );
+			$tiles[] = array( 'Call', $num, 'tel:' . $tel, $ico_call, '' );
+			$tiles[] = array( 'WhatsApp', $num, 'https://wa.me/' . $digits, $ico_wa, 'wa' );
+		}
+		foreach ( array( 'email', 'email2' ) as $ek ) {
+			$em = (string) sc_setting( $ek );
+			if ( '' !== $em ) {
+				$tiles[] = array( 'Email', $em, 'mailto:' . $em, $ico_mail, '' );
 			}
 		}
 		if ( ! $tiles ) {

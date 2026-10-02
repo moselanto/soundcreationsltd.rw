@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_MENU_VERSION', 'rw-menu-5' ); // rw-menu-5: YAMAHA and FANE AFRICA as highlighted top-level items; logo links home.
+define( 'SCRW_MENU_VERSION', 'rw-menu-6' ); // rw-menu-6: Home back as the first item.
 
 /*
  * rw-menu-2: same top-level menu as soundcreationsltd.com (flat, no
@@ -24,6 +24,7 @@ define( 'SCRW_MENU_VERSION', 'rw-menu-5' ); // rw-menu-5: YAMAHA and FANE AFRICA
  */
 function scrw_menu_tree() {
 	return array(
+		array( 'Home', '/', array() ),
 		array( 'Solutions', '/solutions/', array() ),
 		array( 'Products', '/products/', array() ),
 		array( 'Projects', '/projects/', array() ),

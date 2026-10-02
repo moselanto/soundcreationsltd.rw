@@ -26,6 +26,8 @@ $y_tel   = sc_setting( 'phone_link', '+250783141050' );
 $y_wa    = sc_setting( 'whatsapp', '250783141050' );
 $y_mail  = sc_setting( 'email', 'stefic@soundcreationsltd.com' );
 $y_mail2 = sc_setting( 'email2', 'fred@soundcreationsltd.com' );
+$y_phone2 = sc_setting( 'phone2', '+250 782 739 889' );
+$y_tel2   = sc_setting( 'phone2_link', '+250782739889' );
 $y_map   = sc_setting( 'map_url', 'https://www.google.com/maps/search/?api=1&query=Sound+Creations+Ltd+KN1+Rd+Muhima+Kigali' );
 
 /** Product slug => fallback title (the product post title is used when it exists). */
@@ -64,10 +66,10 @@ $y_featured = array(
 );
 
 $y_projects = array(
-	array( 'Intare Kivu Arena', 'Gisenyi, Rubavu', 'Yamaha TF5 digital console', 'projects/intare-kivu-arena-hall.webp', '/projects/intare-kivu-arena/' ),
-	array( 'Romantic Garden', 'Kigali', 'Yamaha TF5 digital console', 'projects/romantic-garden-interior-hd.webp', '/projects/romantic-garden/' ),
-	array( 'Ntare Louisenlund School', 'Mulindi Hall', 'Yamaha MG16XU mixer, DXS18 subwoofer', 'projects/ntare-louisenlund-hall-hd.webp', '/projects/ntare-louisenlund-school/' ),
-	array( 'Atelier du Vin', 'Kigali', 'Yamaha MG16XU mixer, DXS18 subwoofer', 'projects/atelier-du-vin-interior-hd.webp', '/projects/atelier-du-vin/' ),
+	array( 'Intare Kivu Arena', 'Gisenyi, Rubavu', 'Yamaha TF5 console', 'projects/intare-kivu-arena-hall.webp', '/projects/intare-kivu-arena/' ),
+	array( 'Romantic Garden', 'Kigali', 'Yamaha TF5 console', 'projects/romantic-garden-interior-hd.webp', '/projects/romantic-garden/' ),
+	array( 'Ntare Louisenlund School', 'Mulindi Hall', 'Yamaha MG16XU + DXS18', 'projects/ntare-louisenlund-hall-hd.webp', '/projects/ntare-louisenlund-school/' ),
+	array( 'Atelier du Vin', 'Kigali', 'Yamaha MG16XU + DXS18', 'projects/atelier-du-vin-interior-hd.webp', '/projects/atelier-du-vin/' ),
 );
 ?>
 
@@ -76,12 +78,16 @@ $y_projects = array(
 		<div class="scrw-yh__copy">
 			<?php echo sc_breadcrumb( array( array( 'Home', home_url( '/' ) ), array( 'Yamaha', '' ) ) ); // phpcs:ignore ?>
 			<p class="scrw-yh__badge"><span aria-hidden="true"></span><?php esc_html_e( 'Authorised Distributor in Rwanda', 'soundcreations-rwanda' ); ?></p>
-			<p class="scrw-yh__word" aria-hidden="true">YAMAHA</p>
 			<h1 class="scrw-yh__title"><?php esc_html_e( 'Yamaha in Rwanda, backed by Sound Creations.', 'soundcreations-rwanda' ); ?></h1>
 			<p class="scrw-yh__lead"><?php esc_html_e( 'Sound Creations Ltd Rwanda is the authorised Yamaha distributor in Rwanda. From mixing consoles and loudspeakers to keyboards, pianos, guitars and drums, we supply genuine Yamaha products with local stock, warranty and expert support from our Kigali showroom.', 'soundcreations-rwanda' ); ?></p>
 			<div class="scrw-yh__cta">
 				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( $y_shop ); ?>"><?php esc_html_e( 'Explore Yamaha products', 'soundcreations-rwanda' ); ?> <?php echo $y_arrow; // phpcs:ignore ?></a>
 				<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( $y_quote ); ?>"><?php esc_html_e( 'Request a quote', 'soundcreations-rwanda' ); ?></a>
+			</div>
+			<div class="scrw-yh__quick">
+				<span class="scrw-yh__quick-k"><?php esc_html_e( 'Call or WhatsApp', 'soundcreations-rwanda' ); ?></span>
+				<a href="tel:<?php echo esc_attr( $y_tel ); ?>"><?php echo esc_html( $y_phone ); ?></a>
+				<a href="tel:<?php echo esc_attr( $y_tel2 ); ?>"><?php echo esc_html( $y_phone2 ); ?></a>
 			</div>
 		</div>
 		<figure class="scrw-yh__media">
@@ -184,13 +190,10 @@ $y_projects = array(
 			<ul class="scrw-yshow__list">
 				<li><strong><?php esc_html_e( 'Address', 'soundcreations-rwanda' ); ?></strong><span>KN1 Rd, Muhima, Kigali</span></li>
 				<li><strong><?php esc_html_e( 'Hours', 'soundcreations-rwanda' ); ?></strong><span><?php esc_html_e( 'Mon–Fri 9:00 AM–6:00 PM · Sat 9:00 AM–1:30 PM', 'soundcreations-rwanda' ); ?></span></li>
-				<li><strong><?php esc_html_e( 'Phone', 'soundcreations-rwanda' ); ?></strong><a href="tel:<?php echo esc_attr( $y_tel ); ?>"><?php echo esc_html( $y_phone ); ?></a></li>
-				<li><strong><?php esc_html_e( 'Email', 'soundcreations-rwanda' ); ?></strong><span><a href="mailto:<?php echo esc_attr( $y_mail ); ?>"><?php echo esc_html( $y_mail ); ?></a><?php if ( $y_mail2 ) : ?><br><a href="mailto:<?php echo esc_attr( $y_mail2 ); ?>"><?php echo esc_html( $y_mail2 ); ?></a><?php endif; ?></span></li>
 			</ul>
-			<div class="scrw-yh__cta">
-				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( 'https://wa.me/' . $y_wa . '?text=' . rawurlencode( 'Hello Sound Creations Rwanda, I would like to enquire about Yamaha products.' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Chat on WhatsApp', 'soundcreations-rwanda' ); ?></a>
-				<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( $y_map ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Get directions', 'soundcreations-rwanda' ); ?></a>
-			</div>
+			<p class="scrw-yshow__k"><?php esc_html_e( 'Talk to our Yamaha team', 'soundcreations-rwanda' ); ?></p>
+			<?php echo (string) apply_filters( 'sc_fane_contact_html', '' ); // phpcs:ignore -- built and escaped in inc/fane-contact.php ?>
+			<a class="scrw-ylink scrw-yshow__map" href="<?php echo esc_url( $y_map ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Get directions to the showroom', 'soundcreations-rwanda' ); ?> <?php echo $y_arrow; // phpcs:ignore ?></a>
 		</div>
 	</div>
 </section>
