@@ -150,3 +150,35 @@ add_filter(
 	10,
 	4
 );
+
+/* ==== Speed ===================================================================
+ * 1) The theme does not use the block editor on the front end, so WordPress's
+ *    block-library / global-styles CSS is dead weight on every page.
+ * 2) The homepage hero poster is the largest thing painted first (LCP): ask
+ *    the browser to fetch it straight away, before the CSS that references it.
+ */
+add_action(
+	'wp_enqueue_scripts',
+	function () {
+		if ( is_admin() ) {
+			return;
+		}
+		foreach ( array( 'wp-block-library', 'wp-block-library-theme', 'global-styles', 'classic-theme-styles' ) as $h ) {
+			wp_dequeue_style( $h );
+		}
+	},
+	100
+);
+add_action(
+	'wp_head',
+	function () {
+		if ( is_front_page() === false || function_exists( 'sc_setting' ) === false ) {
+			return;
+		}
+		$poster = sc_setting( 'home_hero_poster', get_template_directory_uri() . '/assets/img/hero-poster.webp' );
+		if ( $poster ) {
+			echo '<link rel="preload" as="image" href="' . esc_url( $poster ) . '" fetchpriority="high">' . "\n";
+		}
+	},
+	2
+);
