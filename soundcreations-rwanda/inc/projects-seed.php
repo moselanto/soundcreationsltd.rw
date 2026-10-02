@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_PROJECTS_VERSION', 'rw-projects-4' );
+define( 'SCRW_PROJECTS_VERSION', 'rw-projects-5' );
 
 function scrw_projects() {
 	return array(
@@ -70,7 +70,7 @@ function scrw_projects() {
 			'title'      => 'Christian Life Assembly Church',
 			'slug'       => 'christian-life-assembly-church',
 			'industry'   => 'Worship',
-			'images'     => array( 'christian-life-assembly-stage', 'christian-life-assembly-service', 'christian-life-assembly' ),
+			'images'     => array( 'christian-life-assembly-stage', 'christian-life-assembly-service', 'christian-life-assembly-worship', 'christian-life-assembly-preaching', 'christian-life-assembly' ),
 			'summary'    => 'A line-array sound system and Chauvet stage lighting that give Christian Life Assembly clear worship audio and a strong stage presence.',
 			'client'     => 'Christian Life Assembly',
 			'location'   => 'Kigali, Rwanda',
@@ -229,9 +229,9 @@ function scrw_seed_projects() {
 	}
 
 	// New photos lead each gallery; the first becomes the cover. Earlier photos stay after them.
-	// rw-projects-3: Rubavu (Intare Kivu Arena). rw-projects-4: Christian Life Assembly.
+	// rw-projects-3: Rubavu (Intare Kivu Arena). rw-projects-4/5: Christian Life Assembly.
 	scrw_add_project_photos( 'intare-kivu-arena', 'Intare Kivu Arena', array( 'intare-kivu-arena-exterior', 'intare-kivu-arena-hall', 'intare-kivu-arena-hall-2' ) );
-	scrw_add_project_photos( 'christian-life-assembly-church', 'Christian Life Assembly Church', array( 'christian-life-assembly-stage', 'christian-life-assembly-service' ) );
+	scrw_add_project_photos( 'christian-life-assembly-church', 'Christian Life Assembly Church', array( 'christian-life-assembly-stage', 'christian-life-assembly-service', 'christian-life-assembly-worship', 'christian-life-assembly-preaching' ) );
 
 	// RPF Rubavu Multipurpose Hall (Core starter project, Rubavu) is a Rwanda
 	// project and is featured on the homepage, as on the group site.
