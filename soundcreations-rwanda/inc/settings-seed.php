@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_SEED_VERSION', 'rw-settings-7' );
+define( 'SCRW_SEED_VERSION', 'rw-settings-8' );
 
 /**
  * Rwanda values. Contact details are taken from the current live Rwanda site.
@@ -94,7 +94,8 @@ function scrw_superseded_settings() {
 		// rw-settings-5: About story from the SCL RW Company Profile 2025.
 		'about_journey_p1'     => array( 'Sound Creations Ltd Rwanda is the Kigali operation of the Sound Creations Ltd group, a professional audio, visual, lighting and acoustic company founded in Nairobi in 2004 and today working across Kenya, Rwanda, the DR Congo and the UAE. In Rwanda we bring the group’s selection philosophy, technology, reliability, ease of use and affordability, to every project, with a local team that consults, supplies, installs and supports on the ground.' ),
 		// rw-settings-4: phones moved out of the address into phone / phone2.
-		'footer_address'       => array( "KN1 Rd, Muhima\nKigali, Rwanda\n+250 783 141 050 | +250 782 739 889" ),
+		// rw-settings-8: any address that still carries a phone line (the phones print on their own lines below it).
+		'footer_address'       => array( "KN1 Rd, Muhima\nKigali, Rwanda\n+250 783 141 050 | +250 782 739 889", "KN1 Rd, Muhima\nKigali, Rwanda\n+250 783 141 050", "KN1 Rd, Muhima\nKigali, Rwanda\n+250 783 141 050\n+250 782 739 889", "KN1 Rd, Muhima\nKigali, Rwanda\n+250 782 739 889" ),
 		// rw-settings-3: homepage copy aligned with the group site.
 		'home_hero_title'      => array( 'Professional sound, lighting and acoustics for Rwanda.' ),
 		'home_whatwedo_title'  => array( 'One partner, from first consultation to long-term support.' ),
