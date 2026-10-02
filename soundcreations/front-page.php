@@ -15,8 +15,9 @@ get_header();
 
 $sc_hero_video  = sc_setting( 'hero_video' );
 $sc_hero_poster = sc_setting( 'home_hero_poster', SC_THEME_URI . '/assets/img/hero-poster.webp' );
-// A child theme can replace the whole hero (e.g. the Rwanda video / slides hero).
-if ( has_action( 'sc_home_hero' ) ) :
+// A child theme can replace the whole hero (e.g. the Rwanda slideshow) by
+// hooking sc_home_hero and returning true from sc_use_custom_hero.
+if ( apply_filters( 'sc_use_custom_hero', has_action( 'sc_home_hero' ) ) ) :
 	do_action( 'sc_home_hero' );
 else :
 ?>

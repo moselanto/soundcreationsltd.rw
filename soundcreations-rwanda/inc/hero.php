@@ -1,15 +1,14 @@
 <?php
 /**
- * Homepage hero: either a background VIDEO or a SLIDESHOW of up to 4 slides.
+ * Homepage hero: the homepage VIDEO (default, unchanged) or a SLIDESHOW of up to 4 slides.
  *
- * Edit everything in wp-admin: Appearance -> Customize -> Homepage Hero.
- *  - Hero type: Slides or Video.
- *  - Video: upload an MP4 (keep it short, 10-30s, under ~10MB), plus a poster
- *    image shown while it loads. The text from Slide 1 sits over the video.
- *  - Slides 1-4: photo, small label, headline, short text, button text + link.
- *    A slide with no photo is skipped, so 3 slides = leave Slide 4's photo empty.
- *  - Seconds per slide.
- * Defaults use Rwanda project photos bundled with the theme.
+ * Switch in wp-admin: Appearance -> Customize -> Homepage Hero -> Hero type.
+ *  - Video (default): the original homepage video hero, exactly as before. The
+ *    video file and poster are still set in Sound Creations -> Settings.
+ *  - Slides: up to 4 slides, each with a photo, small label, headline, short
+ *    text, button text + link. A slide with no photo is skipped, so for 3
+ *    slides leave the Slide 4 photo empty. Plus seconds per slide.
+ * Default slides use Rwanda project photos bundled with the theme.
  *
  * @package SoundCreationsRwanda
  */
@@ -61,18 +60,13 @@ function scrw_hero_defaults() {
 add_action(
 	'customize_register',
 	function ( $wpc ) {
-		$wpc->add_section( 'scrw_hero', array( 'title' => __( 'Homepage Hero', 'soundcreations-rwanda' ), 'priority' => 25, 'description' => __( 'Choose a background video or a slideshow of up to 4 slides. A slide without a photo is skipped.', 'soundcreations-rwanda' ) ) );
+		$wpc->add_section( 'scrw_hero', array( 'title' => __( 'Homepage Hero', 'soundcreations-rwanda' ), 'priority' => 25, 'description' => __( 'Keep the homepage video, or switch to a slideshow of up to 4 slides. A slide without a photo is skipped.', 'soundcreations-rwanda' ) ) );
 
-		$wpc->add_setting( 'scrw_hero_mode', array( 'default' => 'slides', 'sanitize_callback' => function ( $v ) { return in_array( $v, array( 'slides', 'video' ), true ) ? $v : 'slides'; } ) );
-		$wpc->add_control( 'scrw_hero_mode', array( 'label' => __( 'Hero type', 'soundcreations-rwanda' ), 'section' => 'scrw_hero', 'type' => 'radio', 'choices' => array( 'slides' => __( 'Slides (3-4 photos)', 'soundcreations-rwanda' ), 'video' => __( 'Background video', 'soundcreations-rwanda' ) ) ) );
+		$wpc->add_setting( 'scrw_hero_mode', array( 'default' => 'video', 'sanitize_callback' => function ( $v ) { return in_array( $v, array( 'slides', 'video' ), true ) ? $v : 'video'; } ) );
+		$wpc->add_control( 'scrw_hero_mode', array( 'label' => __( 'Hero type', 'soundcreations-rwanda' ), 'description' => __( 'The video and its poster are set in Sound Creations -> Settings.', 'soundcreations-rwanda' ), 'section' => 'scrw_hero', 'type' => 'radio', 'choices' => array( 'video' => __( 'Video (the current homepage video)', 'soundcreations-rwanda' ), 'slides' => __( 'Slides (3-4 photos)', 'soundcreations-rwanda' ) ) ) );
 
 		$wpc->add_setting( 'scrw_hero_interval', array( 'default' => 6, 'sanitize_callback' => 'absint' ) );
 		$wpc->add_control( 'scrw_hero_interval', array( 'label' => __( 'Seconds per slide', 'soundcreations-rwanda' ), 'section' => 'scrw_hero', 'type' => 'number', 'input_attrs' => array( 'min' => 3, 'max' => 15 ) ) );
-
-		$wpc->add_setting( 'scrw_hero_video', array( 'default' => '', 'sanitize_callback' => 'esc_url_raw' ) );
-		$wpc->add_control( new WP_Customize_Upload_Control( $wpc, 'scrw_hero_video', array( 'label' => __( 'Video (MP4, 10-30s, under ~10MB)', 'soundcreations-rwanda' ), 'section' => 'scrw_hero', 'mime_type' => 'video' ) ) );
-		$wpc->add_setting( 'scrw_hero_poster', array( 'default' => '', 'sanitize_callback' => 'esc_url_raw' ) );
-		$wpc->add_control( new WP_Customize_Image_Control( $wpc, 'scrw_hero_poster', array( 'label' => __( 'Video poster image (shown while the video loads)', 'soundcreations-rwanda' ), 'section' => 'scrw_hero' ) ) );
 
 		$def = scrw_hero_defaults();
 		for ( $i = 1; $i <= 4; $i++ ) {
@@ -84,6 +78,14 @@ add_action(
 				$wpc->add_control( "scrw_hero_{$i}_{$k}", array( 'label' => sprintf( 'Slide %d: %s', $i, $lab ), 'section' => 'scrw_hero', 'type' => 'text' === $k ? 'textarea' : 'text' ) );
 			}
 		}
+	}
+);
+
+/** Use the slideshow only when Slides is chosen; otherwise the parent theme's original video hero renders. */
+add_filter(
+	'sc_use_custom_hero',
+	function () {
+		return 'slides' === get_theme_mod( 'scrw_hero_mode', 'video' );
 	}
 );
 
@@ -125,31 +127,6 @@ add_action(
 	'sc_home_hero',
 	function () {
 		$slides = scrw_hero_slides();
-		$mode   = get_theme_mod( 'scrw_hero_mode', 'slides' );
-		$video  = (string) get_theme_mod( 'scrw_hero_video', '' );
-		if ( 'video' === $mode && '' !== $video ) {
-			$poster = (string) get_theme_mod( 'scrw_hero_poster', '' );
-			if ( '' === $poster && $slides ) {
-				$poster = $slides[0]['image'];
-			}
-			$s = $slides ? $slides[0] : array_merge( scrw_hero_defaults()[1], array() );
-			?>
-			<section class="scrw-hero scrw-hero--video" aria-label="<?php esc_attr_e( 'Introduction', 'soundcreations-rwanda' ); ?>">
-				<div class="scrw-hero__media">
-					<img class="scrw-hero__img" src="<?php echo esc_url( $poster ); ?>" alt="" fetchpriority="high" decoding="async">
-					<video class="scrw-hero__video" muted loop playsinline preload="none" poster="<?php echo esc_url( $poster ); ?>" data-src="<?php echo esc_url( $video ); ?>"></video>
-				</div>
-				<span class="scrw-hero__scrim" aria-hidden="true"></span>
-				<div class="sc-container scrw-hero__inner">
-					<div class="scrw-hero__slide is-active"><?php scrw_hero_copy( $s, true, 'h1' ); ?></div>
-					<div class="scrw-hero__controls">
-						<button type="button" class="scrw-hero__ctrl scrw-hero__pause" aria-label="<?php esc_attr_e( 'Pause video', 'soundcreations-rwanda' ); ?>" aria-pressed="false"><span class="scrw-i-pause" aria-hidden="true"></span></button>
-					</div>
-				</div>
-			</section>
-			<?php
-			return;
-		}
 		if ( ! $slides ) {
 			$slides = array( scrw_hero_defaults()[1] );
 		}
@@ -191,11 +168,11 @@ add_action(
 	}
 );
 
-/** Hero behaviour: slideshow timing, swipe, keyboard, pause; deferred video. */
+/** Slideshow behaviour: timing, swipe, keyboard, pause. */
 add_action(
 	'wp_footer',
 	function () {
-		if ( ! is_front_page() ) {
+		if ( ! is_front_page() || 'slides' !== get_theme_mod( 'scrw_hero_mode', 'video' ) ) {
 			return;
 		}
 		?>
@@ -205,13 +182,6 @@ var h=document.querySelector('.scrw-hero'); if(h===null){return;}
 var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var pauseBtn=h.querySelector('.scrw-hero__pause');
 function setPaused(p,label){ if(pauseBtn===null){return;} pauseBtn.setAttribute('aria-pressed',p?'true':'false'); pauseBtn.classList.toggle('is-paused',p); pauseBtn.setAttribute('aria-label',label); }
-if(h.classList.contains('scrw-hero--video')){
-	var v=h.querySelector('video'); var saveData=navigator.connection&&navigator.connection.saveData;
-	if(v===null||reduce||saveData){ if(pauseBtn){pauseBtn.hidden=true;} return; }
-	window.addEventListener('load',function(){ v.src=v.getAttribute('data-src'); v.addEventListener('playing',function(){h.classList.add('is-playing');},{once:true}); var pr=v.play(); if(pr&&pr.catch){pr.catch(function(){});} });
-	if(pauseBtn){ pauseBtn.addEventListener('click',function(){ if(v.paused){v.play();setPaused(false,'Pause video');}else{v.pause();setPaused(true,'Play video');} }); }
-	return;
-}
 var imgs=h.querySelectorAll('.scrw-hero__img'), slides=h.querySelectorAll('.scrw-hero__slide'), dots=h.querySelectorAll('.scrw-hero__dot');
 var n=slides.length, cur=0, timer=null, userPaused=reduce, hover=false, ms=parseInt(h.getAttribute('data-interval'),10)||6000;
 if(n<2){return;}
