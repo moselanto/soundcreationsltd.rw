@@ -84,9 +84,16 @@ function scrw_render_complete_projects() {
 	<section class="sc-section scrw-done" id="complete-projects" data-scrw-done>
 		<div class="sc-container">
 			<header class="scrw-done__head">
-				<p class="sc-eyebrow"><?php esc_html_e( 'Complete Projects', 'soundcreations-rwanda' ); ?></p>
-				<h2><?php esc_html_e( 'Trusted on projects across Rwanda.', 'soundcreations-rwanda' ); ?></h2>
-				<p class="sc-lead"><?php esc_html_e( 'From churches and government to hotels, hospitality and the event companies behind Kigali’s biggest nights, these are some of the spaces our team has designed, supplied, installed and supports.', 'soundcreations-rwanda' ); ?></p>
+				<div class="scrw-done__intro">
+					<p class="sc-eyebrow"><?php esc_html_e( 'Our track record', 'soundcreations-rwanda' ); ?></p>
+					<h2><?php esc_html_e( 'Delivered across Rwanda, in every kind of space.', 'soundcreations-rwanda' ); ?></h2>
+					<p class="sc-lead"><?php esc_html_e( 'Churches, ministries, embassies, hotels, lounges and the event companies behind Kigali’s biggest nights trust our team to design, supply, install and support their sound, lighting and AV.', 'soundcreations-rwanda' ); ?></p>
+				</div>
+				<ul class="scrw-done__values">
+					<li><span class="scrw-done__vico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></span><div><strong><?php esc_html_e( 'Designed for the room', 'soundcreations-rwanda' ); ?></strong><span><?php esc_html_e( 'Acoustics and coverage planned around each space.', 'soundcreations-rwanda' ); ?></span></div></li>
+					<li><span class="scrw-done__vico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span><div><strong><?php esc_html_e( 'Installed by our own team', 'soundcreations-rwanda' ); ?></strong><span><?php esc_html_e( 'Certified engineers on site, commissioned and calibrated.', 'soundcreations-rwanda' ); ?></span></div></li>
+					<li><span class="scrw-done__vico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><div><strong><?php esc_html_e( 'Supported after handover', 'soundcreations-rwanda' ); ?></strong><span><?php esc_html_e( 'Training, warranty and local service from Kigali.', 'soundcreations-rwanda' ); ?></span></div></li>
+				</ul>
 			</header>
 
 			<div class="scrw-done__layout">
