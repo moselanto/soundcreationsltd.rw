@@ -85,3 +85,17 @@ add_action(
 		);
 	}
 );
+
+/* Our Projects page hero: Christian Life Assembly stage (sound, beam lighting and screens by Sound Creations Rwanda). */
+add_filter(
+	'sc_projects_hero_img',
+	function () {
+		return get_stylesheet_directory_uri() . '/assets/img/projects-hero-rw.webp';
+	}
+);
+add_filter(
+	'sc_projects_hero_alt',
+	function () {
+		return __( 'Christian Life Assembly, Kigali - stage sound, lighting and screens by Sound Creations Rwanda', 'soundcreations-rwanda' );
+	}
+);

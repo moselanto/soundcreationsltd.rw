@@ -18,7 +18,8 @@ if ( empty( $sc_archive ) ) {
 	$sc_archive = home_url( '/projects/' );
 }
 $sc_consult  = home_url( '/request-a-consultation/' );
-$sc_hero_img = SC_THEME_URI . '/assets/img/projects-hero.jpg';
+$sc_hero_img = apply_filters( 'sc_projects_hero_img', SC_THEME_URI . '/assets/img/projects-hero.jpg' );
+$sc_hero_alt = apply_filters( 'sc_projects_hero_alt', __( 'Concert hall and auditorium installation', 'soundcreations' ) );
 $sc_cta_img  = SC_THEME_URI . '/assets/img/projects-cta.webp';
 $sc_arrow    = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
 $sc_pinicon  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
@@ -103,7 +104,7 @@ if ( $sc_q->have_posts() ) {
 			<a class="sc-btn sc-btn--primary sc-projhero__btn" href="<?php echo esc_url( $sc_consult ); ?>"><?php esc_html_e( 'Start Your Project', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
 		</div>
 		<div class="sc-projhero__media">
-			<img src="<?php echo esc_url( $sc_hero_img ); ?>" alt="<?php esc_attr_e( 'Concert hall and auditorium installation', 'soundcreations' ); ?>" loading="eager" decoding="async">
+			<img src="<?php echo esc_url( $sc_hero_img ); ?>" alt="<?php echo esc_attr( $sc_hero_alt ); ?>" loading="eager" decoding="async">
 		</div>
 	</div>
 </section>
