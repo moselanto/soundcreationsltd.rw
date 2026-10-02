@@ -606,3 +606,55 @@ html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 	.scrw-sub__t { display: block; }
 	.scrw-sub__d { display: block; margin-top: .15rem; font-size: .78rem; opacity: .7; }
 }
+
+
+/* ==== Homepage: authorised brands spotlight (inc/brand-spotlight.php) ====== */
+.scrw-spot { padding: clamp(2.5rem, 1.6rem + 3vw, 4.5rem) 0; border-bottom: 1px solid var(--sc-border); background: linear-gradient(180deg, rgba(98,68,137,.12), transparent 60%); }
+.scrw-spot__head { margin-bottom: 1.6rem; }
+.scrw-spot__head h2 { margin: .3rem 0 0; max-width: 26ch; text-wrap: balance; }
+.scrw-spot__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.scrw-spot__card { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 1rem; padding: clamp(1.4rem, 1rem + 1.4vw, 2.2rem); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); color: #fff; isolation: isolate; transition: transform .3s, box-shadow .3s; }
+.scrw-spot__card:hover { transform: translateY(-4px); box-shadow: 0 26px 60px rgba(0,0,0,.4); }
+.scrw-spot__card--yamaha { background: radial-gradient(600px 320px at 100% 0%, rgba(160,120,220,.35), transparent 70%), linear-gradient(135deg, #2a1d3d, #46305F 55%, #1a1424); }
+.scrw-spot__card--fane { background: radial-gradient(600px 320px at 100% 0%, rgba(230,60,60,.32), transparent 70%), linear-gradient(135deg, #3a0d12, #7a1018 55%, #1d0a0c); }
+.scrw-spot__badge { display: inline-flex; align-items: center; gap: .55rem; margin: 0; padding: .4rem .8rem .4rem .6rem; border-radius: 999px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.scrw-spot__badge span { width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,.2); }
+.scrw-spot__word { margin: 1rem 0 .1rem; font-size: clamp(2.2rem, 1.4rem + 2.6vw, 3.4rem); font-weight: 800; letter-spacing: .12em; line-height: 1; color: #fff; }
+.scrw-spot__card h3 { margin: .5rem 0 0; color: #fff; font-size: clamp(1.1rem, .95rem + .5vw, 1.35rem); line-height: 1.3; }
+.scrw-spot__text { margin: .6rem 0 0; color: rgba(255,255,255,.82); font-size: 14.5px; line-height: 1.6; }
+.scrw-spot__points { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem; }
+.scrw-spot__points li { padding: .32rem .7rem; border-radius: 999px; background: rgba(0,0,0,.22); border: 1px solid rgba(255,255,255,.14); font-size: 12px; font-weight: 600; }
+.scrw-spot__cta { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.2rem; margin-top: 1.4rem; }
+.scrw-spot__card--yamaha .sc-btn--primary { background: #fff; color: #46305F; border-color: #fff; }
+.scrw-spot__card--fane .sc-btn--primary { background: #fff; color: #8a0f18; border-color: #fff; }
+.scrw-spot__card .sc-btn--primary:hover { filter: brightness(.94); }
+.scrw-spot__link { color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.5); padding-bottom: 1px; }
+.scrw-spot__link:hover { border-color: #fff; color: #fff; }
+.scrw-spot__media { position: relative; min-height: 240px; }
+.scrw-spot__plate { position: absolute; display: block; border-radius: 18px; background: #fff; box-shadow: 0 18px 40px rgba(0,0,0,.35); overflow: hidden; transition: transform .35s; }
+.scrw-spot__plate img { width: 100%; height: 100%; object-fit: contain; padding: 10%; display: block; }
+.scrw-spot__plate--0 { width: 78%; aspect-ratio: 1; right: 0; top: 4%; z-index: 2; }
+.scrw-spot__plate--1 { width: 46%; aspect-ratio: 1; left: 0; bottom: 4%; z-index: 3; }
+.scrw-spot__plate--2 { width: 40%; aspect-ratio: 1; right: 6%; bottom: -2%; z-index: 1; opacity: .95; }
+.scrw-spot__card:hover .scrw-spot__plate--0 { transform: translateY(-4px) rotate(-1deg); }
+.scrw-spot__card:hover .scrw-spot__plate--1 { transform: translateY(-2px) rotate(2deg); }
+@media (max-width: 1100px) { .scrw-spot__grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .scrw-spot__card { grid-template-columns: 1fr; } .scrw-spot__media { min-height: 220px; order: -1; } }
+
+/* ==== Main menu: YAMAHA and FANE AFRICA as highlighted brand items ======== */
+@media (min-width: 783px) {
+	.sc-nav .sc-nav__list > li.scrw-nav-brand > a { padding: .45rem .8rem; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; font-size: .82rem; font-weight: 700; letter-spacing: .08em; gap: .45rem; }
+	.sc-nav .sc-nav__list > li.scrw-nav-brand > a::before { display: none; }
+	.sc-nav .sc-nav__list > li.scrw-nav-brand--yamaha > a { background: rgba(98,68,137,.28); border-color: rgba(169,139,214,.55); }
+	.sc-nav .sc-nav__list > li.scrw-nav-brand--fane > a { background: rgba(186,11,11,.2); border-color: rgba(224,72,72,.55); }
+	.sc-nav .sc-nav__list > li.scrw-nav-brand--yamaha > a:hover, .sc-nav .sc-nav__list > li.scrw-nav-brand--yamaha.current-menu-item > a { background: #624489; border-color: #624489; color: #fff; }
+	.sc-nav .sc-nav__list > li.scrw-nav-brand--fane > a:hover, .sc-nav .sc-nav__list > li.scrw-nav-brand--fane.current-menu-item > a { background: #BA0B0B; border-color: #BA0B0B; color: #fff; }
+	[data-theme="light"] .sc-nav .sc-nav__list > li.scrw-nav-brand > a { border-color: rgba(20,20,30,.18); }
+}
+@media (max-width: 782px) {
+	.sc-nav .sc-nav__list > li.scrw-nav-brand > a { font-weight: 700; letter-spacing: .06em; }
+	.sc-nav .sc-nav__list > li.scrw-nav-brand--yamaha > a { box-shadow: inset 3px 0 0 #8a6bb5; }
+	.sc-nav .sc-nav__list > li.scrw-nav-brand--fane > a { box-shadow: inset 3px 0 0 #BA0B0B; }
+}
+/* Top bar: brand line slightly emphasised */
+.sc-utility__regions { font-weight: 600; letter-spacing: .02em; }

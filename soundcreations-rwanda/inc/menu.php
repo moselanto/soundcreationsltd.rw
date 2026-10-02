@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_MENU_VERSION', 'rw-menu-4' ); // rw-menu-4: Brands and About dropdowns, 7 clean top-level items.
+define( 'SCRW_MENU_VERSION', 'rw-menu-5' ); // rw-menu-5: YAMAHA and FANE AFRICA as highlighted top-level items; logo links home.
 
 /*
  * rw-menu-2: same top-level menu as soundcreationsltd.com (flat, no
@@ -24,24 +24,17 @@ define( 'SCRW_MENU_VERSION', 'rw-menu-4' ); // rw-menu-4: Brands and About dropd
  */
 function scrw_menu_tree() {
 	return array(
-		array( 'Home', '/', array() ),
 		array( 'Solutions', '/solutions/', array() ),
 		array( 'Products', '/products/', array() ),
 		array( 'Projects', '/projects/', array() ),
-		array(
-			'Brands',
-			'/brands/',
-			array(
-				array( 'Yamaha – Authorised Distributor', '/yamaha/' ),
-				array( 'FANE Africa', '/fane/' ),
-				array( 'All brands we carry', '/brands/' ),
-			),
-		),
+		array( 'YAMAHA', '/yamaha/', array(), 'scrw-nav-brand scrw-nav-brand--yamaha' ),
+		array( 'FANE AFRICA', '/fane/', array(), 'scrw-nav-brand scrw-nav-brand--fane' ),
 		array(
 			'About',
 			'/about/',
 			array(
 				array( 'About Sound Creations Rwanda', '/about/' ),
+				array( 'All brands we carry', '/brands/' ),
 				array( 'Videos', '/videos/' ),
 				array( 'Sound Creations Kenya ↗', 'https://soundcreationsltd.com/' ),
 			),
@@ -89,6 +82,7 @@ function scrw_seed_menu() {
 					'menu-item-status'   => 'publish',
 					'menu-item-position' => ++$pos,
 					'menu-item-target'   => ( 0 === strpos( $top[1], 'http' ) ) ? '_blank' : '',
+					'menu-item-classes'  => isset( $top[3] ) ? $top[3] : '',
 				)
 			);
 			if ( is_wp_error( $parent ) ) {

@@ -92,6 +92,7 @@ $sc_contacts_map = apply_filters( 'sc_office_contacts', $sc_contacts_map );
 				<li>
 					<span class="sc-getintouch__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_i_mail; ?></svg></span>
 					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Email', 'soundcreations' ); ?></span><a href="mailto:<?php echo esc_attr( $sc_email ); ?>" data-sc-email><?php echo esc_html( $sc_email ); ?></a></div>
+					<?php if ( sc_setting( 'email2' ) ) : ?><div><span class="sc-getintouch__k"><?php esc_html_e( 'Email', 'soundcreations' ); ?></span><a href="mailto:<?php echo esc_attr( sc_setting( 'email2' ) ); ?>"><?php echo esc_html( sc_setting( 'email2' ) ); ?></a></div><?php endif; ?>
 				</li>
 				<li>
 					<span class="sc-getintouch__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_i_clock; ?></svg></span>

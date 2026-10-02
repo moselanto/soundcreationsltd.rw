@@ -24,7 +24,8 @@ $y_arrow = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="
 $y_phone = sc_setting( 'phone', '+250 783 141 050' );
 $y_tel   = sc_setting( 'phone_link', '+250783141050' );
 $y_wa    = sc_setting( 'whatsapp', '250783141050' );
-$y_mail  = sc_setting( 'email', 'sales@soundcreationsltd.com' );
+$y_mail  = sc_setting( 'email', 'stefic@soundcreationsltd.com' );
+$y_mail2 = sc_setting( 'email2', 'fred@soundcreationsltd.com' );
 $y_map   = sc_setting( 'map_url', 'https://www.google.com/maps/search/?api=1&query=Sound+Creations+Ltd+KN1+Rd+Muhima+Kigali' );
 
 /** Product slug => fallback title (the product post title is used when it exists). */
@@ -184,7 +185,7 @@ $y_projects = array(
 				<li><strong><?php esc_html_e( 'Address', 'soundcreations-rwanda' ); ?></strong><span>KN1 Rd, Muhima, Kigali</span></li>
 				<li><strong><?php esc_html_e( 'Hours', 'soundcreations-rwanda' ); ?></strong><span><?php esc_html_e( 'Mon–Fri 9:00 AM–6:00 PM · Sat 9:00 AM–1:30 PM', 'soundcreations-rwanda' ); ?></span></li>
 				<li><strong><?php esc_html_e( 'Phone', 'soundcreations-rwanda' ); ?></strong><a href="tel:<?php echo esc_attr( $y_tel ); ?>"><?php echo esc_html( $y_phone ); ?></a></li>
-				<li><strong><?php esc_html_e( 'Email', 'soundcreations-rwanda' ); ?></strong><a href="mailto:<?php echo esc_attr( $y_mail ); ?>"><?php echo esc_html( $y_mail ); ?></a></li>
+				<li><strong><?php esc_html_e( 'Email', 'soundcreations-rwanda' ); ?></strong><span><a href="mailto:<?php echo esc_attr( $y_mail ); ?>"><?php echo esc_html( $y_mail ); ?></a><?php if ( $y_mail2 ) : ?><br><a href="mailto:<?php echo esc_attr( $y_mail2 ); ?>"><?php echo esc_html( $y_mail2 ); ?></a><?php endif; ?></span></li>
 			</ul>
 			<div class="scrw-yh__cta">
 				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( 'https://wa.me/' . $y_wa . '?text=' . rawurlencode( 'Hello Sound Creations Rwanda, I would like to enquire about Yamaha products.' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Chat on WhatsApp', 'soundcreations-rwanda' ); ?></a>

@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_SEED_VERSION', 'rw-settings-8' );
+define( 'SCRW_SEED_VERSION', 'rw-settings-9' ); // rw-settings-9: stefic@ + fred@ contact emails, brand line in the top bar.
 
 /**
  * Rwanda values. Contact details are taken from the current live Rwanda site.
@@ -36,12 +36,13 @@ function scrw_settings() {
 		'fane_instagram'     => 'https://www.instagram.com/faneloudspeakers_africa/',
 		'fane_social_title'  => 'Talk to FANE in Rwanda',
 		'fane_social_text'   => 'Buying, specifying or stocking FANE loudspeakers in Rwanda? Email, call or WhatsApp our Kigali team.',
-		'email'              => 'sales@soundcreationsltd.com',
+		'email'              => 'stefic@soundcreationsltd.com', // Main Rwanda contact.
+		'email2'             => 'fred@soundcreationsltd.com',   // Second Rwanda contact.
 		'address'            => 'KN1 Rd, Muhima, Kigali, Rwanda',
 		'hours_week'         => 'Mon-Fri: 9:00 AM - 6:00 PM',
 		'hours_sat'          => 'Sat: 9:00 AM - 1:30 PM',
 		'hours_sun'          => 'Sun: Closed',
-		'regions'            => 'Kigali · Rwanda · Part of the Sound Creations Ltd group',
+		'regions'            => 'Authorised Yamaha Distributor · FANE Africa Partner · Kigali',
 		'whatsapp'           => '250783141050',
 		'whatsapp_prefill'   => 'Hello Sound Creations Rwanda, I would like to enquire about your services.',
 		'map_url'            => 'https://www.google.com/maps/search/?api=1&query=Sound+Creations+Ltd+KN1+Rd+Muhima+Kigali',
@@ -90,6 +91,9 @@ function scrw_settings() {
 function scrw_superseded_settings() {
 	return array(
 		'hours_sat'    => array( 'Sat: Closed' ),
+		// rw-settings-9: main contact email and top-bar line.
+		'email'        => array( 'sales@soundcreationsltd.com', 'fred@soundcreationsltd.com' ),
+		'regions'      => array( 'Kigali · Rwanda · Part of the Sound Creations Ltd group' ),
 		'footer_hours' => array( "Mon - Fri: 9 am - 6 pm\nSat - Sun: Closed" ),
 		// rw-settings-5: About story from the SCL RW Company Profile 2025.
 		'about_journey_p1'     => array( 'Sound Creations Ltd Rwanda is the Kigali operation of the Sound Creations Ltd group, a professional audio, visual, lighting and acoustic company founded in Nairobi in 2004 and today working across Kenya, Rwanda, the DR Congo and the UAE. In Rwanda we bring the group’s selection philosophy, technology, reliability, ease of use and affordability, to every project, with a local team that consults, supplies, installs and supports on the ground.' ),
@@ -130,8 +134,10 @@ function scrw_seed_settings() {
 	if ( ! is_array( $routing ) ) {
 		$routing = array();
 	}
-	if ( empty( $routing['default'] ) ) {
-		$routing['default'] = 'sales@soundcreationsltd.com';
+	$old_routes = array( '', 'sales@soundcreationsltd.com', 'fred@soundcreationsltd.com' );
+	if ( empty( $routing['default'] ) || in_array( trim( (string) $routing['default'] ), $old_routes, true ) ) {
+		// Website enquiries go to both Rwanda contacts.
+		$routing['default'] = 'stefic@soundcreationsltd.com, fred@soundcreationsltd.com';
 		update_option( 'sc_enq_recipients', $routing );
 	}
 }

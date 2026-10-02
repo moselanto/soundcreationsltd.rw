@@ -83,6 +83,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<a class="sc-nav__foot-link" href="tel:<?php echo esc_attr( sc_setting( 'phone_link' ) ); ?>"><?php echo esc_html( sc_setting( 'phone' ) ); ?></a>
 				<?php if ( sc_setting( 'phone2' ) ) : ?><a class="sc-nav__foot-link" href="tel:<?php echo esc_attr( sc_setting( 'phone2_link' ) ); ?>"><?php echo esc_html( sc_setting( 'phone2' ) ); ?></a><?php endif; ?>
 				<a class="sc-nav__foot-link" href="mailto:<?php echo esc_attr( sc_setting( 'email' ) ); ?>"><?php echo esc_html( sc_setting( 'email' ) ); ?></a>
+				<?php if ( sc_setting( 'email2' ) ) : ?><a class="sc-nav__foot-link" href="mailto:<?php echo esc_attr( sc_setting( 'email2' ) ); ?>"><?php echo esc_html( sc_setting( 'email2' ) ); ?></a><?php endif; ?>
 				<span class="sc-nav__social"><?php sc_utility_social(); ?></span>
 			</div>
 			</nav>

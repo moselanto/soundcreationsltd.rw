@@ -29,6 +29,10 @@ add_filter(
 		if ( '' !== $email ) {
 			$tiles[] = array( 'Email', $email, 'mailto:' . $email, $ico_mail, '' );
 		}
+		$email2 = (string) sc_setting( 'email2' );
+		if ( '' !== $email2 ) {
+			$tiles[] = array( 'Email', $email2, 'mailto:' . $email2, $ico_mail, '' );
+		}
 		$wa = preg_replace( '/[^0-9]/', '', (string) sc_setting( 'whatsapp' ) );
 		if ( '' !== $wa ) {
 			$tiles[] = array( 'WhatsApp', '+' . $wa, 'https://wa.me/' . $wa, $ico_wa, 'wa' );

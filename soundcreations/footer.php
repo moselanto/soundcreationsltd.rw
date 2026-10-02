@@ -84,6 +84,9 @@ $sc_email   = sc_setting( 'email' );
 				<?php if ( $sc_email ) : ?>
 					<a href="mailto:<?php echo esc_attr( $sc_email ); ?>"><?php echo esc_html( $sc_email ); ?></a>
 				<?php endif; ?>
+				<?php if ( sc_setting( 'email2' ) ) : ?>
+					<a href="mailto:<?php echo esc_attr( sc_setting( 'email2' ) ); ?>"><?php echo esc_html( sc_setting( 'email2' ) ); ?></a>
+				<?php endif; ?>
 			</div>
 
 			</div>

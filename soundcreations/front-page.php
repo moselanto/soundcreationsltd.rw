@@ -62,6 +62,8 @@ else :
 </section>
 <?php endif; ?>
 
+<?php do_action( 'sc_home_after_hero' ); // e.g. the Rwanda authorised-brands spotlight. ?>
+
 <section class="sc-section" id="services">
 	<div class="sc-container">
 		<div class="sc-sechead">
