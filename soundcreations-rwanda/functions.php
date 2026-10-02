@@ -99,3 +99,11 @@ add_filter(
 		return __( 'Christian Life Assembly, Kigali - stage sound, lighting and screens by Sound Creations Rwanda', 'soundcreations-rwanda' );
 	}
 );
+
+/* About page top-right photo: Intare Kivu Arena, Rubavu (acoustics, sound and lighting by Sound Creations Rwanda). */
+add_filter(
+	'sc_about_hero_image',
+	function () {
+		return get_stylesheet_directory_uri() . '/assets/img/about-hero-rw.webp';
+	}
+);

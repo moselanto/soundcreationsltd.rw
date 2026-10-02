@@ -22,7 +22,7 @@ get_header();
 // unless someone has pasted a URL into that field.
 // The matching LCP preload hint in inc/enqueue.php points at the same file and
 // must be kept in step with it.
-$sc_about_photo = sc_setting( 'about_hero_image', SC_THEME_URI . '/assets/img/about-citam.webp' );
+$sc_about_photo = apply_filters( 'sc_about_hero_image', sc_setting( 'about_hero_image', SC_THEME_URI . '/assets/img/about-citam.webp' ) );
 
 /*
  * Our Work Process (2026-09-22, owner request).
