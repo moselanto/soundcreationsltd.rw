@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_PROJECTS_VERSION', 'rw-projects-3' );
+define( 'SCRW_PROJECTS_VERSION', 'rw-projects-4' );
 
 function scrw_projects() {
 	return array(
@@ -70,7 +70,7 @@ function scrw_projects() {
 			'title'      => 'Christian Life Assembly Church',
 			'slug'       => 'christian-life-assembly-church',
 			'industry'   => 'Worship',
-			'images'     => array( 'christian-life-assembly' ),
+			'images'     => array( 'christian-life-assembly-stage', 'christian-life-assembly-service', 'christian-life-assembly' ),
 			'summary'    => 'A line-array sound system and Chauvet stage lighting that give Christian Life Assembly clear worship audio and a strong stage presence.',
 			'client'     => 'Christian Life Assembly',
 			'location'   => 'Kigali, Rwanda',
@@ -152,6 +152,29 @@ function scrw_import_project_image( $name, $title ) {
 	return (int) $id;
 }
 
+/** Put new bundled photos at the front of an existing project's gallery and make the first the cover. */
+function scrw_add_project_photos( $slug, $title, $images ) {
+	$post = get_page_by_path( $slug, OBJECT, 'sc_project' );
+	if ( ! $post ) {
+		return;
+	}
+	$new = array();
+	foreach ( $images as $img ) {
+		$aid = scrw_import_project_image( $img, $title );
+		if ( $aid ) {
+			$new[] = $aid;
+			wp_update_post( array( 'ID' => $aid, 'post_parent' => $post->ID ) );
+		}
+	}
+	if ( ! $new ) {
+		return;
+	}
+	$old = array_filter( array_map( 'intval', explode( ',', (string) get_post_meta( $post->ID, '_sc_gallery', true ) ) ) );
+	$all = array_values( array_unique( array_merge( $new, $old ) ) );
+	update_post_meta( $post->ID, '_sc_gallery', implode( ',', $all ) );
+	set_post_thumbnail( $post->ID, $new[0] );
+}
+
 function scrw_seed_projects() {
 	foreach ( scrw_projects() as $p ) {
 		$existing = function_exists( 'sc_core_find_seeded_post' )
@@ -205,26 +228,10 @@ function scrw_seed_projects() {
 		}
 	}
 
-	// rw-projects-3: new Rubavu photos (building exterior + two hall views).
-	// The exterior becomes the cover; the new photos lead the gallery and the
-	// earlier ones stay after them.
-	$ika = get_page_by_path( 'intare-kivu-arena', OBJECT, 'sc_project' );
-	if ( $ika ) {
-		$new = array();
-		foreach ( array( 'intare-kivu-arena-exterior', 'intare-kivu-arena-hall', 'intare-kivu-arena-hall-2' ) as $img ) {
-			$aid = scrw_import_project_image( $img, 'Intare Kivu Arena' );
-			if ( $aid ) {
-				$new[] = $aid;
-				wp_update_post( array( 'ID' => $aid, 'post_parent' => $ika->ID ) );
-			}
-		}
-		if ( $new ) {
-			$old = array_filter( array_map( 'intval', explode( ',', (string) get_post_meta( $ika->ID, '_sc_gallery', true ) ) ) );
-			$all = array_values( array_unique( array_merge( $new, $old ) ) );
-			update_post_meta( $ika->ID, '_sc_gallery', implode( ',', $all ) );
-			set_post_thumbnail( $ika->ID, $new[0] );
-		}
-	}
+	// New photos lead each gallery; the first becomes the cover. Earlier photos stay after them.
+	// rw-projects-3: Rubavu (Intare Kivu Arena). rw-projects-4: Christian Life Assembly.
+	scrw_add_project_photos( 'intare-kivu-arena', 'Intare Kivu Arena', array( 'intare-kivu-arena-exterior', 'intare-kivu-arena-hall', 'intare-kivu-arena-hall-2' ) );
+	scrw_add_project_photos( 'christian-life-assembly-church', 'Christian Life Assembly Church', array( 'christian-life-assembly-stage', 'christian-life-assembly-service' ) );
 
 	// RPF Rubavu Multipurpose Hall (Core starter project, Rubavu) is a Rwanda
 	// project and is featured on the homepage, as on the group site.
