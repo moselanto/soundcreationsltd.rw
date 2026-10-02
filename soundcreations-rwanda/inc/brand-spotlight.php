@@ -1,7 +1,7 @@
 <?php
 /**
- * Homepage: authorised-brands spotlight right under the hero, so Yamaha and
- * FANE Africa are visible at a glance. Also available as [scrw_brand_spotlight].
+ * Authorised-brands spotlight (Yamaha + FANE Africa). Not on the homepage;
+ * available as the [scrw_brand_spotlight] shortcode.
  *
  * @package SoundCreationsRwanda
  */
@@ -76,9 +76,5 @@ function scrw_render_brand_spotlight() {
 }
 
 add_shortcode( 'scrw_brand_spotlight', 'scrw_render_brand_spotlight' );
-add_action(
-	'sc_home_after_hero',
-	function () {
-		echo scrw_render_brand_spotlight(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	}
-);
+// Not shown on the homepage (removed at the owner's request, 2 Oct 2026).
+// Use the [scrw_brand_spotlight] shortcode to place it on any page.
