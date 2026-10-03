@@ -51,6 +51,8 @@ while ( have_posts() ) :
 	if ( strlen( $sc_img ) === 0 && isset( $sc_kind_imgs[ $sc_kind ] ) ) {
 		$sc_img = SC_THEME_URI . '/assets/img/' . $sc_kind_imgs[ $sc_kind ];
 	}
+	// Final say for a child theme (e.g. the Rwanda site's own service hero photos).
+	$sc_img = (string) apply_filters( 'sc_service_hero_img', $sc_img, $sc_kind );
 
 	$sc_high = array(
 		'consultancy'  => array(

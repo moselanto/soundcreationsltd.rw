@@ -150,6 +150,23 @@ add_filter(
 	2
 );
 
+/*
+ * Service page hero photos (Rwanda). Distribution & Dealership: two African
+ * professionals shaking hands in a pro-audio showroom (AI-generated image, no
+ * real people or brand logos). Takes priority over the page's Featured Image.
+ */
+add_filter(
+	'sc_service_hero_img',
+	function ( $url, $kind ) {
+		if ( 'distribution' === $kind ) {
+			return get_stylesheet_directory_uri() . '/assets/img/service-distribution-hero-rw.webp';
+		}
+		return $url;
+	},
+	10,
+	2
+);
+
 /* Main menu dropdowns: a short description under each sub-item. */
 add_filter(
 	'nav_menu_item_title',
