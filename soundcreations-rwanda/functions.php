@@ -115,6 +115,10 @@ add_filter(
 add_filter(
 	'sc_home_solution_img',
 	function ( $url, $key ) {
+		if ( 'home_sol2_img' === $key ) {
+			// Acoustics: Intare Conference Arena main hall, Kigali (timber wall diffusers, ceiling absorbers).
+			return get_stylesheet_directory_uri() . '/assets/img/solution-acoustics-rw.webp';
+		}
 		if ( 'home_sol3_img' === $key ) {
 			return get_stylesheet_directory_uri() . '/assets/img/solution-integration-rw.webp';
 		}
