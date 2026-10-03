@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_CONTENT_VERSION', 'rw-content-4' );
+define( 'SCRW_CONTENT_VERSION', 'rw-content-5' );
 
 /**
  * The five Rwanda service areas, with full copy (proposal section B).
@@ -133,7 +133,89 @@ function scrw_seed_services() {
 			wp_update_post( array( 'ID' => $post->ID, 'post_status' => 'publish' ) );
 		}
 	}
+
+	scrw_ensure_home_solution_pages();
 }
+
+/**
+ * rw-content-5: the homepage Solutions cards link to /solutions/professional-audio/
+ * and /solutions/installation/, which were 404 on the Rwanda site. Make sure both
+ * exist and are published. They use the same layout as the group site, built by
+ * the theme (inc/solutions.php supplies the Rwanda photos and projects), so the
+ * body is left empty. Text an editor has written in wp-admin is never removed.
+ * Titles matter: the template picks the layout from the title ("Installation"
+ * gets the integration layout, "Professional Audio" the audio layout).
+ */
+function scrw_home_solution_pages() {
+	return array(
+		'professional-audio' => array( 'Professional Audio', 'Live sound, worship and installed audio systems for venues across Rwanda, engineered and supported end to end by our Kigali team.' ),
+		'installation'       => array( 'Installation', 'Complete sound and acoustic installations in Rwanda, delivered turnkey by our Kigali technical team.' ),
+	);
+}
+
+function scrw_ensure_home_solution_pages() {
+	foreach ( scrw_home_solution_pages() as $slug => $sol ) {
+		list( $title, $excerpt ) = $sol;
+		$found = get_posts(
+			array(
+				'post_type'      => 'sc_solution',
+				'name'           => $slug,
+				'post_status'    => array( 'publish', 'draft', 'pending', 'private', 'future', 'trash' ),
+				'posts_per_page' => 1,
+			)
+		);
+		if ( empty( $found ) ) {
+			wp_insert_post(
+				array(
+					'post_title'   => $title,
+					'post_name'    => $slug,
+					'post_excerpt' => $excerpt,
+					'post_content' => '',
+					'post_status'  => 'publish',
+					'post_type'    => 'sc_solution',
+				)
+			);
+			continue;
+		}
+		$post = $found[0];
+		if ( 'trash' === $post->post_status ) {
+			wp_untrash_post( $post->ID );
+		}
+		$update = array( 'ID' => $post->ID, 'post_status' => 'publish', 'post_name' => $slug );
+		// Clear only the one-line Core starter copy (no HTML), never an editor's page.
+		$cur = trim( (string) $post->post_content );
+		if ( '' === $cur || false === strpos( $cur, '<' ) ) {
+			$update['post_content'] = '';
+			$update['post_excerpt'] = $excerpt;
+		}
+		if ( in_array( $post->post_title, array( 'Sound & Acoustic Integration', 'Installation', 'Professional Audio', '' ), true ) ) {
+			$update['post_title'] = $title;
+		}
+		wp_update_post( $update );
+	}
+}
+
+/*
+ * Safety net: if either homepage Solutions link is ever 404 again (for example
+ * before wp-admin has been loaded once after an upload), send visitors to the
+ * Solutions overview instead of the "Page not found" screen.
+ */
+add_action(
+	'template_redirect',
+	function () {
+		if ( ! is_404() ) {
+			return;
+		}
+		$uri  = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$path = trim( (string) wp_parse_url( $uri, PHP_URL_PATH ), '/' );
+		if ( in_array( $path, array( 'solutions/professional-audio', 'solutions/installation' ), true ) ) {
+			$archive = get_post_type_archive_link( 'sc_solution' );
+			wp_safe_redirect( $archive ? $archive : home_url( '/' ), 302 );
+			exit;
+		}
+	},
+	1
+);
 
 /**
  * Rwanda legal pages. Core seeds Kenya-law Privacy and Terms pages; on this

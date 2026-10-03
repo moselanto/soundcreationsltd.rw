@@ -85,6 +85,8 @@ while ( have_posts() ) :
 				);
 				$sc_hero_img = SC_THEME_URI . ( isset( $sc_heromap[ $sc_sk ] ) ? $sc_heromap[ $sc_sk ] : $sc_heromap[ 'general' ] );
 			}
+			// Final say for a child theme (e.g. the Rwanda site's own solution photos).
+			$sc_hero_img = (string) apply_filters( 'sc_solution_hero_img', $sc_hero_img, $sc_sk );
 			?>
 			<header class="sc-svc-hero">
 				<div class="sc-container">
@@ -112,7 +114,7 @@ while ( have_posts() ) :
 					<div class="sc-solsec__head">
 						<p class="sc-eyebrow"><?php esc_html_e( 'Installation and integration', 'soundcreations' ); ?></p>
 						<h2 class="sc-svc-h2"><?php esc_html_e( 'Turnkey sound and acoustic integration', 'soundcreations' ); ?></h2>
-						<p class="sc-solsec__intro">Sound Creations Ltd designs, supplies, installs and supports complete sound and acoustic systems. From a single boardroom to a full auditorium, we handle the entire project - site survey and system design, professional installation and cabling, calibration and commissioning, operator training and ongoing technical support - so your venue performs reliably from the first event.</p>
+						<p class="sc-solsec__intro"><?php echo esc_html( apply_filters( 'sc_solution_integration_intro', 'Sound Creations Ltd designs, supplies, installs and supports complete sound and acoustic systems. From a single boardroom to a full auditorium, we handle the entire project - site survey and system design, professional installation and cabling, calibration and commissioning, operator training and ongoing technical support - so your venue performs reliably from the first event.' ) ); ?></p>
 						<ul class="sc-chips"><li>Sound systems</li><li>Acoustic treatment</li><li>Installation &amp; cabling</li><li>Calibration &amp; commissioning</li><li>Control &amp; automation</li></ul>
 					</div>
 					<div class="sc-steps">
@@ -121,15 +123,22 @@ while ( have_posts() ) :
 						<div class="sc-step"><span class="sc-step__n">03</span><h3>Calibration and commissioning</h3><p>Systems tuned and commissioned by our technical team so every seat looks and sounds right.</p></div>
 						<div class="sc-step"><span class="sc-step__n">04</span><h3>Training and support</h3><p>Operator training, documentation and responsive after-sales support to keep it performing.</p></div>
 					</div>
+					<?php
+					$sc_shots = apply_filters(
+						'sc_solution_integration_shots',
+						array(
+							array( SC_THEME_URI . '/assets/img/solutions/install-citam.jpg', __( 'Sound and acoustic installation in a large house of worship', 'soundcreations' ), __( 'House of worship: sound and acoustic integration', 'soundcreations' ) ),
+							array( SC_THEME_URI . '/assets/img/solutions/install-theatre.jpg', __( 'Auditorium sound and acoustic integration', 'soundcreations' ), __( 'Auditorium sound and acoustic integration', 'soundcreations' ) ),
+						)
+					);
+					?>
 					<div class="sc-showcase">
+						<?php foreach ( $sc_shots as $sc_shot ) : ?>
 						<figure class="sc-shot">
-							<img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/install-citam.jpg' ); ?>" alt="<?php esc_attr_e( 'Sound and acoustic installation in a large house of worship', 'soundcreations' ); ?>" loading="lazy" decoding="async">
-							<figcaption><span><?php esc_html_e( 'House of worship: sound and acoustic integration', 'soundcreations' ); ?></span></figcaption>
+							<img src="<?php echo esc_url( $sc_shot[0] ); ?>" alt="<?php echo esc_attr( $sc_shot[1] ); ?>" loading="lazy" decoding="async">
+							<figcaption><span><?php echo esc_html( $sc_shot[2] ); ?></span></figcaption>
 						</figure>
-						<figure class="sc-shot">
-							<img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/install-theatre.jpg' ); ?>" alt="<?php esc_attr_e( 'Auditorium sound and acoustic integration', 'soundcreations' ); ?>" loading="lazy" decoding="async">
-							<figcaption><span><?php esc_html_e( 'Auditorium sound and acoustic integration', 'soundcreations' ); ?></span></figcaption>
-						</figure>
+						<?php endforeach; ?>
 					</div>
 				</div>
 			</section>
@@ -246,10 +255,13 @@ while ( have_posts() ) :
 							array( 'Corporate & Conferencing', 'Heard, clearly', 'Networked microphones and loudspeakers for boardrooms and hybrid meetings where every voice has to land.', 'corporate.webp' ),
 							array( 'Education', 'Clarity that carries', 'Reliable, easy-to-run sound for lecture halls, auditoriums and campus spaces, from the front row to the back.', 'education.webp' ),
 						);
+						// A child theme can swap the cards; element [3] may also be a full URL.
+						$sc_industries = apply_filters( 'sc_solution_industries', $sc_industries );
 						foreach ( $sc_industries as $sc_ind ) :
+							$sc_ind_img = ( 0 === strpos( $sc_ind[3], 'http' ) ) ? $sc_ind[3] : SC_THEME_URI . '/assets/img/industries/' . $sc_ind[3];
 						?>
 						<article class="sc-ind">
-							<span class="sc-ind__img" style="background-image:url('<?php echo esc_url( SC_THEME_URI . '/assets/img/industries/' . $sc_ind[3] ); ?>');"></span>
+							<span class="sc-ind__img" style="background-image:url('<?php echo esc_url( $sc_ind_img ); ?>');"></span>
 							<span class="sc-ind__scrim"></span>
 							<span class="sc-ind__body">
 								<span class="sc-ind__eyebrow"><?php echo esc_html( $sc_ind[0] ); ?></span>
@@ -280,6 +292,8 @@ while ( have_posts() ) :
 		</section>
 		<?php endif; ?>
 
+
+		<?php do_action( 'sc_solution_after_kind', $sc_sk ); // e.g. the Rwanda site's project showcase. ?>
 
 		<?php
 		$sc_inds    = get_the_terms( get_the_ID(), 'sc_industry' );

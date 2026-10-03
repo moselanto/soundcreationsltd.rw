@@ -33,6 +33,7 @@ require_once SCRW_DIR . 'inc/clients.php';
 require_once SCRW_DIR . 'inc/hero.php';
 require_once SCRW_DIR . 'inc/complete-projects.php';
 require_once SCRW_DIR . 'inc/brand-spotlight.php';
+require_once SCRW_DIR . 'inc/solutions.php';
 require_once SCRW_DIR . 'inc/seo.php';
 require_once SCRW_DIR . 'inc/analytics.php';
 require_once SCRW_DIR . 'inc/elementor.php';
