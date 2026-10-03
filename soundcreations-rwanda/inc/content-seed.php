@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_CONTENT_VERSION', 'rw-content-3' );
+define( 'SCRW_CONTENT_VERSION', 'rw-content-4' );
 
 /**
  * The five Rwanda service areas, with full copy (proposal section B).
