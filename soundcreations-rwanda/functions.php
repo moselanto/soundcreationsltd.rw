@@ -124,6 +124,28 @@ add_filter(
 	2
 );
 
+/*
+ * Homepage "What We Do" service card photos (Rwanda).
+ *  - Consultancy: MINECOFIN conference room, Kigali.
+ *  - Distribution & Dealership: Sound Creations Rwanda showroom, KN1 Rd, Muhima (Yamaha instruments, mixers, speakers).
+ *  - Integration: Ntare Louisenlund School auditorium (lighting truss, speakers, projection).
+ * These take priority over Service page Featured Images. Remove a line to fall back to the upload.
+ */
+add_filter(
+	'sc_home_service_img',
+	function ( $url, $key ) {
+		$img = get_stylesheet_directory_uri() . '/assets/img/';
+		$map = array(
+			'home_svc1_img' => $img . 'projects/minecofin-hd.webp',
+			'home_svc2_img' => $img . 'service-distribution-showroom-rw.webp',
+			'home_svc3_img' => $img . 'service-integration-ntare-rw.webp',
+		);
+		return isset( $map[ $key ] ) ? $map[ $key ] : $url;
+	},
+	10,
+	2
+);
+
 /* Main menu dropdowns: a short description under each sub-item. */
 add_filter(
 	'nav_menu_item_title',

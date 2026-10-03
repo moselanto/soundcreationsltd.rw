@@ -136,6 +136,8 @@ else :
 						break;
 					}
 				}
+				// Final say for a child theme (e.g. the Rwanda site's own service photos).
+				$sc_img = (string) apply_filters( 'sc_home_service_img', $sc_img, $sc_s[5] );
 				?>
 				<a class="sc-svcard" href="<?php echo esc_url( $sc_href ); ?>">
 					<span class="sc-svcard__img">
