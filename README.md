@@ -11,16 +11,16 @@
 
 Authorised **Yamaha** distributor and **FANE Africa** partner in Kigali. Professional audio, lighting, acoustics and AV integration for venues, churches, schools, government and hospitality across Rwanda, the DRC and East Africa.
 
-\![WordPress](https://img.shields.io/badge/WordPress-6.4%2B-21759B?logo=wordpress&logoColor=white)
-\![PHP](https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php&logoColor=white)
-\![Elementor](https://img.shields.io/badge/Elementor-ready-92003B?logo=elementor&logoColor=white)
-\![Rank Math](https://img.shields.io/badge/SEO-Rank%20Math%20%2B%20JSON--LD-4C2A85)
-\![Parent theme](https://img.shields.io/badge/Parent%20theme-v0.10.11-624489)
-\![Child theme](https://img.shields.io/badge/Rwanda%20child-v1.1.0-46305F)
-\![Core](https://img.shields.io/badge/SC%20Core-v0.5.25-BA0B0B)
-\![Enquiries](https://img.shields.io/badge/SC%20Enquiries-v0.2.0-BA0B0B)
-\![License](https://img.shields.io/badge/License-GPLv2%2B-blue)
-\![Status](https://img.shields.io/badge/Status-Live-brightgreen)
+![WordPress](https://img.shields.io/badge/WordPress-6.4%2B-21759B?logo=wordpress&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php&logoColor=white)
+![Elementor](https://img.shields.io/badge/Elementor-ready-92003B?logo=elementor&logoColor=white)
+![Rank Math](https://img.shields.io/badge/SEO-Rank%20Math%20%2B%20JSON--LD-4C2A85)
+![Parent theme](https://img.shields.io/badge/Parent%20theme-v0.10.11-624489)
+![Child theme](https://img.shields.io/badge/Rwanda%20child-v1.1.1-46305F)
+![Core](https://img.shields.io/badge/SC%20Core-v0.5.25-BA0B0B)
+![Enquiries](https://img.shields.io/badge/SC%20Enquiries-v0.2.0-BA0B0B)
+![License](https://img.shields.io/badge/License-GPLv2%2B-blue)
+![Status](https://img.shields.io/badge/Status-Live-brightgreen)
 
 [Live site](https://soundcreationsltd.rw/) · [Yamaha Rwanda](https://soundcreationsltd.rw/yamaha/) · [FANE Africa](https://soundcreationsltd.rw/fane/) · [Projects](https://soundcreationsltd.rw/projects/) · [Products](https://soundcreationsltd.rw/products/) · [Request a consultation](https://soundcreationsltd.rw/request-a-consultation/) · [Group site (Kenya)](https://soundcreationsltd.com/)
 
@@ -28,7 +28,7 @@ Authorised **Yamaha** distributor and **FANE Africa** partner in Kigali. Profess
 
 ---
 
-\![Sound Creations Rwanda homepage](docs/screenshots/home-desktop.jpg)
+![Sound Creations Rwanda homepage](docs/screenshots/home-desktop.jpg)
 
 ## Contents
 
@@ -55,7 +55,7 @@ It runs a **copy of the group code** from [soundcreationsltd.com](https://soundc
 | Package | Folder | Version | Role |
 | --- | --- | --- | --- |
 | **Sound Creations** (parent theme) | [`soundcreations/`](soundcreations) | 0.10.11 | Group design system: dark-first editorial layout, templates for solutions, services, projects, brands, products and resources |
-| **Sound Creations Rwanda** (child theme) | [`soundcreations-rwanda/`](soundcreations-rwanda) | 1.1.0 | **Activate this one.** Rwanda contacts, hours, pages, Yamaha and FANE hubs, 55-product catalogue, Rwanda projects, clients, local SEO, analytics and Elementor widgets |
+| **Sound Creations Rwanda** (child theme) | [`soundcreations-rwanda/`](soundcreations-rwanda) | 1.1.1 | **Activate this one.** Rwanda contacts, hours, pages, Yamaha and FANE hubs, 55-product catalogue, Rwanda projects, clients, local SEO, analytics and Elementor widgets |
 | **Sound Creations Core** (plugin) | [`sound-creations-core/`](sound-creations-core) | 0.5.25 | Content types, taxonomies, central business-settings store, schema graph and starter setup. Lives in a plugin so data survives a theme change |
 | **Sound Creations Enquiries** (plugin) | [`sound-creations-enquiries/`](sound-creations-enquiries) | 0.2.0 | B2B enquiry system: consultation, quote, product, dealer, FANE and support forms with routing, secure storage, email alerts and spam scoring |
 | **Server rules** | [`server/`](server) | - | `.htaccess` compression and browser-caching block for LiteSpeed / Apache |
@@ -68,19 +68,19 @@ It runs a **copy of the group code** from [soundcreationsltd.com](https://soundc
 
 | Yamaha Rwanda hub | FANE Africa partner page |
 | --- | --- |
-| \![Yamaha page](docs/screenshots/yamaha.jpg) | \![FANE Africa page](docs/screenshots/fane-africa.jpg) |
+| ![Yamaha page](docs/screenshots/yamaha.jpg) | ![FANE Africa page](docs/screenshots/fane-africa.jpg) |
 | **Solutions** | **Product catalogue with filters** |
-| \![Solutions](docs/screenshots/solutions.jpg) | \![Products](docs/screenshots/products.jpg) |
+| ![Solutions](docs/screenshots/solutions.jpg) | ![Products](docs/screenshots/products.jpg) |
 | **Projects across Rwanda** | **Project case study (MINECOFIN)** |
-| \![Projects](docs/screenshots/projects.jpg) | \![MINECOFIN project](docs/screenshots/project-minecofin.jpg) |
+| ![Projects](docs/screenshots/projects.jpg) | ![MINECOFIN project](docs/screenshots/project-minecofin.jpg) |
 | **Partner brands** | **About Sound Creations Rwanda** |
-| \![Brands](docs/screenshots/brands.jpg) | \![About](docs/screenshots/about.jpg) |
+| ![Brands](docs/screenshots/brands.jpg) | ![About](docs/screenshots/about.jpg) |
 | **Contact with both offices** | **Request a consultation** |
-| \![Contact](docs/screenshots/contact.jpg) | \![Consultation](docs/screenshots/consultation.jpg) |
+| ![Contact](docs/screenshots/contact.jpg) | ![Consultation](docs/screenshots/consultation.jpg) |
 
 | Homepage: what we do | Homepage: projects, clients and stats |
 | --- | --- |
-| \![Homepage services](docs/screenshots/home-services.jpg) | \![Homepage projects and clients](docs/screenshots/home-projects-clients.jpg) |
+| ![Homepage services](docs/screenshots/home-services.jpg) | ![Homepage projects and clients](docs/screenshots/home-projects-clients.jpg) |
 
 ### Mobile
 

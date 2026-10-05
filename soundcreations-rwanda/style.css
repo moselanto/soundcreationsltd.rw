@@ -4,7 +4,7 @@ Theme URI:    https://soundcreationsltd.rw/
 Description:  Child theme for the independent Sound Creations Ltd Rwanda website. Uses the group parent theme (soundcreations) so both sites share one visual identity, and layers Rwanda-specific business details, content, local SEO and structured data on top.
 Author:       Sound Creations Ltd
 Template:     soundcreations
-Version:      1.1.0
+Version:      1.1.1
 Requires PHP: 8.0
 License:      GPL-2.0-or-later
 Text Domain:  soundcreations-rwanda
@@ -779,3 +779,20 @@ html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 /* Products page: catalogue heading is now the page h1 */
 .scrw-cat .sc-crumb { margin-bottom: .8rem; }
 .scrw-cat__title { margin: .3rem 0 .6rem; font-size: clamp(2rem, 1.2rem + 2.4vw, 3rem); line-height: 1.06; letter-spacing: -.03em; }
+
+/* Header fit (v1.1.1): keep the logo and the desktop menu from overlapping at any width.
+   The menu used to overflow leftwards under the logo (it was wider than its flex slot). */
+@media (min-width: 783px) {
+	.sc-header__inner { gap: clamp(1rem, .4rem + 1vw, 1.75rem); }
+	.sc-header .sc-brand { flex: 0 0 auto; position: relative; z-index: 2; }
+	.sc-header .sc-nav { flex: 1 1 auto; min-width: 0; justify-content: flex-end; }
+	.sc-header .sc-nav .sc-nav__list { flex-wrap: nowrap; gap: clamp(.1rem, .05rem + .3vw, .4rem); }
+	.sc-header .sc-nav .sc-nav__list > li > a { padding: .5rem clamp(.4rem, .1rem + .45vw, .65rem); font-size: clamp(.86rem, .78rem + .12vw, .93rem); white-space: nowrap; }
+	.sc-header .sc-header__actions { flex: 0 0 auto; }
+}
+@media (min-width: 783px) and (max-width: 1100px) {
+	/* The logo already links home; drop the duplicate Home item so the menu fits beside it. */
+	.sc-header .sc-nav .sc-nav__list > li.menu-item-home { display: none; }
+	.sc-header .sc-nav .sc-nav__list > li > a { padding-inline: .4rem; font-size: .82rem; }
+	.sc-header .sc-logo img { max-height: 38px; }
+}
