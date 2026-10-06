@@ -308,7 +308,7 @@ add_filter(
 add_action(
 	'wp_enqueue_scripts',
 	function () {
-		wp_register_style( 'sc-enquiries', SC_ENQ_URI . 'assets/forms.css', array( 'sc-main' ), SC_ENQ_VERSION );
+		wp_register_style( 'sc-enquiries', SC_ENQ_URI . 'assets/' . ( function_exists( 'sc_min_css' ) ? sc_min_css( SC_ENQ_DIR . 'assets', 'forms.css' ) : 'forms.css' ), array( 'sc-main' ), SC_ENQ_VERSION );
 		wp_enqueue_style( 'sc-enquiries' );
 	},
 	30

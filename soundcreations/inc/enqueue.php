@@ -9,13 +9,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * SPEED: serve the minified copy of a stylesheet (xx.min.css, about 25-40%
+ * smaller) when it exists and is at least as new as the source. If someone
+ * edits the readable .css and forgets to rebuild, the source is used, so an
+ * outdated minified file can never be served.
+ *
+ * @param string $dir Absolute directory.
+ * @param string $file File name, e.g. main.css.
+ * @return string File name to load.
+ */
+function sc_min_css( $dir, $file ) {
+	if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+		return $file;
+	}
+	$min = preg_replace( '/\.css$/', '.min.css', $file );
+	$src = trailingslashit( $dir ) . $file;
+	$mp  = trailingslashit( $dir ) . $min;
+	if ( is_readable( $mp ) && ( ! is_readable( $src ) || filemtime( $mp ) >= filemtime( $src ) ) ) {
+		return $min;
+	}
+	return $file;
+}
+
 add_action(
 	'wp_enqueue_scripts',
 	function () {
 		// Design tokens + @font-face are inlined in <head> (see below) to remove two
 		// render-blocking requests and apply the preloaded fonts immediately.
-		wp_enqueue_style( 'sc-main', SC_THEME_URI . '/assets/css/main.css', array(), SC_THEME_VERSION );
-		wp_enqueue_style( 'sc-content', SC_THEME_URI . '/assets/css/content.css', array( 'sc-main' ), SC_THEME_VERSION );
+		wp_enqueue_style( 'sc-main', SC_THEME_URI . '/assets/css/' . sc_min_css( SC_THEME_DIR . '/assets/css', 'main.css' ), array(), SC_THEME_VERSION );
+		wp_enqueue_style( 'sc-content', SC_THEME_URI . '/assets/css/' . sc_min_css( SC_THEME_DIR . '/assets/css', 'content.css' ), array( 'sc-main' ), SC_THEME_VERSION );
 
 		wp_enqueue_script( 'sc-theme', SC_THEME_URI . '/assets/js/theme.js', array(), SC_THEME_VERSION, true );
 		wp_enqueue_script( 'sc-map', SC_THEME_URI . '/assets/js/map.js', array(), SC_THEME_VERSION, true );
@@ -60,7 +83,7 @@ add_action(
 	function () {
 		$sc_css = '';
 		foreach ( array( 'tokens.css', 'fonts.css', 'loader.css' ) as $sc_file ) {
-			$sc_path = SC_THEME_DIR . '/assets/css/' . $sc_file;
+			$sc_path = SC_THEME_DIR . '/assets/css/' . sc_min_css( SC_THEME_DIR . '/assets/css', $sc_file );
 			if ( is_readable( $sc_path ) ) {
 				$sc_css .= file_get_contents( $sc_path );
 			}

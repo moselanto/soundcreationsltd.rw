@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_SEED_VERSION', 'rw-settings-9' ); // rw-settings-9: stefic@ + fred@ contact emails, brand line in the top bar.
+define( 'SCRW_SEED_VERSION', 'rw-settings-10' ); // rw-settings-10: About tagline 'If it sounds good, it’s Sound Creations'. // rw-settings-9: stefic@ + fred@ contact emails, brand line in the top bar.
 
 /**
  * Rwanda values. Contact details are taken from the current live Rwanda site.
@@ -71,7 +71,7 @@ function scrw_settings() {
 		'home_steps'          => "Consultation & Design | We listen, visit your site, and design a system around your space, goals and budget.\nDistribution | Genuine equipment from trusted global brands, supplied with full manufacturer warranty.\nIntegration | Professional installation, commissioning and calibration by our technical team.\nSupport & Training | Operator training, preventive maintenance and fast after-sales backup in Rwanda.",
 
 		// About.
-		'about_hero_title'    => 'If it sounds good, it’s Sound Creations Rwanda',
+		'about_hero_title'    => 'If it sounds good, it’s Sound Creations',
 		'about_journey_p1'    => 'Sound Creations began in Nairobi in 1989 as Nipul Electronics and became Sound Creations Ltd in 2004. The group opened its Rwanda operation in 2018, began work in the DR Congo in 2022 and partnered with LC Acoustic in Dubai in 2024. From our office on KN1 Road, Muhima, our Kigali team consults, supplies, installs and supports professional audio, acoustic, lighting and visual systems for houses of worship, corporate and commercial spaces, education institutions and entertainment venues across Rwanda.',
 		'about_process_items' => "Consultation & Design | We listen, visualise with you, propose, agree and represent the solution. | /request-a-consultation/\nDistribution | From the most affordable to the substantial investments, we supply genuine equipment with warranty. | /brands/\nIntegration | Installation, commissioning and calibration by a certified technical team. | /solutions/\nSupport & Training | Training, maintenance and fast backup for systems across Rwanda. | /solutions/service-and-backup/",
 
@@ -95,6 +95,8 @@ function scrw_superseded_settings() {
 		'email'        => array( 'sales@soundcreationsltd.com', 'fred@soundcreationsltd.com' ),
 		'regions'      => array( 'Kigali · Rwanda · Part of the Sound Creations Ltd group' ),
 		'footer_hours' => array( "Mon - Fri: 9 am - 6 pm\nSat - Sun: Closed" ),
+		// rw-settings-10: About tagline is the group line, without "Rwanda".
+		'about_hero_title'     => array( 'If it sounds good, it’s Sound Creations Rwanda' ),
 		// rw-settings-5: About story from the SCL RW Company Profile 2025.
 		'about_journey_p1'     => array( 'Sound Creations Ltd Rwanda is the Kigali operation of the Sound Creations Ltd group, a professional audio, visual, lighting and acoustic company founded in Nairobi in 2004 and today working across Kenya, Rwanda, the DR Congo and the UAE. In Rwanda we bring the group’s selection philosophy, technology, reliability, ease of use and affordability, to every project, with a local team that consults, supplies, installs and supports on the ground.' ),
 		// rw-settings-4: phones moved out of the address into phone / phone2.

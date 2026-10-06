@@ -44,7 +44,7 @@ add_action(
 	function () {
 		wp_enqueue_style(
 			'soundcreations-rwanda',
-			get_stylesheet_uri(),
+			get_stylesheet_directory_uri() . '/' . ( function_exists( 'sc_min_css' ) ? sc_min_css( get_stylesheet_directory(), 'style.css' ) : 'style.css' ),
 			array( 'sc-main' ),
 			(string) filemtime( get_stylesheet_directory() . '/style.css' ) // Changes on every upload, so browsers and caches fetch the new CSS.
 		);
