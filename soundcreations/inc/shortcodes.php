@@ -94,7 +94,7 @@ function sc_render_partners( $atts = array() ) {
 				$logo = get_the_post_thumbnail(
 					get_the_ID(),
 					'medium',
-					array( 'class' => 'sc-partner__logo', 'loading' => 'lazy', 'alt' => esc_attr( get_the_title() ) )
+					array( 'class' => 'sc-partner__logo', 'loading' => 'eager', 'decoding' => 'async', 'alt' => esc_attr( get_the_title() ) )
 				);
 			} else {
 				// Fall back to the bundled full-colour brand logo (assets/img/brands/logos/{logo}.png).
@@ -102,7 +102,10 @@ function sc_render_partners( $atts = array() ) {
 				if ( $logo_key ) {
 					$url = sc_brand_logo_url( $logo_key );
 					if ( $url ) {
-						$logo = '<img class="sc-partner__logo" src="' . esc_url( $url ) . '" alt="' . esc_attr( get_the_title() ) . '" loading="lazy" decoding="async">';
+						$dims = function_exists( 'sc_brand_logo_dims' ) ? sc_brand_logo_dims( $logo_key ) : array( 0, 0 );
+						$size = $dims[0] ? ' width="' . (int) $dims[0] . '" height="' . (int) $dims[1] . '"' : '';
+						// Eager + intrinsic size: the strip keeps its final layout from first paint.
+						$logo = '<img class="sc-partner__logo" src="' . esc_url( $url ) . '" alt="' . esc_attr( get_the_title() ) . '"' . $size . ' loading="eager" decoding="async">';
 					}
 				}
 			}
@@ -127,7 +130,9 @@ function sc_render_partners( $atts = array() ) {
 	}
 
 	$set   = '<div class="sc-partners__set">' . $one . '</div>';
-	$track = '<div class="sc-partners__track">' . $set . $set . '</div>';
+	// The second copy only exists to make the loop seamless; hide it from screen readers.
+	$dup   = '<div class="sc-partners__set" aria-hidden="true">' . $one . '</div>';
+	$track = '<div class="sc-partners__track">' . $set . $dup . '</div>';
 	return '<div class="sc-partners" data-sc-partners>' . $track . '</div>';
 }
 add_shortcode( 'sc_partners', 'sc_render_partners' );

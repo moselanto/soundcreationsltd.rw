@@ -317,3 +317,21 @@
 		window.addEventListener('load', init);
 	}
 })();
+
+/* Partner strip: reveal and start the marquee only once the logos have loaded,
+   so it never shows half-sized or empty tiles on refresh. */
+(function () {
+	var strips = document.querySelectorAll('[data-sc-partners]');
+	Array.prototype.forEach.call(strips, function (strip) {
+		var imgs = strip.querySelectorAll('img');
+		var left = imgs.length;
+		var done = false;
+		var ready = function () { if (!done) { done = true; strip.classList.add('is-ready'); } };
+		if (!left) { ready(); return; }
+		var tick = function () { left -= 1; if (left <= 0) { ready(); } };
+		Array.prototype.forEach.call(imgs, function (img) {
+			if (img.complete) { tick(); } else { img.addEventListener('load', tick); img.addEventListener('error', tick); }
+		});
+		window.setTimeout(ready, 1500);
+	});
+})();

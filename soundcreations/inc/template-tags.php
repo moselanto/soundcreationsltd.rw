@@ -516,3 +516,44 @@ function sc_brand_logo_url( $key ) {
 	}
 	return '';
 }
+
+
+/**
+ * Intrinsic display size for a bundled brand logo, scaled to the strip height.
+ * Lets the browser reserve the right width before the image arrives, so the
+ * partner strip does not collapse and jump while logos load.
+ *
+ * @param string $key    Logo key (file name without extension).
+ * @param int    $height Display height in px.
+ * @return array{0:int,1:int} Width and height, or [0,0] if unknown.
+ */
+function sc_brand_logo_dims( $key, $height = 34 ) {
+	$key = sanitize_key( (string) $key );
+	foreach ( array( 'svg', 'webp', 'png' ) as $ext ) {
+		$path = get_theme_file_path( 'assets/img/brands/logos/' . $key . '.' . $ext );
+		if ( ! file_exists( $path ) ) {
+			continue;
+		}
+		$w = 0;
+		$h = 0;
+		if ( 'svg' === $ext ) {
+			$svg = (string) file_get_contents( $path, false, null, 0, 4096 );
+			if ( preg_match( '/viewBox\s*=\s*["\x27]\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)/i', $svg, $m ) ) {
+				$w = (float) $m[1];
+				$h = (float) $m[2];
+			}
+		} else {
+			$info = @getimagesize( $path );
+			if ( $info ) {
+				$w = (float) $info[0];
+				$h = (float) $info[1];
+			}
+		}
+		if ( $w > 0 && $h > 0 ) {
+			$dw = (int) round( $w * $height / $h );
+			return array( min( $dw, 150 ), (int) $height );
+		}
+		break;
+	}
+	return array( 0, 0 );
+}

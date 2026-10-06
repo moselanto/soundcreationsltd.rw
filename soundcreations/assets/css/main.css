@@ -2358,7 +2358,7 @@ a.sc-workproc__item:focus-visible { outline: 2px solid var(--sc-red); outline-of
    headings are targeted by class, and two of them by a parent +
    class pair, so they outrank a plain element selector. Each one
    is therefore repeated below with an `h1` prefix, which wins on
-   specificity rather than on \!important.
+   specificity rather than on !important.
 
    The `h1` prefix matters for a second reason: classes such as
    .sc-case__title and .sc-support-hero__title are reused on H2s
@@ -2564,3 +2564,14 @@ h1.sc-contactpage-hero__title { font-size: 30px; }
 @media (max-width: 560px) {
 	.sc-footer .sc-footer__grid { grid-template-columns: 1fr; gap: 1.9rem; }
 }
+
+/* Partner strip: no jumpy first paint. Tiles keep a fixed box, logos keep
+   their aspect ratio from width/height attributes, and the strip fades in and
+   starts scrolling once theme.js sees the logos loaded. CSS-only fallback:
+   it becomes visible after 2s even if the script never runs. */
+.sc-partner { box-sizing: border-box; min-width: 120px; }
+.sc-partners[data-sc-partners] { opacity: 0; animation: sc-partners-show 0s linear 2s forwards; }
+.sc-partners[data-sc-partners].is-ready { opacity: 1; animation: none; transition: opacity .35s ease; }
+.sc-partners[data-sc-partners]:not(.is-ready) .sc-partners__track { animation-play-state: paused; }
+@keyframes sc-partners-show { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .sc-partners[data-sc-partners] { opacity: 1; animation: none; } }
