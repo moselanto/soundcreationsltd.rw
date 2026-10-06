@@ -53,6 +53,30 @@ function sc_enq_client_ip() {
 }
 
 /**
+ * Signed render token: "<unix time>.<hmac>".
+ *
+ * The old field was a plain timestamp, so a bot could simply omit it (the
+ * time trap was then skipped entirely) or forge "now minus 10 seconds".
+ * The HMAC makes the stamp unforgeable and the handler now REQUIRES it.
+ */
+function sc_enq_issue_token( $time = null ) {
+	$time = null === $time ? time() : (int) $time;
+	return $time . '.' . substr( hash_hmac( 'sha256', 'sc_enq|' . $time, wp_salt( 'nonce' ) ), 0, 20 );
+}
+
+/**
+ * @return int Issue time when the token is authentic, otherwise 0.
+ */
+function sc_enq_verify_token( $token ) {
+	$token = (string) $token;
+	if ( ! preg_match( '/^(\d{9,11})\.([a-f0-9]{20})$/', $token, $m ) ) {
+		return 0;
+	}
+	$expected = sc_enq_issue_token( (int) $m[1] );
+	return hash_equals( $expected, $token ) ? (int) $m[1] : 0;
+}
+
+/**
  * Bucket key for a rate-limit counter. Hashed so raw IPs are not written into
  * option/transient names.
  */
@@ -249,6 +273,10 @@ function sc_enq_handle_upload() {
 	// Unguessable filename: the URL is emailed to staff, never listed publicly.
 	$file['name'] = 'enquiry-' . gmdate( 'Ymd' ) . '-' . wp_generate_password( 16, false, false ) . '.' . $check['ext'];
 
+	// Store attachments in a dedicated folder that can never execute code or
+	// be listed, instead of the public dated uploads folders.
+	$dir_filter = 'sc_enq_private_upload_dir';
+	add_filter( 'upload_dir', $dir_filter );
 	$moved = wp_handle_upload(
 		$file,
 		array(
@@ -256,11 +284,39 @@ function sc_enq_handle_upload() {
 			'mimes'     => $allowed,
 		)
 	);
+	remove_filter( 'upload_dir', $dir_filter );
 
 	if ( is_array( $moved ) && empty( $moved['error'] ) && ! empty( $moved['url'] ) ) {
 		return esc_url_raw( $moved['url'] );
 	}
 	return '';
+}
+
+/**
+ * Route enquiry attachments to uploads/sc-enquiries/ and lock that folder down.
+ */
+function sc_enq_private_upload_dir( $dirs ) {
+	$dirs['subdir'] = '/sc-enquiries';
+	$dirs['path']   = $dirs['basedir'] . '/sc-enquiries';
+	$dirs['url']    = $dirs['baseurl'] . '/sc-enquiries';
+	if ( ! is_dir( $dirs['path'] ) ) {
+		wp_mkdir_p( $dirs['path'] );
+	}
+	$ht = $dirs['path'] . '/.htaccess';
+	if ( ! file_exists( $ht ) ) {
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
+		@file_put_contents(
+			$ht,
+			"Options -Indexes -ExecCGI\n"
+			. "<FilesMatch \"\\.(php\\d?|phtml|phar|pl|py|cgi|sh|html?|svg|js)$\">\n  Require all denied\n</FilesMatch>\n"
+			. "<IfModule mod_headers.c>\n  Header set X-Robots-Tag \"noindex, nofollow\"\n  Header set X-Content-Type-Options \"nosniff\"\n  Header set Content-Disposition \"attachment\"\n</IfModule>\n"
+		);
+	}
+	$idx = $dirs['path'] . '/index.php';
+	if ( ! file_exists( $idx ) ) {
+		@file_put_contents( $idx, "<?php // Silence is golden.\n" ); // phpcs:ignore
+	}
+	return $dirs;
 }
 
 /**

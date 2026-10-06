@@ -226,7 +226,7 @@ function sc_enq_render_form( $type, $title_override = '' ) {
 	<form class="sc-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" enctype="multipart/form-data">
 		<input type="hidden" name="action" value="sc_enquiry">
 		<input type="hidden" name="sc_type" value="<?php echo esc_attr( $type ); ?>">
-		<input type="hidden" name="sc_rendered" value="<?php echo esc_attr( time() ); ?>">
+		<input type="hidden" name="sc_rendered" value="<?php echo esc_attr( sc_enq_issue_token() ); ?>">
 		<input type="hidden" name="sc_redirect" value="<?php echo esc_url( sc_enq_current_url() ); ?>">
 		<?php wp_nonce_field( 'sc_enquiry_submit', 'sc_nonce' ); ?>
 		<div class="sc-form__hp"><label>Leave this field empty <input type="text" name="sc_website" tabindex="-1" autocomplete="off"></label></div>
@@ -256,6 +256,7 @@ function sc_enq_render_form( $type, $title_override = '' ) {
 	</form>
 	</div>
 	<?php
+	sc_enq_mark_form_rendered();
 	return ob_get_clean();
 }
 
@@ -311,4 +312,49 @@ add_action(
 		wp_enqueue_style( 'sc-enquiries' );
 	},
 	30
+);
+
+/**
+ * Cache-safe form tokens.
+ *
+ * Full-page caching (LiteSpeed Cache, Cloudflare APO, etc.) is essential for a
+ * 1-3 second load time, but a cached page carries a stale nonce and a stale
+ * render stamp. Without this, every visitor served a page cached for more than
+ * ~12-24 hours would have a genuine enquiry rejected as "spam".
+ *
+ * The page therefore ships a tiny script that, the first time a visitor
+ * interacts with a form, fetches a fresh nonce + signed render token from an
+ * uncached admin-ajax endpoint. If the fetch has not finished when the visitor
+ * presses submit, submission waits for it (max 4s) and then proceeds.
+ */
+function sc_enq_mark_form_rendered() {
+	$GLOBALS['sc_enq_form_rendered'] = true;
+}
+
+function sc_enq_ajax_token() {
+	nocache_headers();
+	header( 'X-LiteSpeed-Cache-Control: no-cache' );
+	header( 'Cache-Control: no-store, no-cache, must-revalidate, max-age=0' );
+	wp_send_json_success(
+		array(
+			'nonce' => wp_create_nonce( 'sc_enquiry_submit' ),
+			'token' => sc_enq_issue_token(),
+		)
+	);
+}
+add_action( 'wp_ajax_nopriv_sc_enq_token', 'sc_enq_ajax_token' );
+add_action( 'wp_ajax_sc_enq_token', 'sc_enq_ajax_token' );
+
+add_action(
+	'wp_footer',
+	function () {
+		if ( empty( $GLOBALS['sc_enq_form_rendered'] ) ) {
+			return;
+		}
+		$endpoint = add_query_arg( 'action', 'sc_enq_token', admin_url( 'admin-ajax.php' ) );
+		?>
+<script>(function(){var u=<?php echo wp_json_encode( esc_url_raw( $endpoint ) ); ?>,p=null,done=false;function get(){if(p){return p;}p=fetch(u,{credentials:'same-origin',cache:'no-store'}).then(function(r){return r.json();}).then(function(j){if(j&&j.success){document.querySelectorAll('form.sc-form').forEach(function(f){var n=f.querySelector('[name="sc_nonce"]'),t=f.querySelector('[name="sc_rendered"]');if(n){n.value=j.data.nonce;}if(t){t.value=j.data.token;}});}done=true;}).catch(function(){done=true;});return p;}document.addEventListener('focusin',function(e){if(e.target.closest&&e.target.closest('form.sc-form')){get();}});document.addEventListener('submit',function(e){var f=e.target;if(!f.classList||!f.classList.contains('sc-form')||done){return;}e.preventDefault();var go=function(){done=true;HTMLFormElement.prototype.submit.call(f);};Promise.race([get(),new Promise(function(r){setTimeout(r,4000);})]).then(go,go);},true);})();</script>
+		<?php
+	},
+	50
 );
