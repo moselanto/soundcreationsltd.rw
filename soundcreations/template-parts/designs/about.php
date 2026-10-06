@@ -85,6 +85,10 @@ $sc_proc_icons = array(
 			<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'about_hero_eyebrow', 'Who We Are' ) ); ?></p>
 			<h1 class="sc-about-hero__title"><?php echo esc_html( sc_setting( 'about_hero_title', 'If it sounds good, it’s Sound Creations' ) ); ?></h1>
 			<p class="sc-journey__lead"><?php echo sc_rich_e( sc_setting( 'about_journey_p1', 'Founded in 2004, Sound Creations Ltd has grown into a leading provider of professional audio, visual, lighting and acoustic solutions across East Africa and beyond. What began as a specialist audio company is today a full-service integrator — designing, supplying, installing and supporting complete systems for the region’s most demanding spaces.' ) ); ?></p>
+			<div class="sc-about-hero__actions">
+				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>"><?php esc_html_e( 'Request a Consultation', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
+				<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( home_url( '/projects/' ) ); ?>"><?php esc_html_e( 'See our projects', 'soundcreations' ); ?></a>
+			</div>
 		</div>
 		<div class="sc-about-hero__media" style="align-self:stretch;background-image:url('<?php echo esc_url( $sc_about_photo ); ?>');" role="img" aria-label="<?php esc_attr_e( 'Sound Creations at work', 'soundcreations' ); ?>"></div>
 	</div>
@@ -94,6 +98,7 @@ $sc_proc_icons = array(
 	<div class="sc-container">
 		<div class="sc-workproc__head">
 			<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'about_process_eyebrow', 'Our Work Process' ) ); ?></p>
+			<h2 class="sc-about-sec__title"><?php echo esc_html( sc_setting( 'about_process_title', 'One partner, from first conversation to long-term support' ) ); ?></h2>
 		</div>
 		<div class="sc-workproc">
 			<?php
@@ -119,11 +124,19 @@ $sc_proc_icons = array(
 	</div>
 </section>
 
-<section class="sc-section sc-section--tight" id="our-brands">
-	<div class="sc-container">
-		<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'about_partners_eyebrow', 'Our Brands' ) ); ?></p>
-		<h2 style="margin-bottom:1.5rem;"><?php echo esc_html( sc_setting( 'about_partners_title', 'World-class brands, supported locally' ) ); ?></h2>
-		<?php echo do_shortcode( '[sc_partners]' ); ?>
+<section class="sc-section sc-section--tight sc-about-brands" id="our-brands">
+	<div class="sc-container sc-about-brands__head">
+		<div>
+			<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'about_partners_eyebrow', 'Our Brands' ) ); ?></p>
+			<h2 class="sc-about-sec__title"><?php echo esc_html( sc_setting( 'about_partners_title', 'World-class brands, supported locally' ) ); ?></h2>
+		</div>
+		<a class="sc-about-brands__all" href="<?php echo esc_url( get_post_type_archive_link( 'sc_brand' ) ? get_post_type_archive_link( 'sc_brand' ) : home_url( '/brands/' ) ); ?>"><?php esc_html_e( 'View all brands', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
+	</div>
+	<div class="sc-section--partners sc-about-brands__strip">
+		<div class="sc-container sc-partners__wrap">
+			<span class="sc-partners__label"><?php echo esc_html( sc_setting( 'home_partners_label', 'Global Technology Partners' ) ); ?></span>
+			<?php echo do_shortcode( '[sc_partners]' ); ?>
+		</div>
 	</div>
 </section>
 

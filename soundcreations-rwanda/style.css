@@ -816,3 +816,17 @@ html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 	.scrw-yh__lockup { gap: .8rem; padding: .7rem 1rem; }
 	.scrw-yh__logo { height: 36px; }
 }
+
+/* ---- About page polish (2026-10-06): consistent section titles, hero CTAs,
+   and the brands strip rendered exactly like the homepage partner strip. ---- */
+.sc-about-hero__actions { margin-top: 1.6rem; }
+.sc-about-sec__title { font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.35rem); line-height: 1.12; letter-spacing: -.02em; margin: .35rem 0 0; max-width: 24ch; text-wrap: balance; }
+.sc-workproc__head { margin-bottom: clamp(1.5rem, 1rem + 2vw, 2.75rem); }
+.sc-about-brands { padding-bottom: 0; }
+.sc-about-brands__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.sc-about-brands__all { font-weight: 700; font-size: 14px; text-decoration: none; color: var(--sc-text); white-space: nowrap; border-bottom: 1px solid var(--sc-border); padding-bottom: 2px; }
+.sc-about-brands__all:hover { color: #BA0B0B; border-color: #BA0B0B; }
+.sc-about-brands__strip { padding-block: 2.25rem; border-block: 1px solid var(--sc-border); }
+/* Lock logo sizing so nothing on this page can blow the cards up. */
+#our-brands .sc-partner { height: 62px; max-width: none; width: auto; }
+#our-brands .sc-partner img, #our-brands .sc-partner__logo { height: 34px; width: auto; max-width: 150px; max-height: 34px; object-fit: contain; }
