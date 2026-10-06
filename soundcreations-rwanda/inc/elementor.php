@@ -61,6 +61,17 @@ add_filter(
 		if ( in_array( $chosen, array( 'elementor_canvas', 'elementor_header_footer' ), true ) ) {
 			return $template;
 		}
+		// Safety net: a designed page (About, Home, Contact...) whose Elementor
+		// data does not yet hold the SC Page Design block keeps its normal
+		// designed template, so the live page never collapses to plain text.
+		// Opening the page in Elementor adds the block, and from then on the
+		// Elementor version is shown.
+		if ( function_exists( 'scrw_design_for_page' ) && '' !== scrw_design_for_page( $id ) ) {
+			$raw = (string) get_post_meta( $id, '_elementor_data', true );
+			if ( false === strpos( $raw, 'scrw_page_design' ) ) {
+				return $template;
+			}
+		}
 		$full = locate_template( 'template-elementor.php' );
 		return $full ? $full : $template;
 	},
