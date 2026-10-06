@@ -22,8 +22,11 @@ while ( have_posts() ) :
 		<div class="sc-brand-hero">
 			<div class="sc-brand-hero__logo">
 				<?php
+				$sc_bundled = sc_brand_logo_url( (string) get_post_meta( get_the_ID(), '_sc_logo', true ) );
 				if ( has_post_thumbnail() ) {
 					the_post_thumbnail( 'medium' );
+				} elseif ( $sc_bundled ) {
+					echo '<img src="' . esc_url( $sc_bundled ) . '" alt="' . esc_attr( $sc_title ) . ' logo" decoding="async">';
 				} else {
 					echo '<span class="sc-brand-hero__ph">' . esc_html( strtoupper( substr( wp_strip_all_tags( $sc_title ), 0, 2 ) ) ) . '</span>';
 				}

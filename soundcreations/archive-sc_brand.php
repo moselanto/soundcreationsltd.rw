@@ -102,8 +102,7 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 						$sc_desc = wp_trim_words( wp_strip_all_tags( get_the_content() ), 22 );
 					}
 					$sc_logo  = (string) get_post_meta( $sc_id, '_sc_logo', true );
-					$sc_rel   = 'assets/img/brands/logos/' . $sc_logo . '.png';
-					$sc_logo_url = ( '' !== $sc_logo && file_exists( get_theme_file_path( $sc_rel ) ) ) ? get_theme_file_uri( $sc_rel ) : '';
+					$sc_logo_url = sc_brand_logo_url( $sc_logo );
 					// Prefer a logo set in wp-admin (Featured image) so brand-logo edits reflect on the front end.
 					if ( has_post_thumbnail( $sc_id ) ) {
 						$sc_logo_url = get_the_post_thumbnail_url( $sc_id, 'full' );

@@ -74,6 +74,8 @@ $y_projects = array(
 		<div class="scrw-yh__copy">
 			<?php echo sc_breadcrumb( array( array( 'Home', home_url( '/' ) ), array( 'Yamaha', '' ) ) ); // phpcs:ignore ?>
 			<p class="scrw-yh__badge"><span aria-hidden="true"></span><?php esc_html_e( 'Authorised Distributor in Rwanda', 'soundcreations-rwanda' ); ?></p>
+			<?php $y_logo = function_exists( 'sc_brand_logo_url' ) ? sc_brand_logo_url( 'yamaha' ) : ''; ?>
+			<?php if ( $y_logo ) : ?><img class="scrw-yh__logo" src="<?php echo esc_url( $y_logo ); ?>" alt="Yamaha" width="180" height="96" decoding="async" style="display:block;height:72px;width:auto;margin:0 0 1rem;background:#fff;padding:8px 14px;border-radius:10px;"><?php endif; ?>
 			<h1 class="scrw-yh__title"><?php esc_html_e( 'Yamaha in Rwanda, backed by Sound Creations.', 'soundcreations-rwanda' ); ?></h1>
 			<p class="scrw-yh__lead"><?php esc_html_e( 'Sound Creations Ltd Rwanda is the authorised Yamaha distributor in Rwanda. From mixing consoles and loudspeakers to keyboards, pianos, guitars and drums, we supply genuine Yamaha products with local stock, warranty and expert support from our Kigali showroom.', 'soundcreations-rwanda' ); ?></p>
 			<div class="scrw-yh__cta">

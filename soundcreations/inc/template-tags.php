@@ -495,3 +495,24 @@ function sc_project_card_image( $post_id ) {
 	}
 	return SC_THEME_URI . '/assets/img/projects/boardroom.jpg';
 }
+
+/**
+ * Bundled brand logo URL for a logo key, preferring a crisp SVG over PNG.
+ * Looks in the child theme first, then the parent.
+ *
+ * @param string $key Logo key, e.g. "yamaha".
+ * @return string URL or ''.
+ */
+function sc_brand_logo_url( $key ) {
+	$key = sanitize_key( (string) $key );
+	if ( '' === $key ) {
+		return '';
+	}
+	foreach ( array( 'svg', 'webp', 'png' ) as $ext ) {
+		$rel = 'assets/img/brands/logos/' . $key . '.' . $ext;
+		if ( file_exists( get_theme_file_path( $rel ) ) ) {
+			return get_theme_file_uri( $rel );
+		}
+	}
+	return '';
+}

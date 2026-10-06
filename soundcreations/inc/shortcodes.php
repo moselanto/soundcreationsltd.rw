@@ -100,9 +100,9 @@ function sc_render_partners( $atts = array() ) {
 				// Fall back to the bundled full-colour brand logo (assets/img/brands/logos/{logo}.png).
 				$logo_key = get_post_meta( get_the_ID(), '_sc_logo', true );
 				if ( $logo_key ) {
-					$rel = 'assets/img/brands/logos/' . $logo_key . '.png';
-					if ( file_exists( get_theme_file_path( $rel ) ) ) {
-						$logo = '<img class="sc-partner__logo" src="' . esc_url( get_theme_file_uri( $rel ) ) . '" alt="' . esc_attr( get_the_title() ) . '" loading="lazy">';
+					$url = sc_brand_logo_url( $logo_key );
+					if ( $url ) {
+						$logo = '<img class="sc-partner__logo" src="' . esc_url( $url ) . '" alt="' . esc_attr( get_the_title() ) . '" loading="lazy" decoding="async">';
 					}
 				}
 			}
