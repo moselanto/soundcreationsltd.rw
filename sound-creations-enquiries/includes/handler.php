@@ -64,6 +64,10 @@ function sc_enq_handle() {
 	$forms    = sc_enq_forms();
 	$type     = isset( $_POST['sc_type'] ) ? sanitize_key( wp_unslash( $_POST['sc_type'] ) ) : '';
 	$redirect = isset( $_POST['sc_redirect'] ) ? esc_url_raw( wp_unslash( $_POST['sc_redirect'] ) ) : home_url( '/' );
+	// Only ever return to (and email staff) a URL on this site. Without this an
+	// attacker could plant an external phishing link as the "Source:" line in
+	// the notification email the sales team trusts.
+	$redirect = wp_validate_redirect( $redirect, home_url( '/' ) );
 
 	// Resolve the client once; every abuse control below keys off it.
 	$ip = sc_enq_client_ip();
@@ -86,13 +90,18 @@ function sc_enq_handle() {
 	if ( ! empty( $_POST['sc_website'] ) ) {
 		sc_enq_redirect( $redirect, 'sent', '1' );
 	}
-	// Time trap: a human cannot read and complete the form in under 3 seconds.
-	$rendered = isset( $_POST['sc_rendered'] ) ? absint( $_POST['sc_rendered'] ) : 0;
-	if ( $rendered && ( time() - $rendered ) < 3 ) {
+	// Time trap. The render token is HMAC-signed and REQUIRED: previously a bot
+	// could skip this check entirely by omitting the field, or forge the stamp.
+	$rendered = isset( $_POST['sc_rendered'] ) ? sc_enq_verify_token( sanitize_text_field( wp_unslash( $_POST['sc_rendered'] ) ) ) : 0;
+	if ( ! $rendered ) {
+		sc_enq_redirect( $redirect, 'error', 'spam' );
+	}
+	// A human cannot read and complete the form in under 3 seconds.
+	if ( ( time() - $rendered ) < 3 ) {
 		sc_enq_redirect( $redirect, 'error', 'spam' );
 	}
 	// Stale render stamp: a replayed or scripted payload, not a live form.
-	if ( $rendered && ( time() - $rendered ) > DAY_IN_SECONDS ) {
+	if ( ( time() - $rendered ) > DAY_IN_SECONDS ) {
 		sc_enq_redirect( $redirect, 'error', 'spam' );
 	}
 	// A real browser always sends a User-Agent.

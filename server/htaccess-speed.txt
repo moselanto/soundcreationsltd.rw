@@ -2,6 +2,19 @@
 # Paste this block at the TOP of public_html/.htaccess (above "# BEGIN WordPress").
 # Keep a copy of the original .htaccess first.
 
+# --- Security: hide version/info files and block code execution in uploads ---
+<FilesMatch "^(readme\.html|license\.txt|wp-config-sample\.php|wp-config\.php|xmlrpc\.php|debug\.log|\.env|composer\.(json|lock))$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # No PHP may ever run from uploads (stops uploaded web shells)
+  RewriteRule ^wp-content/uploads/.*\.(php[0-9]?|phtml|phar)$ - [F,L,NC]
+  # Block common exploit probes
+  RewriteRule (^|/)\.(git|svn|env|htpasswd) - [F,L,NC]
+</IfModule>
+Options -Indexes
+
 # --- Compression (text files) ---
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/javascript application/json application/xml image/svg+xml font/woff2
@@ -23,6 +36,12 @@
 </IfModule>
 <IfModule mod_headers.c>
   <FilesMatch "\.(webp|jpe?g|png|svg|ico|mp4|woff2|css|js)$">
-    Header set Cache-Control "public, max-age=31536000"
+    Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 </IfModule>
+
+# --- Page cache (biggest win for a 1-3 s load) ---
+# Install and activate the free "LiteSpeed Cache" plugin (server is LiteSpeed).
+# Enable: Cache > Public cache ON, TTL 604800; Page Optimization > CSS/JS minify ON,
+# Image Optimization > WebP replacement ON; Object cache (Redis/Memcached) if the host offers it.
+# Enquiry forms are cache-safe: they fetch a fresh nonce/token on first interaction.

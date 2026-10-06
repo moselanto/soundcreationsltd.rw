@@ -92,6 +92,13 @@ add_action(
 add_action(
 	'wp_head',
 	function () {
+		// SPEED: the full-screen overlay hides the page until DOMContentLoaded,
+		// which directly delays First/Largest Contentful Paint on every first
+		// visit. Off by default; re-enable with:
+		//   add_filter( 'sc_enable_preloader', '__return_true' );
+		if ( ! apply_filters( 'sc_enable_preloader', false ) ) {
+			return;
+		}
 		echo "<script>(function(){try{if(sessionStorage.getItem('sc-preload')==='1'){return;}if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){return;}sessionStorage.setItem('sc-preload','1');}catch(e){}var h=document.documentElement;var t0=Date.now();h.className+=' sc-loading';var off=function(){h.className=h.className.replace(/\\s*sc-loading/,'');};var d=function(){var w=0-(Date.now()-t0);if(w<0){w=0;}window.setTimeout(off,w);};if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',d);}else{d();}window.setTimeout(off,1200);})();</script>\n";
 	},
 	3
