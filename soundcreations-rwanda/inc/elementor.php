@@ -114,6 +114,7 @@ add_action(
 		$widgets_manager->register( new SCRW_Widget_Projects_Grid() );
 		$widgets_manager->register( new SCRW_Widget_Brands() );
 		$widgets_manager->register( new SCRW_Widget_CTA_Band() );
+		$widgets_manager->register( new SCRW_Widget_Page_Design() );
 	}
 );
 
@@ -193,4 +194,115 @@ add_action(
 		$url = admin_url( 'plugin-install.php?s=elementor&tab=search&type=term' );
 		echo '<div class="notice notice-info"><p><strong>Sound Creations Rwanda:</strong> pages are designed to be edited with Elementor. <a href="' . esc_url( $url ) . '">Install and activate Elementor</a> to enable visual editing and the Sound Creations widgets.</p></div>';
 	}
+);
+
+/* ============================================================
+   7. Start Elementor pages from the real design, not a blank page.
+
+   Before: opening "Edit with Elementor" on About, Contact, the homepage etc.
+   switched the page to the full-width template and showed ONLY the plain
+   page text -- the designed hero, sections and brand walls disappeared.
+
+   Now, the first time an editor opens one of these pages in Elementor, an
+   "SC Page Design" block holding the full design is placed at the top of the
+   page. Anything already built in Elementor is kept underneath it. Runs once
+   per page (tracked in post meta), so later edits are never overwritten.
+   ============================================================ */
+function scrw_design_for_page( $post_id ) {
+	$post = get_post( $post_id );
+	if ( ! $post || 'page' !== $post->post_type ) {
+		return '';
+	}
+	if ( (int) get_option( 'page_on_front' ) === (int) $post_id ) {
+		return 'home';
+	}
+	$map = array(
+		'about'                  => 'about',
+		'contact'                => 'contact',
+		'request-a-consultation' => 'consultation',
+		'fane'                   => 'fane',
+		'yamaha'                 => 'yamaha',
+	);
+	return isset( $map[ $post->post_name ] ) ? $map[ $post->post_name ] : '';
+}
+
+function scrw_el_id() {
+	return substr( md5( wp_generate_password( 12, false ) ), 0, 7 );
+}
+
+function scrw_seed_design_section( $post_id ) {
+	$design = scrw_design_for_page( $post_id );
+	if ( '' === $design || get_post_meta( $post_id, '_scrw_design_seeded', true ) ) {
+		return;
+	}
+	$raw  = get_post_meta( $post_id, '_elementor_data', true );
+	$data = is_string( $raw ) && '' !== $raw ? json_decode( $raw, true ) : array();
+	if ( ! is_array( $data ) ) {
+		$data = array();
+	}
+	if ( false !== strpos( (string) $raw, 'scrw_page_design' ) ) {
+		update_post_meta( $post_id, '_scrw_design_seeded', 1 );
+		return;
+	}
+	$section = array(
+		'id'       => scrw_el_id(),
+		'elType'   => 'section',
+		'settings' => array(
+			'layout'  => 'full_width',
+			'gap'     => 'no',
+			'padding' => array( 'unit' => 'px', 'top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0', 'isLinked' => true ),
+		),
+		'elements' => array(
+			array(
+				'id'       => scrw_el_id(),
+				'elType'   => 'column',
+				'settings' => array( '_column_size' => 100, 'padding' => array( 'unit' => 'px', 'top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0', 'isLinked' => true ) ),
+				'elements' => array(
+					array(
+						'id'         => scrw_el_id(),
+						'elType'     => 'widget',
+						'widgetType' => 'scrw_page_design',
+						'settings'   => array( 'design' => $design ),
+						'elements'   => array(),
+					),
+				),
+				'isInner'  => false,
+			),
+		),
+		'isInner'  => false,
+	);
+	array_unshift( $data, $section );
+	update_post_meta( $post_id, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+	update_post_meta( $post_id, '_elementor_edit_mode', 'builder' );
+	if ( ! get_post_meta( $post_id, '_elementor_template_type', true ) ) {
+		update_post_meta( $post_id, '_elementor_template_type', 'wp-page' );
+	}
+	delete_post_meta( $post_id, '_elementor_css' );
+	update_post_meta( $post_id, '_scrw_design_seeded', 1 );
+}
+
+add_action(
+	'admin_init',
+	function () {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- read-only routing check; capability enforced below.
+		if ( ! scrw_elementor_active() || ! isset( $_GET['action'], $_GET['post'] ) || 'elementor' !== $_GET['action'] ) {
+			return;
+		}
+		$post_id = absint( $_GET['post'] );
+		// phpcs:enable
+		if ( $post_id && current_user_can( 'edit_post', $post_id ) ) {
+			scrw_seed_design_section( $post_id );
+		}
+	},
+	5
+);
+
+/* Full-bleed designs inside Elementor: remove the column/widget spacing so
+   the design looks identical to the normal page. */
+add_action(
+	'wp_head',
+	function () {
+		echo '<style id="scrw-page-design">.scrw-page-design{width:100%}.elementor-widget-scrw_page_design>.elementor-widget-container{margin:0;padding:0}.elementor-widget-scrw_page_design{margin-bottom:0}</style>' . "\n";
+	},
+	20
 );
