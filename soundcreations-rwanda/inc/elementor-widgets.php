@@ -260,3 +260,67 @@ class SCRW_Widget_CTA_Band extends SCRW_Widget_Base {
 		echo '</div></div>';
 	}
 }
+
+/* ---------------------------------------------------------------- */
+/**
+ * SC Page Design: drops a page's full designed layout (hero, sections, brand
+ * walls...) into Elementor as one block, so editors can add, reorder and
+ * combine Elementor sections around it instead of starting from a blank page.
+ * Copy inside the design still comes from Sound Creations -> Settings.
+ */
+class SCRW_Widget_Page_Design extends SCRW_Widget_Base {
+	public static function designs() {
+		return array(
+			'home'         => 'Homepage design',
+			'about'        => 'About page design',
+			'contact'      => 'Contact page design',
+			'consultation' => 'Request a Consultation design',
+			'fane'         => 'FANE Africa page design',
+			'yamaha'       => 'Yamaha Rwanda page design',
+		);
+	}
+	public static function part_for( $design ) {
+		$map = array(
+			'home'         => 'template-parts/designs/home',
+			'about'        => 'template-parts/designs/about',
+			'contact'      => 'template-parts/contact-page',
+			'consultation' => 'template-parts/consult-page',
+			'fane'         => 'template-parts/designs/fane',
+			'yamaha'       => 'template-parts/designs/yamaha',
+		);
+		return isset( $map[ $design ] ) ? $map[ $design ] : '';
+	}
+	public function get_name() {
+		return 'scrw_page_design';
+	}
+	public function get_title() {
+		return 'SC Page Design';
+	}
+	public function get_icon() {
+		return 'eicon-single-page';
+	}
+	protected function register_controls() {
+		$this->start_controls_section( 'content', array( 'label' => 'Page design', 'tab' => Controls_Manager::TAB_CONTENT ) );
+		$this->add_control(
+			'design',
+			array(
+				'label'   => 'Design',
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'about',
+				'options' => self::designs(),
+			)
+		);
+		$this->add_control( 'note', array( 'type' => Controls_Manager::RAW_HTML, 'raw' => 'Shows the full designed layout. Edit its text and photos in Sound Creations &rarr; Settings. Add your own Elementor sections above or below it, or remove this block to build the page from scratch.' ) );
+		$this->end_controls_section();
+	}
+	protected function render() {
+		$st   = $this->get_settings_for_display();
+		$part = self::part_for( isset( $st['design'] ) ? (string) $st['design'] : '' );
+		if ( '' === $part ) {
+			return;
+		}
+		echo '<div class="scrw-page-design">';
+		get_template_part( $part );
+		echo '</div>';
+	}
+}
