@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_PROJECTS_VERSION', 'rw-projects-9' );
+define( 'SCRW_PROJECTS_VERSION', 'rw-projects-10' ); // rw-projects-10: photos for RPF Rubavu Multipurpose Hall.
 
 function scrw_projects() {
 	return array(
@@ -267,6 +267,12 @@ function scrw_seed_projects() {
 	// rw-projects-9: full-resolution originals for MINECOFIN and Ntare Louisenlund (Mulindi Hall exterior cover, auditorium second).
 	scrw_replace_project_photos( 'minecofin-conference-system', 'Ministry of Finance (MINECOFIN)', array( 'minecofin-hd' ) );
 	scrw_replace_project_photos( 'ntare-louisenlund-school', 'Ntare Louisenlund School', array( 'ntare-louisenlund-exterior-hd', 'ntare-louisenlund-hall-hd' ) );
+
+	// rw-projects-10: RPF Rubavu Multipurpose Hall had no photo. Same client
+	// (RPF Rubavu), same town and same concave-wall acoustic brief as the
+	// Intare Kivu Arena job, so it uses that venue's hall photos. Only adds a
+	// cover when the project has none (an editor's Featured Image is kept).
+	scrw_add_project_photos( 'rpf-rubavu-hall', 'RPF Rubavu Multipurpose Hall', array( 'intare-kivu-arena-hall-2', 'intare-kivu-arena-2' ), false );
 
 	// RPF Rubavu Multipurpose Hall (Core starter project, Rubavu) is a Rwanda
 	// project and is featured on the homepage, as on the group site.

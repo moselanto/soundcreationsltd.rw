@@ -73,11 +73,19 @@ $y_projects = array(
 	<div class="sc-container scrw-yh__grid">
 		<div class="scrw-yh__copy">
 			<?php echo sc_breadcrumb( array( array( 'Home', home_url( '/' ) ), array( 'Yamaha', '' ) ) ); // phpcs:ignore ?>
-			<p class="scrw-yh__badge"><span aria-hidden="true"></span><?php esc_html_e( 'Authorised Distributor in Rwanda', 'soundcreations-rwanda' ); ?></p>
 			<?php $y_logo = function_exists( 'sc_brand_logo_url' ) ? sc_brand_logo_url( 'yamaha' ) : ''; ?>
-			<?php if ( $y_logo ) : ?><img class="scrw-yh__logo" src="<?php echo esc_url( $y_logo ); ?>" alt="Yamaha" width="180" height="96" decoding="async" style="display:block;height:72px;width:auto;margin:0 0 1rem;background:#fff;padding:8px 14px;border-radius:10px;"><?php endif; ?>
-			<h1 class="scrw-yh__title"><?php esc_html_e( 'Yamaha in Rwanda, backed by Sound Creations.', 'soundcreations-rwanda' ); ?></h1>
-			<p class="scrw-yh__lead"><?php esc_html_e( 'Sound Creations Ltd Rwanda is the authorised Yamaha distributor in Rwanda. From mixing consoles and loudspeakers to keyboards, pianos, guitars and drums, we supply genuine Yamaha products with local stock, warranty and expert support from our Kigali showroom.', 'soundcreations-rwanda' ); ?></p>
+			<div class="scrw-yh__lockup">
+				<?php if ( $y_logo ) : ?><img class="scrw-yh__logo" src="<?php echo esc_url( $y_logo ); ?>" alt="Yamaha" width="187" height="100" decoding="async" fetchpriority="high"><?php endif; ?>
+				<span class="scrw-yh__lockup-sep" aria-hidden="true"></span>
+				<span class="scrw-yh__lockup-txt"><strong><?php esc_html_e( 'Authorised Distributor', 'soundcreations-rwanda' ); ?></strong><?php esc_html_e( 'Rwanda · Sound Creations Ltd', 'soundcreations-rwanda' ); ?></span>
+			</div>
+			<h1 class="scrw-yh__title"><?php esc_html_e( 'Genuine Yamaha, supplied and supported in Kigali.', 'soundcreations-rwanda' ); ?></h1>
+			<p class="scrw-yh__lead"><?php esc_html_e( 'Pro audio and musical instruments from the official Yamaha distributor in Rwanda: mixing consoles, loudspeakers, keyboards, pianos, guitars and drums, with local stock, full manufacturer warranty and expert setup from our team.', 'soundcreations-rwanda' ); ?></p>
+			<ul class="scrw-yh__points">
+				<li><?php esc_html_e( 'Official warranty', 'soundcreations-rwanda' ); ?></li>
+				<li><?php esc_html_e( 'In stock in Kigali', 'soundcreations-rwanda' ); ?></li>
+				<li><?php esc_html_e( 'Installation and training', 'soundcreations-rwanda' ); ?></li>
+			</ul>
 			<div class="scrw-yh__cta">
 				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( $y_shop ); ?>"><?php esc_html_e( 'Explore Yamaha products', 'soundcreations-rwanda' ); ?> <?php echo $y_arrow; // phpcs:ignore ?></a>
 				<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( $y_quote ); ?>"><?php esc_html_e( 'Request a quote', 'soundcreations-rwanda' ); ?></a>

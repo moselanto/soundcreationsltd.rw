@@ -796,3 +796,23 @@ html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 	.sc-header .sc-nav .sc-nav__list > li > a { padding-inline: .4rem; font-size: .82rem; }
 	.sc-header .sc-logo img { max-height: 38px; }
 }
+
+/* ---- Yamaha hub hero v2: logo lockup, tighter copy, proof points (2026-10-06) ---- */
+.scrw-yh__lockup { display: inline-flex; align-items: center; gap: 1.1rem; margin: 1.4rem 0 0; padding: .85rem 1.3rem .85rem 1.1rem; border-radius: 16px; background: linear-gradient(135deg, rgba(125,96,153,.16), rgba(75,30,120,.08)); border: 1px solid rgba(125,96,153,.35); }
+.scrw-yh__logo { display: block; height: 46px; width: auto; filter: brightness(0) invert(1); }
+.scrw-yh__lockup-sep { width: 1px; align-self: stretch; background: rgba(255,255,255,.22); }
+.scrw-yh__lockup-txt { display: flex; flex-direction: column; gap: .15rem; font-size: 12.5px; letter-spacing: .04em; color: var(--sc-muted); line-height: 1.3; }
+.scrw-yh__lockup-txt strong { font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #fff; }
+.scrw-yh__title { max-width: 16ch; }
+.scrw-yh__points { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.2rem 0 0; padding: 0; }
+.scrw-yh__points li { display: inline-flex; align-items: center; gap: .45rem; padding: .4rem .8rem; border-radius: 999px; background: rgba(255,255,255,.05); border: 1px solid var(--sc-border); font-size: 13px; font-weight: 600; }
+.scrw-yh__points li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #7D6099; box-shadow: 0 0 0 3px rgba(125,96,153,.25); }
+[data-theme="light"] .scrw-yh__lockup { background: #fff; border-color: rgba(75,30,120,.2); box-shadow: 0 10px 30px rgba(75,30,120,.08); }
+[data-theme="light"] .scrw-yh__logo { filter: none; }
+[data-theme="light"] .scrw-yh__lockup-sep { background: rgba(75,30,120,.2); }
+[data-theme="light"] .scrw-yh__lockup-txt strong { color: #4B1E78; }
+[data-theme="light"] .scrw-yh__points li { background: rgba(75,30,120,.04); }
+@media (max-width: 600px) {
+	.scrw-yh__lockup { gap: .8rem; padding: .7rem 1rem; }
+	.scrw-yh__logo { height: 36px; }
+}
