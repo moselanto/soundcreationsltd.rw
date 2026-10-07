@@ -68,6 +68,11 @@ $sc_email   = sc_setting( 'email' );
 						if ( '' === $sc_row[0] ) {
 							continue;
 						}
+						// Phones print on their own lines below the address, so skip any
+						// address line that is only phone numbers (stops the number showing twice).
+						if ( preg_match( '/^[\s\d+()|\/.-]+$/', $sc_row[0] ) && preg_match( '/\d{6,}/', preg_replace( '/\D/', '', $sc_row[0] ) ) ) {
+							continue;
+						}
 						echo '<span>' . esc_html( $sc_row[0] ) . '</span>';
 					}
 					if ( $sc_has_map ) {
