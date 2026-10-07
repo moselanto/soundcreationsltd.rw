@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_SEED_VERSION', 'rw-settings-10' ); // rw-settings-10: About tagline 'If it sounds good, it’s Sound Creations'. // rw-settings-9: stefic@ + fred@ contact emails, brand line in the top bar.
+define( 'SCRW_SEED_VERSION', 'rw-settings-11' ); // rw-settings-11: top bar lists Yamaha, FANE Africa, dB Technologies, Shure, Bose. // rw-settings-10: About tagline 'If it sounds good, it’s Sound Creations'. // rw-settings-9: stefic@ + fred@ contact emails, brand line in the top bar.
 
 /**
  * Rwanda values. Contact details are taken from the current live Rwanda site.
@@ -42,7 +42,7 @@ function scrw_settings() {
 		'hours_week'         => 'Mon-Fri: 9:00 AM - 6:00 PM',
 		'hours_sat'          => 'Sat: 9:00 AM - 1:30 PM',
 		'hours_sun'          => 'Sun: Closed',
-		'regions'            => 'Authorised Yamaha Distributor · FANE Africa Partner · Kigali',
+		'regions'            => 'Authorised Yamaha Distributor · FANE Africa · dB Technologies · Shure · Bose',
 		'whatsapp'           => '250783141050',
 		'whatsapp_prefill'   => 'Hello Sound Creations Rwanda, I would like to enquire about your services.',
 		'map_url'            => 'https://www.google.com/maps/search/?api=1&query=Sound+Creations+Ltd+KN1+Rd+Muhima+Kigali',
@@ -93,7 +93,7 @@ function scrw_superseded_settings() {
 		'hours_sat'    => array( 'Sat: Closed' ),
 		// rw-settings-9: main contact email and top-bar line.
 		'email'        => array( 'sales@soundcreationsltd.com', 'fred@soundcreationsltd.com' ),
-		'regions'      => array( 'Kigali · Rwanda · Part of the Sound Creations Ltd group' ),
+		'regions'      => array( 'Kigali · Rwanda · Part of the Sound Creations Ltd group', 'Authorised Yamaha Distributor · FANE Africa Partner · Kigali' ),
 		'footer_hours' => array( "Mon - Fri: 9 am - 6 pm\nSat - Sun: Closed" ),
 		// rw-settings-10: About tagline is the group line, without "Rwanda".
 		'about_hero_title'     => array( 'If it sounds good, it’s Sound Creations Rwanda' ),

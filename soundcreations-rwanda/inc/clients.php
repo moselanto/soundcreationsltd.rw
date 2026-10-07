@@ -88,8 +88,8 @@ function scrw_render_clients() {
 	<section class="sc-section scrw-clients" id="our-clients">
 		<div class="sc-container">
 			<div class="scrw-clients__head">
-				<p class="sc-eyebrow"><?php esc_html_e( 'Our Clients', 'soundcreations-rwanda' ); ?></p>
-				<h2><?php esc_html_e( 'Trusted by organisations across Rwanda.', 'soundcreations-rwanda' ); ?></h2>
+				<h2 class="scrw-clients__title"><?php esc_html_e( 'Our Clients', 'soundcreations-rwanda' ); ?></h2>
+				<p class="scrw-clients__sub"><?php esc_html_e( 'Trusted by organisations across Rwanda.', 'soundcreations-rwanda' ); ?></p>
 			</div>
 		</div>
 		<div class="scrw-clients__marquee" style="--scrw-dur:<?php echo (int) $secs; ?>s">
