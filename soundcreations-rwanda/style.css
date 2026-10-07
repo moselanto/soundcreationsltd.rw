@@ -834,3 +834,25 @@ html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 /* Our Clients heading: the section name leads, the tagline sits small under it. */
 .scrw-clients__head .scrw-clients__title { margin: 0; font-size: clamp(2rem, 1.4rem + 2.4vw, 3.1rem); line-height: 1.08; letter-spacing: -.02em; }
 .scrw-clients__head .scrw-clients__sub { margin: .55rem auto 0; max-width: 40ch; font-size: clamp(.95rem, .9rem + .25vw, 1.08rem); color: var(--sc-muted); font-weight: 400; }
+
+/* Our track record (2026-10-07): editorial header (title left, intro right)
+   and the three promises as a row of numbered cards underneath. */
+.scrw-done { position: relative; }
+.scrw-done::before { content: ""; position: absolute; inset: 0 0 auto; height: 420px; background: radial-gradient(60% 70% at 15% 0%, rgba(98,68,137,.22), transparent 70%), radial-gradient(40% 60% at 95% 10%, rgba(186,11,11,.12), transparent 70%); pointer-events: none; }
+.scrw-done > .sc-container { position: relative; }
+.scrw-done__head { display: block; max-width: none; margin-bottom: clamp(2rem, 1.4rem + 2.5vw, 3.2rem); }
+.scrw-done__intro { display: grid; grid-template-columns: 1.1fr 1fr; grid-template-areas: "eye eye" "title lead"; column-gap: clamp(1.5rem, 1rem + 3vw, 4rem); row-gap: .4rem; align-items: end; }
+.scrw-done__intro .sc-eyebrow { grid-area: eye; }
+.scrw-done__intro h2 { grid-area: title; margin: 0; font-size: clamp(2rem, 1.2rem + 2.6vw, 3.2rem); line-height: 1.05; max-width: 16ch; }
+.scrw-done__intro .sc-lead { grid-area: lead; margin: 0; padding-left: 1.25rem; border-left: 2px solid rgba(186,11,11,.6); font-size: clamp(1rem, .95rem + .3vw, 1.15rem); line-height: 1.6; }
+.scrw-done__values { counter-reset: scrw-val; margin-top: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem); padding: 0; border: 0; background: none; border-radius: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.scrw-done__values li, .scrw-done__values li + li { counter-increment: scrw-val; position: relative; flex-direction: column; gap: .9rem; padding: 1.4rem 1.4rem 1.5rem; border: 1px solid var(--sc-border); border-radius: 18px; background: var(--sc-surface); transition: transform .25s, border-color .25s, box-shadow .25s; }
+.scrw-done__values li::after { content: "0" counter(scrw-val); position: absolute; top: 1.2rem; right: 1.3rem; font-family: var(--sc-font-display); font-weight: 800; font-size: 1.6rem; letter-spacing: -.02em; color: rgba(127,127,140,.22); }
+.scrw-done__values li:hover { transform: translateY(-3px); border-color: rgba(186,11,11,.45); box-shadow: 0 18px 36px -24px rgba(0,0,0,.7); background: var(--sc-surface); }
+.scrw-done__vico { width: 46px; height: 46px; border-radius: 13px; }
+.scrw-done__values strong { font-size: 1.05rem; margin-bottom: .3rem; }
+.scrw-done__values span:not(.scrw-done__vico) { font-size: 14.5px; }
+@media (max-width: 900px) {
+  .scrw-done__intro { grid-template-columns: 1fr; grid-template-areas: "eye" "title" "lead"; row-gap: .8rem; }
+  .scrw-done__values { grid-template-columns: 1fr; }
+}

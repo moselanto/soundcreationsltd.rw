@@ -2579,3 +2579,25 @@ h1.sc-contactpage-hero__title { font-size: 30px; }
 /* Homepage section names (What We Do, Our Solutions): big titles, optional line under them small. */
 .sc-sechead .sc-home-sectitle { margin: 0; font-size: clamp(2rem, 1.4rem + 2.4vw, 3.1rem); line-height: 1.08; letter-spacing: -.02em; }
 .sc-sechead .sc-home-secsub { margin: .55rem 0 0; max-width: 46ch; font-size: clamp(.95rem, .9rem + .25vw, 1.08rem); color: var(--sc-muted); }
+
+/* Projects filter (2026-10-07): one compact toolbar. Category pills on the left,
+   search with an inline icon on the right; stacks on phones. */
+.sc-projfilters--bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem 1.5rem; flex-wrap: wrap; padding: .75rem .75rem .75rem 1.1rem; border-radius: 999px; box-shadow: 0 10px 30px -18px rgba(0,0,0,.55); }
+.sc-projfilters--bar .sc-projfilters__cats { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; min-width: 0; }
+.sc-projfilters--bar .sc-projfilters__label { margin: 0; white-space: nowrap; }
+.sc-projfilters--bar .sc-projfilters__pills { gap: .35rem; padding: .25rem; border: 1px solid var(--sc-border); border-radius: 999px; background: var(--sc-bg); }
+.sc-projfilters--bar .sc-projpill { border-color: transparent; padding: .5rem 1.05rem; font-size: .9rem; transition: background .2s, color .2s, box-shadow .2s; }
+.sc-projfilters--bar .sc-projpill:hover { border-color: transparent; background: rgba(127,127,140,.12); color: var(--sc-text); }
+.sc-projfilters--bar .sc-projpill.is-active { box-shadow: 0 6px 16px -6px rgba(186,11,11,.7); }
+.sc-projfilters--bar .sc-projctrl--search { position: relative; flex: 0 1 340px; min-width: 220px; }
+.sc-projfilters--bar .sc-projctrl__icon { position: absolute; left: 1rem; top: 50%; width: 17px; height: 17px; transform: translateY(-50%); color: var(--sc-muted); pointer-events: none; }
+.sc-projfilters--bar .sc-projctrl input { border-radius: 999px; padding: .75rem 1.1rem .75rem 2.6rem; }
+.sc-projfilters--bar .sc-projctrl input:focus { box-shadow: 0 0 0 3px rgba(186,11,11,.18); }
+@media (max-width: 860px) {
+  .sc-projfilters--bar { border-radius: var(--sc-radius-lg); padding: 1rem; }
+  .sc-projfilters--bar .sc-projfilters__cats { width: 100%; }
+  .sc-projfilters--bar .sc-projfilters__pills { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; }
+  .sc-projfilters--bar .sc-projfilters__pills::-webkit-scrollbar { display: none; }
+  .sc-projfilters--bar .sc-projpill { flex: none; }
+  .sc-projfilters--bar .sc-projctrl--search { flex: 1 1 100%; }
+}

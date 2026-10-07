@@ -111,22 +111,21 @@ if ( $sc_q->have_posts() ) {
 
 <section class="sc-section sc-projfilter-sec">
 	<div class="sc-container" data-sc-projfilter>
-		<div class="sc-projfilters">
-			<div class="sc-projfilters__row">
-				<span class="sc-projfilters__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg> <?php esc_html_e( 'Filter by Category', 'soundcreations' ); ?></span>
-				<div class="sc-projfilters__pills">
+		<div class="sc-projfilters sc-projfilters--bar">
+			<div class="sc-projfilters__cats">
+				<span class="sc-projfilters__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg> <?php esc_html_e( 'Filter by Category', 'soundcreations' ); ?></span>
+				<div class="sc-projfilters__pills" role="group" aria-label="<?php esc_attr_e( 'Filter by category', 'soundcreations' ); ?>">
 					<button type="button" class="sc-projpill is-active" data-proj-cat="all"><?php esc_html_e( 'All Projects', 'soundcreations' ); ?></button>
 					<?php foreach ( $sc_cat_pills as $c ) : ?>
 						<button type="button" class="sc-projpill" data-proj-cat="<?php echo esc_attr( sanitize_title( $c ) ); ?>"><?php echo esc_html( $c ); ?></button>
 					<?php endforeach; ?>
 				</div>
 			</div>
-			<div class="sc-projfilters__row sc-projfilters__row--controls">
-				<label class="sc-projctrl sc-projctrl--search">
-					<span class="sc-projfilters__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> <?php esc_html_e( 'Search Projects', 'soundcreations' ); ?></span>
-					<input type="search" data-proj-search placeholder="<?php esc_attr_e( 'Search project, venue or solution...', 'soundcreations' ); ?>">
-				</label>
-			</div>
+			<label class="sc-projctrl sc-projctrl--search">
+				<span class="screen-reader-text"><?php esc_html_e( 'Search Projects', 'soundcreations' ); ?></span>
+				<svg class="sc-projctrl__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+				<input type="search" data-proj-search placeholder="<?php esc_attr_e( 'Search project, venue or solution...', 'soundcreations' ); ?>">
+			</label>
 		</div>
 
 		<div class="sc-projfeat-head">
