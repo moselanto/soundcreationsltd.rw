@@ -71,6 +71,7 @@ function scrw_complete_case_studies() {
 		'Ministry of Finance (MINECOFIN)' => '/projects/minecofin-conference-system/',
 		'Atelier du Vin'                  => '/projects/atelier-du-vin/',
 		'Romantic Garden'                 => '/projects/romantic-garden/',
+		'Jalia Events Venue'              => '/projects/jalia-events-venue/',
 	);
 }
 

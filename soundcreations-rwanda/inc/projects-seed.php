@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_PROJECTS_VERSION', 'rw-projects-10' ); // rw-projects-10: photos for RPF Rubavu Multipurpose Hall.
+define( 'SCRW_PROJECTS_VERSION', 'rw-projects-11' ); // rw-projects-11: RPF Rubavu merged into Intare Kivu Arena; new photos; Jalia Events Venue.
 
 function scrw_projects() {
 	return array(
@@ -113,6 +113,22 @@ function scrw_projects() {
 			'technology' => "dB Technologies Opera 15 and Opera 12 loudspeakers\ndB Technologies Sub 618 subwoofer\ndB Technologies B-Hype 10 loudspeakers\nYamaha TF5 digital mixing console",
 			'result'     => 'Clear, powerful sound for speech and music that adapts to every event.',
 			'content'    => 'Sound Creations Rwanda designed and installed the sound system at Romantic Garden.',
+		),
+		array(
+			'title'      => 'Jalia Events Venue',
+			'slug'       => 'jalia-events-venue',
+			'industry'   => 'Hospitality',
+			'images'     => array( 'jalia-events-venue-exterior' ),
+			'summary'    => 'Sound for Jalia Events Venue in Kigali, a modern events hall built for weddings, conferences and private functions.',
+			'client'     => 'Jalia Events Venue',
+			'location'   => 'Kigali, Rwanda',
+			'scope'      => 'Sound system design and installation',
+			'brands'     => '',
+			'challenge'  => 'The hall hosts weddings, conferences and private functions, so it needed sound that works for speeches, music and events of different sizes.',
+			'solution'   => 'We designed and installed a sound system sized for the hall, giving clear speech and full music across the room.',
+			'technology' => '',
+			'result'     => 'Clear, dependable sound for every kind of event the venue hosts.',
+			'content'    => 'Sound Creations Rwanda designed and installed the sound system at Jalia Events Venue.',
 		),
 	);
 }
@@ -268,20 +284,35 @@ function scrw_seed_projects() {
 	scrw_replace_project_photos( 'minecofin-conference-system', 'Ministry of Finance (MINECOFIN)', array( 'minecofin-hd' ) );
 	scrw_replace_project_photos( 'ntare-louisenlund-school', 'Ntare Louisenlund School', array( 'ntare-louisenlund-exterior-hd', 'ntare-louisenlund-hall-hd' ) );
 
-	// rw-projects-10: RPF Rubavu Multipurpose Hall had no photo. Same client
-	// (RPF Rubavu), same town and same concave-wall acoustic brief as the
-	// Intare Kivu Arena job, so it uses that venue's hall photos. Only adds a
-	// cover when the project has none (an editor's Featured Image is kept).
-	scrw_add_project_photos( 'rpf-rubavu-hall', 'RPF Rubavu Multipurpose Hall', array( 'intare-kivu-arena-hall-2', 'intare-kivu-arena-2' ), false );
+	// rw-projects-11: new photos from the client. Atelier du Vin and Romantic Garden
+	// get new covers (earlier photos stay after them); Christian Life Assembly gets
+	// one more stage photo at the end of its gallery.
+	scrw_add_project_photos( 'atelier-du-vin', 'Atelier du Vin', array( 'atelier-du-vin-evening' ) );
+	scrw_add_project_photos( 'romantic-garden', 'Romantic Garden', array( 'romantic-garden-exterior-hd' ) );
+	scrw_add_project_photos( 'christian-life-assembly-church', 'Christian Life Assembly Church', array( 'christian-life-assembly-stage-2' ), false );
 
-	// RPF Rubavu Multipurpose Hall (Core starter project, Rubavu) is a Rwanda
-	// project and is featured on the homepage, as on the group site.
-	// rw-projects-1 had drafted it; publish it again.
+	// rw-projects-11: RPF Rubavu Multipurpose Hall is the same venue as Intare
+	// Kivu Arena (client RPF Rubavu). Keep one case study: the Core starter copy
+	// is taken offline and its old URL redirects to Intare Kivu Arena.
 	$rpf = get_page_by_path( 'rpf-rubavu-hall', OBJECT, 'sc_project' );
-	if ( $rpf && 'draft' === $rpf->post_status ) {
-		wp_update_post( array( 'ID' => $rpf->ID, 'post_status' => 'publish' ) );
+	if ( $rpf && 'publish' === $rpf->post_status ) {
+		wp_update_post( array( 'ID' => $rpf->ID, 'post_status' => 'draft' ) );
 	}
 }
+
+/** Old RPF Rubavu Multipurpose Hall URL: same venue as Intare Kivu Arena. */
+add_action(
+	'template_redirect',
+	function () {
+		$path = trim( (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '', PHP_URL_PATH ), '/' );
+		if ( preg_match( '#(^|/)rpf-rubavu-hall$#', $path ) ) {
+			$to = get_page_by_path( 'intare-kivu-arena', OBJECT, 'sc_project' );
+			wp_safe_redirect( $to ? get_permalink( $to ) : home_url( '/projects/' ), 301 );
+			exit;
+		}
+	},
+	1
+);
 
 add_action(
 	'admin_init',
