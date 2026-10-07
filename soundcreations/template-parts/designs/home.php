@@ -66,8 +66,8 @@ else :
 	<div class="sc-container">
 		<div class="sc-sechead">
 			<div>
-				<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'home_whatwedo_eyebrow', 'What We Do' ) ); ?></p>
-				<?php $sc_ww_t = trim( (string) sc_setting( 'home_whatwedo_title', '' ) ); if ( '' !== $sc_ww_t ) : ?><h2 style="margin:0;"><?php echo esc_html( $sc_ww_t ); ?></h2><?php endif; ?>
+				<h2 class="sc-home-sectitle"><?php echo esc_html( sc_setting( 'home_whatwedo_eyebrow', 'What We Do' ) ); ?></h2>
+				<?php $sc_ww_t = trim( (string) sc_setting( 'home_whatwedo_title', '' ) ); if ( '' !== $sc_ww_t ) : ?><p class="sc-home-secsub"><?php echo esc_html( $sc_ww_t ); ?></p><?php endif; ?>
 				<?php $sc_ww_l = trim( (string) sc_setting( 'home_whatwedo_lead', '' ) ); if ( '' !== $sc_ww_l ) : ?><p class="sc-lead" style="margin:.4rem 0 0;"><?php echo sc_rich_e( $sc_ww_l ); ?></p><?php endif; ?>
 			</div>
 		</div>
@@ -159,8 +159,8 @@ else :
 	<div class="sc-container">
 		<div class="sc-sechead">
 			<div>
-				<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'home_solutions_eyebrow', 'Our Solutions' ) ); ?></p>
-				<?php $sc_sol_t = trim( (string) sc_setting( 'home_solutions_title', '' ) ); if ( '' !== $sc_sol_t ) : ?><h2 style="margin:0;"><?php echo esc_html( $sc_sol_t ); ?></h2><?php endif; ?>
+				<h2 class="sc-home-sectitle"><?php echo esc_html( sc_setting( 'home_solutions_eyebrow', 'Our Solutions' ) ); ?></h2>
+				<?php $sc_sol_t = trim( (string) sc_setting( 'home_solutions_title', '' ) ); if ( '' !== $sc_sol_t ) : ?><p class="sc-home-secsub"><?php echo esc_html( $sc_sol_t ); ?></p><?php endif; ?>
 			</div>
 		</div>
 		<div class="sc-solgrid">
@@ -185,7 +185,7 @@ else :
 			$sc_sols = apply_filters( 'sc_home_solutions', array(
 				array( 'solution-db3.webp', 'Professional Audio', 'Powerful, intelligible and reliable sound systems designed around your room and application.', '/solutions/professional-audio/', 'home_sol1_img', array( 'professional audio', 'audio' ) ),
 				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/', 'home_sol2_img', array( 'acoustic' ) ),
-				array( 'solution-av-integration.jpg', 'Sound & Acoustic Integration', 'Professional sound and acoustic systems, installed, commissioned and calibrated by our technical team.', '/solutions/installation/', 'home_sol3_img', array( 'integ', 'installation' ) ),
+				array( 'solution-av-integration.jpg', 'Installation', 'Professional sound and acoustic systems, installed, commissioned and calibrated by our technical team.', '/solutions/installation/', 'home_sol3_img', array( 'integ', 'installation' ) ),
 			) );
 			foreach ( $sc_sols as $sc_so ) :
 				$sc_img  = apply_filters( 'sc_home_solution_img', sc_setting( $sc_so[4], SC_THEME_URI . '/assets/img/home/' . $sc_so[0] ), $sc_so[4] );

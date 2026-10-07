@@ -2575,3 +2575,7 @@ h1.sc-contactpage-hero__title { font-size: 30px; }
 .sc-partners[data-sc-partners]:not(.is-ready) .sc-partners__track { animation-play-state: paused; }
 @keyframes sc-partners-show { to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .sc-partners[data-sc-partners] { opacity: 1; animation: none; } }
+
+/* Homepage section names (What We Do, Our Solutions): big titles, optional line under them small. */
+.sc-sechead .sc-home-sectitle { margin: 0; font-size: clamp(2rem, 1.4rem + 2.4vw, 3.1rem); line-height: 1.08; letter-spacing: -.02em; }
+.sc-sechead .sc-home-secsub { margin: .55rem 0 0; max-width: 46ch; font-size: clamp(.95rem, .9rem + .25vw, 1.08rem); color: var(--sc-muted); }
