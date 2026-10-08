@@ -1,19 +1,23 @@
 <?php
 /**
- * Section titles, site-wide (owner request 2026-10-08).
+ * Section and page titles, site-wide (owner request 2026-10-08).
  *
- * Every section head on the front end is written as a small coloured label
- * (p.sc-eyebrow) followed by a heading (h2). The owner wants the section name
- * to be the big title and the sentence under it small, as on the homepage.
- * This swaps the two at output time, so it covers theme templates, shortcodes
- * and Elementor widgets alike:
+ * Every title on the front end is written as a small coloured label
+ * (p.sc-eyebrow) followed by a heading (h1 or h2). The owner wants the label
+ * to be the big heading and the heading text to become the small line under
+ * it, on every page. This swaps the two at output time, so it covers theme
+ * templates, shortcodes and Elementor widgets alike:
  *
- *   <p class="sc-eyebrow">Our Clients</p><h2>Trusted by ...</h2>
+ *   <p class="sc-eyebrow">Our Projects</p><h1 class="x">Real solutions.</h1>
  *   becomes
- *   <h2 class="sc-sectitle">Our Clients</h2><p class="sc-secsub">Trusted by ...</p>
+ *   <h1 class="x sc-sectitle">Our Projects</h1><p class="sc-secsub sc-secsub--h1">Real solutions.</p>
  *
- * Page heroes (label + h1) are left alone. Turn the whole thing off with
- *   add_filter( 'scrw_swap_section_titles', '__return_false' );
+ * Exception: on a single product, project, brand, resource, service or
+ * solution page the h1 is the item's own name (e.g. "Yamaha TF5") and the
+ * label is only its category, so that h1 is kept; its h2 sections still swap.
+ * Filters:
+ *   scrw_swap_section_titles  (bool)  false turns the whole feature off.
+ *   scrw_swap_page_titles     (bool)  false keeps every h1 as it is.
  *
  * @package SoundCreationsRwanda
  */
@@ -22,26 +26,30 @@ if ( defined( 'ABSPATH' ) === false ) {
 	exit;
 }
 
-/** Swap every "label then h2" pair in a chunk of HTML. */
+/** Swap every "label then h1/h2" pair in a chunk of HTML. */
 function scrw_swap_section_titles( $html ) {
 	if ( ! is_string( $html ) || false === strpos( $html, 'sc-eyebrow' ) ) {
 		return $html;
 	}
-	$pattern = '#<p\s+class="sc-eyebrow"\s*>(.*?)</p>(\s*)<h2((?:\s+[^>]*)?)>(.*?)</h2>#s';
+	$pattern = '#<p\s+class="(?:[^"]*\s)?sc-eyebrow(?:\s[^"]*)?"[^>]*>(.*?)</p>(\s*)<(h[12])((?:\s+[^>]*)?)>(.*?)</\3>#s';
 	$out     = preg_replace_callback(
 		$pattern,
 		function ( $m ) {
 			$label = trim( $m[1] );
-			$title = trim( $m[4] );
-			if ( '' === $label || false !== strpos( $label, '<h' ) ) {
+			$tag   = strtolower( $m[3] );
+			$title = trim( $m[5] );
+			if ( '' === $label || '' === $title || false !== strpos( $label, '<h' ) ) {
 				return $m[0];
 			}
-			// Keep the h2's id (anchor links) and any extra classes; drop inline styles.
-			$attrs = (string) $m[3];
+			if ( 'h1' === $tag && empty( $GLOBALS['scrw_swap_h1'] ) ) {
+				return $m[0];
+			}
+			// Keep the heading's id (anchor links) and its classes; drop inline styles.
+			$attrs = (string) $m[4];
 			$id    = preg_match( '#\sid="([^"]*)"#', $attrs, $im ) ? ' id="' . $im[1] . '"' : '';
-			$extra = preg_match( '#\sclass="([^"]*)"#', $attrs, $cm ) ? ' ' . $cm[1] : '';
-			return '<h2 class="sc-sectitle' . $extra . '"' . $id . '>' . $label . '</h2>' . $m[2]
-				. '<p class="sc-secsub">' . $title . '</p>';
+			$cls   = preg_match( '#\sclass="([^"]*)"#', $attrs, $cm ) ? $cm[1] . ' ' : '';
+			return '<' . $tag . ' class="' . $cls . 'sc-sectitle"' . $id . '>' . $label . '</' . $tag . '>' . $m[2]
+				. '<p class="sc-secsub sc-secsub--' . $tag . '">' . $title . '</p>';
 		},
 		$html
 	);
@@ -60,6 +68,8 @@ add_action(
 		if ( ! apply_filters( 'scrw_swap_section_titles', true ) ) {
 			return;
 		}
+		$item_page             = is_singular( array( 'sc_product', 'sc_project', 'sc_brand', 'sc_resource', 'sc_service', 'sc_solution', 'post' ) );
+		$GLOBALS['scrw_swap_h1'] = ( ! $item_page ) && apply_filters( 'scrw_swap_page_titles', true );
 		ob_start( 'scrw_swap_section_titles' );
 	},
 	0

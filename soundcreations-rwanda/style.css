@@ -966,3 +966,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 .sc-brands-stat span:not(.sc-brands-stat__icon) { font-size: .82rem; align-self: start; }
 @media (max-width: 900px) { .sc-brands-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 420px) { .sc-brands-stats { grid-template-columns: 1fr; } }
+
+/* Page titles swapped too (2026-10-08 v2): the hero h1 keeps its own hero
+   size; the former headline sits under it as a larger intro line. */
+.sc-sectitle { text-transform: none; }
+p.sc-secsub--h1, .sc-section p.sc-secsub--h1 { margin: .7rem 0 0; max-width: 34ch; font-family: var(--sc-font-display); font-size: clamp(1.15rem, 1rem + .7vw, 1.5rem); font-weight: 600; line-height: 1.3; letter-spacing: -.01em; color: var(--sc-text); opacity: .82; }
