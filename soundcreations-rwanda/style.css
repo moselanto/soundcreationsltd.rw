@@ -890,3 +890,29 @@ html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 .scrw-done__intro .sc-lead { margin-top: 1rem; max-width: 70ch; }
 /* Yamaha and other split section heads keep the link aligned to the bottom. */
 .scrw-ysec-head h2.sc-sectitle { max-width: 20ch; }
+
+/* Brands page: "Why professionals trust our products" (2026-10-08).
+   Header across the top (title left, intro right), then the four proof
+   points as raised stat cards with large gradient figures. */
+.sc-brands-why { display: block; position: relative; }
+.sc-brands-why::before { content: ""; position: absolute; inset: -2rem 0 auto; height: 360px; background: radial-gradient(55% 70% at 10% 0%, rgba(98,68,137,.2), transparent 70%), radial-gradient(35% 55% at 95% 20%, rgba(186,11,11,.1), transparent 70%); pointer-events: none; z-index: 0; }
+.sc-brands-why > * { position: relative; z-index: 1; }
+.sc-brands-why__intro { display: grid; grid-template-columns: 1.1fr 1fr; column-gap: clamp(1.5rem, 1rem + 3vw, 4rem); align-items: end; margin-bottom: clamp(1.8rem, 1.3rem + 2vw, 2.8rem); }
+.sc-brands-why__intro > :not(:last-child) { grid-column: 1; }
+.sc-brands-why__intro > p:last-child { grid-column: 2; grid-row: 1 / span 2; align-self: end; margin: 0; padding-left: 1.25rem; border-left: 2px solid rgba(186,11,11,.6); font-size: clamp(1rem, .95rem + .3vw, 1.12rem); line-height: 1.6; color: var(--sc-muted); }
+.sc-brands-why__intro h2 { font-size: clamp(2rem, 1.4rem + 2.4vw, 3.1rem); line-height: 1.08; letter-spacing: -.02em; max-width: 18ch; }
+.sc-brands-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.sc-brands-stat { position: relative; gap: .5rem; padding: 1.5rem 1.4rem 1.6rem; border: 1px solid var(--sc-border); border-radius: 18px; background: var(--sc-surface); overflow: hidden; transition: transform .25s, border-color .25s, box-shadow .25s; }
+.sc-brands-stat::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, #624489, #BA0B0B); opacity: 0; transition: opacity .25s; }
+.sc-brands-stat:hover { transform: translateY(-3px); border-color: rgba(98,68,137,.55); box-shadow: 0 18px 36px -24px rgba(0,0,0,.75); }
+.sc-brands-stat:hover::before { opacity: 1; }
+.sc-brands-stat__icon { width: 48px; height: 48px; border-radius: 13px; margin-bottom: .6rem; color: #d4b8f5; background: linear-gradient(135deg, rgba(186,11,11,.18), rgba(98,68,137,.28)); }
+[data-theme="light"] .sc-brands-stat__icon { color: #624489; }
+.sc-brands-stat strong { font-family: var(--sc-font-display); font-size: clamp(1.9rem, 1.4rem + 1.4vw, 2.5rem); font-weight: 800; letter-spacing: -.03em; line-height: 1; background: linear-gradient(120deg, var(--sc-text) 30%, #c9a8f0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sc-brands-stat span:not(.sc-brands-stat__icon) { font-size: .95rem; font-weight: 600; color: var(--sc-text); opacity: .85; }
+@media (max-width: 900px) {
+  .sc-brands-why__intro { grid-template-columns: 1fr; row-gap: .8rem; }
+  .sc-brands-why__intro > p:last-child { grid-column: 1; grid-row: auto; }
+  .sc-brands-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) { .sc-brands-stat { padding: 1.2rem 1.1rem; } }
