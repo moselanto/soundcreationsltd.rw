@@ -998,3 +998,24 @@ p.sc-secsub--h1, .sc-section p.sc-secsub--h1 { margin: .7rem 0 0; max-width: 34c
   .scrw-fanef__range { grid-template-columns: repeat(3, 72%); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .scrw-fanef__range li { scroll-snap-align: start; }
 }
+
+/* FANE Africa page inside the Brands page (2026-10-08 v2, replaces the top panel). */
+.scrw-fane-embed { position: relative; margin-top: clamp(1rem, .6rem + 1.5vw, 2rem); padding-top: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-top: 1px solid var(--sc-border); background: radial-gradient(60% 40% at 15% 0%, rgba(186,11,11,.12), transparent 70%); }
+.scrw-fane-embed__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; }
+.scrw-fane-embed__badge { display: inline-flex; align-items: center; gap: .5rem; margin: 0; padding: .4rem .8rem; border-radius: 999px; border: 1px solid rgba(186,11,11,.45); background: rgba(186,11,11,.12); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #ff8a8a; }
+.scrw-fane-embed__badge span { width: 7px; height: 7px; border-radius: 50%; background: #e02424; box-shadow: 0 0 0 4px rgba(224,36,36,.2); }
+[data-theme="light"] .scrw-fane-embed__badge { color: #a10d0d; }
+.scrw-fane-embed__link { font-weight: 700; font-size: 14px; color: var(--sc-text); text-decoration: none; border-bottom: 1px solid var(--sc-border); padding-bottom: 2px; }
+.scrw-fane-embed__link:hover { color: #e04848; border-color: #e04848; }
+.scrw-fane-embed .sc-fane-hero { padding-top: clamp(1.25rem, 1rem + 1.5vw, 2rem); }
+.scrw-fane-embed h2.sc-fane-hero__title { font-size: clamp(2rem, 1.3rem + 2.6vw, 3.2rem); line-height: 1.05; }
+
+/* Main menu, larger (2026-10-08): with FANE Africa out of the bar there is
+   room for bigger, easier-to-read menu text on desktop. */
+@media (min-width: 1181px) {
+  .sc-header .sc-nav .sc-nav__list { gap: clamp(.2rem, .1rem + .4vw, .55rem); }
+  .sc-header .sc-nav .sc-nav__list > li > a { padding: .55rem clamp(.55rem, .3rem + .4vw, .8rem); font-size: clamp(1rem, .9rem + .2vw, 1.08rem); }
+}
+@media (min-width: 783px) and (max-width: 1180px) {
+  .sc-header .sc-nav .sc-nav__list > li > a { padding: .5rem .5rem; font-size: .95rem; }
+}

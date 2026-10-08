@@ -67,11 +67,6 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 	</div>
 </section>
 
-<?php
-// Child themes can feature a partner brand here (Rwanda: FANE Africa).
-do_action( 'sc_brands_after_hero' );
-?>
-
 <section class="sc-section sc-fane-alt">
 	<div class="sc-container">
 		<div class="sc-res-head">
@@ -173,6 +168,11 @@ do_action( 'sc_brands_after_hero' );
 		</div>
 	</div>
 </section>
+
+<?php
+// Child themes can feature a partner brand here (Rwanda: the FANE Africa page).
+do_action( 'sc_brands_after_why' );
+?>
 
 <section class="sc-section">
 	<div class="sc-container">
