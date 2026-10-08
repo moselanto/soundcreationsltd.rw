@@ -97,7 +97,7 @@ $y_projects = array(
 			</div>
 		</div>
 		<figure class="scrw-yh__media">
-			<img src="<?php echo esc_url( $y_img . 'yamaha-hero-products.webp' ); ?>" alt="<?php esc_attr_e( 'Yamaha TF5 and DM3 digital mixers, MG16XU mixer, DBR12 loudspeakers, HS8 studio monitor, PSR-SX keyboard and F310 guitar', 'soundcreations-rwanda' ); ?>" width="1400" height="1120" fetchpriority="high" decoding="async">
+			<img src="<?php echo esc_url( $y_img . 'yamaha-hero-products.webp' ); ?>" alt="<?php esc_attr_e( 'Yamaha TF5 and DM3 digital mixers, MG16XU mixer, DBR12 loudspeakers, HS8 studio monitor, PSR-SX keyboard and F310 guitar', 'soundcreations-rwanda' ); ?>" width="1400" height="821" fetchpriority="high" decoding="async">
 			<figcaption class="scrw-yh__tag"><strong><?php esc_html_e( 'The Yamaha range, in stock', 'soundcreations-rwanda' ); ?></strong><span><?php esc_html_e( 'Consoles, speakers, monitors and instruments. See them at KN1 Rd, Muhima.', 'soundcreations-rwanda' ); ?></span></figcaption>
 		</figure>
 	</div>

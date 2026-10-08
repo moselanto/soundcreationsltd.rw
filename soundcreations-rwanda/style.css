@@ -939,3 +939,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 110px; }
   .scrw-done__head { grid-template-columns: 1fr; }
   .scrw-done__values { padding-top: .4rem; border-top: 1px solid var(--sc-border); }
 }
+
+/* Yamaha hero image, blended (2026-10-08): the product line-up is now a
+   transparent cut-out, so the card frame is removed and the products sit
+   straight on the hero background over a soft purple glow. */
+.scrw-yh__media { aspect-ratio: auto; overflow: visible; border: 0; border-radius: 0; box-shadow: none; background: none; isolation: isolate; }
+.scrw-yh__media::before { content: ""; position: absolute; inset: -12% -8% -6%; z-index: -1; background: radial-gradient(closest-side, rgba(98,68,137,.42), rgba(98,68,137,.12) 55%, transparent 75%); filter: blur(10px); pointer-events: none; }
+.scrw-yh__media img { width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 24px 30px rgba(0,0,0,.45)); }
+.scrw-yh__tag { left: 50%; bottom: -.5rem; transform: translateX(-50%); width: max-content; max-width: 92%; text-align: center; }
+[data-theme="light"] .scrw-yh__media::before { background: radial-gradient(closest-side, rgba(98,68,137,.18), transparent 72%); }
+@media (max-width: 900px) { .scrw-yh__tag { position: static; transform: none; margin: .8rem auto 0; } }
