@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_MENU_VERSION', 'rw-menu-7' ); // rw-menu-7: Brands in the main bar, Products under About.
+define( 'SCRW_MENU_VERSION', 'rw-menu-8' ); // rw-menu-8: FANE Africa out of the main bar (now featured on /brands/). rw-menu-7: Brands in the main bar, Products under About.
 
 /*
  * rw-menu-2: same top-level menu as soundcreationsltd.com (flat, no
@@ -29,7 +29,6 @@ function scrw_menu_tree() {
 		array( 'Brands', '/brands/', array() ),
 		array( 'Projects', '/projects/', array() ),
 		array( 'YAMAHA', '/yamaha/', array(), 'scrw-nav-brand scrw-nav-brand--yamaha' ),
-		array( 'FANE AFRICA', '/fane/', array(), 'scrw-nav-brand scrw-nav-brand--fane' ),
 		array(
 			'About',
 			'/about/',
@@ -122,4 +121,39 @@ add_action(
 		update_option( 'scrw_menu_ver', SCRW_MENU_VERSION );
 	},
 	45
+);
+
+/*
+ * rw-menu-8 (management request, 8 Oct 2026): FANE Africa is no longer a top
+ * menu item; it is featured on the Brands page instead. This also removes a
+ * FANE link from any menu edited by hand in Appearance -> Menus, and keeps
+ * "Brands" highlighted while a visitor is on the /fane/ page.
+ */
+function scrw_is_fane_url( $url ) {
+	$path = trim( (string) wp_parse_url( (string) $url, PHP_URL_PATH ), '/' );
+	return 'fane' === $path;
+}
+
+add_filter(
+	'wp_nav_menu_objects',
+	function ( $items, $args ) {
+		if ( empty( $args->theme_location ) || 'primary' !== $args->theme_location ) {
+			return $items;
+		}
+		$on_fane = is_page( 'fane' );
+		$out     = array();
+		foreach ( (array) $items as $item ) {
+			if ( 0 === (int) $item->menu_item_parent && scrw_is_fane_url( $item->url ) ) {
+				continue;
+			}
+			if ( $on_fane && 'brands' === trim( (string) wp_parse_url( (string) $item->url, PHP_URL_PATH ), '/' ) ) {
+				$item->classes   = array_merge( (array) $item->classes, array( 'current-menu-item' ) );
+				$item->current   = true;
+			}
+			$out[] = $item;
+		}
+		return $out;
+	},
+	10,
+	2
 );
