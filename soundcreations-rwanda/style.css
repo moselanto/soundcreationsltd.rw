@@ -949,3 +949,20 @@ html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 .scrw-yh__tag { left: 50%; bottom: -.5rem; transform: translateX(-50%); width: max-content; max-width: 92%; text-align: center; }
 [data-theme="light"] .scrw-yh__media::before { background: radial-gradient(closest-side, rgba(98,68,137,.18), transparent 72%); }
 @media (max-width: 900px) { .scrw-yh__tag { position: static; transform: none; margin: .8rem auto 0; } }
+
+/* Brands "Why professionals trust our products", compact (2026-10-08 v2):
+   smaller title, less spacing, stat cards as short horizontal rows. */
+.sc-section:has(> .sc-brands-why) { padding-block: clamp(1.75rem, 1.2rem + 2vw, 3rem); }
+.sc-brands-why::before { height: 240px; opacity: .6; }
+.sc-brands-why__intro { margin-bottom: clamp(1rem, .8rem + 1vw, 1.5rem); column-gap: clamp(1.25rem, 1rem + 2vw, 3rem); }
+.sc-brands-why .sc-brands-why__intro h2, .sc-brands-why .sc-brands-why__intro h2.sc-sectitle { font-size: clamp(1.45rem, 1.1rem + 1.3vw, 2.05rem); line-height: 1.15; max-width: 24ch; margin: 0; }
+.sc-brands-why .sc-brands-why__intro p.sc-secsub { margin-top: .3rem; font-size: .98rem; }
+.sc-brands-why__intro > p:last-child { font-size: .95rem; line-height: 1.55; padding-left: 1rem; }
+.sc-brands-stats { gap: .75rem; }
+.sc-brands-stat { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: .8rem; row-gap: .1rem; align-items: center; padding: .9rem 1rem; border-radius: 14px; }
+.sc-brands-stat__icon { grid-row: 1 / span 2; width: 40px; height: 40px; border-radius: 11px; margin: 0; }
+.sc-brands-stat__icon svg { width: 20px; height: 20px; }
+.sc-brands-stat strong { font-size: clamp(1.3rem, 1.1rem + .6vw, 1.6rem); align-self: end; }
+.sc-brands-stat span:not(.sc-brands-stat__icon) { font-size: .82rem; align-self: start; }
+@media (max-width: 900px) { .sc-brands-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .sc-brands-stats { grid-template-columns: 1fr; } }
