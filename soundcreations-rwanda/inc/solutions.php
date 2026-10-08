@@ -54,7 +54,7 @@ add_filter(
 	function () {
 		return array(
 			array( 'Clubs and Bars', 'An effortless guest experience', 'Warm, even coverage that keeps conversation easy and the energy right - consistent, refined audio for clubs, bars, lounges and event gardens, as at Romantic Garden and Atelier du Vin in Kigali.', scrw_img( 'projects/romantic-garden-exterior-hd.webp' ) ),
-			array( 'Worship', 'Every word, every seat', 'Intelligible speech and full-range music for services of any style, engineered around your room - as at Christian Life Assembly, Kigali.', scrw_img( 'projects/christian-life-assembly-worship.webp' ) ),
+			array( 'Houses of Worship', 'Every word, every seat', 'Intelligible speech and full-range music for services of any style, engineered around your room - as at Christian Life Assembly, Kigali.', scrw_img( 'projects/christian-life-assembly-worship.webp' ) ),
 			array( 'Live Performance & Events', 'Built for the moment', 'Line arrays, subwoofers, monitoring and digital mixing for conferences, ceremonies and concerts - as at Intare Kivu Arena, Rubavu.', scrw_img( 'projects/intare-kivu-arena-hall-2.webp' ) ),
 			array( 'Corporate & Conferencing', 'Heard, clearly', 'Conference microphones and loudspeakers for boardrooms and hybrid meetings where every voice has to land - as at the Ministry of Finance (MINECOFIN).', scrw_img( 'projects/minecofin-hd.webp' ) ),
 			array( 'Education', 'Clarity that carries', 'Reliable, easy-to-run sound for school halls, lecture rooms and auditoriums, from the front row to the back - as at Ntare Louisenlund School.', scrw_img( 'projects/ntare-louisenlund-hall-hd.webp' ) ),

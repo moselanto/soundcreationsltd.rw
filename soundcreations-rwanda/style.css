@@ -879,3 +879,14 @@ html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 @media (max-width: 600px) {
   .scrw-ytrust__item { border-bottom: 1px solid var(--sc-border); flex-direction: row; }
 }
+
+/* Site-wide section titles (2026-10-08): the section name is the big title,
+   the sentence under it is small. Markup is swapped in inc/section-titles.php. */
+.sc-section h2.sc-sectitle, h2.sc-sectitle { margin: 0; font-size: clamp(2rem, 1.4rem + 2.4vw, 3.1rem); line-height: 1.08; letter-spacing: -.02em; text-transform: none; text-wrap: balance; }
+.sc-section p.sc-secsub, p.sc-secsub { margin: .55rem 0 0; font-family: var(--sc-font-body); font-size: clamp(1rem, .95rem + .3vw, 1.15rem); font-weight: 400; line-height: 1.5; letter-spacing: 0; color: var(--sc-muted); text-transform: none; }
+.sc-secsub + .sc-lead { margin-top: .9rem; }
+/* Track record header: stack title, sentence and intro in one column. */
+.scrw-done__intro { display: block; }
+.scrw-done__intro .sc-lead { margin-top: 1rem; max-width: 70ch; }
+/* Yamaha and other split section heads keep the link aligned to the bottom. */
+.scrw-ysec-head h2.sc-sectitle { max-width: 20ch; }

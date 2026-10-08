@@ -38,6 +38,7 @@ require_once SCRW_DIR . 'inc/seo.php';
 require_once SCRW_DIR . 'inc/seo-boost.php';
 require_once SCRW_DIR . 'inc/analytics.php';
 require_once SCRW_DIR . 'inc/elementor.php';
+require_once SCRW_DIR . 'inc/section-titles.php';
 
 add_action(
 	'wp_enqueue_scripts',

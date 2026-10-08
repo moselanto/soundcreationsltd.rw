@@ -250,7 +250,7 @@ while ( have_posts() ) :
 						// "<slug>.jpg".
 						$sc_industries = array(
 							array( 'Hospitality, Restaurants & Bars', 'An effortless guest experience', 'Warm, even coverage that keeps conversation easy and the energy right - consistent, refined audio across lobbies, ballrooms, restaurants, bars and outdoor areas, all controlled from one place.', 'hospitality-card.webp' ),
-							array( 'Worship', 'Every word, every seat', 'Intelligible speech and full-range music for services of any style, engineered around your room and its acoustics.', 'worship.webp' ),
+							array( 'Houses of Worship', 'Every word, every seat', 'Intelligible speech and full-range music for services of any style, engineered around your room and its acoustics.', 'worship.webp' ),
 							array( 'Live Performance & Events', 'Built for the moment', 'Concert-grade line arrays, monitoring and control for productions that have to sound right the first time.', 'live.webp' ),
 							array( 'Corporate & Conferencing', 'Heard, clearly', 'Networked microphones and loudspeakers for boardrooms and hybrid meetings where every voice has to land.', 'corporate.webp' ),
 							array( 'Education', 'Clarity that carries', 'Reliable, easy-to-run sound for lecture halls, auditoriums and campus spaces, from the front row to the back.', 'education.webp' ),
