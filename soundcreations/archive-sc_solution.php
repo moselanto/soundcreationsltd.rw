@@ -33,7 +33,7 @@ $sc_cta_photo = SC_THEME_URI . '/assets/img/cta-building.webp';
 	<div class="sc-container">
 		<div class="sc-sechead">
 			<div>
-				<p class="sc-eyebrow"><?php esc_html_e( 'Our Solutions', 'soundcreations' ); ?></p>
+				<h2 class="sc-sectitle"><?php esc_html_e( 'Our Solutions', 'soundcreations' ); ?></h2>
 			</div>
 		</div>
 		<div class="sc-solgrid">
@@ -65,8 +65,8 @@ $sc_cta_photo = SC_THEME_URI . '/assets/img/cta-building.webp';
 	<div class="sc-container">
 		<div class="sc-section__head">
 			<div>
-				<p class="sc-eyebrow"><?php esc_html_e( 'Featured Projects', 'soundcreations' ); ?></p>
-				<h2 style="margin:.3rem 0 0;"><?php esc_html_e( 'Real spaces. Real results.', 'soundcreations' ); ?></h2>
+				<h2 class="sc-sectitle"><?php esc_html_e( 'Featured Projects', 'soundcreations' ); ?></h2>
+				<p class="sc-secsub"><?php esc_html_e( 'Real spaces. Real results.', 'soundcreations' ); ?></p>
 			</div>
 			<a class="sc-link-arrow" href="<?php echo esc_url( home_url( '/projects/' ) ); ?>"><?php esc_html_e( 'View All Projects', 'soundcreations' ); ?> &rarr;</a>
 		</div>

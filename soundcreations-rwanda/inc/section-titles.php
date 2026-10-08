@@ -53,7 +53,17 @@ function scrw_swap_section_titles( $html ) {
 		},
 		$html
 	);
-	return is_string( $out ) ? $out : $html;
+	if ( ! is_string( $out ) ) {
+		return $html;
+	}
+	// A label that stands alone at the end of a section head (no heading after it,
+	// e.g. "Our Solutions") is the section title itself, so make it the big h2.
+	$lone = preg_replace(
+		'#<p\s+class="(?:[^"]*\s)?sc-eyebrow(?:\s[^"]*)?"[^>]*>((?:(?!</p>).)*?)</p>(\s*</div>)#s',
+		'<h2 class="sc-sectitle">$1</h2>$2',
+		$out
+	);
+	return is_string( $lone ) ? $lone : $out;
 }
 
 add_action(
