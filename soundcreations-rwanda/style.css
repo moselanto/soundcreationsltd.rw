@@ -916,3 +916,26 @@ html { scroll-behavior: smooth; scroll-padding-top: 110px; }
   .sc-brands-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 480px) { .sc-brands-stat { padding: 1.2rem 1.1rem; } }
+
+/* Our track record, compact (2026-10-08, replaces the larger 10-07 layout):
+   one tidy panel. Intro on the left at a calmer size, the three promises as a
+   short checklist on the right. Less height, easier to scan. */
+.scrw-done::before { height: 260px; opacity: .7; }
+.scrw-done__head { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(1.25rem, .8rem + 2.5vw, 3rem); align-items: center; max-width: none; margin-bottom: clamp(1.4rem, 1rem + 1.5vw, 2.2rem); padding: clamp(1.25rem, 1rem + 1vw, 1.9rem) clamp(1.25rem, 1rem + 1.5vw, 2.2rem); border: 1px solid var(--sc-border); border-radius: 22px; background: linear-gradient(135deg, rgba(98,68,137,.16), rgba(186,11,11,.05) 55%, transparent), var(--sc-surface); }
+.scrw-done__intro { display: block; }
+.scrw-done__intro .sc-eyebrow { margin-bottom: .6rem; }
+.scrw-done .scrw-done__intro h2, .scrw-done .scrw-done__intro h2.sc-sectitle { margin: 0; max-width: 22ch; font-size: clamp(1.45rem, 1.1rem + 1.3vw, 2.05rem); line-height: 1.15; letter-spacing: -.02em; }
+.scrw-done .scrw-done__intro p.sc-secsub { margin-top: .35rem; font-size: 1rem; color: var(--sc-text); opacity: .85; }
+.scrw-done__intro .sc-lead { margin: .75rem 0 0; padding: 0; border: 0; max-width: 56ch; font-size: .97rem; line-height: 1.6; color: var(--sc-muted); }
+.scrw-done__values { margin: 0; padding: 0; border: 0; background: none; display: flex; flex-direction: column; gap: 0; counter-reset: none; }
+.scrw-done__values li, .scrw-done__values li + li { flex-direction: row; align-items: center; gap: .85rem; padding: .8rem 0; border: 0; border-radius: 0; background: none; box-shadow: none; transform: none; }
+.scrw-done__values li + li { border-top: 1px solid var(--sc-border); }
+.scrw-done__values li::after { content: none; }
+.scrw-done__values li:hover { transform: none; box-shadow: none; background: none; border-color: var(--sc-border); }
+.scrw-done__vico { width: 38px; height: 38px; border-radius: 10px; }
+.scrw-done__values strong { font-size: .98rem; margin-bottom: .1rem; }
+.scrw-done__values span:not(.scrw-done__vico) { font-size: 13.5px; line-height: 1.45; }
+@media (max-width: 900px) {
+  .scrw-done__head { grid-template-columns: 1fr; }
+  .scrw-done__values { padding-top: .4rem; border-top: 1px solid var(--sc-border); }
+}
