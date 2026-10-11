@@ -4,7 +4,7 @@ Theme URI:    https://soundcreationsltd.rw/
 Description:  Child theme for the independent Sound Creations Ltd Rwanda website. Uses the group parent theme (soundcreations) so both sites share one visual identity, and layers Rwanda-specific business details, content, local SEO and structured data on top.
 Author:       Sound Creations Ltd
 Template:     soundcreations
-Version:      1.4.0
+Version:      1.4.1
 Requires PHP: 8.0
 License:      GPL-2.0-or-later
 Text Domain:  soundcreations-rwanda
@@ -1077,8 +1077,24 @@ p.sc-secsub--h1, .sc-section p.sc-secsub--h1 { margin: .7rem 0 0; max-width: 34c
 .sc-grid > *{height:100%}
 .sc-card,.sc-scard,.sc-brand-card{border-radius:var(--scrw-radius)}
 /* Buttons: one height, one shape. */
-.sc-btn{min-height:var(--scrw-ctl-h);display:inline-flex;align-items:center;justify-content:center;border-radius:999px}
+.sc-btn:not(.sc-nav__cta){min-height:var(--scrw-ctl-h);display:inline-flex;align-items:center;justify-content:center;border-radius:999px}
 /* Readable body copy width on long pages (sector pages, legal, projects). */
 .sc-prose{max-width:72ch}
 .sc-prose h2{margin-top:2rem}
 .sc-faq{margin-top:2.5rem}
+
+/* 1.4.1 hotfix: duplicate CTA + crowded menu.
+   The 1.4.0 ".sc-btn{display:inline-flex}" rule un-hid the mobile-drawer
+   button (.sc-nav__cta) on desktop, so two "Request a Consultation" buttons
+   showed and squeezed the menu into the logo. */
+@media (min-width:783px){
+  .sc-header .sc-nav .sc-nav__cta,.sc-header .sc-nav .sc-nav__head,.sc-header .sc-nav .sc-nav__foot{display:none \!important}
+  .sc-header .sc-nav{justify-content:flex-end \!important;margin-left:auto}
+  .sc-header .sc-brand{min-width:max-content}
+  .sc-header .sc-nav .sc-nav__list > li.scrw-nav-brand > a{padding-left:24px \!important}
+  .sc-header .sc-nav .sc-nav__list > li.scrw-nav-brand > a::after{left:9px \!important}
+  .sc-header .sc-nav .sc-nav__list > li.scrw-nav-brand > a::before{left:24px \!important}
+}
+@media (min-width:783px) and (max-width:1180px){
+  .sc-header .sc-header__cta{display:none \!important}
+}
