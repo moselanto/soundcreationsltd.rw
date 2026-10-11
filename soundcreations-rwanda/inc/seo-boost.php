@@ -233,6 +233,31 @@ function scrw_seo_keywords() {
 	);
 }
 
+/** Expertise topics for Organization/LocalBusiness knowsAbout. */
+function scrw_seo_topics() {
+	return array(
+		'Professional audio systems',
+		'Public address (PA) systems',
+		'Sound system design and installation',
+		'Line array loudspeaker systems',
+		'Conference and boardroom audio systems',
+		'Church and house of worship sound systems',
+		'Architectural acoustics',
+		'Acoustic treatment and soundproofing',
+		'Room acoustic measurement (RT60)',
+		'Stage and architectural lighting',
+		'DMX lighting control',
+		'Recording and broadcast studio systems',
+		'DJ equipment',
+		'Audio-visual integration',
+		'Yamaha professional audio equipment',
+		'Yamaha musical instruments',
+		'FANE loudspeaker drivers',
+		'System commissioning and calibration',
+		'After-sales service and maintenance of AV systems',
+	);
+}
+
 function scrw_seo_area_served() {
 	$areas = array( array( '@type' => 'Country', 'name' => 'Rwanda' ) );
 	foreach ( array( 'Kigali', 'Musanze', 'Rubavu', 'Huye', 'Rusizi', 'Muhanga', 'Nyagatare', 'Rwamagana' ) as $c ) {
@@ -274,7 +299,7 @@ add_filter(
 			// knowsAbout takes topics, not search phrases. The keyword list
 			// stays in scrw_seo_keywords() for titles/briefs; schema gets the
 			// subjects the business is actually expert in (v1.2.0 audit).
-			$node['knowsAbout'] = scrw_seo_topics();
+			$node['knowsAbout'] = function_exists( 'scrw_seo_topics' ) ? scrw_seo_topics() : scrw_seo_keywords();
 			if ( empty( $node['slogan'] ) ) {
 				$node['slogan'] = "If it sounds good, it's Sound Creations";
 			}
