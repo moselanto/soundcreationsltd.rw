@@ -78,3 +78,63 @@
 @media (min-width:783px) and (max-width:1180px){
   .sc-header .sc-header__cta{display:none !important}
 }
+
+/* 1.5.0 RESPONSIVE
+   Laptops: content width scales with the screen, so 13, 14 and 16 inch
+   laptops and MacBooks all show the same proportions instead of a narrow
+   column with wide empty margins on bigger screens.
+   Mobile: comfortable tap targets, no sideways scrolling, no iOS zoom on
+   form fields, and the WhatsApp button no longer covers footer text. */
+html,body{overflow-x:clip}
+img,video{max-width:100%}
+img{height:auto}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+/* Carousels: arrows and swipe do the scrolling, so hide the grey native scrollbar. */
+.sc-carousel__track{scrollbar-width:none}
+.sc-carousel__track::-webkit-scrollbar{display:none}
+
+/* Tablets and small laptops */
+@media (min-width:783px){
+  :root{--sc-container:min(94vw,1480px)}
+}
+/* Laptops 13 to 16 inch and MacBooks (about 1280px to 1728px wide) */
+@media (min-width:1024px){
+  :root{--sc-container:min(88vw,1480px);--sc-gutter:clamp(1.5rem,2.2vw,3rem)}
+  .sc-hero--video{min-height:clamp(460px,68svh,780px);max-height:none}
+}
+/* Short laptop screens (13 inch at 125% scaling, MacBook Air): tighter vertical rhythm. */
+@media (min-width:1024px) and (max-height:820px){
+  .sc-section{padding-block:clamp(2.25rem,1.5rem + 3vw,4rem)}
+  .sc-hero--video{min-height:clamp(420px,64svh,640px)}
+}
+
+/* Mobile and small tablets */
+@media (max-width:782px){
+  :root{--sc-gutter:1.15rem}
+  input,select,textarea{font-size:16px}
+  .sc-btn:not(.sc-nav__cta){min-height:48px}
+  .sc-utility__hours,.sc-utility__regions,.sc-utility__social,.sc-utility__soc{display:none}
+  .sc-utility__inner{justify-content:center;gap:.35rem 1rem;font-size:.78rem}
+  .sc-hero--video{min-height:min(78svh,620px);height:auto}
+  .sc-hero--video .sc-hero__title{font-size:clamp(1.9rem,1.2rem + 4.5vw,2.6rem);line-height:1.08}
+  .sc-section__head{align-items:flex-start;margin-bottom:1.25rem}
+  .sc-cta-band{padding:1.75rem 1.25rem;text-align:center}
+  .sc-cta-band__inner{max-width:none}
+  .sc-partners__label{text-align:center}
+  .sc-footer__bottom{padding-right:0 !important;padding-bottom:5.5rem;justify-content:center;text-align:center}
+  .scrw-group-band{padding-bottom:5rem}
+  .sc-footer a{display:inline-block;padding-block:.2rem}
+  .sc-wa-float{bottom:calc(16px + env(safe-area-inset-bottom)) !important;right:calc(16px + env(safe-area-inset-right)) !important}
+}
+/* Phones */
+@media (max-width:480px){
+  .sc-hero__cta,.sc-cta-band .sc-btn{width:100%}
+  .sc-hero__cta .sc-btn{flex:1 1 100%}
+  .sc-cta-band .sc-btn{display:flex}
+  .sc-wa-float__label{display:none}
+}
+/* Phones turned sideways: keep the hero to one screen. */
+@media (max-height:500px) and (orientation:landscape){
+  .sc-hero--video{min-height:100svh}
+}
