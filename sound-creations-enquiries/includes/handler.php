@@ -26,13 +26,18 @@ function sc_enq_recipient( $type ) {
 		return $over[ $type ];
 	}
 	if ( is_array( $over ) && ! empty( $over['default'] ) ) {
-		return $over['default'];
+		// The default may be a comma-separated list; keep only valid addresses.
+		$list = array_filter( array_map( 'trim', explode( ',', (string) $over['default'] ) ), 'is_email' );
+		if ( $list ) {
+			return implode( ', ', $list );
+		}
 	}
 	$settings = get_option( 'soundcreations_settings', array() );
 	if ( is_array( $settings ) && ! empty( $settings['email'] ) && is_email( $settings['email'] ) ) {
 		return $settings['email'];
 	}
-	return 'info@soundcreationsltd.com';
+	// No hardcoded inbox: fall back to the site's admin email from Settings > General.
+	return (string) get_option( 'admin_email' );
 }
 
 function sc_enq_summary( $form, $data, $file_url, $ip ) {

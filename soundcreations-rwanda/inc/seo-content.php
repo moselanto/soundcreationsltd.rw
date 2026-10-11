@@ -40,7 +40,31 @@ define( 'SCRW_SEO_CONTENT_VERSION', 'rw-seo-content-1' );
 
 /** Shared call to action. */
 function scrw_seo_cta() {
-	return '<h2>Talk to our Kigali team</h2><p>Visit the showroom on KN1 Rd, Muhima, call <a href="tel:+250783141050">+250 783 141 050</a> or <a href="tel:+250782739889">+250 782 739 889</a>, message us on <a href="https://wa.me/250783141050">WhatsApp</a>, or <a href="/request-a-consultation/">book a site consultation</a>. Prefer a price first? <a href="/request-a-quote/">Request a quote</a>.</p>';
+	// Contact details come from Sound Creations > Settings, not hardcoded copy.
+	$get = function ( $key ) {
+		return function_exists( 'sc_core_get' ) ? trim( (string) sc_core_get( $key ) ) : '';
+	};
+	$addr   = $get( 'address' );
+	$phones = array();
+	foreach ( array( 'phone', 'phone2' ) as $k ) {
+		$p = $get( $k );
+		if ( '' !== $p ) {
+			$phones[] = '<a href="tel:' . esc_attr( preg_replace( '/[^0-9+]/', '', $p ) ) . '">' . esc_html( $p ) . '</a>';
+		}
+	}
+	$wa    = preg_replace( '/[^0-9]/', '', $get( 'whatsapp' ) );
+	$parts = array();
+	if ( '' !== $addr ) {
+		$parts[] = 'Visit the showroom at ' . esc_html( $addr );
+	}
+	if ( $phones ) {
+		$parts[] = 'call ' . implode( ' or ', $phones );
+	}
+	if ( '' !== $wa ) {
+		$parts[] = 'message us on <a href="' . esc_url( 'https://wa.me/' . $wa ) . '">WhatsApp</a>';
+	}
+	$parts[] = '<a href="/request-a-consultation/">book a site consultation</a>';
+	return '<h2>Talk to our Kigali team</h2><p>' . ucfirst( implode( ', ', $parts ) ) . '. Prefer a price first? <a href="/request-a-quote/">Request a quote</a>.</p>';
 }
 
 /** Related links block so every sector page links into the rest of the site. */

@@ -28,6 +28,7 @@ require_once SC_CORE_DIR . 'includes/starter-setup.php';
 require_once SC_CORE_DIR . 'includes/fields.php';
 require_once SC_CORE_DIR . 'includes/seed-catalog.php';
 require_once SC_CORE_DIR . 'includes/security.php';
+require_once SC_CORE_DIR . 'includes/security-plus.php';
 require_once SC_CORE_DIR . 'includes/seo.php';
 require_once SC_CORE_DIR . 'includes/seo-graph.php';
 require_once SC_CORE_DIR . 'includes/seo-faq.php';

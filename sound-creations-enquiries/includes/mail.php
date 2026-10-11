@@ -24,7 +24,8 @@ function sc_enq_from_email( $email ) {
 	if ( is_array( $settings ) && empty( $settings['email'] ) === false && is_email( $settings['email'] ) ) {
 		return $settings['email'];
 	}
-	return 'info@soundcreationsltd.com';
+	$admin = (string) get_option( 'admin_email' );
+	return is_email( $admin ) ? $admin : $email;
 }
 add_filter( 'wp_mail_from', 'sc_enq_from_email' );
 
