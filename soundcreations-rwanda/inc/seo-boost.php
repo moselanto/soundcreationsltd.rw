@@ -266,8 +266,10 @@ add_filter(
 				continue;
 			}
 			$node['areaServed'] = scrw_seo_area_served();
-			$node['knowsAbout'] = scrw_seo_keywords();
-			$node['keywords']   = implode( ', ', array_slice( scrw_seo_keywords(), 0, 15 ) );
+			// knowsAbout takes topics, not search phrases. The keyword list
+			// stays in scrw_seo_keywords() for titles/briefs; schema gets the
+			// subjects the business is actually expert in (v1.2.0 audit).
+			$node['knowsAbout'] = scrw_seo_topics();
 			if ( empty( $node['slogan'] ) ) {
 				$node['slogan'] = "If it sounds good, it's Sound Creations";
 			}
