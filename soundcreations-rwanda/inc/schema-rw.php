@@ -185,6 +185,15 @@ add_filter(
 						$node['image'] = $src;
 					}
 				}
+				if ( is_singular( 'sc_solution' ) && function_exists( 'scrw_sector_audience' ) ) {
+					$aud = scrw_sector_audience( get_post_field( 'post_name', get_queried_object_id() ) );
+					if ( $aud ) {
+						$node['audience'] = array(
+							'@type'        => 'BusinessAudience',
+							'audienceType' => $aud,
+						);
+					}
+				}
 				$node['availableChannel'] = array(
 					'@type'          => 'ServiceChannel',
 					'serviceUrl'     => home_url( '/request-a-consultation/' ),

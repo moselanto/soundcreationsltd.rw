@@ -90,6 +90,11 @@ function scrw_seo_slug_map() {
 		'studio-solutions'        => array( 'Recording Studio Equipment & Setup Rwanda | Kigali', 'Recording, podcast, radio and streaming studios in Rwanda: acoustic treatment, microphones, interfaces, monitors and consoles, installed in Kigali.' ),
 		'broadcast-recording'     => array( 'Broadcast & Recording Studio Systems Rwanda', 'Broadcast audio, recording and studio systems in Rwanda, specified, integrated and commissioned by Sound Creations in Kigali.' ),
 		'service-and-backup'      => array( 'Sound System Repair & Maintenance Rwanda | Kigali', 'Sound, lighting and AV maintenance, repairs, warranty support, equipment backup and operator training in Rwanda, from our Kigali service team.' ),
+		// Sector landing pages (inc/seo-content.php, v1.3.0).
+		'conference-room-sound-systems' => array( 'Conference Room Sound Systems Kigali | Boardroom Audio Rwanda', 'Conference microphones, ceiling mics and hybrid-meeting audio for boardrooms, ministries and hotels in Kigali. Installed at MINECOFIN. Site survey, supply, install, training.' ),
+		'church-sound-systems'          => array( 'Church Sound Systems Rwanda | Church PA & Lighting Kigali', 'Church sound systems in Rwanda: line arrays, Yamaha mixers, wireless mics, worship lighting and acoustics, designed and installed in Kigali, as at Christian Life Assembly.' ),
+		'school-and-auditorium-sound'   => array( 'School PA Systems Rwanda | Auditorium Sound & AV Kigali', 'School PA, hall and auditorium sound, lighting, projection and acoustics in Rwanda. Installed at Ntare Louisenlund School and Intare Kivu Arena. Easy for staff to run.' ),
+		'hotel-bar-restaurant-sound'    => array( 'Hotel & Bar Sound Systems Kigali | Restaurant Audio Rwanda', 'Zoned background music, event sound, DJ booths and lighting for hotels, bars, restaurants and event gardens in Kigali and across Rwanda, designed and installed locally.' ),
 		'support-training'        => array( 'AV Support & Training Rwanda | Sound Creations Kigali', 'Technical support, product training and after-sales service for sound, lighting and AV systems in Rwanda.' ),
 	);
 }

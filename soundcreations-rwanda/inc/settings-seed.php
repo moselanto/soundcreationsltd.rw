@@ -91,6 +91,8 @@ function scrw_settings() {
 function scrw_superseded_settings() {
 	return array(
 		'hours_sat'    => array( 'Sat: Closed' ),
+		// rw-settings-13: footer links to the sector landing pages (SEO 1.3.0).
+		'footer_solutions' => array( "DJ Solutions | /solutions/dj-solutions/\nLighting Solutions | /solutions/lighting-solutions/\nStudio Solutions | /solutions/studio-solutions/\nArchitectural Acoustics | /solutions/architectural-acoustics/\nService and Backup | /solutions/service-and-backup/" ),
 		// rw-settings-9: main contact email and top-bar line.
 		'email'        => array( 'sales@soundcreationsltd.com', 'fred@soundcreationsltd.com' ),
 		'regions'      => array( 'Kigali · Rwanda · Part of the Sound Creations Ltd group', 'Authorised Yamaha Distributor · FANE Africa Partner · Kigali', 'Authorised Yamaha Distributor · FANE Africa · dB Technologies · Shure · Bose' ),

@@ -40,12 +40,30 @@ These are candidates to validate in Search Console and a keyword tool, not measu
 
 Avoid near-duplicate "sound system Kigali" vs "sound system Rwanda" pages (doorway risk).
 
-## Content to add next (needs the Rwanda team)
+## Release 1.3.0: sector landing pages (inc/seo-content.php)
 
-1. Conferencing solution page: MINECOFIN Shure Microflex case, room sizes, typical system, FAQ.
-2. Church / worship page: Christian Life Assembly, coverage, lighting, screens, FAQ.
-3. Expand each project to 300+ words: brief, equipment list, result, photo captions.
-4. FAQs (Rank Math/Core FAQ box) on Acoustics, Lighting, Yamaha, only with real answers.
+Seeded once on the first wp-admin load after upload. Existing pages and FAQs are never overwritten.
+
+| New page | Primary search intent | Proof on the page |
+| --- | --- | --- |
+| `/solutions/conference-room-sound-systems/` | conference room sound system Kigali, boardroom audio Rwanda | MINECOFIN Shure Microflex |
+| `/solutions/church-sound-systems/` | church sound system Rwanda, church PA Kigali | Christian Life Assembly |
+| `/solutions/school-and-auditorium-sound/` | school PA system Rwanda, auditorium sound | Ntare Louisenlund, Intare Kivu Arena |
+| `/solutions/hotel-bar-restaurant-sound/` | hotel / bar sound system Kigali | Romantic Garden, Atelier du Vin |
+
+Each page has: keyword title and meta description, 400 to 600 words of body copy, 4 to 5 visible FAQs (FAQPage schema), a related-projects strip, contextual links to Yamaha, acoustics, lighting, installation and service pages, and a Service node with `audience`.
+
+Visible FAQs were also added to Architectural Acoustics, Lighting, DJ, Studio and Service & Backup (only where the FAQ box was empty). The footer Solutions column now links to the sector pages (only if the footer list is still the seeded default).
+
+Titles deliberately avoid the words "audio", "acoustic", "install", "integ" and "visual", because the parent template switches layout on those words and hides body text for "audio".
+
+## Content still to add (needs the Rwanda team)
+
+1. Expand each project to 300+ words: brief, equipment list, result, photo captions, client quote.
+2. Real photos for the four sector pages (set a Featured Image on each).
+3. Yamaha hub FAQ and model-level pages for the best-selling Yamaha mixers and speakers.
+4. A blog or guide section answering buyer questions ("how to choose a church mixer", "PA system cost factors in Rwanda").
+5. Reviews: ask clients to review the Google Business Profile. Reviews and GBP are the biggest local-ranking factors the website cannot control.
 
 ## Business facts to reconcile
 
