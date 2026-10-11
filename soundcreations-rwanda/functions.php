@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_VERSION', '1.3.0' );
+define( 'SCRW_VERSION', '1.4.0' );
 define( 'SCRW_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 
@@ -180,6 +180,16 @@ add_filter(
 			return $title;
 		}
 		$notes = array(
+			'/solutions/professional-audio/'            => 'PA, line arrays, mixers and microphones',
+			'/solutions/installation/'                  => 'Design, install, calibrate and train',
+			'/solutions/conference-room-sound-systems/' => 'Boardrooms and hybrid meetings',
+			'/solutions/church-sound-systems/'          => 'Worship sound, lighting and streaming',
+			'/solutions/school-and-auditorium-sound/'   => 'School PA, halls and auditoriums',
+			'/solutions/hotel-bar-restaurant-sound/'    => 'Zoned music and event sound',
+			'/solutions/architectural-acoustics/'       => 'Echo control and soundproofing',
+			'/solutions/lighting-solutions/'            => 'Stage, church and event lighting',
+			'/solutions/dj-solutions/'                  => 'DJ booths, studios and podcast rooms',
+			'/solutions/service-and-backup/'            => 'Maintenance, warranty and backup',
 			'/yamaha/'                     => 'Authorised distributor in Rwanda',
 			'/fane/'                       => 'Professional loudspeaker components',
 			'/brands/'                     => 'Every global brand we supply',

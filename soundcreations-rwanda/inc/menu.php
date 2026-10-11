@@ -25,8 +25,33 @@ define( 'SCRW_MENU_VERSION', 'rw-menu-8' ); // rw-menu-8: FANE Africa out of the
 function scrw_menu_tree() {
 	return array(
 		array( 'Home', '/', array() ),
-		array( 'Solutions', '/solutions/', array() ),
-		array( 'Brands', '/brands/', array() ),
+		array(
+			'Solutions',
+			'/solutions/',
+			array(
+				array( 'Professional Audio & PA', '/solutions/professional-audio/' ),
+				array( 'Sound System Installation', '/solutions/installation/' ),
+				array( 'Conference Room Sound', '/solutions/conference-room-sound-systems/' ),
+				array( 'Church Sound & Lighting', '/solutions/church-sound-systems/' ),
+				array( 'Schools & Auditoriums', '/solutions/school-and-auditorium-sound/' ),
+				array( 'Hotels, Bars & Venues', '/solutions/hotel-bar-restaurant-sound/' ),
+				array( 'Acoustic Treatment', '/solutions/architectural-acoustics/' ),
+				array( 'Stage Lighting', '/solutions/lighting-solutions/' ),
+				array( 'DJ & Studio', '/solutions/dj-solutions/' ),
+				array( 'Service & Repairs', '/solutions/service-and-backup/' ),
+			),
+			'scrw-nav-mega',
+		),
+		array(
+			'Brands',
+			'/brands/',
+			array(
+				array( 'Yamaha Rwanda', '/yamaha/' ),
+				array( 'FANE Africa', '/fane/' ),
+				array( 'All Brands', '/brands/' ),
+				array( 'Product Catalogue', '/products/' ),
+			),
+		),
 		array( 'Projects', '/projects/', array() ),
 		array( 'YAMAHA', '/yamaha/', array(), 'scrw-nav-brand scrw-nav-brand--yamaha' ),
 		array(
@@ -34,7 +59,6 @@ function scrw_menu_tree() {
 			'/about/',
 			array(
 				array( 'About Sound Creations Rwanda', '/about/' ),
-				array( 'Products', '/products/' ),
 				array( 'Videos', '/videos/' ),
 				array( 'Sound Creations Kenya ↗', 'https://soundcreationsltd.com/' ),
 			),
