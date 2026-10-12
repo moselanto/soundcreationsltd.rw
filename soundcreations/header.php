@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="sc-container sc-utility__inner">
 		<div class="sc-utility__zone sc-utility__zone--left"><span class="sc-utility__regions"><?php echo esc_html( sc_setting( 'regions' ) ); ?></span></div>
 		<div class="sc-utility__zone sc-utility__zone--center"><a href="tel:<?php echo esc_attr( sc_setting( 'phone_link' ) ); ?>"><?php echo esc_html( sc_setting( 'phone' ) ); ?></a><span class="sc-utility__dot" aria-hidden="true"> &middot; </span><a href="mailto:<?php echo esc_attr( sc_setting( 'email' ) ); ?>"><?php echo esc_html( sc_setting( 'email' ) ); ?></a></div>
-		<div class="sc-utility__zone sc-utility__zone--right"><span class="sc-utility__hours"><?php echo esc_html( sc_setting( 'hours_week' ) ); ?></span><span class="sc-utility__social"><?php sc_utility_social(); ?></span></div>
+		<div class="sc-utility__zone sc-utility__zone--right"><span class="sc-utility__hours"><?php echo esc_html( sc_setting( 'hours_week' ) ); ?><?php if ( '' !== trim( (string) sc_setting( 'hours_sat' ) ) ) : ?><span class="sc-utility__dot" aria-hidden="true"> &middot; </span><?php echo esc_html( sc_setting( 'hours_sat' ) ); ?><?php endif; ?></span><span class="sc-utility__social"><?php sc_utility_social(); ?></span></div>
 	</div>
 </div>
 

@@ -32,7 +32,7 @@ function scrw_complete_projects() {
 		'hospitality' => array(
 			'Bars, Restaurants & Clubs',
 			'<path d="M8 22h8M12 15v7"/><path d="M5 3h14l-1.5 7a5.5 5.5 0 0 1-11 0z"/>',
-			array( 'Atelier du Vin', 'Tiamo Lounge', 'Kivu Noir Lounge', 'Fuschia Cercle Sportif Kigali', 'Choose Kigali', 'Tania’s', 'Choma’d', 'The Wave', 'Crystal Lounge', 'Saga Bay', 'The Office Lounge', 'Kigali Lounge', 'Le Balcon', 'B-Lounge', 'Lemon Kigali', 'People Club', 'Shooters Club', 'Luxury Garden', 'Heroes', 'Illusion Club', 'Inferno Club', 'Maison Noire', 'Jollof Kigali', 'Déjà Vu', 'Kultura Fine Dining' ),
+			array( 'Atelier du Vin', 'Tiamo Lounge', 'Kivu Noir Lounge', 'Fuschia Cercle Sportif Kigali', 'Choose Kigali', 'Tania’s', 'Choma’d', 'The Wave', 'Crystal Lounge', 'Saga Bay', 'The Office Lounge', 'Kigali Lounge', 'Le Balcon', 'B-Lounge', 'Lemon Kigali', 'People Club', 'Shooters Club', 'Luxury Garden', 'Heroes', 'Illusion Club', 'Inferno Club', 'Maison Noire', 'Jollof Kigali', 'Déjà Vu', 'Kultura Fine Dining', 'Boho Restaurant', 'Glimpse Restaurant' ),
 		),
 		'hotels'    => array(
 			'Hotels',
