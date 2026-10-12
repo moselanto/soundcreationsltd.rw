@@ -138,3 +138,6 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 @media (max-height:500px) and (orientation:landscape){
   .sc-hero--video{min-height:100svh}
 }
+
+@media (min-width:783px){.sc-utility__inner{flex-wrap:nowrap;gap:.4rem 1.25rem;font-size:.78rem}.sc-utility__zone{flex-wrap:nowrap;white-space:nowrap}.sc-utility__zone--left{flex:0 1 auto;min-width:0;overflow:hidden}.sc-utility__regions{display:block;overflow:hidden;text-overflow:ellipsis}.sc-utility__zone--center{flex:1 0 auto}.sc-utility__zone--right{flex:0 0 auto}.sc-utility__social{margin-left:.15rem}}
+@media (min-width:783px) and (max-width:1100px){.sc-utility__zone--left{display:none}}
