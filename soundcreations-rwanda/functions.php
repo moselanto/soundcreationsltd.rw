@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_VERSION', '1.5.2' );
+define( 'SCRW_VERSION', '1.6.0' );
 define( 'SCRW_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 
@@ -37,6 +37,8 @@ require_once SCRW_DIR . 'inc/fane-brands.php';
 require_once SCRW_DIR . 'inc/solutions.php';
 require_once SCRW_DIR . 'inc/seo.php';
 require_once SCRW_DIR . 'inc/seo-boost.php';
+require_once SCRW_DIR . 'inc/seo-content.php';
+require_once SCRW_DIR . 'inc/seo-health.php';
 require_once SCRW_DIR . 'inc/schema-rw.php';
 require_once SCRW_DIR . 'inc/analytics.php';
 require_once SCRW_DIR . 'inc/elementor.php';

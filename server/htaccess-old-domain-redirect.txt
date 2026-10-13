@@ -1,0 +1,46 @@
+# ------------------------------------------------------------------
+# rwanda.soundcreationsltd.com -> soundcreationsltd.rw (301)
+#
+# The old Rwanda WordPress site is still live at rwanda.soundcreationsltd.com
+# (checked 13 Oct 2026) and competes with soundcreationsltd.rw for the same
+# searches. Paste this at the TOP of the .htaccess for that subdomain
+# (on the server that hosts it, usually the soundcreationsltd.com cPanel),
+# keep a backup of the original, then clear any cache.
+#
+# Page-by-page 301s pass the old URLs' search value to the matching new
+# page; everything else goes to the new homepage. Do not delete the old
+# site's files until Google shows the new URLs (4-8 weeks), and keep this
+# redirect in place permanently.
+# ------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^about-us/?$ https://soundcreationsltd.rw/about/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^distribution-in-africa/?$ https://soundcreationsltd.rw/about/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^contacts?/?$ https://soundcreationsltd.rw/contact/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^request-a-quote/?$ https://soundcreationsltd.rw/request-a-consultation/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^conferencing/?$ https://soundcreationsltd.rw/solutions/conference-room-sound-systems/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^(consultancy|integration)/?$ https://soundcreationsltd.rw/solutions/installation/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^after-sales/?$ https://soundcreationsltd.rw/solutions/service-and-backup/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^shure/?$ https://soundcreationsltd.rw/brands/shure/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^db-technologies/?$ https://soundcreationsltd.rw/brands/db-technologies/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^reloop/?$ https://soundcreationsltd.rw/brands/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^yamaha(-[a-z-]+)?/?$ https://soundcreationsltd.rw/yamaha/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^(projects|itc-rwanda)/?$ https://soundcreationsltd.rw/projects/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^(dj-solutions|lighting-solutions|studio-solutions|architectural-acoustics|service-and-backup)/?$ https://soundcreationsltd.rw/solutions/$1/ [R=301,L]
+# Everything else (home, news, video, feeds, old uploads) -> new homepage.
+RewriteCond %{HTTP_HOST} ^rwanda\.soundcreationsltd\.com$ [NC]
+RewriteRule ^ https://soundcreationsltd.rw/ [R=301,L]
+</IfModule>

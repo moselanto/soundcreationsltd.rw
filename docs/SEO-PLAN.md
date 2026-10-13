@@ -57,6 +57,44 @@ Visible FAQs were also added to Architectural Acoustics, Lighting, DJ, Studio an
 
 Titles deliberately avoid the words "audio", "acoustic", "install", "integ" and "visual", because the parent template switches layout on those words and hides body text for "audio".
 
+## Release 1.6.0: live check of 13 October 2026
+
+What was checked live: homepage head, JSON-LD, robots.txt, sitemaps, every solution URL, and the old Rwanda domain.
+
+| Area | Finding | Fix in 1.6.0 |
+| --- | --- | --- |
+| Schema graph | One JSON-LD graph on the homepage: Organization + ProfessionalService, WebSite, LocalBusiness + ElectronicsStore (`#localbusiness`), WebPage, BreadcrumbList, ImageObject. No duplicate Rank Math graph. Canonical, robots and og:image all correct | Kept as is |
+| XML sitemap | `robots.txt` points to `/sitemap_index.xml`, and `/wp-sitemap.xml` and `/sitemap.xml` 301 to it, but `/sitemap_index.xml` returned **404**. Google had no working sitemap | `inc/seo-health.php`: flushes rewrite rules once on the next wp-admin load, and repairs itself (at most every 12 h) if a sitemap URL ever 404s again |
+| Sector pages | The four 1.3.0 sector pages (conference room, church, school/auditorium, hotel/bar) returned **404**. `inc/seo-content.php` was never loaded by `functions.php`, so they were never created | `functions.php` now loads `inc/seo-content.php`; the pages, their FAQs and the related-projects strips are created on the next wp-admin load |
+| Group wording | Core's fallback meta descriptions for products, projects, services and categories said "across Africa and the Middle East" | Rewritten to Rwanda wording on this site only; descriptions typed in Rank Math are untouched |
+| Old domain | `rwanda.soundcreationsltd.com` (old WordPress site) is still live with its own canonical, competing for the same searches | `server/htaccess-old-domain-redirect.txt`: page-by-page 301s to the matching new pages, everything else to the homepage. Must be pasted on the server that hosts that subdomain |
+
+### Keyword clusters to page map (from the strategy brief)
+
+| Cluster | Landing page |
+| --- | --- |
+| Professional sound systems, PA suppliers, speakers, mixers and microphones | `/solutions/professional-audio/`, `/products/` |
+| Yamaha audio equipment Rwanda | `/yamaha/` |
+| Sound system installation, commercial audio installation | `/solutions/installation/` |
+| Conference room AV, conference microphone systems | `/solutions/conference-room-sound-systems/` |
+| Church sound system installation | `/solutions/church-sound-systems/` |
+| School auditorium sound, auditorium design | `/solutions/school-and-auditorium-sound/` |
+| Hotel audiovisual solutions | `/solutions/hotel-bar-restaurant-sound/` |
+| Acoustic treatment, acoustic solutions for auditoriums | `/solutions/architectural-acoustics/` |
+| Stage lighting Kigali | `/solutions/lighting-solutions/` |
+| DJ equipment, recording studio equipment | `/solutions/dj-solutions/`, `/solutions/studio-solutions/` |
+| Servicing and technical support | `/solutions/service-and-backup/` |
+| AV company / audio visual equipment supplier Rwanda | `/` |
+| LED screens and displays Rwanda | **not built**: only add a Visual Solutions page once the Rwanda team confirms they supply and install LED screens/displays, with at least one real project |
+
+### After deploying 1.6.0
+
+1. Upload `soundcreations-rwanda/`, open wp-admin once, clear LiteSpeed cache.
+2. Check `https://soundcreationsltd.rw/sitemap_index.xml` opens. If it still 404s: **Settings > Permalinks > Save**, and in Rank Math > Sitemap Settings confirm the sitemap module is on.
+3. Check the four sector pages open and appear under `/solutions/`.
+4. Paste `server/htaccess-old-domain-redirect.txt` into the `.htaccess` of rwanda.soundcreationsltd.com, then test `https://rwanda.soundcreationsltd.com/conferencing/` lands on the conference room page.
+5. Search Console: add soundcreationsltd.rw as a Domain property, submit `/sitemap_index.xml`, request indexing for the home page, Yamaha and the four sector pages. Also verify rwanda.soundcreationsltd.com and use URL Inspection on a few old URLs to confirm Google sees the 301s.
+
 ## Content still to add (needs the Rwanda team)
 
 1. Expand each project to 300+ words: brief, equipment list, result, photo captions, client quote.

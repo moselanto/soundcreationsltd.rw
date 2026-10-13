@@ -16,7 +16,7 @@ Authorised **Yamaha** distributor and **FANE Africa** partner in Kigali. Profess
 ![Elementor](https://img.shields.io/badge/Elementor-ready-92003B?logo=elementor&logoColor=white)
 ![Rank Math](https://img.shields.io/badge/SEO-Rank%20Math%20%2B%20JSON--LD-4C2A85)
 ![Parent theme](https://img.shields.io/badge/Parent%20theme-v0.10.11-624489)
-![Child theme](https://img.shields.io/badge/Rwanda%20child-v1.3.0-46305F)
+![Child theme](https://img.shields.io/badge/Rwanda%20child-v1.6.0-46305F)
 ![Core](https://img.shields.io/badge/SC%20Core-v0.5.25-BA0B0B)
 ![Enquiries](https://img.shields.io/badge/SC%20Enquiries-v0.2.0-BA0B0B)
 ![License](https://img.shields.io/badge/License-GPLv2%2B-blue)
