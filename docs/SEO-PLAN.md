@@ -95,6 +95,10 @@ What was checked live: homepage head, JSON-LD, robots.txt, sitemaps, every solut
 4. Paste `server/htaccess-old-domain-redirect.txt` into the `.htaccess` of rwanda.soundcreationsltd.com, then test `https://rwanda.soundcreationsltd.com/conferencing/` lands on the conference room page.
 5. Search Console: add soundcreationsltd.rw as a Domain property, submit `/sitemap_index.xml`, request indexing for the home page, Yamaha and the four sector pages. Also verify rwanda.soundcreationsltd.com and use URL Inspection on a few old URLs to confirm Google sees the 301s.
 
+## Release 1.7.0: Rwanda search demand
+
+Full research, competitor list and keyword to page map: [KEYWORD-STRATEGY.md](KEYWORD-STRATEGY.md). In short, Rwandan buyers search "X price in Rwanda" far more than anything else, so product pages now target price searches (titles, a visible price box, optional RWF price with Offer schema, buyer FAQ), and the showroom is typed as a MusicStore too.
+
 ## Content still to add (needs the Rwanda team)
 
 1. Expand each project to 300+ words: brief, equipment list, result, photo captions, client quote.

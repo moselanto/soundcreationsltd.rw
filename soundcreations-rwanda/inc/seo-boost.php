@@ -142,8 +142,8 @@ function scrw_seo_defaults() {
 			$brand = function_exists( 'sc_title_brand_of' ) ? sc_title_brand_of( $post->ID ) : '';
 			$ex    = has_excerpt( $post ) ? get_the_excerpt( $post ) : '';
 			$out   = array(
-				$name . ' in Rwanda | Buy in Kigali',
-				scrw_seo_clip( $name . ' available in Kigali from Sound Creations Rwanda' . ( $brand ? ', your ' . $brand . ' supplier' : '' ) . '. ' . $ex . ' Genuine product, warranty and local support.', 158 ),
+				$name . ' Price in Rwanda | Buy in Kigali',
+				scrw_seo_clip( $name . ' price in Rwanda: get today\'s price in RWF from Sound Creations, Kigali' . ( $brand ? ', the ' . $brand . ' supplier' : '' ) . '. Genuine product, warranty and local support. ' . $ex, 158 ),
 			);
 		} elseif ( 'sc_brand' === $post->post_type ) {
 			if ( 'yamaha' === $slug ) {

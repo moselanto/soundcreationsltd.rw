@@ -105,7 +105,7 @@ add_filter(
 			/* ---- 1. Kigali LocalBusiness ---- */
 			if ( $id === $lb_old_id || ( in_array( 'LocalBusiness', $types, true ) && $id !== $org_id ) ) {
 				$node['@id']   = $lb_id;
-				$node['@type'] = array( 'LocalBusiness', 'ElectronicsStore' ); // Kigali showroom sells equipment.
+				$node['@type'] = array( 'LocalBusiness', 'ElectronicsStore', 'MusicStore' ); // Kigali showroom sells pro audio and Yamaha instruments.
 				$node['name']  = $name;
 				$node['description'] = $description;
 				$node['parentOrganization'] = array( '@id' => $org_id );
