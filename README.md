@@ -56,7 +56,7 @@ It runs a **copy of the group code** from [soundcreationsltd.com](https://soundc
 | --- | --- | --- | --- |
 | **Sound Creations** (parent theme) | [`soundcreations/`](soundcreations) | 0.10.11 | Group design system: dark-first editorial layout, templates for solutions, services, projects, brands, products and resources |
 | **Sound Creations Rwanda** (child theme) | [`soundcreations-rwanda/`](soundcreations-rwanda) | 1.3.0 | **Activate this one.** Rwanda contacts, hours, pages, Yamaha and FANE hubs, 55-product catalogue, Rwanda projects, clients, local SEO, analytics and Elementor widgets |
-| **Sound Creations Core** (plugin) | [`sound-creations-core/`](sound-creations-core) | 0.5.25 | Content types, taxonomies, central business-settings store, schema graph and starter setup. Lives in a plugin so data survives a theme change |
+| **Sound Creations Core** (plugin) | [`sound-creations-core/`](sound-creations-core) | 0.5.25 | Content types, taxonomies, central business-settings store, schema graph, branded staff login screen and starter setup. Lives in a plugin so data survives a theme change |
 | **Sound Creations Enquiries** (plugin) | [`sound-creations-enquiries/`](sound-creations-enquiries) | 0.2.0 | B2B enquiry system: consultation, quote, product, dealer, FANE and support forms with routing, secure storage, email alerts and spam scoring |
 | **Server rules** | [`server/`](server) | - | `.htaccess` compression and browser-caching block for LiteSpeed / Apache |
 
@@ -302,6 +302,7 @@ Built to rank for local searches such as *audio visual Rwanda, sound systems Kig
 
 - **Performance:** WebP images (under 200 KB, set dimensions), preloaded hero poster for LCP, unused WordPress block CSS removed on the front end, self-hosted fonts, deferred vanilla JavaScript, plus `server/htaccess-speed.txt` for Gzip/Deflate and one-year browser caching on LiteSpeed or Apache.
 - **Security:** escaped output and sanitised input, nonce-protected forms, security headers (`X-Frame-Options`, `Referrer-Policy`, `Content-Security-Policy` frame-ancestors, HSTS on HTTPS), hashed-IP rate limiting and upload hardening in the enquiry plugin.
+- **Branded login:** `sound-creations-core/includes/login-branding.php` styles `wp-login.php` (sign in, lost password, reset password) with the Sound Creations logo (`sound-creations-core/assets/img/login-logo.png`), dark stage background, purple/red brand colours, visible focus states and a staff-only footer. The logo links to the home page and the language switcher is hidden. Presentation only; authentication is unchanged. To swap the logo, replace that PNG (transparent, about 640 x 233 px).
 - **Accessibility:** skip-to-content link, one H1 per page, keyboard-friendly menus and descriptive alt text on all images.
 
 ## Requirements
