@@ -379,18 +379,23 @@ body.sc-nav-open .scrw-wa { opacity: 0; visibility: hidden; }
    --------------------------------------------------------------------------- */
 .scrw-dock { display: none; }
 @media (max-width: 782px) {
+	/* 1.9.1: docked flush to the bottom edge like a native app tab bar (no floating pill). */
 	.scrw-dock {
-		position: fixed; left: 10px; right: 10px;
-		bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+		position: fixed; left: 0; right: 0; bottom: 0;
 		z-index: 330;
 		display: flex; align-items: stretch; gap: 4px;
-		height: var(--scrw-dock-h); padding: 6px;
-		border-radius: 22px;
-		background: rgba(16, 16, 22, .86);
-		backdrop-filter: saturate(160%) blur(16px);
-		-webkit-backdrop-filter: saturate(160%) blur(16px);
-		border: 1px solid rgba(255, 255, 255, .08);
-		box-shadow: 0 16px 40px rgba(0, 0, 0, .45);
+		height: auto; min-height: var(--scrw-dock-h);
+		padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
+		border-radius: 0;
+		background: #0e0e13;
+		border: 0;
+		border-top: 1px solid rgba(255, 255, 255, .08);
+		box-shadow: 0 -6px 18px rgba(0, 0, 0, .28);
+	}
+	.scrw-dock::before {
+		content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px;
+		background: linear-gradient(90deg, var(--scrw-purple), var(--scrw-red));
+		opacity: .85;
 	}
 	.scrw-dock__item {
 		flex: 1 1 0; min-width: 0;
@@ -408,13 +413,9 @@ body.sc-nav-open .scrw-wa { opacity: 0; visibility: hidden; }
 	.scrw-dock__item.is-current { color: #fff; }
 	.scrw-dock__item.is-current:not(.scrw-dock__item--cta) svg { color: var(--scrw-red); }
 	.scrw-dock__item.is-current:not(.scrw-dock__item--cta)::after { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--scrw-red); margin-top: 1px; }
-	.scrw-dock__item--cta {
-		flex: 1.35 1 0;
-		color: #fff;
-		background: linear-gradient(135deg, #d4161b, var(--scrw-red));
-		box-shadow: 0 8px 20px rgba(186, 11, 11, .4);
-	}
-	.scrw-dock__item--cta:hover, .scrw-dock__item--cta:focus-visible { background: linear-gradient(135deg, #e01d22, #a30909); }
+	.scrw-dock__item { min-height: 54px; border-radius: 12px; }
+	.scrw-dock__item--cta { flex: 1.3 1 0; color: #fff; background: var(--scrw-red); box-shadow: none; }
+	.scrw-dock__item--cta:hover, .scrw-dock__item--cta:focus-visible { color: #fff; background: #a30909; }
 
 	.scrw-dock__burger { position: relative; width: 22px; height: 22px; display: block; }
 	.scrw-dock__burger i { position: absolute; left: 3px; right: 3px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .25s ease, opacity .2s ease, top .25s ease; }
@@ -436,11 +437,12 @@ body.sc-nav-open .scrw-wa { opacity: 0; visibility: hidden; }
 	[data-theme="light"] .scrw-dock__item--cta, [data-theme="light"] .scrw-dock__item--cta:hover { color: #fff; }
 
 	/* Page clears the dock; WhatsApp floats on the right just above it. */
-	body { padding-bottom: calc(var(--scrw-dock-h) + 24px + env(safe-area-inset-bottom, 0px)) !important; }
+	body { padding-bottom: calc(var(--scrw-dock-h) + 4px + env(safe-area-inset-bottom, 0px)) !important; }
 	.scrw-wa {
 		right: calc(14px + env(safe-area-inset-right, 0px));
-		bottom: calc(var(--scrw-dock-h) + 22px + env(safe-area-inset-bottom, 0px));
+		bottom: calc(var(--scrw-dock-h) + 16px + env(safe-area-inset-bottom, 0px));
 	}
+	[data-theme="light"] .scrw-dock { background: #fff; border-top-color: rgba(20, 20, 30, .1); box-shadow: 0 -4px 14px rgba(20, 20, 30, .08); }
 	.scrw-wa__fab { height: 56px; width: 56px; padding: 0; justify-content: center; }
 	.scrw-wa__fab-icon { background: transparent; }
 	.scrw-wa__fab-icon svg { width: 30px; height: 30px; }
@@ -449,6 +451,34 @@ body.sc-nav-open .scrw-wa { opacity: 0; visibility: hidden; }
 	.scrw-wa__panel { max-height: calc(100dvh - var(--scrw-dock-h) - 120px); }
 	.scrw-wa__teaser { max-width: min(280px, calc(100vw - 100px)); }
 	.sc-footer__bottom, .scrw-group-band { padding-bottom: 1rem !important; }
+}
+
+/* ---------------------------------------------------------------------------
+   4. Mobile header (1.9.1): clean logo bar. The big "Request a Consultation"
+   pill was squeezing the logo; Consultation now lives in the bottom bar.
+   --------------------------------------------------------------------------- */
+@media (max-width: 782px) {
+	.sc-header .sc-header__cta,
+	.sc-header .sc-header__actions > .sc-btn { display: none !important; }
+	.sc-header .sc-header__inner {
+		display: flex !important; align-items: center !important; justify-content: space-between !important;
+		gap: .75rem !important; min-height: 64px; padding-block: .6rem !important;
+	}
+	.sc-header.is-compact .sc-header__inner { min-height: 56px; padding-block: .45rem !important; }
+	.sc-header .sc-brand { flex: 0 1 auto !important; min-width: 0; margin: 0 !important; }
+	.sc-header .sc-logo { display: inline-flex; align-items: center; }
+	.sc-header .sc-logo img, .sc-header .sc-logo__img { max-height: 46px !important; height: 46px !important; width: auto !important; max-width: 62vw; object-fit: contain; }
+	.sc-header.is-compact .sc-logo img, .sc-header.is-compact .sc-logo__img { height: 40px !important; max-height: 40px !important; }
+	.sc-header .sc-header__actions { flex: 0 0 auto !important; margin-left: auto; display: flex; align-items: center; gap: .5rem; }
+	.sc-header .sc-theme-toggle { width: 40px !important; height: 40px !important; flex: 0 0 40px; border-radius: 999px; background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .12); }
+	[data-theme="light"] .sc-header .sc-theme-toggle { background: rgba(20, 20, 30, .05); border-color: rgba(20, 20, 30, .12); }
+	/* Utility strip: one tidy line, phone + email centred. */
+	.sc-utility__inner { padding-block: .4rem !important; font-size: .76rem !important; gap: .25rem .75rem !important; }
+	.sc-utility__zone--center { flex-wrap: nowrap; white-space: nowrap; overflow: hidden; }
+	.sc-utility__zone--center a { overflow: hidden; text-overflow: ellipsis; }
+}
+@media (max-width: 380px) {
+	.sc-utility__zone--center a[href^="mailto:"], .sc-utility__zone--center .sc-utility__dot { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
