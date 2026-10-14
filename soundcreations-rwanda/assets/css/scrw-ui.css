@@ -417,17 +417,14 @@
 	.sc-tabbar {
 		background: var(--scrw-tab-bg) !important;
 		-webkit-backdrop-filter: none; backdrop-filter: none;
-		border-top: 1px solid rgba(255, 255, 255, .08);
-		box-shadow: 0 -10px 30px rgba(0, 0, 0, .35);
+		box-shadow: 0 -1px 0 rgba(255, 255, 255, .04), 0 -12px 32px rgba(0, 0, 0, .45);
 		border-radius: 0 !important; margin: 0 !important;
 	}
-	[data-theme="light"] .sc-tabbar { border-top-color: rgba(20, 20, 30, .1); box-shadow: 0 -6px 20px rgba(20, 20, 30, .08); }
-	/* Brand hairline: purple into red along the top edge. */
-	.sc-tabbar::after {
-		content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px;
-		background: linear-gradient(90deg, #624489, #BA0B0B);
-		pointer-events: none;
-	}
+	[data-theme="light"] .sc-tabbar { box-shadow: 0 -1px 0 rgba(20, 20, 30, .05), 0 -8px 24px rgba(20, 20, 30, .1); }
+	/* 1.9.3: no hard line across the top. The bar lifts off the page with a
+	   soft shadow only, so nothing cuts through the raised Get a Quote button. */
+	.sc-tabbar { border-top: 0 !important; }
+	.sc-tabbar::before, .sc-tabbar::after { content: none !important; display: none !important; }
 	.sc-tabbar__item { color: #9a9aa8; }
 	[data-theme="light"] .sc-tabbar__item { color: #5d5d6b; }
 	.sc-tabbar__item--cta { color: var(--sc-text); }
