@@ -7,7 +7,8 @@
  * Every value is editable in wp-admin: Sound Creations -> Settings (Footer section).
  *
  * Child copy of the parent footer.php. Only change: the old floating WhatsApp
- * link and mobile action bar are removed (see inc/whatsapp-chat.php).
+ * link and three-button bar are replaced by the .com tab bar below and the
+ * WhatsApp chat card (inc/whatsapp-chat.php).
  *
  * @package SoundCreationsRwanda
  */
@@ -111,12 +112,48 @@ $sc_email   = sc_setting( 'email' );
 </footer>
 
 <?php
-/*
- * Rwanda override (1.9.0): the floating WhatsApp chat and the mobile dock
- * (Home, Call, Consultation, Menu) are printed by inc/whatsapp-chat.php on
- * wp_footer, replacing the parent's plain WhatsApp link and Call/WhatsApp bar.
- */
+/* WhatsApp chat card: see inc/whatsapp-chat.php (printed via wp_footer). */
 ?>
+<?php
+/*
+ * Mobile bottom navigation, same as soundcreationsltd.com (v0.11.x), Rwanda 1.9.2.
+ * Phones and small tablets only. Five big, labelled tabs so visitors who are
+ * not used to hamburger menus can always get Home, see Solutions, ask for a
+ * consultation, call, or open the full menu. WhatsApp is the round floating
+ * button on the right (inc/whatsapp-chat.php), so it is not repeated here.
+ */
+$sc_bar_tel     = (string) sc_setting( 'phone_link' );
+$sc_tab_home    = is_front_page();
+$sc_tab_sol     = is_post_type_archive( 'sc_solution' ) || is_singular( 'sc_solution' ) || is_page( 'solutions' );
+$sc_tab_consult = is_page( array( 'request-a-consultation', 'contact' ) );
+?>
+<nav class="sc-tabbar" aria-label="<?php esc_attr_e( 'Quick navigation', 'soundcreations-rwanda' ); ?>">
+	<a class="sc-tabbar__item<?php echo $sc_tab_home ? ' is-current' : ''; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>"<?php echo $sc_tab_home ? ' aria-current="page"' : ''; ?>>
+		<span class="sc-tabbar__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9v11h4.5v-6h4v6h4.5V9"/></svg></span>
+		<span class="sc-tabbar__label"><?php esc_html_e( 'Home', 'soundcreations-rwanda' ); ?></span>
+	</a>
+	<a class="sc-tabbar__item<?php echo $sc_tab_sol ? ' is-current' : ''; ?>" href="<?php echo esc_url( home_url( '/solutions/' ) ); ?>"<?php echo $sc_tab_sol ? ' aria-current="page"' : ''; ?>>
+		<span class="sc-tabbar__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg></span>
+		<span class="sc-tabbar__label"><?php esc_html_e( 'Solutions', 'soundcreations-rwanda' ); ?></span>
+	</a>
+	<a class="sc-tabbar__item sc-tabbar__item--cta<?php echo $sc_tab_consult ? ' is-current' : ''; ?>" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>"<?php echo $sc_tab_consult ? ' aria-current="page"' : ''; ?>>
+		<span class="sc-tabbar__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1z"/><path d="M8 5.5H6.5A1.5 1.5 0 0 0 5 7v12.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V7a1.5 1.5 0 0 0-1.5-1.5H16"/><path d="M8.5 13.5l2.3 2.3 4.7-4.8"/></svg></span>
+		<span class="sc-tabbar__label"><?php esc_html_e( 'Get a Quote', 'soundcreations-rwanda' ); ?></span>
+	</a>
+	<?php if ( '' !== $sc_bar_tel ) : ?>
+	<a class="sc-tabbar__item sc-tabbar__item--call" href="tel:<?php echo esc_attr( $sc_bar_tel ); ?>">
+		<span class="sc-tabbar__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 16.4v2.8a1.9 1.9 0 0 1-2.1 1.9 18.8 18.8 0 0 1-8.2-2.9 18.5 18.5 0 0 1-5.7-5.7A18.8 18.8 0 0 1 2.1 4.2 1.9 1.9 0 0 1 4 2.1h2.8a1.9 1.9 0 0 1 1.9 1.6c.1.9.3 1.7.6 2.5a1.9 1.9 0 0 1-.4 2L7.7 9.4a15.2 15.2 0 0 0 5.7 5.7l1.2-1.2a1.9 1.9 0 0 1 2-.4c.8.3 1.6.5 2.5.6a1.9 1.9 0 0 1 1.9 2z"/></svg></span>
+		<span class="sc-tabbar__label"><?php esc_html_e( 'Call', 'soundcreations-rwanda' ); ?></span>
+	</a>
+	<?php endif; ?>
+	<button type="button" class="sc-tabbar__item sc-tabbar__menu" data-sc-menu-toggle aria-controls="sc-primary-nav" aria-expanded="false">
+		<span class="sc-tabbar__icon">
+			<svg class="sc-tabbar__ico-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+			<svg class="sc-tabbar__ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+		</span>
+		<span class="sc-tabbar__label"><span class="sc-tabbar__txt-open"><?php esc_html_e( 'Menu', 'soundcreations-rwanda' ); ?></span><span class="sc-tabbar__txt-close"><?php esc_html_e( 'Close', 'soundcreations-rwanda' ); ?></span></span>
+	</button>
+</nav>
 <?php wp_footer(); ?>
 </body>
 </html>
