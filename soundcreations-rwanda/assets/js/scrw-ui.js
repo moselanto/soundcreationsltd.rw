@@ -172,6 +172,6 @@
 		}
 	}
 
-	function init() { initAccordion(); syncToggles(); initWhatsApp(); }
+	function init() { syncToggles(); initWhatsApp(); } // 1.9.4: sub-menus always open on phones, no accordion.
 	if (doc.readyState === 'loading') { doc.addEventListener('DOMContentLoaded', init); } else { init(); }
 })();

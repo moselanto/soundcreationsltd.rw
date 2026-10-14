@@ -483,6 +483,17 @@
 	.sc-header .sc-logo img, .sc-header .sc-logo__img { height: 44px !important; max-height: 44px !important; }
 }
 
+/* 1.9.4: sub-menus are always open on phones (no hidden dropdowns), so
+   About, Brands and Solutions show their pages straight away. */
+@media (max-width: 782px) {
+	.scrw-subtoggle { display: none !important; }
+	.sc-nav .sc-nav__list > li.menu-item-has-children { background: rgba(255, 255, 255, .03); margin-block: 2px; }
+	[data-theme="light"] .sc-nav .sc-nav__list > li.menu-item-has-children { background: rgba(20, 20, 30, .03); }
+	.sc-nav .sc-nav__list > li.menu-item-has-children > a { padding-right: 1rem !important; }
+	.sc-nav .sc-nav__list li.menu-item-has-children > .sub-menu { display: flex !important; padding: 0 .5rem .65rem 1rem !important; }
+	.sc-nav .sc-nav__list .sub-menu a { min-height: 42px; font-size: .94rem !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
 	body.sc-nav-open .sc-nav .sc-nav__list > li { animation: none !important; }
 	.scrw-subtoggle, .scrw-subtoggle svg { transition: none !important; }
