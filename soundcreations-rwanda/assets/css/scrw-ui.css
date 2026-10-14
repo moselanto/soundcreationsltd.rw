@@ -153,7 +153,6 @@
 		grid-template-columns: none !important;
 	}
 	.sc-nav .sc-nav__list .sub-menu::before { display: none !important; }
-	.js-scrw-ui .sc-nav .sc-nav__list li.menu-item-has-children:not(.is-sub-open) > .sub-menu { display: none !important; }
 	.sc-nav .sc-nav__list .sub-menu li {
 		display: block !important; width: 100% !important;
 		margin: 0 !important; border: 0 !important;
