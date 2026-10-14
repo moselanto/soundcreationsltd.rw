@@ -1,4 +1,4 @@
-/* Sound Creations Rwanda UI (1.9.0): mobile menu accordion, dock sync, WhatsApp chat. */
+/* Sound Creations Rwanda UI (1.9.2): mobile menu accordion, menu-toggle sync, WhatsApp chat card (ported from soundcreationsltd.com). */
 (function () {
 	'use strict';
 	var doc = document, body = doc.body;
@@ -60,83 +60,115 @@
 	var onMq = function () { if (!mq.matches) { body.classList.remove('sc-nav-open'); } };
 	if (mq.addEventListener) { mq.addEventListener('change', onMq); } else if (mq.addListener) { mq.addListener(onMq); }
 
-	/* ---------- WhatsApp chat ---------- */
+	/* ---------- WhatsApp chat card ---------- */
 	function initWhatsApp() {
-		var root = doc.querySelector('[data-scrw-wa]');
-		if (!root) { return; }
-		var fab = root.querySelector('.scrw-wa__fab'), panel = root.querySelector('.scrw-wa__panel'), form = root.querySelector('.scrw-wa__form');
-		var text = root.querySelector('textarea'), teaser = root.querySelector('.scrw-wa__teaser'), number = root.getAttribute('data-number');
+		var root = document.querySelector( '[data-sc-wa]' );
+		if ( root === null ) { return; }
+		document.documentElement.classList.add( 'sc-wa-js' );
+		var fab = root.querySelector( '.sc-wa__fab' ),
+			panel = root.querySelector( '.sc-wa__panel' ),
+			form = root.querySelector( '.sc-wa__form' ),
+			text = root.querySelector( 'textarea' ),
+			teaser = root.querySelector( '.sc-wa__teaser' ),
+			scrim = root.querySelector( '.sc-wa__scrim' ),
+			phone = window.matchMedia( '(max-width: 782px)' ),
+			number = root.getAttribute( 'data-number' );
 		var store = {
-			get: function (k) { try { return window.sessionStorage.getItem(k); } catch (e) { return null; } },
-			set: function (k, v) { try { window.sessionStorage.setItem(k, v); } catch (e) {} }
+			get: function ( k ) { try { return window.sessionStorage.getItem( k ); } catch ( e ) { return null; } },
+			set: function ( k, v ) { try { window.sessionStorage.setItem( k, v ); } catch ( e ) {} }
 		};
 
-		// Online status from Kigali showroom hours.
-		function mins(s) { var m = /(\d{1,2}):(\d{2})/.exec(s || ''); return m ? parseInt(m[1], 10) * 60 + parseInt(m[2], 10) : -1; }
-		function range(s) { var p = (s || '').split('-'); return p.length === 2 ? [mins(p[0]), mins(p[1])] : null; }
+		// Online status from the Kigali showroom hours in Settings.
 		try {
-			var parts = new Intl.DateTimeFormat('en-GB', { weekday: 'short', hour: 'numeric', minute: '2-digit', hourCycle: 'h23', timeZone: root.getAttribute('data-tz') || 'Africa/Kigali' }).formatToParts(new Date());
-			var p = {}; parts.forEach(function (x) { p[x.type] = x.value; });
-			var now = parseInt(p.hour, 10) * 60 + parseInt(p.minute, 10);
-			var r = p.weekday === 'Sun' ? null : (p.weekday === 'Sat' ? range(root.getAttribute('data-sat')) : range(root.getAttribute('data-week')));
-			var online = !!(r && now >= r[0] && now < r[1]);
-			root.classList.toggle('is-online', online);
-			var st = root.querySelector('.scrw-wa__status');
-			if (st) { st.textContent = root.getAttribute(online ? 'data-open-text' : 'data-closed-text') || st.textContent; }
-			var tm = root.querySelector('.scrw-wa__time');
-			if (tm) { tm.textContent = p.hour + ':' + p.minute; }
-		} catch (e) {}
+			var hours = JSON.parse( root.getAttribute( 'data-hours' ) || '{}' );
+			var parts = new Intl.DateTimeFormat( 'en-GB', { weekday: 'short', hour: 'numeric', minute: '2-digit', hourCycle: 'h23', timeZone: 'Africa/Kigali' } ).formatToParts( new Date() );
+			var p = {};
+			parts.forEach( function ( x ) { p[ x.type ] = x.value; } );
+			var mins = parseInt( p.hour, 10 ) * 60 + parseInt( p.minute, 10 );
+			var today = hours[ p.weekday ];
+			var online = Array.isArray( today ) && mins >= today[0] && mins < today[1];
+			root.classList.toggle( 'is-online', online );
+			var st = root.querySelector( '.sc-wa__status' );
+			if ( st ) { st.textContent = root.getAttribute( online ? 'data-open-text' : 'data-closed-text' ) || st.textContent; }
+			var tm = root.querySelector( '.sc-wa__time' );
+			if ( tm ) { tm.textContent = p.hour + ':' + p.minute; }
+		} catch ( e ) {}
 
-		function grow() { text.style.height = 'auto'; text.style.height = Math.min(text.scrollHeight, 120) + 'px'; }
-		function hideTeaser() { if (teaser) { teaser.hidden = true; } store.set('scrwWaTeaser', '1'); }
+		function grow() { text.style.height = 'auto'; text.style.height = Math.min( text.scrollHeight, 120 ) + 'px'; }
+		function hideTeaser() { if ( teaser ) { teaser.hidden = true; } store.set( 'scWaTeaser', '1' ); }
 		function open() {
 			hideTeaser();
-			panel.hidden = false; root.classList.add('is-open'); fab.setAttribute('aria-expanded', 'true');
-			if (window.matchMedia('(min-width: 783px)').matches) { text.focus(); } else { var c = root.querySelector('.scrw-wa__close'); if (c) { c.focus(); } }
-		}
-		function close(refocus) {
-			panel.hidden = true; root.classList.remove('is-open'); fab.setAttribute('aria-expanded', 'false');
-			if (refocus) { fab.focus(); }
-		}
-		fab.addEventListener('click', function () { if (panel.hidden) { open(); } else { close(true); } });
-		root.querySelector('.scrw-wa__close').addEventListener('click', function () { close(true); });
-		doc.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { close(true); } });
-		doc.addEventListener('click', function (e) { if (!panel.hidden && !root.contains(e.target)) { close(false); } });
-
-		Array.prototype.forEach.call(root.querySelectorAll('.scrw-wa__chip'), function (chip) {
-			chip.addEventListener('click', function () {
-				Array.prototype.forEach.call(root.querySelectorAll('.scrw-wa__chip'), function (c) { c.classList.remove('is-picked'); });
-				chip.classList.add('is-picked');
-				text.value = 'Hello Sound Creations Rwanda. ' + chip.textContent.trim() + '. ';
-				grow(); text.focus();
-				try { text.setSelectionRange(text.value.length, text.value.length); } catch (e) {}
-			});
-		});
-		text.addEventListener('input', grow);
-		text.addEventListener('keydown', function (e) {
-			if (e.key === 'Enter' && !e.shiftKey && window.matchMedia('(min-width: 783px)').matches) {
-				e.preventDefault();
-				if (form.requestSubmit) { form.requestSubmit(); } else { form.dispatchEvent(new Event('submit', { cancelable: true })); }
+			panel.hidden = false;
+			root.classList.add( 'is-open' );
+			// Phones: bottom sheet with a dimmed backdrop and the page held still.
+			if ( phone.matches ) {
+				if ( scrim ) { scrim.hidden = false; }
+				document.documentElement.classList.add( 'sc-wa-sheet-open' );
 			}
-		});
-		form.addEventListener('submit', function (e) {
-			e.preventDefault();
-			var msg = text.value.trim() || root.getAttribute('data-prefill') || '';
-			var url = 'https://wa.me/' + number + (msg ? '?text=' + encodeURIComponent(msg) : '');
-			// window.open with "noopener" returns null, which would open WhatsApp twice.
-			var w = window.open(url, '_blank');
-			if (w) { try { w.opener = null; } catch (err) {} } else { window.location.href = url; }
-			text.value = ''; grow(); close(false);
-		});
+			fab.setAttribute( 'aria-expanded', 'true' );
+			if ( window.matchMedia( '(min-width: 783px)' ).matches ) { text.focus(); }
+			else { var c = root.querySelector( '.sc-wa__close' ); if ( c ) { c.focus(); } }
+		}
+		function close( refocus ) {
+			panel.hidden = true;
+			root.classList.remove( 'is-open' );
+			if ( scrim ) { scrim.hidden = true; }
+			document.documentElement.classList.remove( 'sc-wa-sheet-open' );
+			fab.setAttribute( 'aria-expanded', 'false' );
+			if ( refocus ) { fab.focus(); }
+		}
 
-		// Friendly nudge once per visit after 15 seconds, not on contact/consultation pages.
-		if (teaser && !store.get('scrwWaTeaser') && !/\/(contact|request-a-consultation)\/?$/.test(window.location.pathname)) {
-			window.setTimeout(function () {
-				if (panel.hidden && !store.get('scrwWaTeaser') && !body.classList.contains('sc-nav-open')) { teaser.hidden = false; }
-			}, 15000);
-			teaser.addEventListener('click', function (e) {
-				if (e.target.closest('.scrw-wa__teaser-close')) { hideTeaser(); } else { open(); }
-			});
+		fab.addEventListener( 'click', function ( e ) {
+			e.preventDefault();
+			if ( panel.hidden ) { open(); } else { close( true ); }
+		} );
+		// The mobile quick-action bar's WhatsApp button opens the same card.
+		document.querySelectorAll( '[data-sc-wa-open]' ).forEach( function ( btn ) {
+			btn.addEventListener( 'click', function ( e ) { e.preventDefault(); e.stopPropagation(); open(); } );
+		} );
+		root.querySelector( '.sc-wa__close' ).addEventListener( 'click', function () { close( true ); } );
+		if ( scrim ) { scrim.addEventListener( 'click', function () { close( true ); } ); }
+		document.addEventListener( 'keydown', function ( e ) { if ( e.key === 'Escape' && panel.hidden === false ) { close( true ); } } );
+		document.addEventListener( 'click', function ( e ) {
+			if ( panel.hidden === false && ( root.contains( e.target ) === false || e.target === scrim ) && ( e.target.closest && e.target.closest( '[data-sc-wa-open]' ) ) === null ) { close( false ); }
+		} );
+
+		root.querySelectorAll( '.sc-wa__chip' ).forEach( function ( chip ) {
+			chip.addEventListener( 'click', function () {
+				root.querySelectorAll( '.sc-wa__chip' ).forEach( function ( c ) { c.classList.remove( 'is-picked' ); } );
+				chip.classList.add( 'is-picked' );
+				text.value = chip.textContent.trim() + '. ';
+				grow();
+				text.focus();
+				try { text.setSelectionRange( text.value.length, text.value.length ); } catch ( e ) {}
+			} );
+		} );
+		text.addEventListener( 'input', grow );
+		text.addEventListener( 'keydown', function ( e ) {
+			if ( e.key === 'Enter' && e.shiftKey === false && window.matchMedia( '(min-width: 783px)' ).matches ) {
+				e.preventDefault();
+				if ( form.requestSubmit ) { form.requestSubmit(); } else { form.dispatchEvent( new Event( 'submit', { cancelable: true } ) ); }
+			}
+		} );
+		form.addEventListener( 'submit', function ( e ) {
+			e.preventDefault();
+			var msg = text.value.trim();
+			var picked = root.querySelector( '.sc-wa__chip.is-picked' );
+			var url = 'https://wa.me/' + number + ( msg ? '?text=' + encodeURIComponent( msg ) : '' );
+			// window.open with "noopener" returns null, which used to open WhatsApp twice.
+			var w = window.open( url, '_blank' );
+			if ( w ) { try { w.opener = null; } catch ( err ) {} } else { window.location.href = url; }
+			text.value = '';
+			grow();
+			close( false );
+		} );
+
+		// One friendly nudge per visit, after 15 seconds, not on contact or quote pages.
+		if ( teaser && store.get( 'scWaTeaser' ) === null && /\/(contact|request-a-quote|request-a-consultation)\/?$/.test( window.location.pathname ) === false ) {
+			window.setTimeout( function () { if ( panel.hidden && store.get( 'scWaTeaser' ) === null ) { teaser.hidden = false; } }, 15000 );
+			teaser.addEventListener( 'click', function ( e ) {
+				if ( e.target.closest( '.sc-wa__teaser-close' ) ) { hideTeaser(); } else { open(); }
+			} );
 		}
 	}
 
