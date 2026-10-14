@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_VERSION', '1.8.0' );
+define( 'SCRW_VERSION', '1.9.0' );
 define( 'SCRW_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 
@@ -47,6 +47,22 @@ require_once SCRW_DIR . 'inc/schema-rw.php';
 require_once SCRW_DIR . 'inc/analytics.php';
 require_once SCRW_DIR . 'inc/elementor.php';
 require_once SCRW_DIR . 'inc/section-titles.php';
+require_once SCRW_DIR . 'inc/whatsapp-chat.php';
+
+/*
+ * 1.9.0 UI layer: mobile drawer + accordion sub-menus, floating WhatsApp chat,
+ * mobile dock (Home, Call, Consultation, Menu). Loaded after style.css.
+ */
+add_action(
+	'wp_enqueue_scripts',
+	function () {
+		$css = 'assets/css/scrw-ui.css';
+		$js  = 'assets/js/scrw-ui.js';
+		wp_enqueue_style( 'scrw-ui', get_stylesheet_directory_uri() . '/' . $css, array( 'soundcreations-rwanda' ), (string) filemtime( SCRW_DIR . $css ) );
+		wp_enqueue_script( 'scrw-ui', get_stylesheet_directory_uri() . '/' . $js, array(), (string) filemtime( SCRW_DIR . $js ), true );
+	},
+	31
+);
 
 add_action(
 	'wp_enqueue_scripts',
