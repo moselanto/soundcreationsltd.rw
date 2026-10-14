@@ -12,7 +12,7 @@
  * @package SoundCreationsRwanda
  */
 
-if ( \! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -62,7 +62,7 @@ function scrw_whatsapp_chat() {
 	<div class="sc-wa" data-sc-wa data-number="<?php echo esc_attr( $sc_num ); ?>" data-hours="<?php echo esc_attr( wp_json_encode( scrw_wa_hours() ) ); ?>" data-open-text="<?php esc_attr_e( 'Online now, usually replies within minutes', 'soundcreations-rwanda' ); ?>" data-closed-text="<?php esc_attr_e( 'Leave a message, we reply when the showroom opens', 'soundcreations-rwanda' ); ?>">
 		<div class="sc-wa__teaser" hidden>
 			<button type="button" class="sc-wa__teaser-close" aria-label="<?php esc_attr_e( 'Dismiss', 'soundcreations-rwanda' ); ?>">&times;</button>
-			<p><strong><?php esc_html_e( 'Muraho\! Planning a project?', 'soundcreations-rwanda' ); ?></strong> <?php esc_html_e( 'Chat with our Kigali team on WhatsApp for quotes, installs and Yamaha products.', 'soundcreations-rwanda' ); ?></p>
+			<p><strong><?php esc_html_e( 'Muraho! Planning a project?', 'soundcreations-rwanda' ); ?></strong> <?php esc_html_e( 'Chat with our Kigali team on WhatsApp for quotes, installs and Yamaha products.', 'soundcreations-rwanda' ); ?></p>
 		</div>
 		<div class="sc-wa__scrim" hidden></div>
 		<section class="sc-wa__panel" id="sc-wa-panel" role="dialog" aria-modal="false" aria-labelledby="sc-wa-title" hidden>
