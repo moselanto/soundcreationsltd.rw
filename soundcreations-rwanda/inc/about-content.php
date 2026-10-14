@@ -25,7 +25,7 @@ add_action( 'sc_about_after_brands', 'scrw_about_page_content', 10 );
  */
 function scrw_about_page_content() {
 	static $scrw_running = false;
-	if ( $scrw_running || in_the_loop() || \! is_page() ) {
+	if ( $scrw_running || in_the_loop() || ! is_page() ) {
 		return;
 	}
 	$scrw_running = true;
@@ -35,7 +35,7 @@ function scrw_about_page_content() {
 			ob_start();
 			the_content();
 			$scrw_html = ob_get_clean();
-			if ( '' \!== trim( wp_strip_all_tags( $scrw_html, true ) ) || false \!== strpos( $scrw_html, 'elementor' ) ) {
+			if ( '' !== trim( wp_strip_all_tags( $scrw_html, true ) ) || false !== strpos( $scrw_html, 'elementor' ) ) {
 				echo '<section class="sc-section sc-section--tight scrw-about-content" id="about-content"><div class="sc-container"><div class="sc-prose">';
 				echo $scrw_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- the_content output.
 				echo '</div></div></section>';
