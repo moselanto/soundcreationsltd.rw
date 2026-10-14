@@ -16,7 +16,7 @@ Authorised **Yamaha** distributor and **FANE Africa** partner in Kigali. Profess
 ![Elementor](https://img.shields.io/badge/Elementor-ready-92003B?logo=elementor&logoColor=white)
 ![Rank Math](https://img.shields.io/badge/SEO-Rank%20Math%20%2B%20JSON--LD-4C2A85)
 ![Parent theme](https://img.shields.io/badge/Parent%20theme-v0.10.11-624489)
-![Child theme](https://img.shields.io/badge/Rwanda%20child-v1.7.3-46305F)
+![Child theme](https://img.shields.io/badge/Rwanda%20child-v1.7.4-46305F)
 ![Core](https://img.shields.io/badge/SC%20Core-v0.5.25-BA0B0B)
 ![Enquiries](https://img.shields.io/badge/SC%20Enquiries-v0.2.0-BA0B0B)
 ![License](https://img.shields.io/badge/License-GPLv2%2B-blue)
@@ -55,7 +55,7 @@ It runs a **copy of the group code** from [soundcreationsltd.com](https://soundc
 | Package | Folder | Version | Role |
 | --- | --- | --- | --- |
 | **Sound Creations** (parent theme) | [`soundcreations/`](soundcreations) | 0.10.11 | Group design system: dark-first editorial layout, templates for solutions, services, projects, brands, products and resources |
-| **Sound Creations Rwanda** (child theme) | [`soundcreations-rwanda/`](soundcreations-rwanda) | 1.7.3 | **Activate this one.** Rwanda contacts, hours, pages, Yamaha and FANE hubs, 55-product catalogue, Rwanda projects, clients, local SEO, analytics and Elementor widgets |
+| **Sound Creations Rwanda** (child theme) | [`soundcreations-rwanda/`](soundcreations-rwanda) | 1.7.4 | **Activate this one.** Rwanda contacts, hours, pages, Yamaha and FANE hubs, 55-product catalogue, Rwanda projects, clients, local SEO, analytics and Elementor widgets |
 | **Sound Creations Core** (plugin) | [`sound-creations-core/`](sound-creations-core) | 0.5.25 | Content types, taxonomies, central business-settings store, schema graph, branded staff login screen and starter setup. Lives in a plugin so data survives a theme change |
 | **Sound Creations Enquiries** (plugin) | [`sound-creations-enquiries/`](sound-creations-enquiries) | 0.2.0 | B2B enquiry system: consultation, quote, product, dealer, FANE and support forms with routing, secure storage, email alerts and spam scoring |
 | **Server rules** | [`server/`](server) | - | `.htaccess` compression and browser-caching block for LiteSpeed / Apache |
