@@ -1,0 +1,226 @@
+/* Sound Creations Rwanda - branded sign-in page (wp-login.php). */
+body.login.scrw-login {
+	--scrw-purple: #5c4489;
+	--scrw-purple-soft: #a98bd6;
+	--scrw-red: #ba0b0b;
+	--scrw-red-dark: #960808;
+	--scrw-ink: #17141f;
+	--scrw-muted: #6b6878;
+	--scrw-line: #e4e1ec;
+	--scrw-panel-w: 46%;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0 0 0 var(--scrw-panel-w);
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background: #f6f4fa;
+	font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+	color: var(--scrw-ink);
+}
+body.login.scrw-login *,
+body.login.scrw-login *::before,
+body.login.scrw-login *::after { box-sizing: border-box; }
+
+/* ---------- Left brand panel ---------- */
+.scrw-login-brand {
+	position: fixed;
+	inset: 0 auto 0 0;
+	width: var(--scrw-panel-w);
+	color: #fff;
+	background:
+		radial-gradient(circle at 15% 10%, rgba(92, 68, 137, .55), transparent 55%),
+		radial-gradient(circle at 90% 95%, rgba(186, 11, 11, .35), transparent 50%),
+		linear-gradient(180deg, rgba(12, 10, 20, .80), rgba(12, 10, 20, .94)),
+		var(--scrw-login-bg) center / cover no-repeat,
+		#0c0a14;
+	overflow-y: auto;
+	z-index: 1;
+}
+.scrw-login-brand__inner {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 2.5rem;
+	padding: clamp(2rem, 4vw, 3.5rem);
+}
+.scrw-login-brand__logo { display: inline-block; line-height: 0; }
+.scrw-login-brand__logo img { width: 190px; height: auto; display: block; }
+.scrw-login-brand__body { max-width: 34rem; }
+.scrw-login-brand__eyebrow {
+	display: inline-block;
+	padding: .38rem .85rem;
+	border: 1px solid rgba(169, 139, 214, .55);
+	border-radius: 999px;
+	font-size: .7rem;
+	font-weight: 700;
+	letter-spacing: .16em;
+	text-transform: uppercase;
+	color: #d9c9f3;
+	background: rgba(92, 68, 137, .22);
+}
+.scrw-login-brand__title {
+	margin: 1.1rem 0 .9rem;
+	font-size: clamp(1.8rem, 1rem + 2.2vw, 2.75rem);
+	line-height: 1.12;
+	font-weight: 700;
+	letter-spacing: -.015em;
+	color: #fff;
+}
+.scrw-login-brand__lead { margin: 0 0 1.6rem; font-size: 1rem; line-height: 1.6; color: rgba(255, 255, 255, .78); }
+.scrw-login-brand__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; }
+.scrw-login-brand__list li { display: flex; align-items: center; gap: .7rem; font-size: .95rem; color: rgba(255, 255, 255, .9); }
+.scrw-login-brand__list svg { flex: 0 0 auto; color: #e0434a; }
+.scrw-login-brand__help { margin: 0; font-size: .85rem; color: rgba(255, 255, 255, .6); display: flex; flex-wrap: wrap; gap: .35rem 1rem; align-items: center; }
+.scrw-login-brand__help a { color: #fff; font-weight: 600; text-decoration: none; }
+.scrw-login-brand__help a:hover { color: var(--scrw-purple-soft); }
+
+/* ---------- Sign-in card ---------- */
+body.login.scrw-login #login {
+	width: min(420px, calc(100% - 2.5rem));
+	margin: 3rem auto 1rem;
+	padding: 2.25rem 2.25rem 1.6rem;
+	background: #fff;
+	border: 1px solid var(--scrw-line);
+	border-radius: 20px;
+	box-shadow: 0 30px 70px rgba(35, 22, 60, .12), 0 2px 6px rgba(35, 22, 60, .05);
+}
+body.login.scrw-login h1 { margin: 0 0 1.4rem; }
+body.login.scrw-login h1 a {
+	width: 180px;
+	height: 64px;
+	margin: 0;
+	background-image: var(--scrw-login-logo);
+	background-size: contain;
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+.scrw-login-welcome h2 { margin: 0 0 .35rem; font-size: 1.65rem; font-weight: 700; letter-spacing: -.01em; color: var(--scrw-purple); }
+.scrw-login-welcome p { margin: 0 0 1.4rem; font-size: .92rem; line-height: 1.5; color: var(--scrw-muted); }
+
+body.login.scrw-login form {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	box-shadow: none;
+	overflow: visible;
+}
+body.login.scrw-login label { font-size: .85rem; font-weight: 600; color: var(--scrw-ink); margin-bottom: .4rem; }
+body.login.scrw-login form .input,
+body.login.scrw-login input[type="text"],
+body.login.scrw-login input[type="email"],
+body.login.scrw-login input[type="password"] {
+	min-height: 48px;
+	margin: .3rem 0 1.1rem;
+	padding: .65rem .9rem;
+	font-size: 1rem;
+	border: 1px solid var(--scrw-line);
+	border-radius: 12px;
+	background: #faf9fd;
+	box-shadow: none;
+	transition: border-color .2s, box-shadow .2s, background-color .2s;
+}
+body.login.scrw-login form .input:focus,
+body.login.scrw-login input[type="text"]:focus,
+body.login.scrw-login input[type="password"]:focus {
+	border-color: var(--scrw-purple);
+	background: #fff;
+	box-shadow: 0 0 0 3px rgba(92, 68, 137, .18);
+	outline: 0;
+}
+body.login.scrw-login .wp-pwd { position: relative; }
+body.login.scrw-login .wp-pwd .input { margin-bottom: 1.1rem; padding-right: 3rem; }
+body.login.scrw-login .button.wp-hide-pw { top: .3rem; right: .2rem; height: 48px; min-width: 44px; color: var(--scrw-purple); background: transparent; border: 0; box-shadow: none; }
+body.login.scrw-login .button.wp-hide-pw:focus { box-shadow: 0 0 0 2px rgba(92, 68, 137, .3); border-radius: 10px; }
+
+body.login.scrw-login .forgetmenot { float: none; display: flex; align-items: center; margin: 0 0 1.25rem; }
+body.login.scrw-login .forgetmenot label { margin: 0; font-weight: 500; color: var(--scrw-muted); }
+body.login.scrw-login input[type="checkbox"] { width: 18px; height: 18px; margin: 0 .5rem 0 0; border-radius: 5px; border-color: #c9c4d6; }
+body.login.scrw-login input[type="checkbox"]:checked { background: var(--scrw-purple); border-color: var(--scrw-purple); }
+body.login.scrw-login input[type="checkbox"]:checked::before { filter: brightness(0) invert(1); }
+
+body.login.scrw-login .submit { clear: both; padding: 0; }
+body.login.scrw-login .button-primary,
+body.login.scrw-login #wp-submit {
+	float: none;
+	width: 100%;
+	min-height: 50px;
+	padding: 0 1.25rem;
+	font-size: 1rem;
+	font-weight: 700;
+	letter-spacing: .01em;
+	color: #fff;
+	background: var(--scrw-red);
+	border: 0;
+	border-radius: 12px;
+	box-shadow: 0 10px 24px rgba(186, 11, 11, .25);
+	text-shadow: none;
+	transition: background-color .2s, transform .15s, box-shadow .2s;
+}
+body.login.scrw-login .button-primary:hover,
+body.login.scrw-login #wp-submit:hover { background: var(--scrw-red-dark); transform: translateY(-1px); box-shadow: 0 14px 28px rgba(186, 11, 11, .3); }
+body.login.scrw-login .button-primary:focus,
+body.login.scrw-login #wp-submit:focus { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--scrw-red); }
+
+/* Links under the form */
+body.login.scrw-login #nav,
+body.login.scrw-login #backtoblog {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-size: .86rem;
+}
+body.login.scrw-login #nav { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--scrw-line); }
+body.login.scrw-login #backtoblog { margin-top: .6rem; }
+body.login.scrw-login #nav a,
+body.login.scrw-login #backtoblog a { color: var(--scrw-purple); font-weight: 600; text-decoration: none; }
+body.login.scrw-login #nav a:hover,
+body.login.scrw-login #backtoblog a:hover { color: var(--scrw-red); text-decoration: underline; }
+body.login.scrw-login .privacy-policy-page-link { margin: .9rem 0 0; text-align: center; }
+body.login.scrw-login .privacy-policy-page-link a { font-size: .8rem; color: var(--scrw-muted); text-decoration: none; }
+body.login.scrw-login .privacy-policy-page-link a:hover { color: var(--scrw-purple); }
+
+/* Messages and errors */
+body.login.scrw-login .message,
+body.login.scrw-login .notice,
+body.login.scrw-login #login_error {
+	margin: 0 0 1.2rem;
+	padding: .8rem 1rem;
+	font-size: .88rem;
+	border: 0;
+	border-left: 4px solid var(--scrw-purple);
+	border-radius: 10px;
+	background: #f3effa;
+	box-shadow: none;
+}
+body.login.scrw-login #login_error,
+body.login.scrw-login .notice-error { border-left-color: var(--scrw-red); background: #fdf0f0; }
+
+/* Footer note */
+.scrw-login-foot { width: min(420px, calc(100% - 2.5rem)); margin: 0 auto 2.5rem; text-align: center; }
+.scrw-login-foot p { margin: .35rem 0; font-size: .78rem; line-height: 1.5; color: var(--scrw-muted); }
+.scrw-login-foot__secure { display: inline-flex; align-items: center; gap: .4rem; }
+.scrw-login-foot__secure svg { color: var(--scrw-purple); flex: 0 0 auto; }
+body.login.scrw-login .language-switcher { display: none; }
+
+/* ---------- Tablets and phones ---------- */
+@media (max-width: 900px) {
+	body.login.scrw-login { padding: 0; justify-content: flex-start; }
+	.scrw-login-brand { position: relative; inset: auto; width: 100%; overflow: visible; }
+	.scrw-login-brand__inner { min-height: 0; gap: 1.4rem; padding: 1.6rem 1.4rem 4.5rem; }
+	.scrw-login-brand__logo img { width: 150px; }
+	.scrw-login-brand__title { font-size: 1.6rem; margin: .9rem 0 .5rem; }
+	.scrw-login-brand__lead { margin: 0; font-size: .92rem; }
+	.scrw-login-brand__list,
+	.scrw-login-brand__help { display: none; }
+	body.login.scrw-login #login { position: relative; z-index: 2; margin: -3rem auto 1rem; padding: 1.75rem 1.4rem 1.4rem; }
+	body.login.scrw-login h1 a { width: 150px; height: 54px; }
+	.scrw-login-welcome h2 { font-size: 1.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body.login.scrw-login * { transition: none !important; }
+}
