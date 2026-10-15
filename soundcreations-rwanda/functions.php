@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_VERSION', '1.9.5' );
+define( 'SCRW_VERSION', '1.9.6' );
 define( 'SCRW_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 

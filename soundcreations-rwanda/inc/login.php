@@ -111,9 +111,6 @@ add_filter(
 		if ( scrw_login_is_interim() || 'login' !== scrw_login_action() ) {
 			return $message;
 		}
-		if ( isset( $_GET['loggedout'] ) || isset( $_GET['checkemail'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return $message;
-		}
 		$intro  = '<div class="scrw-login-welcome">';
 		$intro .= '<h2>' . esc_html__( 'Welcome back', 'soundcreations-rwanda' ) . '</h2>';
 		$intro .= '<p>' . esc_html__( 'Sign in to manage the Sound Creations Rwanda website.', 'soundcreations-rwanda' ) . '</p>';

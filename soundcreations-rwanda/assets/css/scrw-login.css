@@ -14,7 +14,7 @@ body.login.scrw-login {
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	background: #f6f4fa;
 	font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 	color: var(--scrw-ink);
@@ -80,7 +80,7 @@ body.login.scrw-login *::after { box-sizing: border-box; }
 /* ---------- Sign-in card ---------- */
 body.login.scrw-login #login {
 	width: min(420px, calc(100% - 2.5rem));
-	margin: 3rem auto 1rem;
+	margin: auto auto 1rem;
 	padding: 2.25rem 2.25rem 1.6rem;
 	background: #fff;
 	border: 1px solid var(--scrw-line);
@@ -200,7 +200,24 @@ body.login.scrw-login #login_error,
 body.login.scrw-login .notice-error { border-left-color: var(--scrw-red); background: #fdf0f0; }
 
 /* Footer note */
-.scrw-login-foot { width: min(420px, calc(100% - 2.5rem)); margin: 0 auto 2.5rem; text-align: center; }
+.scrw-login-foot { width: min(420px, calc(100% - 2.5rem)); margin: 0 auto auto; padding-bottom: 2.5rem; text-align: center; }
+body.login.scrw-login { padding-top: 2.5rem; }
+
+/* 1.9.6: keep only our pieces. Older login add-ons on the server were
+   adding a faint "Staff sign in" line and a second copyright footer. */
+body.login.scrw-login #login > *:not(h1):not(.scrw-login-welcome):not(form):not(#nav):not(#backtoblog):not(.privacy-policy-page-link):not(.message):not(.notice):not(#login_error):not(script):not(style):not(input) { display: none !important; }
+body.login.scrw-login > div:not(#login):not(.scrw-login-foot):not(.clear):not([id^="wp-"]):not([class*="wp-"]),
+body.login.scrw-login > p,
+body.login.scrw-login > footer { display: none !important; }
+body.login.scrw-login .message,
+body.login.scrw-login .notice,
+body.login.scrw-login .message p,
+body.login.scrw-login .notice p { color: #2a2535 !important; opacity: 1 !important; }
+body.login.scrw-login #login_error,
+body.login.scrw-login #login_error p { color: #7a0a0a !important; }
+body.login.scrw-login #login label,
+body.login.scrw-login .scrw-login-welcome h2 { opacity: 1 !important; }
+body.login.scrw-login #login h1 { display: block !important; }
 .scrw-login-foot p { margin: .35rem 0; font-size: .78rem; line-height: 1.5; color: var(--scrw-muted); }
 .scrw-login-foot__secure { display: inline-flex; align-items: center; gap: .4rem; }
 .scrw-login-foot__secure svg { color: var(--scrw-purple); flex: 0 0 auto; }
