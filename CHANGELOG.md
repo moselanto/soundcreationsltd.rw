@@ -2,6 +2,11 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## Old domain: search engine move - 18 October 2026
+- Google Search Console: added rwanda.soundcreationsltd.com as a Domain property, verified by one DNS TXT record on rwanda.soundcreationsltd.com in the soundcreationsltd.com zone (cPanel Zone Editor): `google-site-verification=9NZZM86oV77wu9_AWVt6lGWIeUmfRm1vEKuWI8_KzyA`. KEEP this record; deleting it removes verification.
+- Change of address submitted to https://soundcreationsltd.rw/ (301 check and verification passed). Status "This site is currently moving", started 18 Oct 2026. Leave the 301s in place permanently.
+- Bing: https://rwanda.soundcreationsltd.com/ imported into Bing Webmaster Tools. Bing's current interface has no Site Move tool, so none was submitted; Bing follows the 301s on recrawl.
+
 ## Old domain redirect check - 18 October 2026
 - cPanel (d9742.usc1.stableserver.net): rwanda.soundcreationsltd.com document root is /public_html/rwanda.soundcreationsltd.com. Its .htaccess ALREADY starts with the full rule set from `server/htaccess-old-domain-redirect.txt` (page-by-page 301s, catch-all to https://soundcreationsltd.rw/). Nothing was changed; a backup copy was downloaded.
 - Checked in a browser: https://rwanda.soundcreationsltd.com/ lands on https://soundcreationsltd.rw/ and /about-us/ lands on /about/. The old URLs still seen in search results are stale index entries that drop out as search engines recrawl.
