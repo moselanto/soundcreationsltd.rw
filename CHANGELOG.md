@@ -2,6 +2,10 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.3 - 18 October 2026: load the schema tidy-up
+- Root cause found: `functions.php` never loaded `inc/schema-tidy.php` (the require line was lost between 2.3.0 and 2.3.1), so the sameAs de-duplication and the parent company @id never ran. Confirmed while logged in (uncached): the live JSON-LD still had web.facebook.com and no https://soundcreationsltd.com/#organization. Cache was not the cause.
+- Fix: `require_once SCRW_DIR . 'inc/schema-tidy.php';` added after guides-seed. Upload `functions.php` and `style.css` (or the whole folder).
+
 ## 2.3.2 / Core 0.5.27 - 18 October 2026: security review, CTA styling, documentation
 - Security review of all custom code (themes, Core, Enquiries): no SQL injection, XSS, CSRF, access-control or upload vulnerability found; existing controls documented with evidence in new `SECURITY-AUDIT.md`.
 - Fixed S-01 (low) in `sound-creations-core/includes/post-types.php`: the /resources/ to /videos/ 301 no longer builds its target from the client-supplied Host header; it uses `home_url()`. Core version 0.5.27.

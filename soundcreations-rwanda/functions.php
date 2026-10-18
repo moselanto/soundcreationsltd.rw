@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_VERSION', '2.3.2' );
+define( 'SCRW_VERSION', '2.3.3' );
 define( 'SCRW_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 
@@ -47,6 +47,7 @@ require_once SCRW_DIR . 'inc/schema-rw.php';
 require_once SCRW_DIR . 'inc/seo-ai.php';
 require_once SCRW_DIR . 'inc/wording-rw.php';
 require_once SCRW_DIR . 'inc/guides-seed.php';
+require_once SCRW_DIR . 'inc/schema-tidy.php';
 require_once SCRW_DIR . 'inc/analytics.php';
 require_once SCRW_DIR . 'inc/elementor.php';
 require_once SCRW_DIR . 'inc/section-titles.php';
