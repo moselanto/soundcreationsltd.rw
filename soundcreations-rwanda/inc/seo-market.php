@@ -191,9 +191,16 @@ add_filter(
 				}
 				$graph[ $i ]['offers'] = $offer;
 			} else {
-				unset( $graph[ $i ]['offers'] ); // Never publish an offer without a real price.
+				// v2.2.2: no real price, so no Product node at all. Search Console
+				// reported 28 invalid Product snippets ("Either 'offers', 'review'
+				// or 'aggregateRating' should be specified"). We never invent a
+				// price, rating or review, so an unpriced, enquiry-only item is
+				// described by its ItemPage, breadcrumb and visible FAQ instead.
+				// Entering a real RWF price brings the Product + Offer back.
+				unset( $graph[ $i ] );
 			}
 		}
+		$graph = array_values( $graph );
 
 		if ( scrw_product_use_faq( $id ) ) {
 			$qs = array();

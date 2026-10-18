@@ -2,6 +2,12 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.2.2 - 18 October 2026: fix invalid Product snippets
+- Search Console > Product snippets: 28 invalid, 0 valid, critical issue "Either 'offers', 'review' or 'aggregateRating' should be specified" (first detected 14 Oct; e.g. /products/shure-sm57/, /products/yamaha-psr-sx600/, /products/db-b-hype-series/).
+- Cause: core `seo-graph.php` outputs a Product node on every product page, but the catalogue is enquiry-only with no price, rating or review, so Google marks each one invalid.
+- Fix in `soundcreations-rwanda/inc/seo-market.php` (Rwanda layer, core untouched): the Product node is removed when no RWF price is entered. When a real price is entered in the product's "Price in Rwanda (RWF)" field, Product + Offer (RWF) is output and becomes eligible for product rich results. No invented prices, ratings or reviews.
+- After deploying: Search Console > Product snippets > the issue > "Validate fix". The invalid count should fall as Google recrawls.
+
 ## 2.2.1 - 18 October 2026: client logo alt text
 - `inc/clients.php`: the duplicated (aria-hidden) copy of the "Our Clients" logo marquee now carries the client name as alt text instead of `alt=""`. Bing Webmaster Tools flagged 22 empty alts on the homepage; screen readers still skip the duplicate because its list items are aria-hidden.
 
