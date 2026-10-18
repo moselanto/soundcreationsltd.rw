@@ -2,6 +2,12 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.0 - 18 October 2026: schema cross-check and entity tidy-up
+- Live cross-check: validator.schema.org on 7 pages (home, /yamaha/, conference room, /products/shure-sm57/, Christian Life Assembly project, /about/, /contact/): 0 errors, 0 warnings, exactly one JSON-LD graph per page. Google Rich Results Test (home, church page): Breadcrumbs, Local business and Organisation all valid; only optional warnings (priceRange, postalCode), intentionally not filled.
+- New `inc/schema-tidy.php` (last on `sc_seo_graph`): normalises and de-duplicates sameAs (web.facebook.com vs www.facebook.com, trailing slashes), gives the Organization and LocalBusiness the same complete sameAs list, and gives the parent company node the @id https://soundcreationsltd.com/#organization so the branch links to the group site's own graph.
+- AGENTS.md: owner decisions recorded (no prices on the site; Shure handled by Sound Creations Kenya).
+- Needs the theme upload to go live.
+
 ## Old domain: search engine move - 18 October 2026
 - Google Search Console: added rwanda.soundcreationsltd.com as a Domain property, verified by one DNS TXT record on rwanda.soundcreationsltd.com in the soundcreationsltd.com zone (cPanel Zone Editor): `google-site-verification=9NZZM86oV77wu9_AWVt6lGWIeUmfRm1vEKuWI8_KzyA`. KEEP this record; deleting it removes verification.
 - Change of address submitted to https://soundcreationsltd.rw/ (301 check and verification passed). Status "This site is currently moving", started 18 Oct 2026. Leave the 301s in place permanently.

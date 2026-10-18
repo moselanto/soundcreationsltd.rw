@@ -62,6 +62,11 @@ Full ranked list: `docs/SEO-AUDIT-2026-10.md` (gap report, competitor matrix, qu
 
 Some SEO changes live in the database (Rank Math fields), not in this repo. Log every such edit in CHANGELOG.md under "Live site edits" with the old and new values. Values typed in Rank Math override the theme's titles.
 
+## Owner decisions
+
+- **No prices on the website (18 Oct 2026).** Every shipment is priced differently, so no RWF prices are entered or displayed. Product pages keep the "ask for today's price" WhatsApp prompt. Consequences: no Product/Offer schema on product pages (`inc/seo-market.php` drops the Product node when no price is set) and no `priceRange` on the business node. Do not add prices, price ranges, ratings or reviews to schema.
+- **Shure is handled by Sound Creations Kenya** (one group); do not ask Shure to change its listing for Rwanda.
+
 ## Brief
 
 The owner's master brief ("SCL RWANDA SEO, AEO, GEO") governs this work: audit before editing, verified facts only, no doorway or thin country pages, no fake authority, no llms.txt or schema just because it is fashionable, label observed vs inferred, never claim AI tests that were not run.
