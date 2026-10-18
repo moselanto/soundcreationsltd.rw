@@ -2,6 +2,11 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## Old domain redirect check - 18 October 2026
+- cPanel (d9742.usc1.stableserver.net): rwanda.soundcreationsltd.com document root is /public_html/rwanda.soundcreationsltd.com. Its .htaccess ALREADY starts with the full rule set from `server/htaccess-old-domain-redirect.txt` (page-by-page 301s, catch-all to https://soundcreationsltd.rw/). Nothing was changed; a backup copy was downloaded.
+- Checked in a browser: https://rwanda.soundcreationsltd.com/ lands on https://soundcreationsltd.rw/ and /about-us/ lands on /about/. The old URLs still seen in search results are stale index entries that drop out as search engines recrawl.
+- Open item "301 the old domain" is therefore DONE. Optional next step: verify rwanda.soundcreationsltd.com in Search Console and Bing and use their site-move / Change of Address tools.
+
 ## Deployment check - 18 October 2026 (after owner uploaded 2.2.2)
 - WordPress shows the Rwanda child theme at 2.2.2.
 - The four Buyer Guides drafts were created by `inc/guides-seed.php` and await engineer review (not published).
