@@ -39,6 +39,7 @@ WordPress code for **soundcreationsltd.rw** (Sound Creations Ltd Rwanda, KN1 Rd,
 | `schema-services.php` | 1.7.x | Service nodes |
 | `analytics.php` | 1.x | GA4 + Search Console fields |
 | `seo-ai.php` | 2.0.0, corrected 2.1.0 | Optional `/llms.txt` (off; `scrw_llms_enabled`), optional training-crawler opt-out (`scrw_ai_training_policy`). Never add named-bot Allow groups: they bypass the core hygiene rules |
+| `guides-seed.php` | 2.2.0 | Four buyer guides seeded once as drafts for engineer review; never overwrites existing posts |
 | `wording-rw.php` | 2.1.0 | Rwanda-first visible copy where the seeded value still says Africa / Middle East; never touches edited text |
 
 ## Open items (need the business or server access, not code)

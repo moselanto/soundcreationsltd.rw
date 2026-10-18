@@ -2,6 +2,15 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.2.0 - 18 October 2026: buyer guides (AEO / GEO content)
+- New `soundcreations-rwanda/inc/guides-seed.php`, loaded from `functions.php`. On the next wp-admin load it creates four answer-first guides as **drafts** in a new "Buyer Guides" category, with Rank Math title and description, visible FAQs and links to the matching solution and project pages:
+  - `sound-system-quotation-checklist-rwanda` (procurement checklist)
+  - `acoustic-treatment-vs-soundproofing`
+  - `choosing-pa-system-church-hall-rwanda`
+  - `maintaining-commercial-sound-system`
+- Never overwrites: a guide is skipped if any post with its slug exists (any status). No invented prices, measurements or results. An admin notice lists drafts awaiting engineer review (meta `_scrw_guide_needs_review`).
+- Article schema comes from the existing core graph for posts; no new schema generator.
+
 ## Live site edits (WordPress admin, not code) - 18 October 2026
 - Confirmed the live child theme is 2.1.0 (deployed).
 - Conference page `/solutions/conference-room-sound-systems/` (post 464): Rank Math SEO title set to "Conference Room AV & Video Conferencing Rwanda | Sound Creations" and meta description to "Conference room AV and video conferencing in Kigali: boardroom microphones, Zoom/Teams audio, cameras and acoustics. Proven at MINECOFIN. Get a quote." Previous: title template "%title% | Sound Creations Rwanda" (live title came from theme code: "Conference Room Sound Systems Kigali | Boardroom Audio Rwanda"), description empty (excerpt fallback). URL, page title and body unchanged. Reason: the page did not appear for "conference room AV Rwanda" (see docs/SEO-AUDIT-2026-10.md section 9).

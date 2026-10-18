@@ -151,3 +151,8 @@ Goal: be the source AI assistants (ChatGPT search, Perplexity, Google AI Overvie
 ## Release 2.1.0: post-implementation audit (18 October 2026)
 
 2.0.0 was reviewed against the owner's brief before deployment and corrected (robots.txt group defect, llms.txt off by default, speakable removed). Full findings: [SEO-AUDIT-2026-10.md](SEO-AUDIT-2026-10.md). Top three actions are outside the code: fix the Yamaha directory phone, 301 the old rwanda.soundcreationsltd.com site, finish Google Business Profile and Search Console.
+
+
+## Release 2.2.0: buyer guides (18 October 2026)
+
+Four answer-first guides (quotation checklist, acoustic treatment vs soundproofing, choosing a church/hall PA, maintaining a commercial sound system) seeded as drafts. Each opens with a direct answer, gives practical criteria, links to the matching solution and project pages, ends with visible FAQs and a Kigali contact. Publish only after a Sound Creations engineer reviews them and adds real photos or project examples. Then request indexing in Search Console and add them to the AI citation log in SEO-AUDIT-2026-10.md.
