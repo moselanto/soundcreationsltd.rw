@@ -55,7 +55,7 @@ It runs a **copy of the group code** from [soundcreationsltd.com](https://soundc
 | Package | Folder | Version | Role |
 | --- | --- | --- | --- |
 | **Sound Creations** (parent theme) | [`soundcreations/`](soundcreations) | 0.10.11 | Group design system: dark-first editorial layout, templates for solutions, services, projects, brands, products and resources |
-| **Sound Creations Rwanda** (child theme) | [`soundcreations-rwanda/`](soundcreations-rwanda) | 1.8.0 | **Activate this one.** Rwanda contacts, hours, pages, Yamaha and FANE hubs, 55-product catalogue, Rwanda projects, clients, local SEO, analytics and Elementor widgets |
+| **Sound Creations Rwanda** (child theme) | [`soundcreations-rwanda/`](soundcreations-rwanda) | 2.1.0 | **Activate this one.** Rwanda contacts, hours, pages, Yamaha and FANE hubs, 55-product catalogue, Rwanda projects, clients, local SEO, analytics and Elementor widgets |
 | **Sound Creations Core** (plugin) | [`sound-creations-core/`](sound-creations-core) | 0.5.25 | Content types, taxonomies, central business-settings store, schema graph, branded staff login screen and starter setup. Lives in a plugin so data survives a theme change |
 | **Sound Creations Enquiries** (plugin) | [`sound-creations-enquiries/`](sound-creations-enquiries) | 0.2.0 | B2B enquiry system: consultation, quote, product, dealer, FANE and support forms with routing, secure storage, email alerts and spam scoring |
 | **Server rules** | [`server/`](server) | - | `.htaccess` compression and browser-caching block for LiteSpeed / Apache |
@@ -285,6 +285,7 @@ Built to rank for local searches such as *audio visual Rwanda, sound systems Kig
 - **Rank Math owns the `<head>`** (title, description, canonical, robots). The theme keeps one connected JSON-LD graph and Rank Math's own schema is switched off so the two never contradict each other. Anything typed into Rank Math always wins.
 - **Keyword-targeted Kigali / Rwanda titles** for every page type: Yamaha, FANE, brands, products, solutions and projects.
 - **Schema graph** with `Organization`, `LocalBusiness` (KN1 Rd, Muhima, Kigali), `WebSite` + `SearchAction`, `BreadcrumbList`, `Product` + `Offer`, `Brand`, `Service`, `OfferCatalog`, `FAQPage`, `VideoObject`, `ItemList` and `OpeningHoursSpecification`, linked to the group with `parentOrganization` and `areaServed` covering Rwanda's cities, the DRC and East Africa.
+- **SEO / AEO / GEO audit (2.1.0):** see `docs/SEO-AUDIT-2026-10.md`. AI agents: read `AGENTS.md` and `CHANGELOG.md` before changing anything.
 - Kigali geo meta, WordPress XML sitemap at `/wp-sitemap.xml`, and GA4 and Search Console fields under **Settings > General**.
 
 | Checklist | Status |

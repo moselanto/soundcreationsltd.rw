@@ -123,3 +123,31 @@ Full research, competitor list and keyword to page map: [KEYWORD-STRATEGY.md](KE
 5. Share the homepage URL in the Facebook Sharing Debugger / WhatsApp to confirm the image.
 6. Search Console: submit `/sitemap_index.xml`, request indexing for the pages above.
 7. Rollback: re-upload the backup folder.
+
+
+## Release 2.0.0: GEO and AEO (18 October 2026)
+
+Goal: be the source AI assistants (ChatGPT search, Perplexity, Google AI Overviews, Copilot) quote when someone asks "who sells Yamaha in Rwanda" or "church sound system installers in Kigali".
+
+| Area | Change | File |
+| --- | --- | --- |
+| llms.txt | Live, fact-only summary at `/llms.txt` with key pages | `inc/seo-ai.php` |
+| AI crawlers | Explicit robots.txt rules allowing answer-engine bots; training bots switchable | `inc/seo-ai.php` |
+| Answer markup | `speakable` (H1, FAQ Q/A) and `lastReviewed` on the WebPage node | `inc/seo-ai.php` |
+
+### What still moves GEO/AEO most (content, needs the Rwanda team)
+1. Answer-first copy: open each solution/sector page with a 40-60 word direct answer (who, what, where in Rwanda, how to get a quote).
+2. Buyer guides with real numbers: "PA system cost factors in Rwanda", "how to choose a church mixer", "Yamaha keyboard price guide Rwanda".
+3. Named, dated project write-ups with equipment lists and client quotes (citable evidence).
+4. Consistent mentions off-site: Google Business Profile, Yamaha dealer locator, Rwandan directories, LinkedIn. AI engines cross-check these.
+5. Test monthly: ask ChatGPT, Perplexity and Google "Yamaha distributor Rwanda", "sound system installation Kigali", "church sound system Rwanda" and log whether Sound Creations is named.
+
+### After deploying 2.0.0
+1. Upload `soundcreations-rwanda/`, clear LiteSpeed cache.
+2. Open `/llms.txt` and `/robots.txt` and check the new sections.
+3. Run the home page and one solution page through the Rich Results Test: still one graph, now with `speakable`.
+
+
+## Release 2.1.0: post-implementation audit (18 October 2026)
+
+2.0.0 was reviewed against the owner's brief before deployment and corrected (robots.txt group defect, llms.txt off by default, speakable removed). Full findings: [SEO-AUDIT-2026-10.md](SEO-AUDIT-2026-10.md). Top three actions are outside the code: fix the Yamaha directory phone, 301 the old rwanda.soundcreationsltd.com site, finish Google Business Profile and Search Console.

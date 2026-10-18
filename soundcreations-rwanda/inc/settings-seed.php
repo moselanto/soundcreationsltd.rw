@@ -56,7 +56,7 @@ function scrw_settings() {
 		// Homepage.
 		'home_hero_title'     => '', // No visible headline, as on the group site.
 		'home_whatwedo_title' => '',
-		'home_whatwedo_lead'  => 'If it sounds good, it’s Sound Creations. From acoustic design and system engineering to equipment, integration, commissioning and support, we deliver world-class technology and expertise across Rwanda, Africa and the Middle East.',
+		'home_whatwedo_lead'  => 'If it sounds good, it’s Sound Creations. From our Kigali office on KN1 Rd, Muhima, we design, supply, install and support professional audio, acoustic, lighting and AV systems for venues across Rwanda, with projects in the DRC and East Africa.',
 		'home_solutions_title'=> '',
 		'home_projects_title' => 'Real spaces. Real results.',
 		'home_stat1_num'      => '22+',

@@ -1,0 +1,29 @@
+# Changelog
+
+Newest first. Every change must add an entry here (see AGENTS.md).
+
+## 2.1.0 - 18 October 2026: audit against the SEO/AEO/GEO brief
+- New `docs/SEO-AUDIT-2026-10.md`: ranked gap report, competitor matrix, question-to-page map, AI citation log template, content plan, regional assessment, blocked items.
+- `inc/seo-ai.php` corrected: removed named AI-bot Allow groups (they would have bypassed core crawl-hygiene rules); `/llms.txt` now off by default (`scrw_llms_enabled`); removed `speakable` and `lastReviewed` (no benefit for this site); training-crawler block available via `scrw_ai_training_policy`.
+- New `inc/wording-rw.php`: homepage "What we do" lead now Rwanda-first (Kigali, Rwanda, DRC, East Africa) instead of "Africa and the Middle East", only while the seeded text is unedited. Seed default updated in `inc/settings-seed.php`.
+- AGENTS.md: brief rules, new open items (Yamaha listing phone, old domain still indexed).
+
+## 2.0.0 - 18 October 2026: GEO and AEO layer
+- New `soundcreations-rwanda/inc/seo-ai.php`, loaded from `functions.php`:
+  - `/llms.txt`: live Markdown summary of the business (facts, contact, areas served, Yamaha = music/pro audio not motorcycles) with links to solutions, services, projects, brands and posts. Cached 12 h, cleared on publish. Served with `X-Robots-Tag: noindex`.
+  - robots.txt: explicit Allow for AI answer/search crawlers (OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot, Applebot, Bingbot, etc.) and, by default, training crawlers (filter `scrw_ai_allow_training` to turn off). Points to `/llms.txt`.
+  - Schema: `speakable` (H1 + visible FAQ) and `lastReviewed` on the WebPage node, via the existing `sc_seo_graph` filter (still one graph).
+- Version sync: `style.css` was still 1.8.0 while `SCRW_VERSION` was 1.9.6; both now 2.0.0.
+- Added `AGENTS.md` (handoff for AI agents) and this changelog.
+
+## 1.9.3 - 1.9.6
+- Mobile tab bar and menu fixes; branded sign-in page (`inc/login.php`, `assets/css/scrw-login.css`).
+
+## 1.7.x
+- 1.7.0 "price in Rwanda" product SEO (`inc/seo-market.php`); 1.7.4 permanent sitemap rewrite rules (`inc/sitemap-rules.php`). See docs/SEO-PLAN.md.
+
+## 1.6.0
+- Sitemap self-heal, sector pages actually loaded, Rwanda wording, old-domain 301 file.
+
+## 1.2.0 - 1.3.0
+- Schema audit fixes (`#localbusiness`, areaServed, sameAs) and four sector landing pages.
