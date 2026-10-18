@@ -2,6 +2,15 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.2.1 - 18 October 2026: client logo alt text
+- `inc/clients.php`: the duplicated (aria-hidden) copy of the "Our Clients" logo marquee now carries the client name as alt text instead of `alt=""`. Bing Webmaster Tools flagged 22 empty alts on the homepage; screen readers still skip the duplicate because its list items are aria-hidden.
+
+## Search engine tools (not code) - 18 October 2026
+- Google Search Console (soundcreationsrwanda@gmail.com): URL-prefix property https://soundcreationsltd.rw/ verified; `/sitemap_index.xml` submitted 14 Oct, status Success (117 URLs). All 10 key pages inspected: indexed. Linked to GA4 property soundcreationsltd.rw (G-05TFN3KPEB), data flowing.
+- Bing Webmaster Tools: settings imported from Google by the owner. Sitemap imported 18 Oct (processing). Indexing requested for 6 pages that were "Discovered but not crawled": conference room, church, professional audio, installation, school and auditorium, hotel/bar/restaurant. Already indexed: home, /yamaha/, architectural acoustics, /projects/, /about/. Bing AI Performance: 0 citations at baseline.
+- Rank Math Instant Indexing (IndexNow) module confirmed enabled in WordPress.
+- Google Business Profile: still owned by the original company email; do not edit until access is transferred.
+
 ## 2.2.0 - 18 October 2026: buyer guides (AEO / GEO content)
 - New `soundcreations-rwanda/inc/guides-seed.php`, loaded from `functions.php`. On the next wp-admin load it creates four answer-first guides as **drafts** in a new "Buyer Guides" category, with Rank Math title and description, visible FAQs and links to the matching solution and project pages:
   - `sound-system-quotation-checklist-rwanda` (procurement checklist)

@@ -97,7 +97,8 @@ function scrw_render_clients() {
 				<?php for ( $loop = 0; $loop < 2; $loop++ ) : ?>
 					<?php foreach ( $set as $c ) : ?>
 						<li class="scrw-clients__card"<?php echo $loop ? ' aria-hidden="true"' : ''; ?>>
-							<img src="<?php echo esc_url( $c['src'] ); ?>" alt="<?php echo $loop ? '' : esc_attr( $c['name'] ); ?>" title="<?php echo esc_attr( $c['name'] ); ?>" loading="lazy" decoding="async" width="400" height="220">
+							<?php // v2.2.1: the duplicate loop copy is inside aria-hidden, so screen readers skip it; it keeps the client name as alt so Bing/Google image checks do not flag 22 empty alts. ?>
+							<img src="<?php echo esc_url( $c['src'] ); ?>" alt="<?php echo esc_attr( $c['name'] ); ?>" title="<?php echo esc_attr( $c['name'] ); ?>" loading="lazy" decoding="async" width="400" height="220">
 						</li>
 					<?php endforeach; ?>
 				<?php endfor; ?>
