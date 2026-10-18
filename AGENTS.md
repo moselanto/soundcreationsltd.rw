@@ -57,6 +57,10 @@ Full ranked list: `docs/SEO-AUDIT-2026-10.md` (gap report, competitor matrix, qu
 - Real RWF prices on top products; real photos on sector pages; 300+ word project write-ups.
 - Buyer guides (blog) answering real questions: they are the main fuel for AI answers.
 
+## Edits made in WordPress admin
+
+Some SEO changes live in the database (Rank Math fields), not in this repo. Log every such edit in CHANGELOG.md under "Live site edits" with the old and new values. Values typed in Rank Math override the theme's titles.
+
 ## Brief
 
 The owner's master brief ("SCL RWANDA SEO, AEO, GEO") governs this work: audit before editing, verified facts only, no doorway or thin country pages, no fake authority, no llms.txt or schema just because it is fashionable, label observed vs inferred, never claim AI tests that were not run.
