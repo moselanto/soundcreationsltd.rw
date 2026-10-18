@@ -2,6 +2,12 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## Deployment check - 18 October 2026 (after owner uploaded 2.2.2)
+- WordPress shows the Rwanda child theme at 2.2.2.
+- The four Buyer Guides drafts were created by `inc/guides-seed.php` and await engineer review (not published).
+- LiteSpeed Cache is NOT installed on this WordPress site (5 plugins installed), so there is no cache purge step. Older deploy notes that say "clear LiteSpeed cache" do not apply unless a caching plugin or host cache is added later.
+- Search Console live test of /products/shure-sm57/: no Product snippets item detected, Breadcrumbs valid. "Validate fix" started 18/10/2026 for "Either 'offers', 'review' or 'aggregateRating' should be specified" (28 items). Check the validation result in about 2 to 4 weeks.
+
 ## 2.2.2 - 18 October 2026: fix invalid Product snippets
 - Search Console > Product snippets: 28 invalid, 0 valid, critical issue "Either 'offers', 'review' or 'aggregateRating' should be specified" (first detected 14 Oct; e.g. /products/shure-sm57/, /products/yamaha-psr-sx600/, /products/db-b-hype-series/).
 - Cause: core `seo-graph.php` outputs a Product node on every product page, but the catalogue is enquiry-only with no price, rating or review, so Google marks each one invalid.
