@@ -55,7 +55,7 @@ It runs a **copy of the group code** from [soundcreationsltd.com](https://soundc
 | Package | Folder | Version | Role |
 | --- | --- | --- | --- |
 | **Sound Creations** (parent theme) | [`soundcreations/`](soundcreations) | 0.10.11 | Group design system: dark-first editorial layout, templates for solutions, services, projects, brands, products and resources |
-| **Sound Creations Rwanda** (child theme) | [`soundcreations-rwanda/`](soundcreations-rwanda) | 2.1.0 | **Activate this one.** Rwanda contacts, hours, pages, Yamaha and FANE hubs, 55-product catalogue, Rwanda projects, clients, local SEO, analytics and Elementor widgets |
+| **Sound Creations Rwanda** (child theme) | [`soundcreations-rwanda/`](soundcreations-rwanda) | 2.3.2 | **Activate this one.** Rwanda contacts, hours, pages, Yamaha and FANE hubs, 55-product catalogue, Rwanda projects, clients, local SEO, analytics and Elementor widgets |
 | **Sound Creations Core** (plugin) | [`sound-creations-core/`](sound-creations-core) | 0.5.25 | Content types, taxonomies, central business-settings store, schema graph, branded staff login screen and starter setup. Lives in a plugin so data survives a theme change |
 | **Sound Creations Enquiries** (plugin) | [`sound-creations-enquiries/`](sound-creations-enquiries) | 0.2.0 | B2B enquiry system: consultation, quote, product, dealer, FANE and support forms with routing, secure storage, email alerts and spam scoring |
 | **Server rules** | [`server/`](server) | - | `.htaccess` compression and browser-caching block for LiteSpeed / Apache |
@@ -278,6 +278,21 @@ erDiagram
 | `sc_resource` / `sc_case_study` | Videos, downloads and long-form stories | - |
 | `sc_enquiry` | Private store of form submissions | - |
 
+## Project documentation
+
+| Document | Purpose |
+| --- | --- |
+| [AGENTS.md](AGENTS.md) | Start here: rules, owner decisions, file map and open items for developers and AI agents |
+| [ARCHITECTURE-ESSENTIALS.md](ARCHITECTURE-ESSENTIALS.md) | One-page orientation |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Full technical architecture: data model, modules, SEO/schema and enquiry pipelines, deployment |
+| [PRD.md](PRD.md) | Product requirements, users, goals, scope and roadmap |
+| [SECURITY-AUDIT.md](SECURITY-AUDIT.md) | Security review, controls with evidence, secure-coding rules, operational actions |
+| [CHANGELOG.md](CHANGELOG.md) | Every code and live-site change, newest first |
+| [docs/SEO-AUDIT-2026-10.md](docs/SEO-AUDIT-2026-10.md) | SEO/AEO/GEO audit, competitors, question-to-page map |
+| [docs/SEO-PLAN.md](docs/SEO-PLAN.md), [docs/KEYWORD-STRATEGY.md](docs/KEYWORD-STRATEGY.md) | SEO release history and Rwanda keyword research |
+
+Current versions: child theme 2.3.2, Sound Creations Core 0.5.27, Sound Creations Enquiries 0.2.0.
+
 ## SEO and structured data
 
 Built to rank for local searches such as *audio visual Rwanda, sound systems Kigali, PA system Kigali, Yamaha Rwanda, acoustic treatment Rwanda, stage lighting Kigali, church sound system Rwanda* and *conference room AV Kigali*.
@@ -285,7 +300,7 @@ Built to rank for local searches such as *audio visual Rwanda, sound systems Kig
 - **Rank Math owns the `<head>`** (title, description, canonical, robots). The theme keeps one connected JSON-LD graph and Rank Math's own schema is switched off so the two never contradict each other. Anything typed into Rank Math always wins.
 - **Keyword-targeted Kigali / Rwanda titles** for every page type: Yamaha, FANE, brands, products, solutions and projects.
 - **Schema graph** with `Organization`, `LocalBusiness` (KN1 Rd, Muhima, Kigali), `WebSite` + `SearchAction`, `BreadcrumbList`, `Product` + `Offer`, `Brand`, `Service`, `OfferCatalog`, `FAQPage`, `VideoObject`, `ItemList` and `OpeningHoursSpecification`, linked to the group with `parentOrganization` and `areaServed` covering Rwanda's cities, the DRC and East Africa.
-- **SEO / AEO / GEO audit (2.1.0):** see `docs/SEO-AUDIT-2026-10.md`. AI agents: read `AGENTS.md` and `CHANGELOG.md` before changing anything.
+- **SEO / AEO / GEO:** one validated JSON-LD graph (0 errors), Rank Math head, buyer guides, AI-search readiness; see `docs/SEO-AUDIT-2026-10.md`. AI agents: read `AGENTS.md` and `CHANGELOG.md` before changing anything.
 - Kigali geo meta, WordPress XML sitemap at `/wp-sitemap.xml`, and GA4 and Search Console fields under **Settings > General**.
 
 | Checklist | Status |
@@ -313,7 +328,7 @@ Built to rank for local searches such as *audio visual Rwanda, sound systems Kig
 | WordPress | 6.4 or later |
 | PHP | 8.0 or later |
 | HTTPS | Required |
-| Recommended | Rank Math SEO, Elementor (free is enough; Pro adds the theme builder) |
+| Recommended | Rank Math SEO, Elementor (free is enough; Pro adds the theme builder). No other SEO or caching plugin |
 | Hosting | LiteSpeed or Apache with `mod_deflate` and `mod_expires` |
 
 ## Deployment

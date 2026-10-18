@@ -3,7 +3,7 @@
  * Plugin Name:       Sound Creations Core
  * Plugin URI:        https://soundcreationsltd.com/
  * Description:       Core content types, taxonomies, central business-settings store, and one-click starter setup for the Sound Creations website. Keep functionality here so it survives theme changes.
- * Version:           0.5.26
+ * Version:           0.5.27
  * Requires at least: 6.4
  * Requires PHP:      8.0
  * Author:            Sound Creations Ltd

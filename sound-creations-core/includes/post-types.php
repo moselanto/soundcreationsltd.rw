@@ -111,8 +111,12 @@ function sc_core_redirect_resources_to_videos() {
 	if ( preg_match( '#/resources(/|$)#', $uri ) === 1 ) {
 		$new = preg_replace( '#/resources(/|$)#', '/videos$1', $uri, 1 );
 		if ( is_string( $new ) ) {
-			$host = isset( $_SERVER['HTTP_HOST'] ) ? $_SERVER['HTTP_HOST'] : '';
-			$dest = ( is_ssl() ? 'https://' : 'http://' ) . $host . $new;
+			// Security (core 0.5.27): build the target from the site's own
+			// home URL instead of the client-supplied Host header, so a forged
+			// Host value can never influence the redirect destination.
+			$path = (string) wp_parse_url( $new, PHP_URL_PATH );
+			$qs   = (string) wp_parse_url( $new, PHP_URL_QUERY );
+			$dest = home_url( $path ) . ( '' !== $qs ? '?' . $qs : '' );
 			wp_safe_redirect( $dest, 301 );
 			exit;
 		}

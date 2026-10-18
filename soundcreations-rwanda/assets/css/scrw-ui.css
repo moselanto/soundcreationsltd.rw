@@ -497,3 +497,31 @@
 	body.sc-nav-open .sc-nav .sc-nav__list > li { animation: none !important; }
 	.scrw-subtoggle, .scrw-subtoggle svg { transition: none !important; }
 }
+
+
+/* ------------------------------------------------------------------
+   v2.3.2: Projects (and any) photo CTA band button.
+   Live check 18 Oct 2026: the "Request a Consultation" label wrapped
+   awkwardly and the arrow icon rendered oversized. Keep label and
+   arrow on one line with an icon sized to the text; allow wrapping
+   only on very narrow phones, centred.
+   ------------------------------------------------------------------ */
+.sc-cta-band .sc-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: .5em;
+	white-space: nowrap;
+	line-height: 1.2;
+}
+.sc-cta-band .sc-btn svg {
+	width: 1em;
+	height: 1em;
+	flex: 0 0 auto;
+}
+@media (max-width: 420px) {
+	.sc-cta-band .sc-btn {
+		white-space: normal;
+		text-align: center;
+	}
+}

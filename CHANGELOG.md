@@ -2,6 +2,13 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.2 / Core 0.5.27 - 18 October 2026: security review, CTA styling, documentation
+- Security review of all custom code (themes, Core, Enquiries): no SQL injection, XSS, CSRF, access-control or upload vulnerability found; existing controls documented with evidence in new `SECURITY-AUDIT.md`.
+- Fixed S-01 (low) in `sound-creations-core/includes/post-types.php`: the /resources/ to /videos/ 301 no longer builds its target from the client-supplied Host header; it uses `home_url()`. Core version 0.5.27.
+- `soundcreations-rwanda/assets/css/scrw-ui.css`: photo CTA band button (Projects page "Request a Consultation") keeps label and arrow on one line with the arrow sized to the text; wraps centred only below 420 px.
+- New docs: `ARCHITECTURE.md`, `ARCHITECTURE-ESSENTIALS.md`, `PRD.md`, `SECURITY-AUDIT.md`. README (docs index, versions) and AGENTS.md (read order, security rules, known operational issues) updated.
+- Not changed on purpose: no code was removed or restructured without a PHP runtime to test it. Placeholder markers (`[VERIFY]`, `[CONTENT TO BE CONFIRMED]`) live only in admin-only seed tools and are already hidden from visitors by the placeholder guard in `security-plus.php`.
+
 ## 2.3.1 - 18 October 2026: post-2.3.0 live check fixes
 - `inc/seo-market.php`: product "Price in Rwanda" box rebuilt with explicit sizes on divs and a self-styled WhatsApp button. Live check found the explanatory text rendering at heading size and the WhatsApp button showing as a red bar with no readable label.
 - Live check of 2.3.0 (WordPress shows 2.3.0, no PHP errors): validator.schema.org still shows the PRE-2.3.0 sameAs list and no parentOrganization @id, even with a cache-busting query string, so the 2.3.0 schema tidy-up (`inc/schema-tidy.php`) is not running on the server. Either `functions.php` / `inc/schema-tidy.php` were not uploaded, or the page cache is serving stale HTML: WP_CACHE is enabled and the `advanced-cache.php` drop-in from the inactive Seraphinite Accelerator plugin is still installed. Theme File Editor is disabled (403), so files cannot be checked from wp-admin. Fix: re-upload the whole `soundcreations-rwanda/` folder, then clear the cache (reactivate Seraphinite and purge, or remove the stale drop-in and set WP_CACHE false via the host).

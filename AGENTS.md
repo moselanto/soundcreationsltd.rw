@@ -1,5 +1,7 @@
 # AGENTS.md: handoff notes for AI coding agents
 
+Read order: this file, then `ARCHITECTURE-ESSENTIALS.md`, `ARCHITECTURE.md`, `PRD.md`, `SECURITY-AUDIT.md`, `CHANGELOG.md`.
+
 Read this first before changing anything in this repository. Update it (and `CHANGELOG.md`) in the same commit as your change, so the next agent knows what was done.
 
 ## What this repo is
@@ -71,9 +73,21 @@ Some SEO changes live in the database (Rank Math fields), not in this repo. Log 
 
 The owner's master brief ("SCL RWANDA SEO, AEO, GEO") governs this work: audit before editing, verified facts only, no doorway or thin country pages, no fake authority, no llms.txt or schema just because it is fashionable, label observed vs inferred, never claim AI tests that were not run.
 
+## Security rules (from SECURITY-AUDIT.md)
+
+- Sanitise input, escape output, nonce + capability check on every write.
+- Use WordPress APIs or `$wpdb->prepare()`; never trust the Host or X-Forwarded-For headers (use `home_url()` and the trusted-proxy filters).
+- No secrets in the repo; use `wp-config.php` constants or environment variables.
+- Reuse the enquiries upload pipeline for any new upload.
+
+## Known operational issues (18 Oct 2026)
+
+- The 2.3.0 schema tidy-up is not running on the live server: re-upload the full theme and core plugin folders.
+- WP_CACHE is on and a stale `advanced-cache.php` drop-in from the inactive Seraphinite Accelerator remains; purge or remove it after each deployment.
+
 ## How to ship a change
 
 1. Bump `SCRW_VERSION` (functions.php) and `Version:` (style.css) together.
 2. Add an entry to `CHANGELOG.md` and, for SEO work, a release section in `docs/SEO-PLAN.md`.
 3. Update the tables above if you add a file or close an open item.
-4. Deploy: back up, upload `soundcreations-rwanda/`, open wp-admin once, clear LiteSpeed cache, then test with the Rich Results Test and schema validator.
+4. Deploy: back up, upload the whole changed folders, open wp-admin once, purge the page cache (no LiteSpeed plugin is installed), then test with the Rich Results Test and schema validator.
