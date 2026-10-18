@@ -2,6 +2,12 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.1 - 18 October 2026: post-2.3.0 live check fixes
+- `inc/seo-market.php`: product "Price in Rwanda" box rebuilt with explicit sizes on divs and a self-styled WhatsApp button. Live check found the explanatory text rendering at heading size and the WhatsApp button showing as a red bar with no readable label.
+- Live check of 2.3.0 (WordPress shows 2.3.0, no PHP errors): validator.schema.org still shows the PRE-2.3.0 sameAs list and no parentOrganization @id, even with a cache-busting query string, so the 2.3.0 schema tidy-up (`inc/schema-tidy.php`) is not running on the server. Either `functions.php` / `inc/schema-tidy.php` were not uploaded, or the page cache is serving stale HTML: WP_CACHE is enabled and the `advanced-cache.php` drop-in from the inactive Seraphinite Accelerator plugin is still installed. Theme File Editor is disabled (403), so files cannot be checked from wp-admin. Fix: re-upload the whole `soundcreations-rwanda/` folder, then clear the cache (reactivate Seraphinite and purge, or remove the stale drop-in and set WP_CACHE false via the host).
+- Settings (not code): Projects page stats sub-note for "4 Regional Locations" changed from "Rwanda" to "Rwanda, Kenya, DRC Congo, UAE" to match the homepage.
+- Projects page bottom call-to-action shows awkward label wrapping and an oversized arrow (parent theme styling); logged for the next design pass.
+
 ## 2.3.0 - 18 October 2026: schema cross-check and entity tidy-up
 - Live cross-check: validator.schema.org on 7 pages (home, /yamaha/, conference room, /products/shure-sm57/, Christian Life Assembly project, /about/, /contact/): 0 errors, 0 warnings, exactly one JSON-LD graph per page. Google Rich Results Test (home, church page): Breadcrumbs, Local business and Organisation all valid; only optional warnings (priceRange, postalCode), intentionally not filled.
 - New `inc/schema-tidy.php` (last on `sc_seo_graph`): normalises and de-duplicates sameAs (web.facebook.com vs www.facebook.com, trailing slashes), gives the Organization and LocalBusiness the same complete sameAs list, and gives the parent company node the @id https://soundcreationsltd.com/#organization so the branch links to the group site's own graph.

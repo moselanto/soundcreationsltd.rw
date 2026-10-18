@@ -135,16 +135,19 @@ add_filter(
 		$price = scrw_product_price( $id );
 		$wa    = scrw_product_whatsapp_url( $name );
 
-		$box  = '<div class="scrw-price" style="border:1px solid rgba(255,255,255,.12);border-left:4px solid #ba0b0b;border-radius:12px;padding:16px 18px;margin:0 0 1.5rem;">';
-		$box .= '<p class="sc-eyebrow" style="margin:0 0 6px;">' . esc_html__( 'Price in Rwanda', 'soundcreations-rwanda' ) . '</p>';
+		// v2.3.1: explicit sizes on divs (not p/eyebrow classes) so theme
+		// typography cannot enlarge the copy, and a self-styled WhatsApp
+		// button so its label is always readable (live check 18 Oct 2026).
+		$box  = '<div class="scrw-price" style="border:1px solid rgba(255,255,255,.12);border-left:4px solid #ba0b0b;border-radius:12px;padding:16px 18px;margin:0 0 1.5rem;font-size:16px;line-height:1.5;">';
+		$box .= '<div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ba0b0b;margin:0 0 6px;">' . esc_html__( 'Price in Rwanda', 'soundcreations-rwanda' ) . '</div>';
 		if ( $price ) {
-			$box .= '<p style="font-size:1.5rem;font-weight:700;margin:0 0 6px;">RWF ' . esc_html( number_format( $price ) ) . ' <span style="font-size:.85rem;font-weight:400;opacity:.75;">' . esc_html__( 'VAT included', 'soundcreations-rwanda' ) . '</span></p>';
+			$box .= '<div style="font-size:22px;font-weight:700;margin:0 0 6px;">RWF ' . esc_html( number_format( $price ) ) . ' <span style="font-size:13px;font-weight:400;opacity:.75;">' . esc_html__( 'VAT included', 'soundcreations-rwanda' ) . '</span></div>';
 		} else {
-			$box .= '<p style="font-size:1.15rem;font-weight:600;margin:0 0 6px;">' . esc_html__( 'Ask for today\'s price in RWF', 'soundcreations-rwanda' ) . '</p>';
+			$box .= '<div style="font-size:18px;font-weight:600;margin:0 0 6px;">' . esc_html__( 'Ask for today\'s price in RWF', 'soundcreations-rwanda' ) . '</div>';
 		}
-		$box .= '<p style="margin:0 0 10px;opacity:.85;">' . ( scrw_product_in_stock( $id ) ? esc_html__( 'In stock at our Kigali showroom.', 'soundcreations-rwanda' ) : esc_html__( 'Genuine product with local warranty. Ask about availability in Kigali.', 'soundcreations-rwanda' ) ) . '</p>';
+		$box .= '<div style="font-size:15px;margin:0 0 12px;opacity:.85;">' . ( scrw_product_in_stock( $id ) ? esc_html__( 'In stock at our Kigali showroom.', 'soundcreations-rwanda' ) : esc_html__( 'Genuine product with local warranty. Ask about availability in Kigali.', 'soundcreations-rwanda' ) ) . '</div>';
 		if ( $wa ) {
-			$box .= '<a class="sc-btn sc-btn--primary" href="' . esc_url( $wa ) . '" target="_blank" rel="noopener">' . esc_html__( 'Get the price on WhatsApp', 'soundcreations-rwanda' ) . '</a>';
+			$box .= '<a class="scrw-price__wa" href="' . esc_url( $wa ) . '" target="_blank" rel="noopener" style="display:inline-block;background:#ba0b0b;color:#fff;font-size:15px;font-weight:600;line-height:1.2;padding:12px 20px;border-radius:999px;text-decoration:none;white-space:normal;">' . esc_html__( 'Get the price on WhatsApp', 'soundcreations-rwanda' ) . '</a>';
 		}
 		$box .= '</div>';
 
