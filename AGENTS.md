@@ -85,12 +85,30 @@ The owner's master brief ("SCL RWANDA SEO, AEO, GEO") governs this work: audit b
 - The 2.3.0 schema tidy-up is not running on the live server: re-upload the full theme and core plugin folders.
 - WP_CACHE is on and a stale `advanced-cache.php` drop-in from the inactive Seraphinite Accelerator remains; purge or remove it after each deployment.
 
+## Current state and standing rules (19 Oct 2026, 23:00 EAT)
+
+- Live: child **2.3.22**, parent **0.10.22**, Core 0.5.28, Enquiries 0.2.1. Full log and open items: `docs/HANDOVER-2026-10.md` (start with "Current state").
+- **Keyword rule (owner):** never remove or weaken a keyword the site already ranks for; only add. Protected list: `docs/KEYWORD-STRATEGY.md` section 6 and `scrw_seo_keywords()` (`inc/seo-boost.php`, 100-phrase bank, protected first). Page titles per slug: `scrw_seo_slug_map` in `inc/seo-boost.php`.
+- **Homepage title/description are typed in Rank Math on page ID 10**, not in code. They must keep "Sound Creations Rwanda", Yamaha and Pro Audio.
+- Google Business Profile: waiting for Fred to approve access; do not change it.
+- Kenya and Rwanda use separate logins; never mix them.
+- Owner must test on a phone: hero video playback, WhatsApp greeting auto-hide, homepage AV section one-column on mobile.
+
 ## How to ship a change
 
 1. Bump `SCRW_VERSION` (functions.php) and `Version:` (style.css) together.
 2. Add an entry to `CHANGELOG.md` and, for SEO work, a release section in `docs/SEO-PLAN.md`.
 3. Update the tables above if you add a file or close an open item.
 4. Deploy: back up, upload the whole changed folders, open wp-admin once, purge the page cache (no LiteSpeed plugin is installed), then test with the Rich Results Test and schema validator.
+
+## Recent additions (2.3.15 - 2.3.22)
+- `inc/seo-keywords.php`: homepage "Audio visual company in Rwanda" section (two-column: Who we are panel with service links + buttons, 01-07 FAQ accordion) and FAQPage JSON-LD (`#faq`); edited in Settings > Homepage FAQ (`page=scrw-home-faq`). CSS `.scrw-hfaq*` in `scrw-ui.css`.
+- `inc/sector-proof.php`: real project blocks on the Church and Conference pages.
+- Settings > Our Clients (`page=scrw-clients`, option `scrw_client_logos`).
+- Settings fallbacks: empty = Rwanda value (never Kenya); `none` hides the item.
+- `assets/js/scrw-ui.js`: WhatsApp teaser shows once, hides after 8 s or 120 px scroll.
+- Gotcha: `inc/section-titles.php` turns any `sc-eyebrow` into the main heading; use another class (e.g. `scrw-hfaq__kicker`) for small labels in new sections.
+- `scrw-ui.min.css` is regenerated from `scrw-ui.css` on every CSS change.
 
 ## Recent additions (2.3.5 - 2.3.11)
 - `inc/product-uses.php`, `inc/testimonials.php`, `inc/csp.php` (strict CSP, off switch in Settings > General), `single.php` (guide byline), `assets/video/hero.mp4`.

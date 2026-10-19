@@ -1,11 +1,13 @@
-# Handover: work log 11-19 October 2026
+# Handover: work log 11-19 October 2026 (last updated 19 Oct 2026, 23:00 EAT)
 
 Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENTS.md`, `CHANGELOG.md`, `SECURITY-AUDIT.md` and `docs/QUALITY-AUDIT-2026-10.md`.
 
-## Current state (19 Oct 2026)
-- Live: child theme **Sound Creations Rwanda 2.3.10**, parent **0.10.15**, Core **0.5.28**, Enquiries 0.2.0, Elementor 4.3.5, Rank Math. Committed but **not yet uploaded**: **2.3.11 / parent 0.10.16** (accessibility pass, YouTube click-to-play).
-- Lighthouse homepage (2.3.8+): mobile 99/100/100/100, desktop 100/100/100/100. Security headers A+. Schema 0 errors / 0 warnings.
-- Deploy method: owner uploads folders by FTP/file manager; no CI. Theme File Editor is disabled (403). cPanel at d9742.usc1.stableserver.net does **not** host the .rw domain (only soundcreationsltd.com and the old rwanda. subdomain).
+## Current state (19 Oct 2026, 23:00 EAT) - READ THIS FIRST
+- Live and verified: child theme **Sound Creations Rwanda 2.3.22**, parent **0.10.22**, Core **0.5.28**, Enquiries 0.2.1, Elementor 4.3.5, Rank Math. Nothing is committed-but-not-uploaded.
+- Lighthouse (2.3.14): homepage mobile 99 / desktop 100; About mobile 97; Brands mobile 97; Accessibility/Best Practices/SEO 100. Security headers A+. Schema 0 errors / 0 warnings.
+- Deploy method: owner uploads changed files by FTP/file manager, then clears the cache; no CI, no PHP runtime for the AI agent (code is never test-run before upload, so verify live after each upload). Theme File Editor is disabled (403). cPanel at d9742.usc1.stableserver.net does **not** host the .rw domain.
+- Strict CSP is on (`inc/csp.php`); off switch Settings > General > "Strict script security".
+- **SEO rule (owner, 19 Oct 2026): never remove or weaken a keyword the site already ranks for; only add.** Protected first-place keywords and where they live are in `docs/KEYWORD-STRATEGY.md` section 6 and `scrw_seo_keywords()` in `inc/seo-boost.php`.
 
 ## Releases in this period
 | Version | What |
@@ -39,33 +41,51 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 - Privacy Policy page replaced with a full policy under Rwanda Law No. 058/2021 (effective 19 Oct 2026; contact fred@soundcreationsltd.com). Copy in the Town library. Fred should review.
 - Four Buyer Guides published with AI illustrations (captioned "AI-generated illustration"), Rank Math focus keywords set, Google indexing requested: quotation checklist, acoustic treatment vs soundproofing, PA system for church, commercial sound system maintenance.
 
+- **Homepage Rank Math (page ID 10), set 19 Oct 2026 and verified live:** title "Sound Creations Rwanda | Audio Visual, Yamaha & Pro Audio Kigali"; description "Audio visual company in Kigali and authorised Yamaha distributor in Rwanda: sound system installation, acoustic solutions, stage lighting, PA and pro audio." This is typed in Rank Math, not in code; it must keep "Sound Creations Rwanda", Yamaha and Pro Audio.
+- Settings > Homepage FAQ (`options-general.php?page=scrw-home-faq`): heading, intro, service links (one "URL | Label" per line) and 7 questions for the homepage "Audio visual company in Rwanda" section (2.3.18 / 2.3.21).
+- Settings > Our Clients (`page=scrw-clients`, option `scrw_client_logos`, one "Image URL | Name" per line): pre-filled with 11 logos; edit or add via Media Library URLs (2.3.20).
+- Theme settings: an empty box falls back to the Rwanda value (never Kenya); typing `none` hides that item (2.3.17). The Kenya X/Twitter link is gone; socials are Rwanda Facebook, Instagram, LinkedIn, WhatsApp.
+
 ## Search and listings
-- Google Search Console: verified; old domain change of address submitted 18 Oct 2026 (keep the DNS TXT record and the 301s).
-- Bing Webmaster Tools: the account in the browser session only has vtechaudio.co.ke; the .rw site is under another login. The 4 guides are not yet submitted to Bing.
-- Google Business Profile: owned by the original company email; waiting for transfer/manager access. Do not change it until access is confirmed.
-- Dealer listing correction emails (Yamaha, Shure, FANE) are drafted in Agnes's Gmail, not sent.
+- Google Search Console: verified; old domain change of address submitted 18 Oct 2026 (keep the DNS TXT record and the 301s). Still to do by the owner: Request indexing for Home, About, Installation, Architectural Acoustics, Church.
+- Bing: the 4 buyer guides were submitted via Rank Math > Instant Indexing (IndexNow) on 19 Oct 2026 ("Successfully submitted 4 URLs"): /maintaining-commercial-sound-system/, /choosing-pa-system-church-hall-rwanda/, /acoustic-treatment-vs-soundproofing/, /sound-system-quotation-checklist-rwanda/.
+- Google Business Profile: correct (KN1 Rd, +250 783 141 050, 4.8 stars / 15 reviews) but owned by the original company account. Agnes requested access as soundcreationsrwanda@gmail.com; waiting for Fred (mutwarefred@gmail.com) to approve. Fallback: claim/verify after about a week. **Do not change the profile until access is confirmed.**
+- Dealer listing correction emails (Yamaha, FANE) are drafted in Agnes's Gmail, not sent. Shure: handled by Kenya, do not ask Shure to change it.
+- Directory listings still to create: RwandaYP, contact.page, Shakisha.
 
 ## Documents delivered (Town library, collection "Sound Creations Rwanda")
 - Website User & Editing Guide v2, SEO/AEO/GEO Work Report v4 (spacing fixed), privacy policy HTML, guide photos.
 - Email to Fred (fred@soundcreationsltd.com, Manager) with the work report: text prepared, not sent by the assistant.
+- Client-facing "Sound Creations Rwanda - Website Handover.docx" (19 Oct 2026). Dashboard section names in it are best guesses, not yet confirmed by Agnes.
 
 ## Open items
 | Item | Owner |
 |---|---|
-| Upload 2.3.11 and re-test the 12 page types | Pimofy |
-| Upload 2.3.12 (theme, parent files, Enquiries plugin), open wp-admin once, re-test | Pimofy |
-| Crawl data checks: MINECOFIN wired MXC vs wireless MXCW, "Mulindi Hall" label, PGA48 SKU vs model, MG20XU dimensions, after-sales "one year free" vs manufacturer warranty | Fred / sales team |
-| Ntare Louisenlund equipment list (identical to Atelier du Vin), school district, Intare Conference Arena vs Intare Kivu Arena naming | Fred |
+| Approve Google Business Profile access for soundcreationsrwanda@gmail.com | Fred |
+| Confirm: Ntare Louisenlund vs Atelier du Vin equipment (identical lists), MINECOFIN wired MXC vs wireless MXCW (Conference page proof block lists MXCWAP), "Mulindi Hall" label, PGA48 SKU vs model, MG20XU dimensions, after-sales "one year free" vs manufacturer warranty | Fred / sales team |
+| Send Yamaha and FANE dealer-listing correction emails (drafts ready) | Agnes |
+| Create RwandaYP, contact.page and Shakisha listings | Agnes |
+| Search Console Request indexing: Home, About, Installation, Acoustics, Church | Agnes |
 | Two-step login for every administrator; staff as Editors | Sound Creations |
-| Stale `advanced-cache.php` from inactive Seraphinite; LiteSpeed cache still serving old license.txt | Host |
 | Real project photos to replace AI images; client testimonials | Sound Creations |
-| Results check against the report baseline around 16 Nov 2026 | Pimofy |
-| Mobile menu and sub-menu behaviour under strict CSP: confirm on a phone | Owner |
+| Hero video playback and the WhatsApp greeting auto-hide (shows once after 15 s, hides after 8 s or 120 px scroll): confirm on a real phone; also confirm the homepage AV section stacks to one column on mobile | Owner |
+| Stale `advanced-cache.php` from inactive Seraphinite; LiteSpeed cache | Host |
+| Progress check (Google/Bing) 1 Nov 2026; results comparison and AI-answer check mid-Nov 2026 against the report baseline | Pimofy |
 
 ## Rules learned
 - Do not restructure code without a PHP runtime to test. Keep SCRW_VERSION in `functions.php` and `style.css` equal; add a CHANGELOG entry per release.
 - Generated images must be copied to `vfs:///session/files/...` before the browser agent can upload them; it cannot read Content Library or session text files (paste text inline).
 - The old VTECH number +254 728135246 is outdated (other client, not this site).
+- `inc/section-titles.php` swaps every `sc-eyebrow` label into the big heading site-wide. In new sections use a different class for small labels (e.g. `scrw-hfaq__kicker`), or the keyword heading gets demoted (bug fixed in 2.3.22).
+- `scrw-ui.min.css` is generated from `scrw-ui.css`; edit the source and regenerate both. JS has only `assets/js/scrw-ui.js` (no minified copy).
+- Kenya and Rwanda use separate logins and email accounts; never use one for the other.
+
+## 2.3.15 - 2.3.22 verified live (19 Oct 2026, evening)
+- 2.3.17: no X/Twitter icon; Rwanda socials only.
+- 2.3.18/2.3.19: priority-keyword titles live on About, Installation, Architectural Acoustics, Church, Professional Audio, Solutions (Conference keeps its manual Rank Math title); `/solutions/acoustics/` 301s to architectural-acoustics; homepage FAQ with 7 questions + FAQPage schema; no caption text over the hero video; About 2x2 numbered cards.
+- 2.3.20: Our Clients logos from Settings; Church page project block (Christian Life Assembly + 13 other churches); Conference page MINECOFIN block (6 equipment lines); Intare Kivu Arena title "Intare Kivu Arena, Rubavu | Acoustics & Sound System Gisenyi"; brand page titles (shure, bose-professional, db-technologies, allen-heath).
+- 2.3.21/2.3.22: homepage "Audio visual company in Rwanda" section is two columns on desktop (left sticky panel: "Who we are" label, H2, intro, 6 service links, Request a Consultation + Chat on WhatsApp; right: numbered 01-07 accordion). H2 text confirmed "Audio visual company in Rwanda"; labels are paragraphs; all links work; no overlap; no PHP errors. WhatsApp "Chat with us" pill does not cover content.
+
 
 ## Final re-test, 19 October 2026 (2.3.12 live; 14:46-14:53 EAT, Lighthouse 13.5)
 Scores: Performance / Accessibility / Best Practices / SEO.
