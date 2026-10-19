@@ -133,9 +133,9 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 							<?php endif; ?>
 							<?php $sc_web = (string) get_post_meta( $sc_id, '_sc_website', true ); ?>
 							<?php if ( strlen( $sc_web ) > 0 ) : ?>
-								<a class="sc-brand-card__link" href="<?php echo esc_url( $sc_web ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Visit Website', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
+								<a class="sc-brand-card__link" href="<?php echo esc_url( $sc_web ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( sprintf( /* translators: %s: brand name */ __( 'Visit %s website', 'soundcreations' ), $sc_name ) ); ?> <span aria-hidden="true">&rarr;</span></a>
 							<?php else : ?>
-								<a class="sc-brand-card__link" href="<?php echo esc_url( $sc_href ); ?>"><?php esc_html_e( 'View Brand', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
+								<a class="sc-brand-card__link" href="<?php echo esc_url( $sc_href ); ?>"><?php echo esc_html( sprintf( /* translators: %s: brand name */ __( 'View %s', 'soundcreations' ), $sc_name ) ); ?> <span aria-hidden="true">&rarr;</span></a>
 							<?php endif; ?>
 						</div>
 					</div>

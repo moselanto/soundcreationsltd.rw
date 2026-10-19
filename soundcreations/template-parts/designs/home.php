@@ -30,9 +30,9 @@ else :
 		// after the load event. The poster is already painted as this section's CSS
 		// background, so the hero looks identical while the video is still absent.
 		?>
-		<video class="sc-hero__video" muted loop playsinline preload="none"
+		<video class="sc-hero__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"
 			data-sc-hero-video="<?php echo esc_url( $sc_hero_video ); ?>"
-			poster="<?php echo esc_url( $sc_hero_poster ); ?>"></video>
+			poster="<?php echo esc_url( $sc_hero_poster ); ?>"><track kind="captions" srclang="en" label="English" src="<?php echo esc_url( SC_THEME_URI . '/assets/video/hero-captions.vtt' ); ?>" default></video>
 	<?php endif; ?>
 	<span class="sc-hero__scrim" aria-hidden="true"></span>
 	<div class="sc-container sc-hero__inner">

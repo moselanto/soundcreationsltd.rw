@@ -2,6 +2,11 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.15 / parent 0.10.20 - 19 October 2026: About page layout and the last PageSpeed notes
+- About page text below "Our Clients" (`inc/about-content.php`): the Elementor/editor content is restructured, words unchanged: intro lead, one block per H2 with a red accent, H3 sub-sections as a card grid ("What our Kigali team does"), lists as check cards, last block with Contact/Quote links as a call-to-action panel, tall photo cropped to a banner (max 520 px), Elementor padding gaps removed. Uses DOMDocument; falls back to the original HTML on any problem; off switch filter `scrw_about_enhance`.
+- PageSpeed unscored notes: hero video gets a captions track (`assets/video/hero-captions.vtt`, decorative, no speech) and is hidden from screen readers; Brands links read "Visit Yamaha website" etc.; external links in the About text get an accessible name "... official website (external)".
+- Upload: whole `soundcreations-rwanda/`; from `soundcreations/`: `archive-sc_brand.php`, `template-parts/designs/home.php`, `assets/video/hero-captions.vtt`, `style.css`.
+
 ## 2.3.14 / parent 0.10.19 - 19 October 2026: About and Brands speed
 Baseline (mobile): About 87 (LCP 4.0 s, text LCP waiting 1.0 s on render-blocking CSS and jQuery in head); Brands 94 (LCP 3.0 s, 202 KB JPG hero background found late).
 - jQuery and jQuery Migrate load in the footer for visitors (only Elementor's footer scripts use them; no theme or plugin front-end code needs jQuery in head). Admin and signed-in users unchanged.
