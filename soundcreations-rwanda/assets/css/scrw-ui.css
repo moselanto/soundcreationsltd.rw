@@ -540,3 +540,9 @@
 .scrw-testi__card figcaption { display: flex; flex-direction: column; gap: .15rem; font-size: .88rem; }
 .scrw-testi__card figcaption strong { color: #5c4489; }
 .scrw-testi__card figcaption span { color: #6b6878; }
+
+/* ---------- 2.3.6: audit fixes ---------- */
+/* WCAG 2.2 AA contrast: card "Learn more" / "Explore solution" links on the dark cards (was #BA0B0B on #131318, about 2.9:1; now about 6.7:1). */
+.sc-svcard__more, .sc-solcard__more { color: #ff6b6b; }
+[data-theme="light"] .sc-svcard__more, [data-theme="light"] .sc-solcard__more { color: #ba0b0b; }
+.scrw-byline { margin: .4rem 0 0; font-size: .88rem; color: var(--sc-muted, #a7a3b8); }

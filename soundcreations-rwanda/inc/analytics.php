@@ -67,7 +67,8 @@ add_action(
 		if ( '' === $ga || is_user_logged_in() ) {
 			return;
 		}
-		echo '<script async src="https://www.googletagmanager.com/gtag/js?id=' . esc_attr( $ga ) . '"></script>' . "\n";
+		// 2.3.6: load Google tag after the page is usable (first interaction or 4 s after load) so it does not slow the first paint. Page views are still recorded.
+		echo "<script>(function(){var d=0;function l(){if(d){return;}d=1;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=" . esc_js( $ga ) . "';document.head.appendChild(s);}['pointerdown','keydown','scroll','touchstart'].forEach(function(e){window.addEventListener(e,l,{once:true,passive:true});});window.addEventListener('load',function(){setTimeout(l,4000);});})();</script>\n";
 		echo "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','" . esc_js( $ga ) . "');</script>\n";
 	},
 	3

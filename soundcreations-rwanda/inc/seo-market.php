@@ -145,7 +145,7 @@ add_filter(
 		} else {
 			$box .= '<div style="font-size:18px;font-weight:600;margin:0 0 6px;">' . esc_html__( 'Ask for today\'s price in RWF', 'soundcreations-rwanda' ) . '</div>';
 		}
-		$box .= '<div style="font-size:15px;margin:0 0 12px;opacity:.85;">' . ( scrw_product_in_stock( $id ) ? esc_html__( 'In stock at our Kigali showroom.', 'soundcreations-rwanda' ) : esc_html__( 'Genuine product with local warranty. Ask about availability in Kigali.', 'soundcreations-rwanda' ) ) . '</div>';
+		$box .= '<div style="font-size:15px;margin:0 0 12px;opacity:.85;">' . ( scrw_product_in_stock( $id ) ? esc_html__( 'In stock at our Kigali showroom.', 'soundcreations-rwanda' ) : ( '' !== trim( (string) get_post_meta( $id, '_sc_availability', true ) ) ? esc_html( sprintf( __( 'Genuine product with local warranty. %s.', 'soundcreations-rwanda' ), rtrim( trim( (string) get_post_meta( $id, '_sc_availability', true ) ), '.' ) ) ) : esc_html__( 'Genuine product with local warranty. Ask about availability in Kigali.', 'soundcreations-rwanda' ) ) ) . '</div>';
 		if ( $wa ) {
 			$box .= '<a class="scrw-price__wa" href="' . esc_url( $wa ) . '" target="_blank" rel="noopener" style="display:inline-block;background:#ba0b0b;color:#fff;font-size:15px;font-weight:600;line-height:1.2;padding:12px 20px;border-radius:999px;text-decoration:none;white-space:normal;">' . esc_html__( 'Get the price on WhatsApp', 'soundcreations-rwanda' ) . '</a>';
 		}

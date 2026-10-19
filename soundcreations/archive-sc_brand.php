@@ -39,7 +39,7 @@ $sc_cats = array(
 );
 
 $sc_stats = array(
-	array( '11+', 'Global Brands', '<path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>' ),
+	array( max( 1, (int) wp_count_posts( 'sc_brand' )->publish ) . '+', 'Global Brands', '<path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>' ),
 	array( '100%', 'Genuine Products', '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>' ),
 	array( 'Expert', 'Technical Support', '<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>' ),
 	array( 'Regional', 'Logistics & Service', '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>' ),
@@ -71,8 +71,8 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 	<div class="sc-container">
 		<div class="sc-res-head">
 			<div>
-				<p class="sc-eyebrow"><?php esc_html_e( 'Our represented products brands', 'soundcreations' ); ?></p>
-				<h2 style="margin:.15rem 0 0;"><?php echo esc_html( sc_setting( 'brands_grid_title', 'Partnering with the world class brands.' ) ); ?></h2>
+				<p class="sc-eyebrow"><?php esc_html_e( 'Brands we represent', 'soundcreations' ); ?></p>
+				<h2 style="margin:.15rem 0 0;"><?php echo esc_html( sc_setting( 'brands_grid_title', 'Partnering with world-class brands.' ) ); ?></h2>
 			</div>
 		</div>
 		<?php

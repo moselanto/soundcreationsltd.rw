@@ -45,19 +45,30 @@ while ( have_posts() ) :
 		<div class="sc-prose" style="margin-bottom:3rem;"><?php the_content(); ?></div>
 
 		<?php
+		// Match products to this brand by a normalised brand name, so "Shure",
+		// "SHURE " or "dB Technologies" / "DB technologies" all count.
+		$sc_bkey = sanitize_title( $sc_title );
+		$sc_bids = array();
+		foreach ( get_posts( array( 'post_type' => 'sc_product', 'post_status' => 'publish', 'posts_per_page' => 300, 'fields' => 'ids', 'no_found_rows' => true ) ) as $sc_pid ) {
+			$sc_pb = sanitize_title( (string) get_post_meta( $sc_pid, '_sc_brand_name', true ) );
+			if ( '' !== $sc_pb && ( $sc_pb === $sc_bkey || 0 === strpos( $sc_bkey, $sc_pb ) || 0 === strpos( $sc_pb, $sc_bkey ) ) ) {
+				$sc_bids[] = $sc_pid;
+			}
+		}
 		$sc_bq = new WP_Query(
 			array(
 				'post_type'      => 'sc_product',
-				'posts_per_page' => 12,
+				'post__in'       => $sc_bids ? $sc_bids : array( 0 ),
+				'posts_per_page' => 24,
+				'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
 				'no_found_rows'  => true,
-				'meta_query'     => array( array( 'key' => '_sc_brand_name', 'value' => $sc_title, 'compare' => '=' ) ),
 			)
 		);
 		if ( $sc_bq->have_posts() ) {
 			echo '<section><div class="sc-section-head"><h2>' . esc_html( sprintf( __( 'Products from %s', 'soundcreations' ), $sc_title ) ) . '</h2></div><div class="sc-grid">';
 			while ( $sc_bq->have_posts() ) {
 				$sc_bq->the_post();
-				echo sc_media_card( get_the_ID(), sc_field( 'brand_name' ), sc_field( 'model' ) );
+				echo sc_media_card( get_the_ID(), '', '' ); // Title already names brand and model.
 			}
 			echo '</div></section>';
 		}

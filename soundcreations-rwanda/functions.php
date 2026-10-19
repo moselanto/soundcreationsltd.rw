@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_VERSION', '2.3.5' );
+define( 'SCRW_VERSION', '2.3.6' );
 define( 'SCRW_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 
@@ -59,6 +59,74 @@ require_once SCRW_DIR . 'inc/testimonials.php';
 /* 2.3.5: never show the parent theme's stand-in projects (Nairobi, Dubai) on the Rwanda site. */
 add_filter( 'sc_home_projects_fallback', '__return_false' );
 
+/* ---------- 2.3.6: quality-audit fixes ---------- */
+
+/* Hero video: only play a video hosted on this site. The default points at the
+   group site, which failed to load (console error, slower first paint); the
+   hero then uses its poster image instead. */
+add_filter(
+	'sc_hero_video',
+	function ( $url ) {
+		$url = (string) $url;
+		if ( '' === $url ) {
+			return '';
+		}
+		$own = wp_parse_url( home_url(), PHP_URL_HOST );
+		$vid = wp_parse_url( $url, PHP_URL_HOST );
+		return ( $vid && $own && strtolower( $vid ) === strtolower( $own ) ) ? $url : '';
+	}
+);
+
+/* Contact and consultation pages: list the Kigali office only. Group offices
+   are described in text on About, so Google sees one local business here. */
+add_filter(
+	'sc_offices',
+	function ( $offices ) {
+		$kigali = array();
+		foreach ( (array) $offices as $o ) {
+			if ( isset( $o['id'] ) && 'kigali' === $o['id'] ) {
+				$o['addr'] = 'KN1 Rd, Muhima, Kigali, Rwanda';
+				$kigali[]  = $o;
+			}
+		}
+		return $kigali ? $kigali : $offices;
+	}
+);
+
+/* One URL per page: the brand pages duplicate /yamaha/ and /fane/ (301), and
+   /guides/ opens the Buyer Guides list. */
+add_action(
+	'template_redirect',
+	function () {
+		if ( is_admin() ) {
+			return;
+		}
+		if ( is_singular( 'sc_brand' ) ) {
+			$map  = array(
+				'yamaha' => '/yamaha/',
+				'fane'   => '/fane/',
+			);
+			$slug = (string) get_post_field( 'post_name', get_queried_object_id() );
+			if ( isset( $map[ $slug ] ) && get_page_by_path( trim( $map[ $slug ], '/' ) ) ) {
+				wp_safe_redirect( home_url( $map[ $slug ] ), 301 );
+				exit;
+			}
+		}
+		if ( is_404() ) {
+			$path = trim( (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '', PHP_URL_PATH ), '/' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+			if ( in_array( $path, array( 'guides', 'buyer-guides', 'blog' ), true ) ) {
+				$cat = get_category_by_slug( 'buyer-guides' );
+				if ( $cat ) {
+					wp_safe_redirect( get_category_link( $cat->term_id ), 301 );
+					exit;
+				}
+			}
+		}
+	},
+	5
+);
+
+
 /*
  * 1.9.0 UI layer: mobile drawer + accordion sub-menus, floating WhatsApp chat,
  * mobile dock (Home, Call, Consultation, Menu). Loaded after style.css.
@@ -66,7 +134,7 @@ add_filter( 'sc_home_projects_fallback', '__return_false' );
 add_action(
 	'wp_enqueue_scripts',
 	function () {
-		$css = 'assets/css/scrw-ui.css';
+		$css = file_exists( SCRW_DIR . 'assets/css/scrw-ui.min.css' ) ? 'assets/css/scrw-ui.min.css' : 'assets/css/scrw-ui.css';
 		$js  = 'assets/js/scrw-ui.js';
 		wp_enqueue_style( 'scrw-ui', get_stylesheet_directory_uri() . '/' . $css, array( 'soundcreations-rwanda' ), (string) filemtime( SCRW_DIR . $css ) );
 		wp_enqueue_script( 'scrw-ui', get_stylesheet_directory_uri() . '/' . $js, array(), (string) filemtime( SCRW_DIR . $js ), true );

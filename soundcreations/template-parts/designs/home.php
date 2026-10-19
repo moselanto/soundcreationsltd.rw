@@ -11,7 +11,7 @@ if ( defined( 'ABSPATH' ) === false ) {
 	exit;
 }
 
-$sc_hero_video  = sc_setting( 'hero_video' );
+$sc_hero_video  = (string) apply_filters( 'sc_hero_video', sc_setting( 'hero_video' ) );
 $sc_hero_poster = sc_setting( 'home_hero_poster', SC_THEME_URI . '/assets/img/hero-poster.webp' );
 // A child theme can replace the whole hero (e.g. the Rwanda slideshow) by
 // hooking sc_home_hero and returning true from sc_use_custom_hero.
@@ -184,7 +184,7 @@ else :
 			// show its own solution cards without editing this template.
 			$sc_sols = apply_filters( 'sc_home_solutions', array(
 				array( 'solution-db3.webp', 'Professional Audio', 'Powerful, intelligible and reliable sound systems designed around your room and application.', '/solutions/professional-audio/', 'home_sol1_img', array( 'professional audio', 'audio' ) ),
-				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/', 'home_sol2_img', array( 'acoustic' ) ),
+				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyse, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/', 'home_sol2_img', array( 'acoustic' ) ),
 				array( 'solution-av-integration.jpg', 'Installation', 'Professional sound and acoustic systems, installed, commissioned and calibrated by our technical team.', '/solutions/installation/', 'home_sol3_img', array( 'integ', 'installation' ) ),
 			) );
 			foreach ( $sc_sols as $sc_so ) :

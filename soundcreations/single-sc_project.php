@@ -89,6 +89,7 @@ while ( have_posts() ) :
 					</div>
 				<?php endif; ?>
 
+				<?php ob_start(); ?>
 				<?php if ( count( $sc_gallery ) > 0 ) : ?>
 					<section class="sc-case__gallery" aria-label="<?php esc_attr_e( 'Project photos', 'soundcreations' ); ?>">
 						<h2 class="sc-case__h2"><?php esc_html_e( 'Project gallery', 'soundcreations' ); ?></h2>
@@ -188,6 +189,13 @@ while ( have_posts() ) :
 							</script>
 					</section>
 				<?php endif; ?>
+				<?php
+				$sc_gal_html = (string) ob_get_clean();
+				// Only show the gallery when at least one photo actually rendered.
+				if ( false !== strpos( $sc_gal_html, 'sc-gallery-grid__item' ) ) {
+					echo $sc_gal_html; // phpcs:ignore WordPress.Security.EscapeOutput -- built above with escaping.
+				}
+				?>
 			</div>
 
 			<aside class="sc-case__aside">
@@ -212,12 +220,12 @@ while ( have_posts() ) :
 						</div>
 					<?php endif; ?>
 
-					<?php if ( $sc_btags ) : ?>
+					<?php if ( '' !== trim( wp_strip_all_tags( (string) $sc_btags ) ) ) : ?>
 						<div class="sc-factcard__block">
 							<span class="sc-factcard__label"><?php esc_html_e( 'Brands used', 'soundcreations' ); ?></span>
 							<?php echo $sc_btags; ?>
 						</div>
-					<?php elseif ( $sc_brands ) : ?>
+					<?php elseif ( '' !== trim( (string) $sc_brands ) ) : ?>
 						<div class="sc-factcard__block">
 							<span class="sc-factcard__label"><?php esc_html_e( 'Brands used', 'soundcreations' ); ?></span>
 							<div class="sc-tags">

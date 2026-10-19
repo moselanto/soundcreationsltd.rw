@@ -43,7 +43,7 @@ $sc_cats = array(
 );
 
 $sc_stats = array(
-	array( '11+', 'Global Brands', '<path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>' ),
+	array( max( 1, (int) wp_count_posts( 'sc_brand' )->publish ) . '+', 'Global Brands', '<path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>' ),
 	array( '100%', 'Genuine Products', '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>' ),
 	array( 'Expert', 'Technical Support', '<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>' ),
 	array( 'Regional', 'Logistics & Service', '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>' ),
@@ -106,7 +106,7 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 			<div>
 				<nav class="sc-crumb" aria-label="Breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> <span aria-hidden="true">&rsaquo;</span> <span class="sc-crumb__cur"><?php esc_html_e( 'Products', 'soundcreations-rwanda' ); ?></span></nav>
 				<p class="sc-eyebrow"><?php esc_html_e( 'Products available in Rwanda', 'soundcreations-rwanda' ); ?></p>
-				<h1 class="scrw-cat__title"><?php esc_html_e( 'Shop our product range.', 'soundcreations-rwanda' ); ?></h1>
+				<h1 class="scrw-cat__title"><?php esc_html_e( 'Browse our product range.', 'soundcreations-rwanda' ); ?></h1>
 				<p class="sc-lead"><?php esc_html_e( 'Genuine equipment with full manufacturer specifications, in stock or available to order from our Kigali showroom, with warranty and local support.', 'soundcreations-rwanda' ); ?></p>
 			</div>
 			<ul class="scrw-cat__trust">
@@ -164,7 +164,7 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 						<?php endif; ?>
 					</a>
 					<div class="scrw-pcard__body">
-						<p class="scrw-pcard__meta"><span class="scrw-pcard__brand"><?php echo esc_html( $it['brand'] ); ?></span><?php if ( $it['catn'] ) : ?><span class="scrw-pcard__cat"><?php echo esc_html( $it['catn'] ); ?></span><?php endif; ?></p>
+						<p class="scrw-pcard__meta"><span class="scrw-pcard__brand"><?php echo esc_html( $it['brand'] ); ?></span><?php if ( $it['catn'] && ( '' === $it['brand'] || 0 !== stripos( $it['catn'], $it['brand'] ) ) ) : ?><span class="scrw-pcard__cat"><?php echo esc_html( $it['catn'] ); ?></span><?php endif; ?></p>
 						<h3 class="scrw-pcard__title"><a href="<?php echo esc_url( $it['url'] ); ?>"><?php echo esc_html( $it['title'] ); ?></a></h3>
 						<?php if ( $it['specs'] ) : ?>
 							<dl class="scrw-pcard__specs">

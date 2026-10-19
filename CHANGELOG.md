@@ -2,6 +2,15 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.6 / parent 0.10.14 - 19 October 2026: quality audit fixes
+Full audit on 19 Oct 2026 (page crawl, securityheaders.com, PageSpeed Insights / Lighthouse 13.5, WCAG 2.2 AA checks). Baseline: security headers A+; Lighthouse mobile Performance 81, Accessibility 96, Best Practices 96, SEO 100. See `docs/QUALITY-AUDIT-2026-10.md`.
+- Accessibility: "Learn more" / "Explore solution" card links raised from about 2.9:1 to about 6.7:1 contrast (`scrw-ui.css`).
+- Best practices / speed: the hero no longer requests the group-site MP4 that failed to load (`sc_hero_video` filter; poster image used). Google tag now loads after first interaction or 4 s after load (`inc/analytics.php`). `scrw-ui.min.css` added and used. 8 large theme photos resized/recompressed (about 45% smaller) and 4 brand logos optimised.
+- SEO: `/brands/yamaha/` and `/brands/fane/` 301 to `/yamaha/` and `/fane/` (duplicate pages). `/guides/`, `/buyer-guides/` and `/blog/` 301 to the Buyer Guides list. Guides show "By Sound Creations Rwanda technical team, Updated <date>" (child `single.php`); featured image loads eagerly with high priority.
+- Content quality: brands page wording ("Brands we represent", "Partnering with world-class brands."), brand count now automatic (was a fixed "11+"); /products/ heading "Browse our product range."; no more "FANE FANE Products" label; brand pages now list all of that brand's products and no longer print brand and model twice; project pages hide empty "Brands used" and empty galleries; Architectural Acoustics grammar and British spelling (analyse, theatres); product price box uses the product's Availability field instead of contradicting it.
+- Local SEO: contact and consultation pages list the Kigali office only (`sc_offices` filter), with one address format: KN1 Rd, Muhima, Kigali, Rwanda.
+- Upload: whole `soundcreations-rwanda/` folder and whole `soundcreations/` folder (template files, style.css and assets/img changed).
+
 ## 2.3.5 / parent 0.10.13 - 19 October 2026: product use filter, testimonials, project results
 - Products (`archive-sc_product.php`, new `inc/product-uses.php`): new "Filter by use" dropdown (Church & worship, Conference & meetings, Live events & DJ, Studio & podcast, Installed & public address). Uses are worked out from product name, brand and category; override per product with a custom field `_sc_uses` (e.g. `church,live`). Also works as a link: /products/?use=church.
 - Testimonials (new `inc/testimonials.php`): "What our clients say" section on the homepage after Our Clients, also `[scrw_testimonials]`. Hidden until quotes are entered in Settings > Client Testimonials (one per line: Quote | Name | Role, Organisation; Editors can edit). Real, client-approved quotes only.

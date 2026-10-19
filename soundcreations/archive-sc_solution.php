@@ -40,7 +40,7 @@ $sc_cta_photo = SC_THEME_URI . '/assets/img/cta-building.webp';
 			<?php
 			$sc_sols = array(
 				array( 'solution-db3.webp', 'Professional Audio', 'Powerful, intelligible and reliable sound systems designed around your room and application.', '/solutions/professional-audio/', 'home_sol1_img' ),
-				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/', 'home_sol2_img' ),
+				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyse, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/', 'home_sol2_img' ),
 				array( 'solution-av-integration.jpg', 'Installation', 'Professional sound and acoustic systems, installed, commissioned and calibrated by our technical team.', '/solutions/installation/', 'home_sol3_img' ),
 			);
 			foreach ( $sc_sols as $sc_so ) :

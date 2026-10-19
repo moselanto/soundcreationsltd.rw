@@ -200,15 +200,15 @@ while ( have_posts() ) :
 						<div class="sc-acc">
 							<details class="sc-acc__item" open>
 								<summary class="sc-acc__q"><span><?php esc_html_e( 'Design and Consulting', 'soundcreations' ); ?></span></summary>
-								<div class="sc-acc__a"><p>In partnership with architects and architectural firms, we can provide innovative solutions and procedures towards creating excellence in acoustic and electroacoustic design and installation. We always look forward to participate in the collaborative design process.</p></div>
+								<div class="sc-acc__a"><p>In partnership with architects and architectural firms, we can provide innovative solutions and procedures towards creating excellence in acoustic and electroacoustic design and installation. We always look forward to participating in the collaborative design process.</p></div>
 							</details>
 							<details class="sc-acc__item">
 								<summary class="sc-acc__q"><span><?php esc_html_e( 'Testing and Measurement', 'soundcreations' ); ?></span></summary>
-								<div class="sc-acc__a"><p>Using advanced acoustic testing and measurement equipment, Sound Creations&rsquo; consultants can evaluate and analyze different spaces to develop acoustic criteria as well as evaluate their achievement with utmost accuracy.</p></div>
+								<div class="sc-acc__a"><p>Using advanced acoustic testing and measurement equipment, Sound Creations&rsquo; consultants can evaluate and analyse different spaces to develop acoustic criteria as well as evaluate their achievement with utmost accuracy.</p></div>
 							</details>
 							<details class="sc-acc__item">
 								<summary class="sc-acc__q"><span><?php esc_html_e( 'Surface Treatments', 'soundcreations' ); ?></span></summary>
-								<div class="sc-acc__a"><p>Critical listening spaces such as auditoria, churches, studios, theatres, conference rooms, home theaters and all speech intelligibility sensitive spaces benefit from accurate acoustic design. We provide appropriate surface treatments to enhance the audio experience in these spaces.</p></div>
+								<div class="sc-acc__a"><p>Critical listening spaces such as auditoria, churches, studios, theatres, conference rooms, home theatres and all speech-intelligibility-sensitive spaces benefit from accurate acoustic design. We provide appropriate surface treatments to enhance the audio experience in these spaces.</p></div>
 							</details>
 						</div>
 						<div class="sc-acoustics__media">
