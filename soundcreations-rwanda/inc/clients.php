@@ -3,7 +3,9 @@
  * "Our Clients" logo wall for the Rwanda site, shown on the homepage (after
  * Featured Projects) and on the About page, and available as [scrw_clients].
  *
- * To add a client: drop a logo into assets/img/clients/ (webp, png or jpg,
+ * To add a client: Settings > Our Clients in wp-admin (2.3.20). The folder
+ * assets/img/clients/ is only the starting set, used until that page is saved.
+ * Old note: drop a logo into assets/img/clients/ (webp, png or jpg,
  * any size; a white background works best). It appears automatically. The
  * display name comes from scrw_client_names() below, or from the file name
  * (green-hills-academy.webp -> Green Hills Academy).
@@ -15,7 +17,84 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Logos managed in wp-admin: Settings > Our Clients (2.3.20).
+ * One per line: Logo image URL | Client name. Upload the logo in Media,
+ * copy its File URL and paste it here. Never saved = the theme-folder logos.
+ * Saved empty = section hidden.
+ */
+function scrw_clients_from_settings() {
+	$raw = get_option( 'scrw_client_logos', null );
+	if ( null === $raw ) {
+		return null;
+	}
+	$out = array();
+	foreach ( preg_split( '/\r\n|\r|\n/', (string) $raw ) as $line ) {
+		$parts = array_map( 'trim', explode( '|', $line, 2 ) );
+		if ( empty( $parts[0] ) ) {
+			continue;
+		}
+		$name  = isset( $parts[1] ) && '' !== $parts[1] ? $parts[1] : ucwords( str_replace( array( '-', '_' ), ' ', pathinfo( $parts[0], PATHINFO_FILENAME ) ) );
+		$out[] = array( 'key' => sanitize_title( $name ), 'name' => $name, 'src' => esc_url_raw( $parts[0] ) );
+	}
+	return $out;
+}
+
+/** The current logos as "URL | Name" lines (pre-fills the settings box). */
+function scrw_clients_as_lines() {
+	$lines = array();
+	foreach ( scrw_clients_list() as $c ) {
+		$lines[] = $c['src'] . ' | ' . $c['name'];
+	}
+	return implode( "\n", $lines );
+}
+
+add_action(
+	'admin_init',
+	function () {
+		register_setting( 'scrw_clients_group', 'scrw_client_logos', array( 'type' => 'string', 'sanitize_callback' => 'sanitize_textarea_field' ) );
+	}
+);
+
+add_action(
+	'admin_menu',
+	function () {
+		add_options_page(
+			'Our Clients',
+			'Our Clients',
+			'manage_options',
+			'scrw-clients',
+			function () {
+				if ( ! current_user_can( 'manage_options' ) ) {
+					return;
+				}
+				?>
+				<div class="wrap">
+					<h1>Our Clients (logo strip)</h1>
+					<p>The moving logo strip on the homepage and About page. One logo per line: <code>Logo image URL | Client name</code>.</p>
+					<p>To add a client: go to <strong>Media &gt; Add New</strong>, upload the logo (white background works best), click it, copy the <strong>File URL</strong>, and paste it here followed by <code> | Client name</code>. Delete a line to remove a client. Change the order by moving lines. Clear the box and save to hide the strip.</p>
+					<form method="post" action="options.php">
+						<?php settings_fields( 'scrw_clients_group' ); ?>
+						<textarea class="large-text code" rows="18" name="scrw_client_logos"><?php echo esc_textarea( null === get_option( 'scrw_client_logos', null ) ? scrw_clients_as_lines() : (string) get_option( 'scrw_client_logos' ) ); ?></textarea>
+						<?php submit_button(); ?>
+					</form>
+				</div>
+				<?php
+			}
+		);
+	}
+);
+
 function scrw_clients_list() {
+	static $in = false;
+	if ( ! $in ) {
+		$in  = true;
+		$set = scrw_clients_from_settings();
+		$in  = false;
+		if ( null !== $set ) {
+			return $set;
+		}
+	}
 	$dir   = get_stylesheet_directory() . '/assets/img/clients/';
 	$uri   = get_stylesheet_directory_uri() . '/assets/img/clients/';
 	$files = glob( $dir . '*.{webp,png,jpg,jpeg}', GLOB_BRACE );

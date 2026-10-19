@@ -659,3 +659,15 @@
 .scrw-hfaq__item[open] summary::after { content: "\2212"; }
 .scrw-hfaq__item summary h3 { display: inline; font-size: 1.02rem; margin: 0; }
 .scrw-hfaq__item p { margin: 0 0 1.1rem; }
+
+/* ---------- 2.3.20: project proof on Church / Conference pages ---------- */
+.scrw-proof__loc { margin: -.3rem 0 1.2rem; opacity: .8; }
+.scrw-proof__grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: start; margin-bottom: 1.4rem; }
+.scrw-proof__text h3, .scrw-proof__side h3 { font-size: 1.05rem; margin: 0 0 .4rem; }
+.scrw-proof__text p { margin: 0 0 1.1rem; }
+.scrw-proof__side { padding: 1.3rem; border-radius: 14px; background: var(--sc-surface, #131318); border: 1px solid var(--sc-border, rgba(255,255,255,.1)); }
+.scrw-proof__side img { width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem; }
+.scrw-proof__side ul { margin: 0; padding-left: 1.1rem; }
+.scrw-proof__chips { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: .6rem 0 0; }
+.scrw-proof__chips li { padding: .35rem .8rem; border-radius: 999px; border: 1px solid var(--sc-border, rgba(255,255,255,.15)); font-size: .9rem; }
+@media (max-width: 760px) { .scrw-proof__grid { grid-template-columns: 1fr; } }

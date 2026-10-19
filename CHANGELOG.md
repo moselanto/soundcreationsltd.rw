@@ -2,6 +2,12 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.20 - 19 October 2026: editable client logos, project proof, brand and Rubavu titles
+- Client logos: new Settings > Our Clients page (one per line: Logo URL | Client name, logos uploaded in Media). Until first saved, the theme-folder logos are used; saved empty hides the strip.
+- New `inc/sector-proof.php`: Church and Conference pages show "Project in detail" (brief, what we did, result, equipment, photo, link) read live from the Christian Life Assembly and MINECOFIN project fields; Church page also lists the other churches from Complete Projects. Off switch: filter `scrw_sector_proof`.
+- Titles: Intare Kivu Arena "Intare Kivu Arena, Rubavu | Acoustics & Sound System Gisenyi"; brand pages Shure, Bose Professional, dB Technologies, Allen & Heath get product-led titles with no distributor claims.
+- Upload: child `functions.php`, `style.css`, `inc/clients.php`, `inc/sector-proof.php`, `inc/seo-boost.php`, `assets/css/scrw-ui.css`, `assets/css/scrw-ui.min.css`.
+
 ## 2.3.19 - 19 October 2026: keep first-place keywords, full keyword bank
 - Homepage title "Sound Creations Rwanda | Audio Visual, Acoustics & Yamaha Kigali": keeps the brand and Yamaha (both ranking first) while adding audio visual and acoustics. Description names AV company, Yamaha distributor, installation, acoustics, stage lighting and PA.
 - `scrw_seo_keywords()` now holds 100 phrases: the first-place keywords plus the full October 2026 bank.

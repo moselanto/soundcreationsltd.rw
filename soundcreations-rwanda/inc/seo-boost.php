@@ -95,6 +95,15 @@ function scrw_seo_slug_map() {
 		'church-sound-systems'          => array( 'Church Sound System Installation Rwanda | Church PA Kigali', 'Church sound systems in Rwanda: line arrays, Yamaha mixers, wireless mics, worship lighting and acoustics, designed and installed in Kigali, as at Christian Life Assembly.' ),
 		'school-and-auditorium-sound'   => array( 'School PA Systems Rwanda | Auditorium Sound & AV Kigali', 'School PA, hall and auditorium sound, lighting, projection and acoustics in Rwanda. Installed at Ntare Louisenlund School and Intare Kivu Arena. Easy for staff to run.' ),
 		'hotel-bar-restaurant-sound'    => array( 'Hotel & Bar Sound Systems Kigali | Restaurant Audio Rwanda', 'Zoned background music, event sound, DJ booths and lighting for hotels, bars, restaurants and event gardens in Kigali and across Rwanda, designed and installed locally.' ),
+		// Projects outside Kigali (2.3.20).
+		'intare-kivu-arena'       => array( 'Intare Kivu Arena, Rubavu | Acoustics & Sound System Gisenyi', 'Acoustic treatment, dB Technologies line array and Yamaha TF5 sound system for Intare Kivu Arena in Gisenyi, Rubavu: clear speech and even coverage for every event.' ),
+		// Brand pages (2.3.20): product-led titles, no distributor claims.
+		'shure'                   => array( 'Shure Microphones Rwanda | Wireless & Conference Mics Kigali', 'Shure microphones in Rwanda: SM58, SM57, SM7B, BLX and wireless systems, plus Shure Microflex conference microphones, supplied and installed by Sound Creations in Kigali.' ),
+		'bose-professional'       => array( 'Bose Professional Rwanda | Commercial Sound & Conference Audio', 'Bose Professional commercial loudspeakers, background music and conference audio in Rwanda, specified, supplied and installed by Sound Creations in Kigali.' ),
+		'bose'                    => array( 'Bose Professional Rwanda | Commercial Sound & Conference Audio', 'Bose Professional commercial loudspeakers, background music and conference audio in Rwanda, specified, supplied and installed by Sound Creations in Kigali.' ),
+		'db-technologies'         => array( 'dB Technologies Rwanda | Active Speakers & Line Arrays Kigali', 'dB Technologies active speakers, subwoofers and line array systems in Rwanda, as installed at Christian Life Assembly and Intare Kivu Arena. Supplied and installed in Kigali.' ),
+		'allen-heath'             => array( 'Allen & Heath Mixers Rwanda | Digital Mixing Consoles Kigali', 'Allen & Heath digital mixing consoles in Rwanda, including the SQ series installed at Christian Life Assembly. Supply, setup and operator training in Kigali.' ),
+		'allen-and-heath'         => array( 'Allen & Heath Mixers Rwanda | Digital Mixing Consoles Kigali', 'Allen & Heath digital mixing consoles in Rwanda, including the SQ series installed at Christian Life Assembly. Supply, setup and operator training in Kigali.' ),
 		'support-training'        => array( 'AV Support & Training Rwanda | Sound Creations Kigali', 'Technical support, product training and after-sales service for sound, lighting and AV systems in Rwanda.' ),
 	);
 }
