@@ -86,3 +86,8 @@ Scores: Performance / Accessibility / Best Practices / SEO.
 - Child 2.3.13, parent 0.10.18 confirmed. Contact office list: no role="button". Hotel/bar sector page: each project name printed once.
 - PageSpeed Contact: 100/100/100/100 mobile and desktop (was 97 accessibility). Homepage: 99/100/100/100 mobile, 100/100/100/100 desktop.
 - Remaining (unscored only): hero video captions track. Next speed job: About page (Elementor) mobile LCP 4.1 s, Brands mobile 3.1 s.
+
+## 2.3.14 verified live (19 Oct 2026, 15:46 EAT)
+- About mobile 87 -> **97** (LCP 4.0 s -> 2.4 s), desktop 99. Brands mobile 94 -> **97** (LCP 3.0 s -> 2.6 s), desktop 100. Homepage 99 mobile / 100 desktop.
+- Accessibility, Best Practices and SEO 100 on all three; no console errors. About Elementor sections, images and 14 internal links checked; Brands banner displays.
+- Unscored only: hero video captions track; generic "Visit Website" / "View details" link text.
