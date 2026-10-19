@@ -1,6 +1,6 @@
 # AGENTS.md: handoff notes for AI coding agents
 
-Read order: this file, then `ARCHITECTURE-ESSENTIALS.md`, `ARCHITECTURE.md`, `PRD.md`, `SECURITY-AUDIT.md`, `CHANGELOG.md`.
+Read order: this file, then `docs/HANDOVER-2026-10.md` (work log 11-19 Oct 2026, current state and open items), `ARCHITECTURE-ESSENTIALS.md`, `ARCHITECTURE.md`, `PRD.md`, `SECURITY-AUDIT.md`, `CHANGELOG.md`.
 
 Read this first before changing anything in this repository. Update it (and `CHANGELOG.md`) in the same commit as your change, so the next agent knows what was done.
 
@@ -91,3 +91,8 @@ The owner's master brief ("SCL RWANDA SEO, AEO, GEO") governs this work: audit b
 2. Add an entry to `CHANGELOG.md` and, for SEO work, a release section in `docs/SEO-PLAN.md`.
 3. Update the tables above if you add a file or close an open item.
 4. Deploy: back up, upload the whole changed folders, open wp-admin once, purge the page cache (no LiteSpeed plugin is installed), then test with the Rich Results Test and schema validator.
+
+## Recent additions (2.3.5 - 2.3.11)
+- `inc/product-uses.php`, `inc/testimonials.php`, `inc/csp.php` (strict CSP, off switch in Settings > General), `single.php` (guide byline), `assets/video/hero.mp4`.
+- Server rules are written into `.htaccess` by `scrw_htaccess_rules()` between "# BEGIN SCRW Performance" markers. Do not add inline event handlers (onclick=) or `javascript:` links: strict CSP blocks them. Build DOM with createElement, not innerHTML with scripts.
+- Full details: `docs/HANDOVER-2026-10.md`, `docs/QUALITY-AUDIT-2026-10.md`.
