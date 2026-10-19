@@ -114,7 +114,7 @@ $sc_contacts_map = apply_filters( 'sc_office_contacts', $sc_contacts_map );
 			<div class="sc-teamcard__geo" data-sc-locmap data-sc-contacts="<?php echo esc_attr( wp_json_encode( $sc_contacts_map ) ); ?>">
 				<ul class="sc-teamcard__offices">
 					<?php foreach ( $sc_offices as $i => $o ) : ?>
-						<li class="sc-teamcard__office<?php echo 0 === $i ? ' is-active' : ''; ?>" data-loc="<?php echo esc_attr( $o['id'] ); ?>" tabindex="0" role="button" aria-label="<?php echo esc_attr( sprintf( 'Show %s on the map', $o['name'] ) ); ?>">
+						<li class="sc-teamcard__office<?php echo 0 === $i ? ' is-active' : ''; ?>" data-loc="<?php echo esc_attr( $o['id'] ); ?>">
 							<span class="sc-teamcard__pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_pin; ?></svg></span>
 							<div><strong><?php echo esc_html( $o['name'] ); ?></strong><span><?php echo esc_html( $o['addr'] ); ?></span></div>
 						</li>

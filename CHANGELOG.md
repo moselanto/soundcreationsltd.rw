@@ -2,6 +2,11 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.13 / parent 0.10.18 - 19 October 2026: last two re-test findings
+- Contact and consultation office list: role="button", tabindex and aria-label actually removed from the list item (the 2.3.11 change did not match the markup). Clears the only scored Accessibility failure (Contact 97).
+- Sector solution pages (hotel, school, installation): project cards no longer print the name twice (second card renderer in `inc/seo-content.php`).
+- Upload: `soundcreations-rwanda/` (functions.php, style.css, inc/seo-content.php); from `soundcreations/`: `template-parts/contact-page.php`, `template-parts/consult-page.php`, `style.css`.
+
 ## 2.3.12 / parent 0.10.17 / Enquiries 0.2.1 - 19 October 2026: full-site crawl fixes
 Crawl of 113 URLs (all 60 products, 12 solutions, 7 projects, 13 brands, 4 services, guides and pages).
 - Broken links: /solutions/ "Acoustics" card and menu fallback now go to /solutions/architectural-acoustics/; 301s for /solutions/acoustics/, /solutions/conferencing/, /solutions/system-integration/. New "Become a Dealer" page (pages seed rw-pages-4; the Enquiries plugin adds the dealer form), so "Become a FANE Dealer" no longer 404s.

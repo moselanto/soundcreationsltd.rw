@@ -20,6 +20,7 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 | 2.3.8 | Strict CSP: per-request nonce + 'strict-dynamic', Trusted Types default policy (`inc/csp.php`). Visitors only. **Off switch: Settings > General > "Strict script security"** |
 | 2.3.9 | Hero video shipped in theme `assets/video/hero.mp4` (4 MB re-encode of the group-site 23 MB file), used when the setting points off-site |
 | 2.3.10 | Featured Projects carousel: working desktop arrows; mobile prev/next, dots, counter, swipe hint; keyboard |
+| 2.3.13 / parent 0.10.18 | Contact office-list semantics; no duplicate project names on sector pages |
 | 2.3.12 / parent 0.10.17 / Enquiries 0.2.1 | Full-site crawl fixes: broken links (acoustics, become-a-dealer page), one-time exact-text content corrections (`inc/content-fixes.php`), Yamaha loudspeaker label, no duplicate project names, UK spelling |
 | 2.3.11 / parent 0.10.16 | Contrast on red text (dark theme #ff6b6b), underlined text links, heading order (products, yamaha), contact list semantics, 24 px dots, YouTube click-to-play on Architectural Acoustics |
 
@@ -56,3 +57,26 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 - Do not restructure code without a PHP runtime to test. Keep SCRW_VERSION in `functions.php` and `style.css` equal; add a CHANGELOG entry per release.
 - Generated images must be copied to `vfs:///session/files/...` before the browser agent can upload them; it cannot read Content Library or session text files (paste text inline).
 - The old VTECH number +254 728135246 is outdated (other client, not this site).
+
+## Final re-test, 19 October 2026 (2.3.12 live; 14:46-14:53 EAT, Lighthouse 13.5)
+Scores: Performance / Accessibility / Best Practices / SEO.
+
+| Page | Mobile | Mobile LCP | Desktop |
+|---|---|---|---|
+| Home | 99 / 100 / 100 / 100 | 2.0 s | 100 / 100 / 100 / 100 |
+| Products | 99 / 100 / 100 / 100 | 1.8 s | 100 / 100 / 100 / 100 |
+| Shure SM57 | 100 / 100 / 100 / 100 | 1.7 s | 100 / 100 / 100 / 100 |
+| Projects | 98 / 100 / 100 / 100 | 2.4 s | 100 / 100 / 100 / 100 |
+| Christian Life Assembly | 100 / 100 / 100 / 100 | 1.8 s | 100 / 100 / 100 / 100 |
+| Architectural Acoustics | 99 / 100 / 100 / 100 | 2.2 s | 100 / 100 / 100 / 100 |
+| Acoustic Treatment vs Soundproofing | 99 / 100 / 100 / 100 | 2.0 s | 100 / 100 / 100 / 100 |
+| Contact | 100 / 97 / 100 / 100 | 1.6 s | 100 / 97 / 100 / 100 |
+| About | 86 / 100 / 100 / 100 | 4.1 s | 99 / 100 / 100 / 100 |
+| Yamaha | 98 / 100 / 100 / 100 | 2.4 s | 100 / 100 / 100 / 100 |
+| Brands | 94 / 100 / 100 / 100 | 3.1 s | 100 / 100 / 100 / 100 |
+
+- Security headers A+; schema 0 errors / 0 warnings on product, project, guide and contact pages.
+- Verified live: Warranty and After-Sale Services show fred@soundcreationsltd.com, +250 783 141 050 and the Kigali address; 22+ years wording; "exam announcements"; Acoustics links and 301; Become a Dealer page with dealer form; Analogue, CBR10 289 mm, VC520 Pro2 model, 22 frets, Yamaha loudspeaker card; carousel arrows.
+- Only scored failure: Contact office list semantics, fixed in 2.3.13 (to upload). Duplicate project names on sector pages also fixed in 2.3.13.
+- Next performance follow-up: About (Elementor page) mobile LCP 4.1 s and Brands mobile LCP 3.1 s. Unscored only: hero video captions track, generic "View details" / "Visit Website" link text.
+- Hero video source loads (hero.mp4?ver=2.3.12); visual playback to be confirmed on a phone.
