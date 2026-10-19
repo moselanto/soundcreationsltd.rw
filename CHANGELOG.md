@@ -2,6 +2,13 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.4 / Core 0.5.28 - 19 October 2026: sign-in page fix and polish
+- Bug: on wp-login.php typed username and password were invisible. Cause: Core's older dark login style (`includes/login-branding.php`) set field text to near-white #ecebf2, while the child theme's light design (`assets/css/scrw-login.css`) gave the fields a near-white background.
+- Fix (theme): fields now force dark text, purple caret, visible border, readable placeholder and browser autofill colours; `color-scheme: light`.
+- Fix (Core 0.5.28): Core's login CSS and second footer are skipped when the theme provides its own sign-in design (`sc_core_login_theme_owns_design()`); `SC_CORE_VERSION` constant brought in line with the plugin header.
+- Polish: card vertically centred with a red accent line, stale "Staff sign in" pseudo-heading removed, link row spacing, headline width, small-phone sizing.
+- Upload: `soundcreations-rwanda/` (style.css, functions.php, assets/css/scrw-login.css) and `sound-creations-core/` (sound-creations-core.php, includes/login-branding.php). The theme CSS alone fixes the visibility issue.
+
 ## 2.3.3 - 18 October 2026: load the schema tidy-up
 - Root cause found: `functions.php` never loaded `inc/schema-tidy.php` (the require line was lost between 2.3.0 and 2.3.1), so the sameAs de-duplication and the parent company @id never ran. Confirmed while logged in (uncached): the live JSON-LD still had web.facebook.com and no https://soundcreationsltd.com/#organization. Cache was not the cause.
 - Fix: `require_once SCRW_DIR . 'inc/schema-tidy.php';` added after guides-seed. Upload `functions.php` and `style.css` (or the whole folder).

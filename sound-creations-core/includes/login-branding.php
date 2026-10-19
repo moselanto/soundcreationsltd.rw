@@ -23,6 +23,18 @@ function sc_core_login_logo_url() {
 	return plugins_url( 'assets/img/login-logo.png', SC_CORE_DIR . 'sound-creations-core.php' );
 }
 
+
+/**
+ * True when the active theme ships its own sign-in design (Sound Creations
+ * Rwanda child theme). Core then stays out of the way so the two styles
+ * do not clash (the old dark field colours made typed text invisible).
+ *
+ * @return bool
+ */
+function sc_core_login_theme_owns_design() {
+	return function_exists( 'scrw_login_is_interim' );
+}
+
 // Logo links to the site, not wordpress.org.
 add_filter(
 	'login_headerurl',
@@ -46,6 +58,9 @@ add_filter( 'login_display_language_dropdown', '__return_false' );
 add_action(
 	'login_enqueue_scripts',
 	function () {
+		if ( sc_core_login_theme_owns_design() ) {
+			return;
+		}
 		$logo = esc_url( sc_core_login_logo_url() );
 
 		$css = '
@@ -224,6 +239,9 @@ add_action(
 add_action(
 	'login_footer',
 	function () {
+		if ( sc_core_login_theme_owns_design() ) {
+			return;
+		}
 		$year = gmdate( 'Y' );
 		echo '<div class="sc-login-footer"><strong>Sound Creations Ltd</strong> &middot; Professional audio, lighting &amp; AV<br>&copy; ' . esc_html( $year ) . ' Sound Creations. Authorised staff only.</div>';
 	}

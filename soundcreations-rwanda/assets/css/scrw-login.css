@@ -241,3 +241,73 @@ body.login.scrw-login .language-switcher { display: none; }
 @media (prefers-reduced-motion: reduce) {
 	body.login.scrw-login * { transition: none !important; }
 }
+
+/* ---------- 2.3.4: readable fields and layout polish ---------- */
+/* Root cause of the "invisible" text: Sound Creations Core's older dark login
+   style set field text to near-white (#ecebf2); this page uses light fields,
+   so typed text was white on white. Force dark text, caret and autofill. */
+body.login.scrw-login { color-scheme: light; }
+body.login.scrw-login form .input,
+body.login.scrw-login input[type="text"],
+body.login.scrw-login input[type="email"],
+body.login.scrw-login input[type="password"] {
+	width: 100%;
+	color: var(--scrw-ink) !important;
+	-webkit-text-fill-color: var(--scrw-ink) !important;
+	caret-color: var(--scrw-purple);
+	background-color: #faf9fd !important;
+	border: 1.5px solid #cfc9dc !important;
+	line-height: 1.4;
+	opacity: 1 !important;
+}
+body.login.scrw-login form .input:hover { border-color: #b3aac6 !important; }
+body.login.scrw-login form .input:focus,
+body.login.scrw-login input[type="email"]:focus {
+	border-color: var(--scrw-purple) !important;
+	background-color: #fff !important;
+	box-shadow: 0 0 0 4px rgba(92, 68, 137, .16) !important;
+	outline: 0;
+}
+body.login.scrw-login input::placeholder { color: #9a95a8; opacity: 1; }
+body.login.scrw-login input:-webkit-autofill,
+body.login.scrw-login input:-webkit-autofill:hover,
+body.login.scrw-login input:-webkit-autofill:focus {
+	-webkit-text-fill-color: var(--scrw-ink) !important;
+	-webkit-box-shadow: 0 0 0 1000px #f3effa inset !important;
+	caret-color: var(--scrw-purple);
+	transition: background-color 9999s ease-out 0s;
+}
+body.login.scrw-login .button.wp-hide-pw .dashicons { color: var(--scrw-purple); }
+body.login.scrw-login .user-pass-wrap label,
+body.login.scrw-login #loginform > p > label { display: block; color: var(--scrw-ink) !important; }
+
+/* Remove leftovers from the old dark style (Core) on this page. */
+body.login.scrw-login form::before { content: none !important; display: none !important; }
+body.login.scrw-login .sc-login-footer { display: none !important; }
+
+/* Card: centred in the right-hand area, with a brand accent line. */
+body.login.scrw-login { padding-top: 0; justify-content: center; }
+body.login.scrw-login #login {
+	margin: 2.5rem auto 1rem;
+	border-top: 4px solid var(--scrw-red);
+	box-shadow: 0 30px 70px rgba(35, 22, 60, .14), 0 2px 6px rgba(35, 22, 60, .06);
+}
+.scrw-login-foot { margin: 0 auto 2.5rem; padding-bottom: 0; }
+body.login.scrw-login #wp-submit:active { transform: translateY(0); }
+body.login.scrw-login #nav { display: flex; flex-wrap: wrap; justify-content: center; gap: .3rem 1rem; }
+body.login.scrw-login #nav .wp-login-register:empty,
+body.login.scrw-login #nav { word-break: normal; }
+
+/* Brand panel: steadier headline width and list spacing. */
+.scrw-login-brand__title { max-width: 18ch; }
+.scrw-login-brand__list li { line-height: 1.45; }
+
+@media (max-width: 900px) {
+	body.login.scrw-login { justify-content: flex-start; }
+	body.login.scrw-login #login { margin: -3rem auto 1rem; }
+	.scrw-login-brand__title { max-width: none; }
+}
+@media (max-width: 420px) {
+	body.login.scrw-login #login { width: calc(100% - 1.5rem); padding: 1.5rem 1.1rem 1.2rem; border-radius: 16px; }
+	.scrw-login-welcome h2 { font-size: 1.3rem; }
+}
