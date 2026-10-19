@@ -74,16 +74,16 @@ function scrw_seo_slug_map() {
 		// Pages.
 		'yamaha'                  => array( 'Yamaha Rwanda | Authorised Yamaha Distributor in Kigali', 'Sound Creations is the authorised Yamaha distributor in Rwanda. Yamaha mixers, speakers, keyboards, digital pianos and guitars in Kigali, with local warranty and support across East Africa.' ),
 		'fane'                    => array( 'FANE Africa | FANE Speakers & Loudspeaker Drivers Rwanda', 'FANE Africa partner in Kigali: FANE Sovereign, Colossus and compression drivers for PA, line array and installed sound across Rwanda and East Africa. Genuine parts, expert advice.' ),
-		'about'                   => array( 'About Sound Creations Rwanda | Audio Visual Company Kigali', 'Sound Creations Ltd Rwanda: Kigali audio visual company for sound systems, lighting, acoustics and studios. Part of the Sound Creations group serving East Africa since 2011.' ),
+		'about'                   => array( 'Audio Visual Company in Kigali, Rwanda | About Sound Creations', 'Sound Creations Ltd Rwanda: Kigali audio visual company for sound systems, lighting, acoustics and studios. Part of the Sound Creations group serving East Africa since 2011.' ),
 		'contact'                 => array( 'Contact Sound Creations Rwanda | Sound Systems Kigali', 'Visit our showroom on KN1 Rd, Muhima, Kigali, call +250 783 141 050 or WhatsApp us for sound systems, Yamaha equipment, lighting and acoustics in Rwanda.' ),
 		'request-a-consultation'  => array( 'Book an AV & Acoustic Consultation in Kigali, Rwanda', 'Book a site visit with our Kigali engineers for sound system design, acoustic treatment, lighting and AV for churches, hotels, schools and conference rooms in Rwanda.' ),
 		'request-a-quote'         => array( 'Request a Quote | Sound, Lighting & AV Equipment Rwanda', 'Get a quotation for Yamaha, FANE, dB Technologies, Shure and more, or a complete sound, lighting or acoustic installation anywhere in Rwanda.' ),
 		'become-a-dealer'         => array( 'Become a Dealer | Pro Audio Distribution Rwanda & East Africa', 'Partner with Sound Creations to resell Yamaha, FANE and leading pro audio brands in Rwanda and East Africa, with trade pricing and technical backing.' ),
 		// Solutions.
-		'professional-audio'      => array( 'Professional Audio & PA Systems in Kigali, Rwanda', 'PA and sound systems for churches, hotels, conference halls, schools and live events in Rwanda: line arrays, speakers, mixers and microphones, designed and installed in Kigali.' ),
-		'installation'            => array( 'Sound System Installation Rwanda | AV Integration Kigali', 'Turnkey sound, acoustic and AV installation in Rwanda: site survey, design, installation, calibration and training by our Kigali team. Churches, halls, hotels, offices.' ),
-		'acoustics'               => array( 'Acoustic Treatment & Soundproofing in Rwanda | Kigali', 'Acoustic design, measurement and treatment in Rwanda: wall panels, diffusers, acoustic ceilings and soundproofing for churches, auditoriums, studios and offices in Kigali.' ),
-		'architectural-acoustics' => array( 'Architectural Acoustics Rwanda | Acoustic Design Kigali', 'Architectural acoustic design and treatment for new and existing buildings in Rwanda. RT60 measurement, soundproofing and verified results, with architects in Kigali.' ),
+		'professional-audio'      => array( 'Professional Sound Systems Rwanda | PA Systems Kigali', 'PA and sound systems for churches, hotels, conference halls, schools and live events in Rwanda: line arrays, speakers, mixers and microphones, designed and installed in Kigali.' ),
+		'installation'            => array( 'Professional Sound System Installation Rwanda | AV Integration', 'Professional sound system and AV installation in Rwanda: site survey, design, supply, installation, calibration and training by our Kigali team for churches, halls, hotels and offices.' ),
+		'acoustics'               => array( 'Acoustic Treatment & Soundproofing Rwanda | Acoustic Panels Kigali', 'Acoustic design, measurement and treatment in Rwanda: wall panels, diffusers, acoustic ceilings and soundproofing for churches, auditoriums, studios and offices in Kigali.' ),
+		'architectural-acoustics' => array( 'Acoustic Solutions Rwanda | Acoustic Design & Consultants Kigali', 'Acoustic solutions in Rwanda: acoustic design, measurement, treatment and sound isolation for churches, auditoriums, studios, offices and new buildings, working with architects in Kigali.' ),
 		'lighting-solutions'      => array( 'Stage & Event Lighting Rwanda | Church Lighting Kigali', 'Stage, church, event and architectural lighting in Rwanda: moving heads, LED wash, DMX control, installation and programming by our Kigali team.' ),
 		'lighting'                => array( 'Stage & Architectural Lighting Rwanda | Kigali', 'Stage, event and architectural lighting systems in Rwanda, designed, supplied, installed and programmed by Sound Creations in Kigali.' ),
 		'dj-solutions'            => array( 'DJ Equipment Rwanda | DJ Controllers & Mixers Kigali', 'DJ controllers, mixers, monitors and complete DJ booths for clubs, lounges, hotels and mobile DJs in Kigali and across Rwanda. Genuine gear with warranty.' ),
@@ -91,8 +91,8 @@ function scrw_seo_slug_map() {
 		'broadcast-recording'     => array( 'Broadcast & Recording Studio Systems Rwanda', 'Broadcast audio, recording and studio systems in Rwanda, specified, integrated and commissioned by Sound Creations in Kigali.' ),
 		'service-and-backup'      => array( 'Sound System Repair & Maintenance Rwanda | Kigali', 'Sound, lighting and AV maintenance, repairs, warranty support, equipment backup and operator training in Rwanda, from our Kigali service team.' ),
 		// Sector landing pages (inc/seo-content.php, v1.3.0).
-		'conference-room-sound-systems' => array( 'Conference Room Sound Systems Kigali | Boardroom Audio Rwanda', 'Conference microphones, ceiling mics and hybrid-meeting audio for boardrooms, ministries and hotels in Kigali. Installed at MINECOFIN. Site survey, supply, install, training.' ),
-		'church-sound-systems'          => array( 'Church Sound Systems Rwanda | Church PA & Lighting Kigali', 'Church sound systems in Rwanda: line arrays, Yamaha mixers, wireless mics, worship lighting and acoustics, designed and installed in Kigali, as at Christian Life Assembly.' ),
+		'conference-room-sound-systems' => array( 'Conference Room AV Systems Kigali | Boardroom Audio Rwanda', 'Conference microphones, ceiling mics and hybrid-meeting audio for boardrooms, ministries and hotels in Kigali. Installed at MINECOFIN. Site survey, supply, install, training.' ),
+		'church-sound-systems'          => array( 'Church Sound System Installation Rwanda | Church PA Kigali', 'Church sound systems in Rwanda: line arrays, Yamaha mixers, wireless mics, worship lighting and acoustics, designed and installed in Kigali, as at Christian Life Assembly.' ),
 		'school-and-auditorium-sound'   => array( 'School PA Systems Rwanda | Auditorium Sound & AV Kigali', 'School PA, hall and auditorium sound, lighting, projection and acoustics in Rwanda. Installed at Ntare Louisenlund School and Intare Kivu Arena. Easy for staff to run.' ),
 		'hotel-bar-restaurant-sound'    => array( 'Hotel & Bar Sound Systems Kigali | Restaurant Audio Rwanda', 'Zoned background music, event sound, DJ booths and lighting for hotels, bars, restaurants and event gardens in Kigali and across Rwanda, designed and installed locally.' ),
 		'support-training'        => array( 'AV Support & Training Rwanda | Sound Creations Kigali', 'Technical support, product training and after-sales service for sound, lighting and AV systems in Rwanda.' ),
@@ -105,7 +105,7 @@ function scrw_seo_archive_map() {
 		'sc_product'  => array( 'Pro Audio Equipment Rwanda | Speakers, Mixers & Mics Kigali', 'Shop professional audio in Kigali: Yamaha mixers and keyboards, FANE drivers, dB Technologies speakers, Shure microphones and more, with warranty and support in Rwanda.' ),
 		'sc_brand'    => array( 'Pro Audio Brands in Rwanda | Yamaha, FANE, dB Technologies', 'Global audio, lighting and AV brands supplied in Rwanda by Sound Creations, including the authorised Yamaha distributorship and FANE Africa partnership.' ),
 		'sc_project'  => array( 'Sound & AV Installation Projects in Rwanda | Our Work', 'Sound, acoustic, lighting and AV projects across Rwanda: MINECOFIN, Intare Kivu Arena, Ntare Louisenlund School, Christian Life Assembly and more.' ),
-		'sc_solution' => array( 'Audio Visual, Lighting & Acoustic Solutions Rwanda', 'Professional audio, acoustics, lighting, DJ, studio and AV integration solutions for venues in Kigali and across Rwanda.' ),
+		'sc_solution' => array( 'Audio Visual Solutions Rwanda | AV Integration Kigali', 'Professional audio, acoustics, lighting, DJ, studio and AV integration solutions for venues in Kigali and across Rwanda.' ),
 		'sc_resource' => array( 'Pro Audio & AV Videos | Sound Creations Rwanda', 'Installation videos, product demos and events from Sound Creations in Rwanda and East Africa.' ),
 	);
 }
@@ -118,7 +118,7 @@ function scrw_seo_defaults() {
 	}
 	$out = false;
 	if ( is_front_page() ) {
-		$out = array( 'Sound Creations Rwanda | Yamaha Distributor & Pro Audio Kigali', 'Authorised Yamaha distributor and FANE Africa partner in Kigali. Sound systems, PA, lighting, acoustics, studio and AV installation across Rwanda and East Africa.' );
+		$out = array( 'Audio Visual & Acoustic Solutions Rwanda | Sound Creations', 'Audio visual company in Kigali, Rwanda: sound system installation, acoustic solutions, lighting and AV integration for churches, hotels, offices and venues.' );
 	} elseif ( is_post_type_archive() ) {
 		$map = scrw_seo_archive_map();
 		$pt  = get_query_var( 'post_type' );
@@ -228,6 +228,7 @@ function scrw_seo_keywords() {
 		'Yamaha distributor Rwanda', 'Yamaha Rwanda', 'Yamaha Africa', 'Yamaha dealer Kigali', 'Yamaha keyboards Rwanda', 'Yamaha digital piano Rwanda', 'Yamaha mixer Rwanda',
 		'FANE Africa', 'FANE speakers Rwanda', 'FANE drivers',
 		'sound systems Kigali', 'PA system Rwanda', 'professional audio Rwanda', 'audio visual company Rwanda', 'AV installation Kigali',
+		'audio visual company Kigali', 'audio visual solutions Rwanda', 'AV integration Rwanda', 'professional sound system installation Rwanda', 'acoustic solutions Rwanda', 'acoustic consultants Rwanda', 'church sound system installation Rwanda', 'conference room AV systems Kigali', 'sound system suppliers Rwanda', 'event technology Rwanda',
 		'church sound system Rwanda', 'conference room AV Kigali', 'stage lighting Kigali', 'acoustic treatment Rwanda', 'soundproofing Kigali',
 		'studio equipment Rwanda', 'DJ equipment Kigali', 'line array Rwanda', 'speakers Kigali', 'microphones Rwanda',
 	);

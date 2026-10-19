@@ -647,3 +647,15 @@
 	.scrw-ab-card::before { left: 1rem; top: 1.2rem; }
 	.scrw-ab-intro { padding: 1.1rem 1.15rem; }
 }
+
+/* ---------- 2.3.18: homepage AV company FAQ ---------- */
+.scrw-hfaq__title { margin: 0 0 .6rem; }
+.scrw-hfaq__lead { max-width: 860px; margin: 0 0 1.4rem; font-size: 1.05rem; }
+.scrw-hfaq__list { display: grid; gap: .7rem; max-width: 960px; }
+.scrw-hfaq__item { border: 1px solid var(--sc-border, rgba(255,255,255,.1)); border-radius: 12px; background: var(--sc-surface, #131318); padding: 0 1.2rem; }
+.scrw-hfaq__item summary { cursor: pointer; list-style: none; padding: 1rem 2rem 1rem 0; position: relative; }
+.scrw-hfaq__item summary::-webkit-details-marker { display: none; }
+.scrw-hfaq__item summary::after { content: "+"; position: absolute; right: 0; top: .85rem; font-size: 1.3rem; color: #ff6b6b; }
+.scrw-hfaq__item[open] summary::after { content: "\2212"; }
+.scrw-hfaq__item summary h3 { display: inline; font-size: 1.02rem; margin: 0; }
+.scrw-hfaq__item p { margin: 0 0 1.1rem; }

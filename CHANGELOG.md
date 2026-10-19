@@ -2,6 +2,12 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.18 - 19 October 2026: priority keyword targeting
+- Google titles and descriptions retargeted to the agreed priority keywords: home "Audio Visual & Acoustic Solutions Rwanda", About "Audio Visual Company in Kigali, Rwanda", Installation "Professional Sound System Installation Rwanda", Architectural Acoustics "Acoustic Solutions Rwanda", Church "Church Sound System Installation Rwanda", Conference "Conference Room AV Systems Kigali", Professional Audio "Professional Sound Systems Rwanda", Solutions archive "Audio Visual Solutions Rwanda". A title typed in the Rank Math box still wins.
+- New `inc/seo-keywords.php`: homepage "Audio visual company in Rwanda" section with 7 visible FAQs (incl. "Which audio visual and event technology companies operate in Rwanda?") and matching FAQPage schema. Editable in Settings > Homepage FAQ.
+- Schema keywords extended with the priority keyword bank.
+- Upload: child `functions.php`, `style.css`, `inc/seo-boost.php`, `inc/seo-keywords.php`, `assets/css/scrw-ui.css`, `assets/css/scrw-ui.min.css`.
+
 ## 2.3.17 / parent 0.10.22 - 19 October 2026: Kenya X (Twitter) removed, social links fully editable
 - The X icon in the top bar and footer linked to the Kenya account (x.com/SCL_kenya). It came from the group defaults, which the site fell back to whenever a Settings field was blank, so it could not be removed from wp-admin.
 - Parent: `sc_default_settings()` is now filterable (`sc_default_settings`). `sc_setting()` treats a saved value of "none" or "-" as "hide this item".
