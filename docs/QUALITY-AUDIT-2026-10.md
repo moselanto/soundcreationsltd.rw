@@ -32,3 +32,20 @@ See CHANGELOG 2.3.6. Covers: contrast failure, console error from the failing he
 
 ## Re-test after upload
 Run PageSpeed Insights (mobile and desktop), securityheaders.com and validator.schema.org on the homepage, a product, a project and a guide, and record the scores here.
+
+## Results after 2.3.6 (re-test 19 October 2026, 12:41 EAT)
+| Check | Before | After |
+|---|---|---|
+| Lighthouse mobile | Perf 81 / A11y 96 / BP 96 / SEO 100 | **Perf 99 / A11y 100 / BP 100 / SEO 100** |
+| Lighthouse desktop | Perf 77 / A11y 96 / BP 96 / SEO 100 | **Perf 99 / A11y 100 / BP 100 / SEO 100** |
+| Mobile LCP / TBT / CLS | 4.2 s / 50 ms / 0 | **2.0 s / 0 ms / 0** |
+| Security headers | A+ | **A+** |
+| Schema (home, SM57) | 0 errors, 0 warnings | **0 errors, 0 warnings** |
+| Duplicate brand pages | /brands/yamaha/, /brands/fane/ | 301 to /yamaha/, /fane/ |
+| Guides hub | 404 | /guides/ 301 to Buyer Guides list |
+| Privacy policy | WordPress sample text | Full policy under Law No. 058/2021, effective 19 Oct 2026 |
+| Contact offices | Nairobi, Kigali, Kinshasa, Dubai | Kigali only |
+
+Also fixed in WordPress on 19 Oct 2026: site title "Sound Creations Rwanda"; About "Sound Creations since 2004"; FANE "since 1958"; product renamed AVer VC520 Pro2.
+
+Remaining (unscored or minor): CSP without script-src and no Trusted Types, HSTS without preload (optional hardening); JS files without cache lifetime (host); large photos in the WordPress media library (re-upload smaller versions); Brands page eyebrow setting "What we offer" and breadcrumb "Home > Products".
