@@ -83,7 +83,7 @@ add_action(
 		echo '<section class="sc-section scrw-hfaq" id="av-company-rwanda"><div class="sc-container"><div class="scrw-hfaq__wrap">';
 
 		echo '<div class="scrw-hfaq__intro">';
-		echo '<p class="sc-eyebrow">' . esc_html__( 'Who we are', 'soundcreations-rwanda' ) . '</p>';
+		echo '<p class="scrw-hfaq__kicker">' . esc_html__( 'Who we are', 'soundcreations-rwanda' ) . '</p>';
 		if ( '' !== $title ) {
 			echo '<h2 class="scrw-hfaq__title">' . esc_html( $title ) . '</h2>';
 		}
@@ -106,7 +106,7 @@ add_action(
 		}
 		echo '</div></div>';
 
-		echo '<div class="scrw-hfaq__qa"><p class="sc-eyebrow">' . esc_html__( 'Frequently asked questions', 'soundcreations-rwanda' ) . '</p><div class="scrw-hfaq__list">';
+		echo '<div class="scrw-hfaq__qa"><p class="scrw-hfaq__kicker">' . esc_html__( 'Frequently asked questions', 'soundcreations-rwanda' ) . '</p><div class="scrw-hfaq__list">';
 		foreach ( $rows as $i => $r ) {
 			echo '<details class="scrw-hfaq__item"' . ( 0 === $i ? ' open' : '' ) . '><summary><span class="scrw-hfaq__num" aria-hidden="true">' . esc_html( sprintf( '%02d', $i + 1 ) ) . '</span><h3>' . esc_html( $r['q'] ) . '</h3></summary><p>' . esc_html( $r['a'] ) . '</p></details>';
 		}

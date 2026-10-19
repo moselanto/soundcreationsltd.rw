@@ -2,6 +2,10 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.22 - 19 October 2026: homepage AV company heading fix
+- The site-wide title swap (inc/section-titles.php) turned the small "Who we are" label into the big heading and shrank "Audio visual company in Rwanda". The two labels now use their own class (scrw-hfaq__kicker), so the keyword heading stays the H2.
+- Upload: child `functions.php`, `style.css`, `inc/seo-keywords.php`, `assets/css/scrw-ui.css`, `assets/css/scrw-ui.min.css`.
+
 ## 2.3.21 - 19 October 2026: WhatsApp teaser no longer covers content, homepage "Audio visual company in Rwanda" redesign
 - WhatsApp teaser: shows once per visitor, hides itself after 8 seconds or as soon as the visitor scrolls, and is narrower.
 - Homepage "Audio visual company in Rwanda": two-column layout. Left: "Who we are" panel (sticky on desktop) with heading, intro, service links and two buttons (homepage consultation button + WhatsApp). Right: numbered FAQ accordion. Single column on phones. New editable "Service links" box in Settings > Homepage FAQ.

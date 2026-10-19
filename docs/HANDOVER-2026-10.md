@@ -20,6 +20,7 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 | 2.3.8 | Strict CSP: per-request nonce + 'strict-dynamic', Trusted Types default policy (`inc/csp.php`). Visitors only. **Off switch: Settings > General > "Strict script security"** |
 | 2.3.9 | Hero video shipped in theme `assets/video/hero.mp4` (4 MB re-encode of the group-site 23 MB file), used when the setting points off-site |
 | 2.3.10 | Featured Projects carousel: working desktop arrows; mobile prev/next, dots, counter, swipe hint; keyboard |
+| 2.3.22 | Homepage AV company H2 restored (labels no longer swapped by section-titles) |
 | 2.3.21 | WhatsApp teaser auto-hides; homepage AV company section two-column redesign with editable service links |
 | 2.3.20 | Settings > Our Clients (logos editable); project proof on Church/Conference; Intare Kivu Arena + brand titles |
 | 2.3.19 | Homepage title keeps brand + Yamaha; 100-phrase keyword bank; KEYWORD-STRATEGY.md section 6 |

@@ -658,7 +658,8 @@
 .scrw-hfaq__links a::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #ff6b6b; flex: none; }
 .scrw-hfaq__links a:hover, .scrw-hfaq__links a:focus-visible { background: rgba(255,255,255,.09); text-decoration: underline; }
 .scrw-hfaq__ctas { display: flex; flex-wrap: wrap; gap: .7rem; }
-.scrw-hfaq__qa > .sc-eyebrow { margin-bottom: .9rem; }
+.scrw-hfaq__kicker { margin: 0 0 .5rem; font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #ff6b6b; }
+.scrw-hfaq__qa > .scrw-hfaq__kicker { margin-bottom: .9rem; }
 .scrw-hfaq__list { display: grid; gap: .7rem; }
 .scrw-hfaq__item { border: 1px solid var(--sc-border, rgba(255,255,255,.1)); border-radius: 14px; background: var(--sc-surface, #131318); padding: 0 1.3rem; transition: border-color .2s; }
 .scrw-hfaq__item[open] { border-color: rgba(255, 107, 107, .45); }
