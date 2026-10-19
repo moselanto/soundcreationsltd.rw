@@ -2,6 +2,12 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.9 - 19 October 2026: homepage hero video restored
+- The hero video setting points to the group site (soundcreationsltd.com), which failed to load from this site (Lighthouse console error), so 2.3.6 fell back to the poster image.
+- Now shipped with the theme: `assets/video/hero.mp4`, the same footage re-encoded for the web (1280x720, 25 fps, H.264, no sound track, fast start, about 4 MB instead of 23 MB). The `sc_hero_video` filter uses it whenever the setting is empty or points to another site. A video uploaded to this site's Media Library and set in Settings still takes priority.
+- Still loaded after the page has finished loading (theme.js), so it does not affect first paint or the PageSpeed scores. Compatible with strict script security (media is not restricted).
+- Upload: whole `soundcreations-rwanda/` folder (includes the new `assets/video/` folder).
+
 ## 2.3.8 - 19 October 2026: strict script security (CSP nonces + Trusted Types)
 - New `inc/csp.php`. For visitors on the public site, the Content-Security-Policy now adds `script-src 'nonce-<random per request>' 'strict-dynamic' https: 'unsafe-inline'` and `require-trusted-types-for 'script'`. Clears Lighthouse "Ensure CSP is effective against XSS attacks" and "Mitigate DOM-based XSS with Trusted Types".
 - Every `<script>` in the page gets the nonce (output buffer plus WordPress script attribute filters), so theme, plugin, Rank Math JSON-LD and Google tag keep working; scripts they load are trusted via 'strict-dynamic'. Code audit: no inline event handlers (onclick= etc.), no javascript: links, no eval in theme code.

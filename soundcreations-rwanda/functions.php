@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_VERSION', '2.3.8' );
+define( 'SCRW_VERSION', '2.3.9' );
 define( 'SCRW_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 
@@ -70,11 +70,18 @@ add_filter(
 	function ( $url ) {
 		$url = (string) $url;
 		if ( '' === $url ) {
-			return '';
+			$url = 'https://external.invalid/';
 		}
 		$own = wp_parse_url( home_url(), PHP_URL_HOST );
 		$vid = wp_parse_url( $url, PHP_URL_HOST );
-		return ( $vid && $own && strtolower( $vid ) === strtolower( $own ) ) ? $url : '';
+		if ( $vid && $own && strtolower( $vid ) === strtolower( $own ) ) {
+			return $url;
+		}
+		// 2.3.9: the group-site video could not load from this site. Use the
+		// web-optimised copy shipped with the theme (same footage, 1280x720,
+		// 25 fps, no sound, about 4 MB, fast start).
+		$local = 'assets/video/hero.mp4';
+		return file_exists( SCRW_DIR . $local ) ? get_stylesheet_directory_uri() . '/' . $local . '?ver=' . SCRW_VERSION : '';
 	}
 );
 
