@@ -90,7 +90,7 @@ add_filter(
 		// hijacking) with no risk of blocking legitimate assets.
 		$headers['Content-Security-Policy'] = "frame-ancestors 'self'; object-src 'none'; base-uri 'self'";
 		if ( is_ssl() ) {
-			$headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains';
+			$headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains; preload';
 		}
 		return $headers;
 	}

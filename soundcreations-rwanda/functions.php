@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_VERSION', '2.3.6' );
+define( 'SCRW_VERSION', '2.3.7' );
 define( 'SCRW_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 
@@ -339,4 +339,78 @@ add_action(
 		}
 	},
 	2
+);
+
+/* ---------- 2.3.7: server rules (.htaccess) ----------
+   Written once per theme version, between "# BEGIN SCRW Performance" markers,
+   using WordPress's own insert_with_markers(). Nothing else in .htaccess is
+   touched. If the file is not writable, nothing happens (see docs).
+   - Long browser cache for versioned CSS, JS, fonts and images (all theme
+     files carry ?ver=, so updates still show at once).
+   - Block the public WordPress readme.html, license.txt and sample config. */
+function scrw_htaccess_rules() {
+	return array(
+		'<IfModule mod_expires.c>',
+		'ExpiresActive On',
+		'ExpiresByType text/css "access plus 1 year"',
+		'ExpiresByType application/javascript "access plus 1 year"',
+		'ExpiresByType text/javascript "access plus 1 year"',
+		'ExpiresByType image/webp "access plus 1 year"',
+		'ExpiresByType image/png "access plus 1 year"',
+		'ExpiresByType image/jpeg "access plus 1 year"',
+		'ExpiresByType image/svg+xml "access plus 1 year"',
+		'ExpiresByType font/woff2 "access plus 1 year"',
+		'</IfModule>',
+		'<IfModule mod_headers.c>',
+		'<FilesMatch "\\.(css|js|woff2|webp|png|jpe?g|svg)$">',
+		'Header set Cache-Control "public, max-age=31536000, immutable"',
+		'</FilesMatch>',
+		'</IfModule>',
+		'<FilesMatch "^(readme\\.html|license\\.txt|wp-config-sample\\.php)$">',
+		'<IfModule mod_authz_core.c>',
+		'Require all denied',
+		'</IfModule>',
+		'<IfModule !mod_authz_core.c>',
+		'Order allow,deny',
+		'Deny from all',
+		'</IfModule>',
+		'</FilesMatch>',
+	);
+}
+
+add_action(
+	'admin_init',
+	function () {
+		if ( ! current_user_can( 'manage_options' ) || get_option( 'scrw_htaccess_ver' ) === SCRW_VERSION ) {
+			return;
+		}
+		$file = ABSPATH . '.htaccess';
+		if ( ! file_exists( $file ) || ! wp_is_writable( $file ) ) {
+			update_option( 'scrw_htaccess_status', 'not-writable', false );
+			return;
+		}
+		if ( ! function_exists( 'insert_with_markers' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/misc.php';
+		}
+		$ok = insert_with_markers( $file, 'SCRW Performance', scrw_htaccess_rules() );
+		update_option( 'scrw_htaccess_status', $ok ? 'written' : 'failed', false );
+		if ( $ok ) {
+			update_option( 'scrw_htaccess_ver', SCRW_VERSION, false );
+		}
+	}
+);
+
+/* Remove the rules again if the theme is switched off. */
+add_action(
+	'switch_theme',
+	function () {
+		$file = ABSPATH . '.htaccess';
+		if ( file_exists( $file ) && wp_is_writable( $file ) ) {
+			if ( ! function_exists( 'insert_with_markers' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/misc.php';
+			}
+			insert_with_markers( $file, 'SCRW Performance', array() );
+		}
+		delete_option( 'scrw_htaccess_ver' );
+	}
 );

@@ -471,7 +471,7 @@ if ( function_exists( 'sc_youtube_id' ) === false ) {
  */
 function sc_project_card_image( $post_id ) {
 	if ( has_post_thumbnail( $post_id ) ) {
-		$sc_u = get_the_post_thumbnail_url( $post_id, 'large' );
+		$sc_u = get_the_post_thumbnail_url( $post_id, 'medium_large' );
 		if ( is_string( $sc_u ) && strlen( $sc_u ) > 0 ) {
 			return $sc_u;
 		}
@@ -480,7 +480,7 @@ function sc_project_card_image( $post_id ) {
 	if ( strlen( $sc_gal ) > 0 ) {
 		$sc_ids = array_filter( array_map( 'absint', explode( ',', $sc_gal ) ) );
 		if ( count( $sc_ids ) > 0 ) {
-			$sc_u = wp_get_attachment_image_url( reset( $sc_ids ), 'large' );
+			$sc_u = wp_get_attachment_image_url( reset( $sc_ids ), 'medium_large' );
 			if ( is_string( $sc_u ) && strlen( $sc_u ) > 0 ) {
 				return $sc_u;
 			}

@@ -2,6 +2,16 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.7 / parent 0.10.15 - 19 October 2026: final audit items
+Re-test of 2.3.6: Lighthouse 99/100/100/100 (mobile and desktop), security headers A+, schema 0 errors.
+- Images: project cards (homepage carousel, /projects/, solution pages, Elementor widget) now use the 768 px "medium_large" size instead of "large" (1024 px). Removes most of the remaining "Improve image delivery" savings (Atelier du Vin, Jalia, Intare, Christian Life Assembly photos).
+- Brands page: breadcrumb now "Home > Brands" (was "Products"); eyebrow "Our brands" instead of the old "What we offer" setting.
+- Partner logo strip: the 0 s opacity fallback animation (Lighthouse "non-composited animation") replaced by a normal 0.3 s fade after 2 s.
+- HSTS header now includes "preload" (max-age 1 year, includeSubDomains). Submitting to hstspreload.org is optional and a separate decision.
+- Server rules: the child theme writes a marked block "# BEGIN SCRW Performance" into .htaccess once per version (WordPress insert_with_markers, first admin page load by an administrator): 1-year browser cache for versioned CSS, JS, fonts and images, and blocks readme.html, license.txt and wp-config-sample.php. Removed automatically if the theme is switched. If .htaccess is not writable, option scrw_htaccess_status = not-writable and the host must add the same rules (see `scrw_htaccess_rules()`).
+- Not changed on purpose: Content-Security-Policy script-src / Trusted Types (would block inline scripts and Google tag without a nonce system; unscored, planned separately); unused-CSS split (low gain, high regression risk).
+- Upload: whole `soundcreations-rwanda/` folder; from `soundcreations/`: `inc/template-tags.php`, `inc/hardening.php`, `archive-sc_brand.php`, `style.css`. Then open any wp-admin page once as administrator.
+
 ## 2.3.6 / parent 0.10.14 - 19 October 2026: quality audit fixes
 Full audit on 19 Oct 2026 (page crawl, securityheaders.com, PageSpeed Insights / Lighthouse 13.5, WCAG 2.2 AA checks). Baseline: security headers A+; Lighthouse mobile Performance 81, Accessibility 96, Best Practices 96, SEO 100. See `docs/QUALITY-AUDIT-2026-10.md`.
 - Accessibility: "Learn more" / "Explore solution" card links raised from about 2.9:1 to about 6.7:1 contrast (`scrw-ui.css`).

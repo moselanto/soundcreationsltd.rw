@@ -546,3 +546,9 @@
 .sc-svcard__more, .sc-solcard__more { color: #ff6b6b; }
 [data-theme="light"] .sc-svcard__more, [data-theme="light"] .sc-solcard__more { color: #ba0b0b; }
 .scrw-byline { margin: .4rem 0 0; font-size: .88rem; color: var(--sc-muted, #a7a3b8); }
+
+/* ---------- 2.3.7 ---------- */
+/* Partner strip fallback reveal: a 0 s opacity animation could not run on the compositor (Lighthouse "non-composited animation"). Same 2 s safety reveal, now a normal fade. */
+.sc-partners[data-sc-partners] { animation: sc-partners-show .3s ease 2s forwards; will-change: opacity; }
+.sc-partners[data-sc-partners].is-ready { animation: none; will-change: auto; }
+@media (prefers-reduced-motion: reduce) { .sc-partners[data-sc-partners] { animation: none; opacity: 1; } }

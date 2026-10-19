@@ -51,8 +51,8 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 <section class="sc-support-hero sc-brands-hero" style="background-image:url('<?php echo esc_url( $sc_hero_img ); ?>');">
 	<span class="sc-support-hero__scrim" aria-hidden="true"></span>
 	<div class="sc-container sc-support-hero__inner">
-		<nav class="sc-crumb" aria-label="Breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> <span aria-hidden="true">&rsaquo;</span> <span class="sc-crumb__cur"><?php esc_html_e( 'Products', 'soundcreations' ); ?></span></nav>
-		<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'products_eyebrow', 'What we offer' ) ); ?></p>
+		<nav class="sc-crumb" aria-label="Breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> <span aria-hidden="true">&rsaquo;</span> <span class="sc-crumb__cur"><?php esc_html_e( 'Brands', 'soundcreations' ); ?></span></nav>
+		<p class="sc-eyebrow"><?php $sc_brand_eyebrow = (string) sc_setting( 'products_eyebrow', '' ); echo esc_html( ( '' === trim( $sc_brand_eyebrow ) || 'What we offer' === trim( $sc_brand_eyebrow ) ) ? __( 'Our brands', 'soundcreations' ) : $sc_brand_eyebrow ); ?></p>
 		<?php
 		// This archive had NO h1 at all, while every sibling archive
 		// (solutions, projects, videos) has one. A crawl on 29 Sep 2026
