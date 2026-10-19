@@ -88,6 +88,7 @@ while ( $scrw_q->have_posts() ) {
 		'cat'   => $cat ? $cat->slug : '',
 		'catn'  => $cat ? $cat->name : '',
 		'specs' => $specs,
+		'uses'  => function_exists( 'scrw_product_uses' ) ? scrw_product_uses( $pid, get_the_title(), (string) get_post_meta( $pid, '_sc_model', true ), $brand, $cat ? $cat->slug . ' ' . $cat->name : '' ) : array(),
 	);
 }
 wp_reset_postdata();
@@ -133,6 +134,14 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 						<option value="<?php echo esc_attr( $slug ); ?>"><?php echo esc_html( $name ); ?></option>
 					<?php endforeach; ?>
 				</select>
+				<?php if ( function_exists( 'scrw_product_use_labels' ) ) : ?>
+				<select class="scrw-field" data-scrw-use aria-label="<?php esc_attr_e( 'Filter by use', 'soundcreations-rwanda' ); ?>">
+					<option value=""><?php esc_html_e( 'All uses', 'soundcreations-rwanda' ); ?></option>
+					<?php foreach ( scrw_product_use_labels() as $slug => $name ) : ?>
+						<option value="<?php echo esc_attr( $slug ); ?>"><?php echo esc_html( $name ); ?></option>
+					<?php endforeach; ?>
+				</select>
+				<?php endif; ?>
 				<select class="scrw-field" data-scrw-sort aria-label="<?php esc_attr_e( 'Sort products', 'soundcreations-rwanda' ); ?>">
 					<option value="default"><?php esc_html_e( 'Featured', 'soundcreations-rwanda' ); ?></option>
 					<option value="az"><?php esc_html_e( 'Name A-Z', 'soundcreations-rwanda' ); ?></option>
@@ -145,7 +154,7 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 		<div class="scrw-pgrid" data-scrw-grid>
 			<?php foreach ( $scrw_items as $i => $it ) : ?>
 				<?php $scrw_is_yamaha = ( 'yamaha' === strtolower( $it['brand'] ) ); ?>
-				<article class="scrw-pcard" data-order="<?php echo (int) $i; ?>" data-title="<?php echo esc_attr( strtolower( $it['title'] ) ); ?>" data-cat="<?php echo esc_attr( $it['cat'] ); ?>" data-brand="<?php echo esc_attr( sanitize_title( $it['brand'] ) ); ?>" data-text="<?php echo esc_attr( strtolower( $it['title'] . ' ' . $it['model'] . ' ' . $it['brand'] . ' ' . $it['catn'] ) ); ?>">
+				<article class="scrw-pcard" data-order="<?php echo (int) $i; ?>" data-title="<?php echo esc_attr( strtolower( $it['title'] ) ); ?>" data-cat="<?php echo esc_attr( $it['cat'] ); ?>" data-brand="<?php echo esc_attr( sanitize_title( $it['brand'] ) ); ?>" data-use="<?php echo esc_attr( implode( ' ', $it['uses'] ) ); ?>" data-text="<?php echo esc_attr( strtolower( $it['title'] . ' ' . $it['model'] . ' ' . $it['brand'] . ' ' . $it['catn'] ) ); ?>">
 					<a class="scrw-pcard__plate" href="<?php echo esc_url( $it['url'] ); ?>" tabindex="-1" aria-hidden="true">
 						<?php if ( $scrw_is_yamaha ) : ?><span class="scrw-pcard__badge"><?php esc_html_e( 'Authorised distributor', 'soundcreations-rwanda' ); ?></span><?php endif; ?>
 						<?php if ( $it['img'] ) : ?>
@@ -199,13 +208,13 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 (function(){
 	var root=document.querySelector('[data-scrw-cat]'); if(root===null){return;}
 	var grid=root.querySelector('[data-scrw-grid]'), chips=root.querySelectorAll('.scrw-chip'), cards=Array.prototype.slice.call(root.querySelectorAll('.scrw-pcard'));
-	var brand=root.querySelector('[data-scrw-brand]'), search=root.querySelector('[data-scrw-search]'), sort=root.querySelector('[data-scrw-sort]'), empty=root.querySelector('[data-scrw-empty]'), count=root.querySelector('[data-scrw-count]');
+	var brand=root.querySelector('[data-scrw-brand]'), search=root.querySelector('[data-scrw-search]'), sort=root.querySelector('[data-scrw-sort]'), empty=root.querySelector('[data-scrw-empty]'), count=root.querySelector('[data-scrw-count]'), use=root.querySelector('[data-scrw-use]');
 	var act=root.querySelector('.scrw-chip.is-active'); var cat=act ? act.getAttribute('data-cat') : '';
-	try{ var qb=new URLSearchParams(window.location.search).get('brand'); if(qb){ brand.value=qb; if(brand.value===''){brand.value='';} } }catch(e){}
+	try{ var qb=new URLSearchParams(window.location.search).get('brand'); if(qb){ brand.value=qb; if(brand.value===''){brand.value='';} } var qu=new URLSearchParams(window.location.search).get('use'); if(qu&&use){ use.value=qu; } }catch(e){}
 	function apply(){
-		var b=brand.value, t=search.value.trim().toLowerCase(), shown=0;
+		var b=brand.value, u=use ? use.value : '', t=search.value.trim().toLowerCase(), shown=0;
 		cards.forEach(function(c){
-			var ok=(cat===''||c.getAttribute('data-cat')===cat)&&(b===''||c.getAttribute('data-brand')===b)&&(t===''||c.getAttribute('data-text').indexOf(t)>-1);
+			var ok=(cat===''||c.getAttribute('data-cat')===cat)&&(b===''||c.getAttribute('data-brand')===b)&&(u===''||(' '+(c.getAttribute('data-use')||'')+' ').indexOf(' '+u+' ')>-1)&&(t===''||c.getAttribute('data-text').indexOf(t)>-1);
 			c.hidden=(ok===false); if(ok){shown++;}
 		});
 		empty.hidden=shown>0;
@@ -225,7 +234,7 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 		Array.prototype.forEach.call(chips,function(x){x.classList.remove('is-active');});
 		ch.classList.add('is-active'); cat=ch.getAttribute('data-cat'); apply();
 	});}
-	brand.addEventListener('change',apply); search.addEventListener('input',apply); sort.addEventListener('change',function(){order();apply();});
+	brand.addEventListener('change',apply); if(use){use.addEventListener('change',apply);} search.addEventListener('input',apply); sort.addEventListener('change',function(){order();apply();});
 	apply();
 })();
 

@@ -2,6 +2,14 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.5 / parent 0.10.13 - 19 October 2026: product use filter, testimonials, project results
+- Products (`archive-sc_product.php`, new `inc/product-uses.php`): new "Filter by use" dropdown (Church & worship, Conference & meetings, Live events & DJ, Studio & podcast, Installed & public address). Uses are worked out from product name, brand and category; override per product with a custom field `_sc_uses` (e.g. `church,live`). Also works as a link: /products/?use=church.
+- Testimonials (new `inc/testimonials.php`): "What our clients say" section on the homepage after Our Clients, also `[scrw_testimonials]`. Hidden until quotes are entered in Settings > Client Testimonials (one per line: Quote | Name | Role, Organisation; Editors can edit). Real, client-approved quotes only.
+- Homepage project cards (parent `template-parts/designs/home.php`): show a one-line result from the project's Excerpt when filled (filter `sc_home_project_result`).
+- Parent stand-in projects (Nairobi, Dubai) can now be switched off with `sc_home_projects_fallback`; the Rwanda child theme switches them off.
+- Already in place and confirmed in code (no change needed): category, brand, search and sort filters on /products/; lazy-loaded images; deferred theme scripts; WebP product and project photos.
+- Upload: whole `soundcreations-rwanda/` folder and `soundcreations/template-parts/designs/home.php` + `soundcreations/style.css`.
+
 ## 2.3.4 / Core 0.5.28 - 19 October 2026: sign-in page fix and polish
 - Bug: on wp-login.php typed username and password were invisible. Cause: Core's older dark login style (`includes/login-branding.php`) set field text to near-white #ecebf2, while the child theme's light design (`assets/css/scrw-login.css`) gave the fields a near-white background.
 - Fix (theme): fields now force dark text, purple caret, visible border, readable placeholder and browser autofill colours; `color-scheme: light`.

@@ -525,3 +525,18 @@
 		text-align: center;
 	}
 }
+
+/* ---------- 2.3.5: project results line and client testimonials ---------- */
+.sc-project__result { margin: -.6rem 1.1rem 1.1rem; font-size: .85rem; line-height: 1.45; color: var(--sc-text, #2a2535); }
+.scrw-testi { background: #f6f4fa; }
+.scrw-testi__head { margin-bottom: 1.6rem; }
+.scrw-testi__title { margin: .3rem 0 0; }
+.scrw-testi__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+.scrw-testi__card { margin: 0; padding: 1.5rem 1.4rem; background: #fff; border: 1px solid #e4e1ec; border-top: 3px solid #ba0b0b; border-radius: 14px; display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; }
+.scrw-testi__card blockquote { margin: 0; }
+.scrw-testi__card blockquote p { margin: 0; font-size: 1rem; line-height: 1.6; color: #17141f; }
+.scrw-testi__card blockquote p::before { content: "\201C"; color: #5c4489; font-weight: 700; margin-right: .1em; }
+.scrw-testi__card blockquote p::after { content: "\201D"; color: #5c4489; font-weight: 700; margin-left: .1em; }
+.scrw-testi__card figcaption { display: flex; flex-direction: column; gap: .15rem; font-size: .88rem; }
+.scrw-testi__card figcaption strong { color: #5c4489; }
+.scrw-testi__card figcaption span { color: #6b6878; }
