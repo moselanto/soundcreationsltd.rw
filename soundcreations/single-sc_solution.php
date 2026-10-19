@@ -213,7 +213,7 @@ while ( have_posts() ) :
 						</div>
 						<div class="sc-acoustics__media">
 							<div class="sc-embed">
-								<iframe src="https://www.youtube-nocookie.com/embed/HtZTBWb701I?rel=0" title="<?php esc_attr_e( 'Sound Creations - Architectural Acoustics', 'soundcreations' ); ?>" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+								<button type="button" class="sc-yt" data-sc-yt="HtZTBWb701I" aria-label="<?php esc_attr_e( 'Play video: Sound Creations - Architectural Acoustics', 'soundcreations' ); ?>"><img src="https://i.ytimg.com/vi/HtZTBWb701I/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="sc-yt__play" aria-hidden="true"><svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.3.3 34 .3 34 .3s-21.3 0-26.5 1.4a8.5 8.5 0 0 0-6 6C.1 12.9.1 24 .1 24s0 11.1 1.4 16.3a8.5 8.5 0 0 0 6 6c5.2 1.4 26.5 1.4 26.5 1.4s21.3 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35.1 67.9 24 67.9 24s0-11.1-1.4-16.3z" fill="#ba0b0b"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span></button>
 							</div>
 							<div class="sc-acoustics__shots">
 								<figure class="sc-acoustics__shot">

@@ -576,3 +576,28 @@
 	[data-theme="light"] .scrw-carnav__btn { background: #fff; color: #14141a; }
 }
 @media (prefers-reduced-motion: reduce) { .scrw-carnav__dot, .scrw-carnav__btn { transition: none; } }
+
+/* ---------- 2.3.11: accessibility and polish (Lighthouse, all page types) ---------- */
+.screen-reader-text { border: 0; clip: rect(1px,1px,1px,1px); clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute !important; width: 1px; word-wrap: normal !important; }
+/* Red text on the dark theme: #BA0B0B is 2.9:1, #ff6b6b is 6.7:1 (WCAG AA 4.5:1). */
+.sc-projcard__link, .sc-projcard__link:hover, .sc-case__block-label, .sc-brand-card__cat, .sc-card__kicker, .scrw-price__label,
+.sc-prose a, .sc-page__body a, .sc-acc__a a, .sc-form__consent a, .sc-form a, .scrw-price ~ p a { color: #ff6b6b; }
+[data-theme="light"] .sc-projcard__link, [data-theme="light"] .sc-case__block-label, [data-theme="light"] .sc-brand-card__cat, [data-theme="light"] .sc-card__kicker, [data-theme="light"] .scrw-price__label,
+[data-theme="light"] .sc-prose a, [data-theme="light"] .sc-page__body a, [data-theme="light"] .sc-acc__a a, [data-theme="light"] .sc-form a { color: #ba0b0b; }
+/* Links inside text are underlined, not colour only (WCAG 1.4.1). */
+.sc-page__body p a, .sc-page__body li a, .sc-acc__a a, .sc-form a, .elementor-widget-text-editor a, .sc-prose p a, .sc-prose li a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+/* Carousel dots: 24 px touch targets (WCAG 2.5.8), same look. */
+@media (max-width: 700px) {
+	.scrw-carnav__dots { gap: 0; }
+	.scrw-carnav__dot { width: 24px; height: 24px; background: transparent; display: grid; place-items: center; }
+	.scrw-carnav__dot::after { content: ""; position: static; inset: auto; display: block; width: 8px; height: 8px; border-radius: 999px; background: var(--sc-border, rgba(255,255,255,.25)); transition: width .25s, background .25s; }
+	.scrw-carnav__dot.is-active { width: 30px; background: transparent; }
+	.scrw-carnav__dot.is-active::after { width: 22px; background: #ba0b0b; }
+}
+/* YouTube click-to-play */
+.sc-yt { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-radius: inherit; overflow: hidden; background: #000; cursor: pointer; }
+.sc-yt img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: .9; transition: opacity .2s; }
+.sc-yt:hover img, .sc-yt:focus-visible img { opacity: 1; }
+.sc-yt__play { position: absolute; inset: 0; display: grid; place-items: center; }
+.sc-yt:focus-visible { outline: 3px solid #a98bd6; outline-offset: 3px; }
+.sc-yt__frame { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; }

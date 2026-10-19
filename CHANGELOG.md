@@ -2,6 +2,16 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.11 / parent 0.10.16 - 19 October 2026: accessibility pass on every page type
+Lighthouse run on 12 page types (home, products, product, projects, project, solution, guide, contact, quote, about, Yamaha, brands): Performance 83-100, Accessibility 94-100, Best Practices 96-100, SEO 100; schema 0 errors on product, project, guide and contact. Fixed:
+- Contrast (WCAG 1.4.3): red text on the dark theme raised to #ff6b6b (6.7:1) for project card links, case-study block labels, brand card categories, card kickers, "Price in Rwanda" label, links in page text, accordions and the enquiry form (Privacy Policy, Terms). Light theme keeps #BA0B0B.
+- Links in text are underlined, not colour only (WCAG 1.4.1; About page).
+- Heading order: hidden "Product list" heading on /products/, hidden "Why buy Yamaha..." heading on /yamaha/.
+- Contact and consultation office list: removed role="button" from list items (invalid list semantics).
+- Carousel dots: 24 px touch targets (WCAG 2.5.8).
+- Architectural Acoustics: YouTube video is now click-to-play (thumbnail first); the player and its third-party cookies load only on play. Fixes the Chrome cookie issue and the 4.6 s mobile LCP.
+- Upload: whole `soundcreations-rwanda/` folder; from `soundcreations/`: `single-sc_solution.php`, `template-parts/contact-page.php`, `template-parts/consult-page.php`, `style.css`.
+
 ## 2.3.10 - 19 October 2026: Featured Projects carousel navigation
 - Homepage Featured Projects: the desktop arrow buttons had no script and did nothing; now they move one project at a time and grey out at the ends.
 - Phones (up to 700 px): a control bar under the cards with large previous / next buttons (48 px touch targets), dots for each project, a "1 / 6" counter and a "Swipe to see more" hint that fades after the first swipe. Cards snap into place when swiped.

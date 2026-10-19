@@ -104,6 +104,7 @@ $y_projects = array(
 </section>
 
 <section class="scrw-ytrust" aria-label="<?php esc_attr_e( 'Why buy Yamaha from Sound Creations Rwanda', 'soundcreations-rwanda' ); ?>">
+	<h2 class="screen-reader-text"><?php esc_html_e( 'Why buy Yamaha from Sound Creations Rwanda', 'soundcreations-rwanda' ); ?></h2>
 	<div class="sc-container scrw-ytrust__grid">
 		<?php foreach ( $y_trust as $t ) : ?>
 			<div class="scrw-ytrust__item">

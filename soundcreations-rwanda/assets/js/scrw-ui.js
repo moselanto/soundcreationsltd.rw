@@ -300,3 +300,23 @@
 		update();
 	});
 })();
+
+/* 2.3.11: YouTube click-to-play. The player (about 1 MB and third-party
+   cookies) loads only when the visitor presses play. */
+(function () {
+	Array.prototype.forEach.call(document.querySelectorAll('[data-sc-yt]'), function (b) {
+		b.addEventListener('click', function () {
+			var id = b.getAttribute('data-sc-yt');
+			if (!/^[A-Za-z0-9_-]{11}$/.test(id)) { return; }
+			var f = document.createElement('iframe');
+			f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&autoplay=1';
+			f.title = (b.getAttribute('aria-label') || 'Video').replace(/^Play video: /, '');
+			f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+			f.setAttribute('allowfullscreen', '');
+			f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+			f.className = 'sc-yt__frame';
+			b.parentNode.replaceChild(f, b);
+			f.focus();
+		});
+	});
+})();

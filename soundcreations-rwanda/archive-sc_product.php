@@ -151,6 +151,7 @@ $scrw_active = is_tax( 'sc_product_category' ) ? get_queried_object()->slug : ''
 		</div>
 		<p class="scrw-cat__count" data-scrw-count aria-live="polite"></p>
 
+		<h2 class="screen-reader-text"><?php esc_html_e( 'Product list', 'soundcreations-rwanda' ); ?></h2>
 		<div class="scrw-pgrid" data-scrw-grid>
 			<?php foreach ( $scrw_items as $i => $it ) : ?>
 				<?php $scrw_is_yamaha = ( 'yamaha' === strtolower( $it['brand'] ) ); ?>

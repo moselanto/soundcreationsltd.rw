@@ -139,7 +139,7 @@ add_filter(
 		// typography cannot enlarge the copy, and a self-styled WhatsApp
 		// button so its label is always readable (live check 18 Oct 2026).
 		$box  = '<div class="scrw-price" style="border:1px solid rgba(255,255,255,.12);border-left:4px solid #ba0b0b;border-radius:12px;padding:16px 18px;margin:0 0 1.5rem;font-size:16px;line-height:1.5;">';
-		$box .= '<div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ba0b0b;margin:0 0 6px;">' . esc_html__( 'Price in Rwanda', 'soundcreations-rwanda' ) . '</div>';
+		$box .= '<div class="scrw-price__label" style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 6px;">' . esc_html__( 'Price in Rwanda', 'soundcreations-rwanda' ) . '</div>';
 		if ( $price ) {
 			$box .= '<div style="font-size:22px;font-weight:700;margin:0 0 6px;">RWF ' . esc_html( number_format( $price ) ) . ' <span style="font-size:13px;font-weight:400;opacity:.75;">' . esc_html__( 'VAT included', 'soundcreations-rwanda' ) . '</span></div>';
 		} else {
