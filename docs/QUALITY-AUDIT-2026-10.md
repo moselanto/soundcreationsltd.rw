@@ -49,3 +49,15 @@ Run PageSpeed Insights (mobile and desktop), securityheaders.com and validator.s
 Also fixed in WordPress on 19 Oct 2026: site title "Sound Creations Rwanda"; About "Sound Creations since 2004"; FANE "since 1958"; product renamed AVer VC520 Pro2.
 
 Remaining (unscored or minor): CSP without script-src and no Trusted Types, HSTS without preload (optional hardening); JS files without cache lifetime (host); large photos in the WordPress media library (re-upload smaller versions); Brands page eyebrow setting "What we offer" and breadcrumb "Home > Products".
+
+## Final results after 2.3.7 (re-test 19 October 2026, 12:56 EAT)
+| Check | Mobile | Desktop |
+|---|---|---|
+| Lighthouse Performance / Accessibility / Best Practices / SEO | **99 / 100 / 100 / 100** | **100 / 100 / 100 / 100** |
+| LCP / TBT / CLS | 2.0 s / 0 ms / 0 | 0.4 s / 0 ms / 0 |
+
+- Security headers **A+**; HSTS `max-age=31536000; includeSubDomains; preload`.
+- Schema (homepage): 0 errors, 0 warnings.
+- "Use efficient cache lifetimes": now passed (server rules written).
+- readme.html: 403. license.txt: still readable at re-test (likely cached copy; re-check after cache purge, otherwise host to add the rule).
+- Remaining, unscored: CSP script-src and Trusted Types (planned separate release). Remaining performance hints (responsive srcset for theme images, render-blocking CSS, unused CSS) do not affect the scores above.
