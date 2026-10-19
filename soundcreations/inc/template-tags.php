@@ -102,7 +102,7 @@ function sc_default_settings() {
 		'hero_video'   => 'https://soundcreationsltd.com/wp-content/uploads/2026/08/dbtechnologies_stories_homepage-1280.mp4',
 		'footer_about'       => 'Sound Creations Ltd delivers professional Audio, Visual, Lighting and Acoustic solutions across Africa, backed by expert consultation, quality distribution, acoustic solutions and professional installation.',
 		'footer_explore'     => "Home | /\nSolutions | /solutions/\nBrands & Products | /brands/\nProjects | /projects/\nAbout | /about/\nContact | /contact/",
-		'footer_solutions'   => "Professional Audio | /solutions/professional-audio/\nAcoustics | /solutions/acoustics/\nConferencing | /solutions/conferencing/\nSystem Integration | /solutions/system-integration/\nFANE Loudspeakers | /fane/",
+		'footer_solutions'   => "Professional Audio | /solutions/professional-audio/\nAcoustics | /solutions/architectural-acoustics/\nConferencing | /solutions/conference-room-sound-systems/\nSystem Integration | /solutions/system-integration/\nFANE Loudspeakers | /fane/",
 		'footer_address'     => "Mpaka Plaza, Mpaka Road\nWestlands Nairobi",
 		'footer_hours_label' => 'Open Hours',
 		'footer_hours'       => "Mon – Fri: 9 am – 5:30 pm\nSat: 9 am – 1:30 pm\nSunday: CLOSED",

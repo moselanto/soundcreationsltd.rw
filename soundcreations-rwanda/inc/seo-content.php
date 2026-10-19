@@ -152,7 +152,7 @@ function scrw_sector_pages() {
 			'title'    => 'School, University & Auditorium Sound Systems',
 			'excerpt'  => 'PA systems, auditorium sound, stage lighting, projection and acoustic treatment for schools, universities, halls and conference arenas in Rwanda.',
 			'projects' => array( 'ntare-louisenlund-school', 'intare-kivu-arena' ),
-			'html'     => '<p>School halls and auditoriums host assemblies, exams announcements, graduations, drama and concerts, often in the same week. Sound Creations Ltd Rwanda designs and installs sound, lighting, projection and acoustic treatment that is easy for staff to run and built to last.</p>
+			'html'     => '<p>School halls and auditoriums host assemblies, exam announcements, graduations, drama and concerts, often in the same week. Sound Creations Ltd Rwanda designs and installs sound, lighting, projection and acoustic treatment that is easy for staff to run and built to last.</p>
 <h2>Proven in Rwanda</h2>
 <ul>
 <li><strong>Ntare Louisenlund School</strong> - auditorium with lighting truss, loudspeakers and projection. <a href="/projects/ntare-louisenlund-school/">See the project</a>.</li>

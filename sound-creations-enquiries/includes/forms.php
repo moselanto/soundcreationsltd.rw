@@ -31,7 +31,7 @@ function sc_enq_forms() {
 			'consent' => true,
 			'fields'  => array(
 				array( 'name', 'Full Name', 'text', true, true, array(), 'Your full name' ),
-				array( 'company', 'Company / Organization', 'text', true, true, array(), 'Your company' ),
+				array( 'company', 'Company / Organisation', 'text', true, true, array(), 'Your company' ),
 				array( 'email', 'Email Address', 'email', true, true, array(), 'you@example.com' ),
 				array( 'phone', 'Phone Number', 'tel', true, true, array(), 'Your phone number' ),
 				array( 'country', 'Country', 'select', true, true, $country, 'Select your country' ),
@@ -130,7 +130,7 @@ function sc_enq_forms() {
 			'subject' => 'Support Request',
 			'fields'  => array(
 				array( 'name', 'Full Name', 'text', true, true, array(), 'Your full name' ),
-				array( 'company', 'Company / Organization', 'text', false, true, array(), 'Your company' ),
+				array( 'company', 'Company / Organisation', 'text', false, true, array(), 'Your company' ),
 				array( 'email', 'Email', 'email', true, true, array(), 'you@example.com' ),
 				array( 'phone', 'Phone', 'tel', true, true, array(), 'Your phone number' ),
 				array( 'country', 'Country', 'select', true, true, $country, 'Select your country' ),

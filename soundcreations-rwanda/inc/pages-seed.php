@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_PAGES_VERSION', 'rw-pages-3' ); // rw-pages-3: adds the Yamaha page.
+define( 'SCRW_PAGES_VERSION', 'rw-pages-4' ); // rw-pages-4: adds Become a Dealer (linked from /fane/ and /brands/).
 
 /** slug => array( title, content ). */
 function scrw_core_pages() {
@@ -26,6 +26,7 @@ function scrw_core_pages() {
 		'contact'                => array( 'Contact', '<p>Talk to our Kigali team about your project.</p>' ),
 		'request-a-consultation' => array( 'Request a Consultation', '<p>Tell us about your space and application and our Kigali team will help you specify the right system.</p>' ),
 		'fane'                   => array( 'FANE', '<p>FANE professional loudspeaker components, available in Rwanda from Sound Creations Ltd Rwanda.</p>' ),
+		'become-a-dealer'        => array( 'Become a Dealer', '<p>Sell Yamaha, FANE, dB Technologies, Shure and the other professional brands we distribute. Sound Creations Ltd Rwanda supports dealers and installers in Rwanda and the region with genuine stock, manufacturer warranty, product training and technical backup from our Kigali team.</p><p>Tell us about your business below and our team will contact you about dealer terms.</p>' ),
 		'yamaha'                 => array( 'Yamaha', '<p>Sound Creations Ltd Rwanda is the authorised Yamaha distributor in Rwanda.</p>' ),
 		'request-a-quote'        => array( 'Request a Quote', '<p>Tell us what you need and our Kigali sales team will come back with pricing and availability.</p>[sc_enquiry_form type="quote"]' ),
 	);

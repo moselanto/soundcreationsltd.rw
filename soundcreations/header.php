@@ -107,8 +107,8 @@ function sc_primary_menu_fallback() {
 		array( 'Solutions', '/solutions/', array(
 			array( 'All Solutions', '/solutions/' ),
 			array( 'Professional Audio', '/solutions/professional-audio/' ),
-			array( 'Acoustics', '/solutions/acoustics/' ),
-			array( 'Conferencing', '/solutions/conferencing/' ),
+			array( 'Acoustics', '/solutions/architectural-acoustics/' ),
+			array( 'Conferencing', '/solutions/conference-room-sound-systems/' ),
 			array( 'System Integration', '/solutions/system-integration/' ),
 		) ),
 		array( 'Products', '/brands/', array(

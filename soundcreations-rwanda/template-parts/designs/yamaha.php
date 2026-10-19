@@ -42,7 +42,7 @@ $y_trust = array(
 $y_range = array(
 	array( 'Digital Mixing Consoles', 'TF and DM3 series for live sound, churches and venues.', 'yamaha-tf5' ),
 	array( 'Analogue Mixers', 'MG and MGP series, reliable and simple to run.', 'yamaha-mg16xu' ),
-	array( 'Powered Loudspeakers', 'DBR and CBR series for PA, events and installs.', 'yamaha-dbr12' ),
+	array( 'Loudspeakers', 'DBR powered and CBR passive series for PA, events and installs.', 'yamaha-dbr12' ),
 	array( 'Studio Monitors', 'The HS series, the studio standard for accurate mixing.', 'yamaha-hs8i' ),
 	array( 'Arranger Keyboards', 'PSR-SX and PSR-E series for worship, stage and study.', 'yamaha-psr-sx920' ),
 	array( 'Digital Pianos', 'Arius and P series with authentic piano touch.', 'yamaha-ydp-105' ),

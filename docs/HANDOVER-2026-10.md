@@ -20,6 +20,7 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 | 2.3.8 | Strict CSP: per-request nonce + 'strict-dynamic', Trusted Types default policy (`inc/csp.php`). Visitors only. **Off switch: Settings > General > "Strict script security"** |
 | 2.3.9 | Hero video shipped in theme `assets/video/hero.mp4` (4 MB re-encode of the group-site 23 MB file), used when the setting points off-site |
 | 2.3.10 | Featured Projects carousel: working desktop arrows; mobile prev/next, dots, counter, swipe hint; keyboard |
+| 2.3.12 / parent 0.10.17 / Enquiries 0.2.1 | Full-site crawl fixes: broken links (acoustics, become-a-dealer page), one-time exact-text content corrections (`inc/content-fixes.php`), Yamaha loudspeaker label, no duplicate project names, UK spelling |
 | 2.3.11 / parent 0.10.16 | Contrast on red text (dark theme #ff6b6b), underlined text links, heading order (products, yamaha), contact list semantics, 24 px dots, YouTube click-to-play on Architectural Acoustics |
 
 ## Changes made in WordPress admin (not in code)
@@ -42,7 +43,8 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 | Item | Owner |
 |---|---|
 | Upload 2.3.11 and re-test the 12 page types | Pimofy |
-| Full-site content crawl (started 19 Oct, waiting for approval) and fixes | Pimofy |
+| Upload 2.3.12 (theme, parent files, Enquiries plugin), open wp-admin once, re-test | Pimofy |
+| Crawl data checks: MINECOFIN wired MXC vs wireless MXCW, "Mulindi Hall" label, PGA48 SKU vs model, MG20XU dimensions, after-sales "one year free" vs manufacturer warranty | Fred / sales team |
 | Ntare Louisenlund equipment list (identical to Atelier du Vin), school district, Intare Conference Arena vs Intare Kivu Arena naming | Fred |
 | Two-step login for every administrator; staff as Editors | Sound Creations |
 | Stale `advanced-cache.php` from inactive Seraphinite; LiteSpeed cache still serving old license.txt | Host |

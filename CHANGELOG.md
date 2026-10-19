@@ -2,6 +2,16 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.12 / parent 0.10.17 / Enquiries 0.2.1 - 19 October 2026: full-site crawl fixes
+Crawl of 113 URLs (all 60 products, 12 solutions, 7 projects, 13 brands, 4 services, guides and pages).
+- Broken links: /solutions/ "Acoustics" card and menu fallback now go to /solutions/architectural-acoustics/; 301s for /solutions/acoustics/, /solutions/conferencing/, /solutions/system-integration/. New "Become a Dealer" page (pages seed rw-pages-4; the Enquiries plugin adds the dealer form), so "Become a FANE Dealer" no longer 404s.
+- One-time content corrections (`inc/content-fixes.php`, runs once on the first wp-admin load by an administrator, exact-text only): Kenya phone and Nairobi address on Warranty and After-Sale Services replaced with the Kigali details; warranty grammar (manufacturer's); "over 13 years" and "since 1989" replaced with the 22+ years claim; "exam announcements"; UK spelling in product specs (analogue, colour, programme, zipped); "22 frets"; HS7 white wording; BLX14/P98H description; CBR10 depth 289 mm; AVer model field VC520 Pro2. Result logged in option `scrw_content_fixes_log`.
+- /yamaha/: "Loudspeakers: DBR powered and CBR passive series" (CBR10 is passive).
+- Solution pages: project cards no longer print the project name twice.
+- Enquiry forms: "Company / Organisation".
+- Needs the business (not changed): Ntare Louisenlund vs Atelier du Vin identical equipment; MINECOFIN wired MXC vs wireless MXCW; "Mulindi Hall" label; PGA48 SKU vs model; MG20XU dimensions; after-sales "one year free" vs manufacturer-warranty wording.
+- Upload: whole `soundcreations-rwanda/`; from `soundcreations/`: `header.php`, `archive-sc_solution.php`, `template-parts/designs/home.php`, `inc/template-tags.php`, `style.css`; whole `sound-creations-enquiries/`. Then open wp-admin once as administrator.
+
 ## 2.3.11 / parent 0.10.16 - 19 October 2026: accessibility pass on every page type
 Lighthouse run on 12 page types (home, products, product, projects, project, solution, guide, contact, quote, about, Yamaha, brands): Performance 83-100, Accessibility 94-100, Best Practices 96-100, SEO 100; schema 0 errors on product, project, guide and contact. Fixed:
 - Contrast (WCAG 1.4.3): red text on the dark theme raised to #ff6b6b (6.7:1) for project card links, case-study block labels, brand card categories, card kickers, "Price in Rwanda" label, links in page text, accordions and the enquiry form (Privacy Policy, Terms). Light theme keeps #BA0B0B.

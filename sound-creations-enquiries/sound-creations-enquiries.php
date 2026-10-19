@@ -3,7 +3,7 @@
  * Plugin Name:       Sound Creations Enquiries
  * Plugin URI:        https://soundcreationsltd.com/
  * Description:       Professional B2B enquiry system for Sound Creations: consultation, quote, product, dealer, FANE and support forms with conditional fields, lead routing, secure storage, email notification and spam protection.
- * Version:           0.2.0
+ * Version:           0.2.1
  * Requires at least: 6.4
  * Requires PHP:      8.0
  * Author:            Sound Creations Ltd
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SC_ENQ_VERSION', '0.2.0' );
+define( 'SC_ENQ_VERSION', '0.2.1' );
 define( 'SC_ENQ_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SC_ENQ_URI', plugin_dir_url( __FILE__ ) );
 

@@ -89,7 +89,11 @@ add_action(
 		echo '<section class="sc-section sc-section--tight"><div class="sc-container"><div class="sc-section__head"><div><p class="sc-eyebrow">' . esc_html__( 'Our work in Rwanda', 'soundcreations-rwanda' ) . '</p><h2 class="sc-svc-h2" style="margin:0;">' . esc_html__( 'Recent projects', 'soundcreations-rwanda' ) . '</h2></div><a class="sc-link-arrow" href="' . esc_url( home_url( '/projects/' ) ) . '">' . esc_html__( 'View All Projects', 'soundcreations-rwanda' ) . ' &rarr;</a></div><div class="sc-grid">';
 		while ( $q->have_posts() ) {
 			$q->the_post();
-			echo sc_media_card( get_the_ID(), sc_field( 'client' ), sc_field( 'year' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- theme helper returns escaped markup.
+			$scrw_client = (string) sc_field( 'client' );
+			if ( 0 === strcasecmp( trim( $scrw_client ), trim( get_the_title() ) ) ) {
+				$scrw_client = ''; // 2.3.12: do not print the project name twice.
+			}
+			echo sc_media_card( get_the_ID(), $scrw_client, sc_field( 'year' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- theme helper returns escaped markup.
 		}
 		wp_reset_postdata();
 		echo '</div></div></section>';

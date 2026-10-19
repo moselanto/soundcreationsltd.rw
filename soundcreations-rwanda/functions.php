@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_VERSION', '2.3.11' );
+define( 'SCRW_VERSION', '2.3.12' );
 define( 'SCRW_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 
@@ -56,6 +56,7 @@ require_once SCRW_DIR . 'inc/login.php';
 require_once SCRW_DIR . 'inc/product-uses.php';
 require_once SCRW_DIR . 'inc/testimonials.php';
 require_once SCRW_DIR . 'inc/csp.php';
+require_once SCRW_DIR . 'inc/content-fixes.php';
 
 /* 2.3.5: never show the parent theme's stand-in projects (Nairobi, Dubai) on the Rwanda site. */
 add_filter( 'sc_home_projects_fallback', '__return_false' );
@@ -122,6 +123,15 @@ add_action(
 		}
 		if ( is_404() ) {
 			$path = trim( (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '', PHP_URL_PATH ), '/' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+			$moved = array(
+				'solutions/acoustics'          => '/solutions/architectural-acoustics/',
+				'solutions/conferencing'       => '/solutions/conference-room-sound-systems/',
+				'solutions/system-integration' => '/solutions/installation/',
+			);
+			if ( isset( $moved[ $path ] ) ) {
+				wp_safe_redirect( home_url( $moved[ $path ] ), 301 );
+				exit;
+			}
 			if ( in_array( $path, array( 'guides', 'buyer-guides', 'blog' ), true ) ) {
 				$cat = get_category_by_slug( 'buyer-guides' );
 				if ( $cat ) {
