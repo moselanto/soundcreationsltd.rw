@@ -648,17 +648,34 @@
 	.scrw-ab-intro { padding: 1.1rem 1.15rem; }
 }
 
-/* ---------- 2.3.18: homepage AV company FAQ ---------- */
-.scrw-hfaq__title { margin: 0 0 .6rem; }
-.scrw-hfaq__lead { max-width: 860px; margin: 0 0 1.4rem; font-size: 1.05rem; }
-.scrw-hfaq__list { display: grid; gap: .7rem; max-width: 960px; }
-.scrw-hfaq__item { border: 1px solid var(--sc-border, rgba(255,255,255,.1)); border-radius: 12px; background: var(--sc-surface, #131318); padding: 0 1.2rem; }
-.scrw-hfaq__item summary { cursor: pointer; list-style: none; padding: 1rem 2rem 1rem 0; position: relative; }
+/* ---------- 2.3.18 / 2.3.21: homepage "Audio visual company in Rwanda" ---------- */
+.scrw-hfaq__wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; align-items: start; }
+.scrw-hfaq__intro { position: sticky; top: 110px; padding: 2rem; border-radius: 18px; background: linear-gradient(160deg, rgba(186, 11, 11, .14), rgba(255, 255, 255, .02) 60%); border: 1px solid var(--sc-border, rgba(255,255,255,.1)); }
+.scrw-hfaq__title { margin: .2rem 0 .9rem; font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1.15; }
+.scrw-hfaq__lead { margin: 0 0 1.3rem; font-size: 1.02rem; line-height: 1.65; opacity: .92; }
+.scrw-hfaq__links { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; gap: .45rem; }
+.scrw-hfaq__links a { display: flex; align-items: center; gap: .55rem; padding: .55rem .8rem; border-radius: 10px; background: rgba(255,255,255,.04); color: inherit; text-decoration: none; font-weight: 600; font-size: .95rem; }
+.scrw-hfaq__links a::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #ff6b6b; flex: none; }
+.scrw-hfaq__links a:hover, .scrw-hfaq__links a:focus-visible { background: rgba(255,255,255,.09); text-decoration: underline; }
+.scrw-hfaq__ctas { display: flex; flex-wrap: wrap; gap: .7rem; }
+.scrw-hfaq__qa > .sc-eyebrow { margin-bottom: .9rem; }
+.scrw-hfaq__list { display: grid; gap: .7rem; }
+.scrw-hfaq__item { border: 1px solid var(--sc-border, rgba(255,255,255,.1)); border-radius: 14px; background: var(--sc-surface, #131318); padding: 0 1.3rem; transition: border-color .2s; }
+.scrw-hfaq__item[open] { border-color: rgba(255, 107, 107, .45); }
+.scrw-hfaq__item summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: .9rem; padding: 1.05rem 2rem 1.05rem 0; position: relative; }
 .scrw-hfaq__item summary::-webkit-details-marker { display: none; }
-.scrw-hfaq__item summary::after { content: "+"; position: absolute; right: 0; top: .85rem; font-size: 1.3rem; color: #ff6b6b; }
+.scrw-hfaq__item summary::after { content: "+"; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 1.35rem; color: #ff6b6b; }
 .scrw-hfaq__item[open] summary::after { content: "\2212"; }
-.scrw-hfaq__item summary h3 { display: inline; font-size: 1.02rem; margin: 0; }
-.scrw-hfaq__item p { margin: 0 0 1.1rem; }
+.scrw-hfaq__num { flex: none; font-size: .8rem; font-weight: 700; color: #ff6b6b; letter-spacing: .04em; }
+.scrw-hfaq__item summary h3 { margin: 0; font-size: 1.02rem; line-height: 1.4; }
+.scrw-hfaq__item p { margin: 0 0 1.15rem 2.1rem; line-height: 1.65; opacity: .92; }
+@media (max-width: 900px) {
+	.scrw-hfaq__wrap { grid-template-columns: 1fr; gap: 1.8rem; }
+	.scrw-hfaq__intro { position: static; padding: 1.4rem; }
+	.scrw-hfaq__item p { margin-left: 0; }
+}
+/* 2.3.21: keep the WhatsApp teaser compact so it never covers page content for long. */
+.sc-wa__teaser { max-width: 240px; }
 
 /* ---------- 2.3.20: project proof on Church / Conference pages ---------- */
 .scrw-proof__loc { margin: -.3rem 0 1.2rem; opacity: .8; }

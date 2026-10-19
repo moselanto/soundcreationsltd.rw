@@ -165,7 +165,17 @@
 
 		// One friendly nudge per visit, after 15 seconds, not on contact or quote pages.
 		if ( teaser && store.get( 'scWaTeaser' ) === null && /\/(contact|request-a-quote|request-a-consultation)\/?$/.test( window.location.pathname ) === false ) {
-			window.setTimeout( function () { if ( panel.hidden && store.get( 'scWaTeaser' ) === null ) { teaser.hidden = false; } }, 15000 );
+			window.setTimeout( function () {
+				if ( panel.hidden && store.get( 'scWaTeaser' ) === null ) {
+					teaser.hidden = false;
+					// 2.3.21: show once, briefly; never left covering page content.
+					store.set( 'scWaTeaser', '1' );
+					window.setTimeout( function () { teaser.hidden = true; }, 8000 );
+					var y0 = window.scrollY;
+					var onScroll = function () { if ( Math.abs( window.scrollY - y0 ) > 120 ) { teaser.hidden = true; window.removeEventListener( 'scroll', onScroll ); } };
+					window.addEventListener( 'scroll', onScroll, { passive: true } );
+				}
+			}, 15000 );
 			teaser.addEventListener( 'click', function ( e ) {
 				if ( e.target.closest( '.sc-wa__teaser-close' ) ) { hideTeaser(); } else { open(); }
 			} );

@@ -2,6 +2,11 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.21 - 19 October 2026: WhatsApp teaser no longer covers content, homepage "Audio visual company in Rwanda" redesign
+- WhatsApp teaser: shows once per visitor, hides itself after 8 seconds or as soon as the visitor scrolls, and is narrower.
+- Homepage "Audio visual company in Rwanda": two-column layout. Left: "Who we are" panel (sticky on desktop) with heading, intro, service links and two buttons (homepage consultation button + WhatsApp). Right: numbered FAQ accordion. Single column on phones. New editable "Service links" box in Settings > Homepage FAQ.
+- Upload: child `functions.php`, `style.css`, `inc/seo-keywords.php`, `assets/js/scrw-ui.js`, `assets/css/scrw-ui.css`, `assets/css/scrw-ui.min.css`.
+
 ## 2.3.20 - 19 October 2026: editable client logos, project proof, brand and Rubavu titles
 - Client logos: new Settings > Our Clients page (one per line: Logo URL | Client name, logos uploaded in Media). Until first saved, the theme-folder logos are used; saved empty hides the strip.
 - New `inc/sector-proof.php`: Church and Conference pages show "Project in detail" (brief, what we did, result, equipment, photo, link) read live from the Christian Life Assembly and MINECOFIN project fields; Church page also lists the other churches from Complete Projects. Off switch: filter `scrw_sector_proof`.
