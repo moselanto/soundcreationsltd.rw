@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_VERSION', '2.3.13' );
+define( 'SCRW_VERSION', '2.3.14' );
 define( 'SCRW_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 
@@ -431,4 +431,39 @@ add_action(
 		}
 		delete_option( 'scrw_htaccess_ver' );
 	}
+);
+
+/* ---------- 2.3.14: speed on About (Elementor) and Brands ---------- */
+
+/* jQuery is only needed by Elementor's footer scripts on the public site, so
+   load it in the footer for visitors: it no longer blocks the first paint
+   (About page LCP text was waiting on it). Admin and signed-in users unchanged. */
+add_action(
+	'wp_enqueue_scripts',
+	function () {
+		if ( is_admin() || is_user_logged_in() ) {
+			return;
+		}
+		$s = wp_scripts();
+		foreach ( array( 'jquery', 'jquery-core', 'jquery-migrate' ) as $h ) {
+			if ( isset( $s->registered[ $h ] ) ) {
+				$s->add_data( $h, 'group', 1 );
+			}
+		}
+	},
+	100
+);
+
+/* Brands page: start downloading the hero background image straight away. */
+add_action(
+	'wp_head',
+	function () {
+		if ( is_post_type_archive( 'sc_brand' ) ) {
+			$f = get_template_directory() . '/assets/img/brands/brands-hero.webp';
+			if ( file_exists( $f ) ) {
+				echo '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url( get_template_directory_uri() . '/assets/img/brands/brands-hero.webp' ) . '">' . "\n";
+			}
+		}
+	},
+	1
 );

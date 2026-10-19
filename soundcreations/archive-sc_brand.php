@@ -18,7 +18,7 @@ $sc_img  = SC_THEME_URI . '/assets/img/fane';
 $sc_sol  = SC_THEME_URI . '/assets/img/solutions';
 $sc_brd  = SC_THEME_URI . '/assets/img/brands';
 
-$sc_hero_img   = $sc_brd . '/brands-hero.jpg';
+$sc_hero_img   = $sc_brd . ( file_exists( get_template_directory() . '/assets/img/brands/brands-hero.webp' ) ? '/brands-hero.webp' : '/brands-hero.jpg' );
 $sc_brands_url = get_post_type_archive_link( 'sc_brand' );
 if ( empty( $sc_brands_url ) ) {
 	$sc_brands_url = home_url( '/brands/' );

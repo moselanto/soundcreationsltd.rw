@@ -2,6 +2,13 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.14 / parent 0.10.19 - 19 October 2026: About and Brands speed
+Baseline (mobile): About 87 (LCP 4.0 s, text LCP waiting 1.0 s on render-blocking CSS and jQuery in head); Brands 94 (LCP 3.0 s, 202 KB JPG hero background found late).
+- jQuery and jQuery Migrate load in the footer for visitors (only Elementor's footer scripts use them; no theme or plugin front-end code needs jQuery in head). Admin and signed-in users unchanged.
+- Brands hero: new `brands-hero.webp` (smaller, same image) used instead of the JPG, and preloaded with fetchpriority high on /brands/.
+- Lighter images: FANE hero (Brands page), white footer logo, 4 client logos.
+- Upload: whole `soundcreations-rwanda/` (functions.php, style.css, assets/img/clients/); from `soundcreations/`: `archive-sc_brand.php`, `style.css`, `assets/img/brands/brands-hero.webp`, `assets/img/fane/fane-hero-sov15.webp`, `assets/img/logo-white.webp`.
+
 ## 2.3.13 / parent 0.10.18 - 19 October 2026: last two re-test findings
 - Contact and consultation office list: role="button", tabindex and aria-label actually removed from the list item (the 2.3.11 change did not match the markup). Clears the only scored Accessibility failure (Contact 97).
 - Sector solution pages (hotel, school, installation): project cards no longer print the name twice (second card renderer in `inc/seo-content.php`).
