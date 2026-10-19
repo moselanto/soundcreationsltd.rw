@@ -2,6 +2,12 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.19 - 19 October 2026: keep first-place keywords, full keyword bank
+- Homepage title "Sound Creations Rwanda | Audio Visual, Acoustics & Yamaha Kigali": keeps the brand and Yamaha (both ranking first) while adding audio visual and acoustics. Description names AV company, Yamaha distributor, installation, acoustics, stage lighting and PA.
+- `scrw_seo_keywords()` now holds 100 phrases: the first-place keywords plus the full October 2026 bank.
+- docs/KEYWORD-STRATEGY.md section 6: protected keywords, priority targets, full bank.
+- Upload: child `functions.php`, `style.css`, `inc/seo-boost.php`.
+
 ## 2.3.18 - 19 October 2026: priority keyword targeting
 - Google titles and descriptions retargeted to the agreed priority keywords: home "Audio Visual & Acoustic Solutions Rwanda", About "Audio Visual Company in Kigali, Rwanda", Installation "Professional Sound System Installation Rwanda", Architectural Acoustics "Acoustic Solutions Rwanda", Church "Church Sound System Installation Rwanda", Conference "Conference Room AV Systems Kigali", Professional Audio "Professional Sound Systems Rwanda", Solutions archive "Audio Visual Solutions Rwanda". A title typed in the Rank Math box still wins.
 - New `inc/seo-keywords.php`: homepage "Audio visual company in Rwanda" section with 7 visible FAQs (incl. "Which audio visual and event technology companies operate in Rwanda?") and matching FAQPage schema. Editable in Settings > Homepage FAQ.

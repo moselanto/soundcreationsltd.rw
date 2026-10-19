@@ -86,3 +86,42 @@ What Sound Creations has that competitors do not: the **official Yamaha distribu
 6. **301 the old site** (`server/htaccess-old-domain-redirect.txt`): it still owns the Shure and dB Technologies rankings.
 7. **Search Console**: submit `/sitemap_index.xml`, then review the Performance report monthly and add FAQs or copy for searches that show impressions but few clicks.
 8. **Content**: short buying guides on the searches above, e.g. "Best Yamaha keyboard for church in Rwanda", "Wireless microphone price guide Rwanda", "Choosing a mixer for a church in Kigali". Link each guide to the matching products.
+
+
+## 6. October 2026 keyword bank (added 19 October 2026)
+
+### Protect first: searches where Sound Creations already ranks first (observed 18 Oct 2026)
+
+Never retitle or remove these from their pages.
+
+| Search | Page |
+| --- | --- |
+| sound creations rwanda / kigali | `/` (title starts "Sound Creations Rwanda") |
+| Yamaha distributor Rwanda | `/yamaha/` and homepage title |
+| sound system installation Rwanda | `/solutions/installation/` |
+| acoustic treatment Rwanda | `/solutions/acoustics/`, `/solutions/architectural-acoustics/` |
+| stage lighting Kigali | `/solutions/lighting-solutions/` |
+| PA system Kigali | `/solutions/professional-audio/` |
+
+### Priority targets
+
+| Keyword | Page |
+| --- | --- |
+| Audio visual company in Rwanda | Homepage (+ homepage FAQ section) |
+| Audio visual company in Kigali | Homepage / About |
+| Professional sound system installation Rwanda | Installation |
+| Acoustic solutions Rwanda | Architectural Acoustics |
+| Church sound system installation Rwanda | Church sound systems |
+| AV and event technology companies in Rwanda | Homepage FAQ ("Which audio visual and event technology companies operate in Rwanda?") |
+
+### Full bank
+
+- **Audio visual:** audio visual solutions Rwanda; audio visual company Kigali; AV integration Rwanda; professional AV systems Rwanda; audio visual installation Kigali; commercial audio visual systems Rwanda; integrated audio visual solutions Kigali; audio visual consultants Rwanda; conference room AV systems Kigali; corporate AV solutions Rwanda.
+- **Sound:** professional sound systems Rwanda; sound system installation Kigali; professional audio equipment Rwanda; PA system installation Rwanda; church sound systems Kigali; sound system suppliers Rwanda; auditorium sound system installation; conference hall sound systems Rwanda; line array speaker systems Rwanda; live sound equipment Kigali; public address systems Rwanda; professional audio integrator Rwanda.
+- **Acoustics:** acoustic solutions Rwanda; acoustic consultants Rwanda; acoustic design Kigali; acoustic treatment Rwanda; acoustic panels Kigali; soundproofing solutions Rwanda; architectural acoustics Rwanda; sound isolation Kigali; auditorium acoustic design Rwanda; church acoustic treatment; studio acoustic treatment Kigali; echo reduction solutions Rwanda; acoustic ceiling solutions Rwanda; noise control consultants Kigali. Acoustic treatment (sound inside a room) and soundproofing (sound between spaces) are different; never use them as synonyms.
+- **Churches:** church sound system installation Rwanda; church PA system Kigali; church audio visual solutions Rwanda; church stage lighting Rwanda; worship sound system design; church acoustic treatment Rwanda; church microphone systems Kigali; church auditorium sound system; digital mixing consoles for churches Rwanda; church LED screens and projection (only once the team confirms they supply it).
+- **Corporate, hospitality, institutions:** conference room AV Rwanda; boardroom AV Kigali; video conferencing systems Rwanda; conference microphone systems Kigali; hotel sound system installation Rwanda; auditorium AV integration Rwanda; school sound systems Rwanda; lecture hall AV; government conference room AV Rwanda; corporate acoustic solutions Kigali; meeting room displays (only if supplied); commercial background music Kigali.
+- **Brands (brand pages only, claims must match certificates):** Yamaha (distributor, pro audio, mixers, speakers); Shure (microphones, wireless, conference); Bose Professional (commercial sound, conference audio); dB Technologies (active speakers, line arrays); Allen & Heath (mixers, digital consoles).
+- **Locations:** Kigali, Rubavu/Gisenyi, Musanze, Huye, Rwanda-wide. Build a location page only around a real project there; no doorway pages.
+
+All 100 phrases are listed in `scrw_seo_keywords()` (schema keywords). Titles and descriptions are in `scrw_seo_slug_map()` in `inc/seo-boost.php`.
