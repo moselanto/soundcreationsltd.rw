@@ -2,6 +2,13 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.10 - 19 October 2026: Featured Projects carousel navigation
+- Homepage Featured Projects: the desktop arrow buttons had no script and did nothing; now they move one project at a time and grey out at the ends.
+- Phones (up to 700 px): a control bar under the cards with large previous / next buttons (48 px touch targets), dots for each project, a "1 / 6" counter and a "Swipe to see more" hint that fades after the first swipe. Cards snap into place when swiped.
+- Keyboard: the strip is focusable and the left/right arrow keys move it. Respects reduced motion.
+- Built with DOM methods only (`assets/js/scrw-ui.js`), compatible with strict script security. CSS in `scrw-ui.css` / `.min.css`.
+- Upload: whole `soundcreations-rwanda/` folder (also contains 2.3.9 hero video).
+
 ## 2.3.9 - 19 October 2026: homepage hero video restored
 - The hero video setting points to the group site (soundcreationsltd.com), which failed to load from this site (Lighthouse console error), so 2.3.6 fell back to the poster image.
 - Now shipped with the theme: `assets/video/hero.mp4`, the same footage re-encoded for the web (1280x720, 25 fps, H.264, no sound track, fast start, about 4 MB instead of 23 MB). The `sc_hero_video` filter uses it whenever the setting is empty or points to another site. A video uploaded to this site's Media Library and set in Settings still takes priority.

@@ -552,3 +552,27 @@
 .sc-partners[data-sc-partners] { animation: sc-partners-show .3s ease 2s forwards; will-change: opacity; }
 .sc-partners[data-sc-partners].is-ready { animation: none; will-change: auto; }
 @media (prefers-reduced-motion: reduce) { .sc-partners[data-sc-partners] { animation: none; opacity: 1; } }
+
+/* ---------- 2.3.10: carousel controls (Featured Projects) ---------- */
+.sc-carousel__track { scroll-snap-type: x mandatory; }
+.sc-carousel__track > * { scroll-snap-align: start; }
+.sc-carousel__track:focus-visible { outline: 2px solid #a98bd6; outline-offset: 4px; border-radius: 12px; }
+.sc-carousel__btn[disabled] { opacity: .35; cursor: default; }
+.scrw-carnav { display: none; }
+@media (max-width: 700px) {
+	.scrw-carnav { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin: 1rem 0 0; }
+	.scrw-carnav__btn { flex: 0 0 auto; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--sc-border, rgba(255,255,255,.14)); background: var(--sc-surface-2, #1b1b22); color: var(--sc-text, #fff); cursor: pointer; transition: background .2s, border-color .2s, opacity .2s; -webkit-tap-highlight-color: transparent; }
+	.scrw-carnav__btn:active { background: #ba0b0b; border-color: #ba0b0b; color: #fff; }
+	.scrw-carnav__btn:focus-visible { outline: 2px solid #a98bd6; outline-offset: 3px; }
+	.scrw-carnav__btn[disabled] { opacity: .3; cursor: default; }
+	.scrw-carnav__mid { flex: 1; display: flex; flex-direction: column; align-items: center; gap: .35rem; min-width: 0; }
+	.scrw-carnav__dots { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem; }
+	.scrw-carnav__dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: var(--sc-border, rgba(255,255,255,.25)); cursor: pointer; transition: width .25s, background .25s; position: relative; }
+	.scrw-carnav__dot::after { content: ""; position: absolute; inset: -10px -4px; }
+	.scrw-carnav__dot.is-active { width: 22px; background: #ba0b0b; }
+	.scrw-carnav__count { font-size: .8rem; font-variant-numeric: tabular-nums; color: var(--sc-muted, #a7a3b8); }
+	.scrw-carnav__hint { font-size: .75rem; letter-spacing: .02em; color: var(--sc-muted, #a7a3b8); transition: opacity .3s; }
+	.scrw-carnav.is-used .scrw-carnav__hint { opacity: 0; height: 0; overflow: hidden; }
+	[data-theme="light"] .scrw-carnav__btn { background: #fff; color: #14141a; }
+}
+@media (prefers-reduced-motion: reduce) { .scrw-carnav__dot, .scrw-carnav__btn { transition: none; } }

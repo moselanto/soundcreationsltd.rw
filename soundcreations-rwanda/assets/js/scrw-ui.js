@@ -175,3 +175,128 @@
 	function init() { syncToggles(); initWhatsApp(); } // 1.9.4: sub-menus always open on phones, no accordion.
 	if (doc.readyState === 'loading') { doc.addEventListener('DOMContentLoaded', init); } else { init(); }
 })();
+
+/* 2.3.10: Featured Projects carousel controls.
+   Arrows on desktop (they had no script before) and, on phones, a control bar
+   under the cards: previous / next buttons, dots and a "1 / 6" counter, plus
+   swipe. Built with DOM methods only (no innerHTML), so it works with strict
+   script security. */
+(function () {
+	var roots = document.querySelectorAll('[data-sc-carousel]');
+	Array.prototype.forEach.call(roots, function (root) {
+		var track = root.querySelector('.sc-carousel__track');
+		if (!track) { return; }
+		var cards = Array.prototype.filter.call(track.children, function (el) { return el.nodeType === 1; });
+		if (cards.length < 2) { return; }
+		var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		function step() {
+			var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+			return cards[0].getBoundingClientRect().width + gap;
+		}
+		function current() {
+			return Math.max(0, Math.min(cards.length - 1, Math.round(track.scrollLeft / step())));
+		}
+		function go(i) {
+			i = Math.max(0, Math.min(cards.length - 1, i));
+			track.scrollTo({ left: i * step(), behavior: reduce ? 'auto' : 'smooth' });
+		}
+
+		/* Phone control bar. */
+		var nav = document.createElement('div');
+		nav.className = 'scrw-carnav';
+		nav.setAttribute('role', 'group');
+		nav.setAttribute('aria-label', 'Browse projects');
+
+		function mkBtn(cls, label, path) {
+			var b = document.createElement('button');
+			b.type = 'button';
+			b.className = 'scrw-carnav__btn ' + cls;
+			b.setAttribute('aria-label', label);
+			var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+			svg.setAttribute('viewBox', '0 0 24 24');
+			svg.setAttribute('width', '20');
+			svg.setAttribute('height', '20');
+			svg.setAttribute('aria-hidden', 'true');
+			var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+			p.setAttribute('d', path);
+			p.setAttribute('fill', 'none');
+			p.setAttribute('stroke', 'currentColor');
+			p.setAttribute('stroke-width', '2.2');
+			p.setAttribute('stroke-linecap', 'round');
+			p.setAttribute('stroke-linejoin', 'round');
+			svg.appendChild(p);
+			b.appendChild(svg);
+			return b;
+		}
+		var prev = mkBtn('scrw-carnav__btn--prev', 'Previous project', 'M15 18l-6-6 6-6');
+		var next = mkBtn('scrw-carnav__btn--next', 'Next project', 'M9 18l6-6-6-6');
+
+		var mid = document.createElement('div');
+		mid.className = 'scrw-carnav__mid';
+		var dots = document.createElement('div');
+		dots.className = 'scrw-carnav__dots';
+		var dotEls = cards.map(function (c, i) {
+			var d = document.createElement('button');
+			d.type = 'button';
+			d.className = 'scrw-carnav__dot';
+			d.setAttribute('aria-label', 'Go to project ' + (i + 1) + ' of ' + cards.length);
+			d.addEventListener('click', function () { go(i); });
+			dots.appendChild(d);
+			return d;
+		});
+		var count = document.createElement('span');
+		count.className = 'scrw-carnav__count';
+		count.setAttribute('aria-live', 'polite');
+		var hint = document.createElement('span');
+		hint.className = 'scrw-carnav__hint';
+		hint.textContent = 'Swipe to see more';
+		mid.appendChild(dots);
+		mid.appendChild(count);
+		mid.appendChild(hint);
+
+		nav.appendChild(prev);
+		nav.appendChild(mid);
+		nav.appendChild(next);
+		root.parentNode.insertBefore(nav, root.nextSibling);
+
+		/* Existing desktop arrows. */
+		var dPrev = root.querySelector('[data-sc-prev]');
+		var dNext = root.querySelector('[data-sc-next]');
+
+		function update() {
+			var i = current();
+			var atStart = track.scrollLeft <= 2;
+			var atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+			[prev, dPrev].forEach(function (b) { if (b) { b.disabled = atStart; } });
+			[next, dNext].forEach(function (b) { if (b) { b.disabled = atEnd; } });
+			dotEls.forEach(function (d, k) {
+				var on = k === i;
+				d.classList.toggle('is-active', on);
+				if (on) { d.setAttribute('aria-current', 'true'); } else { d.removeAttribute('aria-current'); }
+			});
+			count.textContent = (i + 1) + ' / ' + cards.length;
+			if (track.scrollLeft > 10) { nav.classList.add('is-used'); }
+		}
+
+		[prev, dPrev].forEach(function (b) { if (b) { b.addEventListener('click', function () { go(current() - 1); }); } });
+		[next, dNext].forEach(function (b) { if (b) { b.addEventListener('click', function () { go(current() + 1); }); } });
+
+		var t = null;
+		track.addEventListener('scroll', function () {
+			if (t) { cancelAnimationFrame(t); }
+			t = requestAnimationFrame(update);
+		}, { passive: true });
+		window.addEventListener('resize', update);
+
+		/* Keyboard: arrow keys when the track has focus. */
+		if (!track.hasAttribute('tabindex')) { track.setAttribute('tabindex', '0'); }
+		track.setAttribute('aria-label', 'Featured projects, scroll sideways');
+		track.addEventListener('keydown', function (e) {
+			if (e.key === 'ArrowRight') { e.preventDefault(); go(current() + 1); }
+			if (e.key === 'ArrowLeft') { e.preventDefault(); go(current() - 1); }
+		});
+
+		update();
+	});
+})();
