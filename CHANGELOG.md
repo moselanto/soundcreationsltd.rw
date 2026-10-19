@@ -2,6 +2,15 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.8 - 19 October 2026: strict script security (CSP nonces + Trusted Types)
+- New `inc/csp.php`. For visitors on the public site, the Content-Security-Policy now adds `script-src 'nonce-<random per request>' 'strict-dynamic' https: 'unsafe-inline'` and `require-trusted-types-for 'script'`. Clears Lighthouse "Ensure CSP is effective against XSS attacks" and "Mitigate DOM-based XSS with Trusted Types".
+- Every `<script>` in the page gets the nonce (output buffer plus WordPress script attribute filters), so theme, plugin, Rank Math JSON-LD and Google tag keep working; scripts they load are trusted via 'strict-dynamic'. Code audit: no inline event handlers (onclick= etc.), no javascript: links, no eval in theme code.
+- Trusted Types default policy (first script in head): strips <script>, on* handlers and javascript: URLs from HTML written by JavaScript; script URLs allowed only from this site and Google tag/analytics domains.
+- Not applied in wp-admin, for signed-in users (editors, Elementor, admin bar), previews, REST, AJAX or cron.
+- Off switch: Settings > General > "Strict script security" (or filter `scrw_strict_csp`). Use it if a new plugin stops working.
+- license.txt: the 2.3.7 server rule covers it; re-check after a cache purge.
+- Upload: whole `soundcreations-rwanda/` folder.
+
 ## 2.3.7 / parent 0.10.15 - 19 October 2026: final audit items
 Re-test of 2.3.6: Lighthouse 99/100/100/100 (mobile and desktop), security headers A+, schema 0 errors.
 - Images: project cards (homepage carousel, /projects/, solution pages, Elementor widget) now use the 768 px "medium_large" size instead of "large" (1024 px). Removes most of the remaining "Improve image delivery" savings (Atelier du Vin, Jalia, Intare, Christian Life Assembly photos).
