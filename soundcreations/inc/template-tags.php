@@ -15,7 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Sound Creations Core plugin is active (Sound Creations -> Settings).
  */
 function sc_default_settings() {
-	return array(
+	// Filterable so a child theme (e.g. Rwanda) can supply its own fallbacks.
+	return apply_filters( 'sc_default_settings', array(
 		'company_name' => 'Sound Creations Ltd',
 		'slogan'       => 'If it sounds good, it’s Sound Creations.',
 		'profiles_eyebrow'      => 'Company Profiles',
@@ -159,7 +160,7 @@ function sc_default_settings() {
 		'resources_title' => 'Videos & resources.', // archive-sc_resource.php
 		'resources_videos_title' => 'Videos', // archive-sc_resource.php
 
-	);
+	) );
 }
 
 /**
@@ -168,6 +169,12 @@ function sc_default_settings() {
 function sc_setting( $key, $default = '' ) {
 	$opts = get_option( 'soundcreations_settings', array() );
 	if ( is_array( $opts ) && isset( $opts[ $key ] ) && '' !== $opts[ $key ] ) {
+		// Typing "none" (or "-") in a Settings field hides that item on the site
+		// instead of falling back to the built-in default.
+		$raw = strtolower( trim( (string) $opts[ $key ] ) );
+		if ( in_array( $raw, array( 'none', '-', 'http://none', 'https://none' ), true ) ) {
+			return '';
+		}
 		return $opts[ $key ];
 	}
 	$defaults = sc_default_settings();

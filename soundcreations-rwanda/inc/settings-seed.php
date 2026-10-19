@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_SEED_VERSION', 'rw-settings-12' ); // rw-settings-12: FANE Africa removed from the top bar. // rw-settings-11: top bar lists Yamaha, FANE Africa, dB Technologies, Shure, Bose. // rw-settings-10: About tagline 'If it sounds good, it’s Sound Creations'. // rw-settings-9: stefic@ + fred@ contact emails, brand line in the top bar.
+define( 'SCRW_SEED_VERSION', 'rw-settings-14' ); // rw-settings-14: Rwanda social links; the group Kenya X (Twitter) and Facebook removed. // rw-settings-12: FANE Africa removed from the top bar. // rw-settings-11: top bar lists Yamaha, FANE Africa, dB Technologies, Shure, Bose. // rw-settings-10: About tagline 'If it sounds good, it’s Sound Creations'. // rw-settings-9: stefic@ + fred@ contact emails, brand line in the top bar.
 
 /**
  * Rwanda values. Contact details are taken from the current live Rwanda site.
@@ -31,6 +31,9 @@ function scrw_settings() {
 		'phone2'             => '+250 782 739 889',
 		'phone2_link'        => '+250782739889',
 		'instagram'          => 'https://www.instagram.com/soundcreations_rwanda/',
+		'facebook'           => 'https://www.facebook.com/soundcreationsrwanda/',
+		'x'                  => '', // Rwanda has no X (Twitter) account. Add a URL in Settings if one is created.
+		'youtube'            => '',
 		// FANE page: same FANE Africa accounts as the group site.
 		'fane_facebook'      => 'https://web.facebook.com/profile.php?id=61593413537880',
 		'fane_instagram'     => 'https://www.instagram.com/faneloudspeakers_africa/',
@@ -91,6 +94,9 @@ function scrw_settings() {
 function scrw_superseded_settings() {
 	return array(
 		'hours_sat'    => array( 'Sat: Closed' ),
+		// rw-settings-14: Kenya social profiles copied in from the group defaults.
+		'x'            => array( 'https://x.com/SCL_kenya' ),
+		'facebook'     => array( 'https://web.facebook.com/soundcreationsKE' ),
 		// rw-settings-13: footer links to the sector landing pages (SEO 1.3.0).
 		'footer_solutions' => array( "DJ Solutions | /solutions/dj-solutions/\nLighting Solutions | /solutions/lighting-solutions/\nStudio Solutions | /solutions/studio-solutions/\nArchitectural Acoustics | /solutions/architectural-acoustics/\nService and Backup | /solutions/service-and-backup/" ),
 		// rw-settings-9: main contact email and top-bar line.
@@ -120,7 +126,10 @@ function scrw_seed_settings() {
 	if ( ! is_array( $opts ) ) {
 		$opts = array();
 	}
+	// Compare against the group (Kenya) defaults, not the Rwanda-filtered ones.
+	remove_filter( 'sc_default_settings', 'scrw_default_settings', 20 );
 	$kenya      = function_exists( 'sc_default_settings' ) ? sc_default_settings() : array();
+	add_filter( 'sc_default_settings', 'scrw_default_settings', 20 );
 	$superseded = scrw_superseded_settings();
 
 	foreach ( scrw_settings() as $key => $val ) {
@@ -159,3 +168,19 @@ add_action(
 	},
 	3
 );
+
+
+/**
+ * Rwanda fallbacks. When a Settings field is left blank the site falls back to
+ * the built-in default; without this filter that default was the Kenya group
+ * value (e.g. the Kenya X account). Every Rwanda value above is now the
+ * fallback, and anything Rwanda does not have is blank, so nothing from Kenya
+ * shows unless it is typed into Settings.
+ *
+ * @param array $defaults Group defaults from the parent theme.
+ * @return array
+ */
+function scrw_default_settings( $defaults ) {
+	return array_merge( (array) $defaults, scrw_settings() );
+}
+add_filter( 'sc_default_settings', 'scrw_default_settings', 20 );

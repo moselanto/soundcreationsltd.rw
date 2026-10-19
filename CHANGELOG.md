@@ -2,6 +2,12 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.17 / parent 0.10.22 - 19 October 2026: Kenya X (Twitter) removed, social links fully editable
+- The X icon in the top bar and footer linked to the Kenya account (x.com/SCL_kenya). It came from the group defaults, which the site fell back to whenever a Settings field was blank, so it could not be removed from wp-admin.
+- Parent: `sc_default_settings()` is now filterable (`sc_default_settings`). `sc_setting()` treats a saved value of "none" or "-" as "hide this item".
+- Child: `scrw_default_settings()` makes every Rwanda value the fallback. X and YouTube are blank for Rwanda; Facebook is the Rwanda page. Seed rw-settings-14 clears the stored Kenya X and Facebook values (only if never edited by hand).
+- Upload: `soundcreations/inc/template-tags.php`, `soundcreations/style.css`; child `functions.php`, `style.css`, `inc/settings-seed.php`. Then open any wp-admin page once.
+
 ## 2.3.16 / parent 0.10.21 - 19 October 2026: hide hero caption text, About refinements
 - Homepage: the captions line "[Background video: ...]" was showing on the hero because the track was marked default. The track stays (PageSpeed) but is no longer shown.
 - About (below Our Clients): intro in a panel; "What our Kigali team does" as a 2 x 2 grid of numbered cards (01-04); tick lists in two columns (no single orphan box); single column on phones.
