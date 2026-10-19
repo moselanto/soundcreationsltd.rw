@@ -80,3 +80,8 @@ Scores: Performance / Accessibility / Best Practices / SEO.
 - Only scored failure: Contact office list semantics, fixed in 2.3.13 (to upload). Duplicate project names on sector pages also fixed in 2.3.13.
 - Next performance follow-up: About (Elementor page) mobile LCP 4.1 s and Brands mobile LCP 3.1 s. Unscored only: hero video captions track, generic "View details" / "Visit Website" link text.
 - Hero video source loads (hero.mp4?ver=2.3.12); visual playback to be confirmed on a phone.
+
+## 2.3.13 verified live (19 Oct 2026, 15:15 EAT)
+- Child 2.3.13, parent 0.10.18 confirmed. Contact office list: no role="button". Hotel/bar sector page: each project name printed once.
+- PageSpeed Contact: 100/100/100/100 mobile and desktop (was 97 accessibility). Homepage: 99/100/100/100 mobile, 100/100/100/100 desktop.
+- Remaining (unscored only): hero video captions track. Next speed job: About page (Elementor) mobile LCP 4.1 s, Brands mobile 3.1 s.
