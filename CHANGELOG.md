@@ -2,6 +2,11 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.16 / parent 0.10.21 - 19 October 2026: hide hero caption text, About refinements
+- Homepage: the captions line "[Background video: ...]" was showing on the hero because the track was marked default. The track stays (PageSpeed) but is no longer shown.
+- About (below Our Clients): intro in a panel; "What our Kigali team does" as a 2 x 2 grid of numbered cards (01-04); tick lists in two columns (no single orphan box); single column on phones.
+- Upload: `soundcreations/template-parts/designs/home.php`, `soundcreations/style.css`; child `functions.php`, `style.css`, `assets/css/scrw-ui.css`, `assets/css/scrw-ui.min.css`.
+
 ## 2.3.15 / parent 0.10.20 - 19 October 2026: About page layout and the last PageSpeed notes
 - About page text below "Our Clients" (`inc/about-content.php`): the Elementor/editor content is restructured, words unchanged: intro lead, one block per H2 with a red accent, H3 sub-sections as a card grid ("What our Kigali team does"), lists as check cards, last block with Contact/Quote links as a call-to-action panel, tall photo cropped to a banner (max 520 px), Elementor padding gaps removed. Uses DOMDocument; falls back to the original HTML on any problem; off switch filter `scrw_about_enhance`.
 - PageSpeed unscored notes: hero video gets a captions track (`assets/video/hero-captions.vtt`, decorative, no speech) and is hidden from screen readers; Brands links read "Visit Yamaha website" etc.; external links in the About text get an accessible name "... official website (external)".

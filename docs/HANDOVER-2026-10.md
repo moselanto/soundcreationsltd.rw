@@ -20,6 +20,7 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 | 2.3.8 | Strict CSP: per-request nonce + 'strict-dynamic', Trusted Types default policy (`inc/csp.php`). Visitors only. **Off switch: Settings > General > "Strict script security"** |
 | 2.3.9 | Hero video shipped in theme `assets/video/hero.mp4` (4 MB re-encode of the group-site 23 MB file), used when the setting points off-site |
 | 2.3.10 | Featured Projects carousel: working desktop arrows; mobile prev/next, dots, counter, swipe hint; keyboard |
+| 2.3.16 / parent 0.10.21 | Hero caption text hidden (track kept); About numbered 2x2 cards, two-column tick lists |
 | 2.3.15 / parent 0.10.20 | About text below Our Clients restructured (cards, check lists, CTA, banner photo); captions track; brand-named links |
 | 2.3.14 / parent 0.10.19 | jQuery to footer for visitors, Brands hero WebP + preload, lighter FANE hero, logo and client logos (About 87, Brands 94 before) |
 | 2.3.13 / parent 0.10.18 | Contact office-list semantics; no duplicate project names on sector pages |
