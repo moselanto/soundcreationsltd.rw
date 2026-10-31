@@ -2,6 +2,14 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.29 / parent 0.10.24 - 31 October 2026: authorised (not exclusive) wording, one public email, brand authority sections
+- Owner decision 31 Oct 2026: every brand is an AUTHORISED dealer / partner relationship, not exclusive (Yamaha: authorised distributor in Rwanda). Public email: stefic@soundcreationsltd.com.
+- Parent 0.10.24: new filters `sc_home_services` (home service cards, `template-parts/designs/home.php`) and `sc_service_highlights` (`single-sc_service.php`), defaults unchanged for Kenya. Rwanda child rewrites "Certified exclusive dealers..." to "Authorised dealers and partners for leading global brands..." and "Exclusive authorised dealer" to "Authorised dealer and partner" (see `inc/brand-authority.php` filters).
+- `inc/content-fixes.php`: one-time exact-text fixes in saved content for the exclusive wording and for info@ / sales@ -> stefic@soundcreationsltd.com (runs once on admin load for 2.3.29).
+- Email: sign-in page help line and the Kigali office fallback now use stefic@soundcreationsltd.com.
+- New `inc/brand-authority.php`: under each of the 11 brand pages (db-technologies, shure, bose-professional, allen-heath, midas, behringer, rockfon, barrisol, sommer-cable, aid, asona): "{Brand} in Rwanda" with the authorised relationship, what the manufacturer makes (public facts; none for AID/Asona), related Rwanda projects (only if the project page exists), quotation CTA, 3 visible Q&As + FAQPage in the single graph. Edit via `scrw_brand_authority_data`. CSS `.scrw-brand-auth` in `style.css`.
+- Upload: child `functions.php`, `style.css`, `inc/brand-authority.php` (new), `inc/content-fixes.php`, `inc/login.php`, `inc/offices.php`; parent `soundcreations/template-parts/designs/home.php`, `soundcreations/single-sc_service.php`, `soundcreations/style.css`. Then open wp-admin once (runs the content fixes) and clear the cache.
+
 ## 2.3.28 - 31 October 2026: cleaner entity data for search and AI
 - JSON-LD text clean-up: titles reached the graph HTML-encoded ("Church Sound Systems &#038; Worship Lighting", "&hellip;") on solutions, services, guides, products and brand pages. Every string in the graph is now decoded once at the end of the `sc_seo_graph` chain (priority 999, `scrw_graph_decode()`).
 - Product pages: the ItemPage now `mentions` its Brand (from the product's own `_sc_brand_name` / `sc_brand_tax`), linked to our brand page (`#brand` @id or the /yamaha/ and /fane/ pages) and the manufacturer's official site. Still no Product/Offer node (owner decision: no prices).

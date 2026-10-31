@@ -77,6 +77,8 @@ while ( have_posts() ) :
 		),
 		'general'      => array(),
 	);
+	// 0.10.24: child themes can adjust the highlight cards (wording per country).
+	$sc_high  = (array) apply_filters( 'sc_service_highlights', $sc_high );
 	$sc_cards = isset( $sc_high[ $sc_kind ] ) ? $sc_high[ $sc_kind ] : array();
 	?>
 

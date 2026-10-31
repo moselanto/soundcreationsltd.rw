@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCRW_VERSION', '2.3.28' );
+define( 'SCRW_VERSION', '2.3.29' );
 define( 'SCRW_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'SCRW_GROUP_URL', 'https://soundcreationsltd.com/' );
 
@@ -60,6 +60,7 @@ require_once SCRW_DIR . 'inc/content-fixes.php';
 require_once SCRW_DIR . 'inc/seo-keywords.php';
 require_once SCRW_DIR . 'inc/sector-proof.php';
 require_once SCRW_DIR . 'inc/seo-cleanup.php';
+require_once SCRW_DIR . 'inc/brand-authority.php';
 
 /* 2.3.5: never show the parent theme's stand-in projects (Nairobi, Dubai) on the Rwanda site. */
 add_filter( 'sc_home_projects_fallback', '__return_false' );

@@ -112,6 +112,8 @@ else :
 				array( 'service-integration.webp', 'integration', 'Integration', 'Site mapping, system design, installation, commissioning, training and support for every audio and acoustic need.', '/solutions/', 'home_svc3_img', array( 'integ' ) ),
 				array( 'service-aftersale-rack.webp', 'aftersale', 'After-Sale Services', 'Warranty management, genuine spare parts, servicing and technical support that keep your systems performing.', '/contact/', 'home_svc4_img', array( 'after', 'sale' ) ),
 			);
+			// 0.10.24: child themes can adjust the four service cards (wording per country).
+			$sc_services = (array) apply_filters( 'sc_home_services', $sc_services );
 			foreach ( $sc_services as $sc_s ) :
 				$sc_img  = sc_setting( $sc_s[5], SC_THEME_URI . '/assets/img/home/' . $sc_s[0] );
 				// Resolution order: Service page upload > Settings pick > bundled theme

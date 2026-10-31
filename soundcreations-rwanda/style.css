@@ -4,7 +4,7 @@ Theme URI:    https://soundcreationsltd.rw/
 Description:  Child theme for the independent Sound Creations Ltd Rwanda website. Uses the group parent theme (soundcreations) so both sites share one visual identity, and layers Rwanda-specific business details, content, local SEO and structured data on top.
 Author:       Sound Creations Ltd
 Template:     soundcreations
-Version:      2.3.28
+Version:      2.3.29
 Requires PHP: 8.0
 License:      GPL-2.0-or-later
 Text Domain:  soundcreations-rwanda
@@ -1173,3 +1173,11 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 @media (min-width:783px) and (max-width:1100px){
   .sc-utility__zone--left{display:none}
 }
+
+/* 2.3.29: brand authority section (inc/brand-authority.php). */
+.scrw-brand-auth { margin: 2.5rem 0 0; padding-top: 2rem; border-top: 1px solid rgba(127,127,127,.25); }
+.scrw-brand-auth h2 { margin: 0 0 .9rem; }
+.scrw-brand-auth h3 { margin: 1.75rem 0 .6rem; font-size: 1.15rem; }
+.scrw-brand-auth .sc-btn { margin: .25rem .5rem .25rem 0; }
+.scrw-brand-auth__faq dt { margin-top: 1rem; font-weight: 700; }
+.scrw-brand-auth__faq dd { margin: .35rem 0 0; }

@@ -45,7 +45,7 @@ add_filter(
 		$rw = array(
 			'phone'      => $phones,
 			'phone_link' => $s( 'phone_link', '+250783141050' ),
-			'email'      => $s( 'email', 'sales@soundcreationsltd.com' ),
+			'email'      => $s( 'email', 'stefic@soundcreationsltd.com' ),
 			'hours'      => $s( 'hours_week', 'Mon-Fri: 9:00 AM - 6:00 PM' ) . ' | ' . $s( 'hours_sat', 'Sat: 9:00 AM - 1:30 PM' ),
 		);
 		$ke = array(

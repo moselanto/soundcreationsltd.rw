@@ -123,11 +123,15 @@ Channels (sessions, engagement rate): Direct 153 (22.9%); Organic Search 80 (77.
 - Graph strings decoded (no more &#038; / &hellip; in names).
 - Product ItemPage `mentions` Brand -> our brand page + manufacturer site.
 
+## Owner decisions 31 Oct 2026 and 2.3.29 (committed, upload pending)
+- All brands: authorised dealer / partner, not exclusive. Public email: stefic@soundcreationsltd.com.
+- 2.3.29 fixes the exclusive wording (home card, Distribution & Dealership page, saved content), the email, and adds brand authority sections + FAQ to the 11 thin brand pages (R4 first pass).
+
 ## Master Audit items not yet done (re-checked 31 Oct)
 | Audit item | Status / reason |
 |---|---|
-| Exclusive-dealer wording, public email | BLOCKED: waiting for Agnes (brand list and email were blank placeholders) |
-| 11 thin brand pages (R4) | BLOCKED on the same brand-relationship list; schema sameAs done in 2.3.27 |
+| Exclusive-dealer wording, public email | DONE in code 2.3.29 (upload pending) |
+| 11 thin brand pages (R4) | First pass in 2.3.29 (relationship, manufacturer facts, projects, quote, FAQ). Next: brand-specific product guidance and photos |
 | Product schema without prices (5.3 B) | DECISION KEPT: Google treats a Product with no offers/review/rating as an invalid product snippet (Search Console errors). Products stay as ItemPage + FAQ until real prices exist. Revisit if the owner publishes prices. |
 | Guide authors (5.3 E) | BLOCKED: needs a real engineer's name, role and approval; author stays the Organization |
 | Project case studies (R5), 15-20 | BLOCKED: needs approved project facts and real photos |

@@ -41,6 +41,13 @@ function scrw_content_fix_pairs() {
 		'info@soundcreationsltd.com or +254 715 754 758' => 'fred@soundcreationsltd.com or +250 783 141 050',
 		'info@soundcreationsltd.com — +254 715 754 758' => 'fred@soundcreationsltd.com — +250 783 141 050',
 		'+254 715 754 758'            => '+250 783 141 050',
+		// 2.3.29 owner decision (31 Oct 2026): brands are authorised dealer / partner relationships, not exclusive.
+		'Certified exclusive dealers for leading global brands' => 'Authorised dealers and partners for leading global brands',
+		'certified as the exclusive authorised dealer for a number of leading global brands' => 'appointed as an authorised dealer and partner for a number of leading global brands',
+		'Certified exclusive dealer for a portfolio of leading global brands' => 'Authorised dealer and partner for a portfolio of leading global brands',
+		// 2.3.29 owner decision: one public email.
+		'info@soundcreationsltd.com'  => 'stefic@soundcreationsltd.com',
+		'sales@soundcreationsltd.com' => 'stefic@soundcreationsltd.com',
 	);
 }
 

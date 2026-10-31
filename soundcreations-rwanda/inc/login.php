@@ -96,7 +96,7 @@ add_action(
 				<p class="scrw-login-brand__help">
 					<?php esc_html_e( 'Need access or locked out?', 'soundcreations-rwanda' ); ?>
 					<a href="tel:+250783141050">+250 783 141 050</a>
-					<a href="mailto:info@soundcreationsltd.com">info@soundcreationsltd.com</a>
+					<a href="mailto:stefic@soundcreationsltd.com">stefic@soundcreationsltd.com</a>
 				</p>
 			</div>
 		</aside>
