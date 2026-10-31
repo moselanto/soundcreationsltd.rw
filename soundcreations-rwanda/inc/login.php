@@ -84,9 +84,9 @@ add_action(
 					<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/img/login-logo.png' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="220" height="77">
 				</a>
 				<div class="scrw-login-brand__body">
-					<span class="scrw-login-brand__eyebrow"><?php esc_html_e( 'Staff and team', 'soundcreations-rwanda' ); ?></span>
-					<h2 class="scrw-login-brand__title"><?php esc_html_e( 'Every great sound starts with the work you do here.', 'soundcreations-rwanda' ); ?></h2>
-					<p class="scrw-login-brand__lead"><?php esc_html_e( 'Sign in to look after the Sound Creations Rwanda website, Kigali.', 'soundcreations-rwanda' ); ?></p>
+					<span class="scrw-login-brand__eyebrow"><?php esc_html_e( 'Staff portal', 'soundcreations-rwanda' ); ?></span>
+					<h2 class="scrw-login-brand__title"><?php esc_html_e( 'Professional audio, lighting and AV for Rwanda.', 'soundcreations-rwanda' ); ?></h2>
+					<p class="scrw-login-brand__lead"><?php esc_html_e( 'Sound Creations Rwanda, Kigali. Authorised Yamaha distributor in Rwanda.', 'soundcreations-rwanda' ); ?></p>
 					<ul class="scrw-login-brand__list">
 						<li><?php echo $tick; // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'Update pages, solutions and project stories', 'soundcreations-rwanda' ); ?></span></li>
 						<li><?php echo $tick; // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'Manage products, brands and photos', 'soundcreations-rwanda' ); ?></span></li>
@@ -108,12 +108,27 @@ add_action(
 add_filter(
 	'login_message',
 	function ( $message ) {
-		if ( scrw_login_is_interim() || 'login' !== scrw_login_action() ) {
+		if ( scrw_login_is_interim() ) {
 			return $message;
 		}
-		$intro  = '<div class="scrw-login-welcome">';
-		$intro .= '<h2>' . esc_html__( 'Welcome back', 'soundcreations-rwanda' ) . '</h2>';
-		$intro .= '<p>' . esc_html__( 'Sign in to manage the Sound Creations Rwanda website.', 'soundcreations-rwanda' ) . '</p>';
+		$action = scrw_login_action();
+		// 2.3.23: a heading on every screen (sign in, lost password, new password).
+		if ( 'login' === $action ) {
+			$title = __( 'Welcome back', 'soundcreations-rwanda' );
+			$lead  = __( 'Sign in with your staff account to continue.', 'soundcreations-rwanda' );
+		} elseif ( in_array( $action, array( 'lostpassword', 'retrievepassword' ), true ) ) {
+			$title = __( 'Reset your password', 'soundcreations-rwanda' );
+			$lead  = '';
+		} elseif ( in_array( $action, array( 'rp', 'resetpass' ), true ) ) {
+			$title = __( 'Set a new password', 'soundcreations-rwanda' );
+			$lead  = '';
+		} else {
+			return $message;
+		}
+		$intro = '<div class="scrw-login-welcome"><h2>' . esc_html( $title ) . '</h2>';
+		if ( '' !== $lead ) {
+			$intro .= '<p>' . esc_html( $lead ) . '</p>';
+		}
 		$intro .= '</div>';
 		return $intro . $message;
 	}

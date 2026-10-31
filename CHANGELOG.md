@@ -2,6 +2,14 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.23 - 31 October 2026: sign-in page fix and professional redesign
+- Bug: the top of the sign-in card (logo) was cut off and could not be scrolled to. Cause: WordPress core sets html/body to height 100% and 2.3.4 centred the column with justify-content:center, so a card taller than the window overflowed upwards. Fix: page height is now auto (min 100vh/100dvh) and the card is centred with auto margins, which shrink to zero instead of clipping.
+- Polish: one logo per screen (card logo is screen-reader only on desktop, visible on phones), neutral dark heading, calmer card (no red top bar, softer shadow), solid button without bounce, visible keyboard focus rings, tidier security note.
+- Copy: brand panel pill "Staff portal", headline "Professional audio, lighting and AV for Rwanda.", lead "Sound Creations Rwanda, Kigali. Authorised Yamaha distributor in Rwanda."; card subtitle "Sign in with your staff account to continue."
+- Headings added on the lost-password ("Reset your password") and new-password ("Set a new password") screens.
+- No change to how sign-in or security works (presentation only).
+- Upload: child `functions.php`, `style.css`, `inc/login.php`, `assets/css/scrw-login.css`. Then clear the cache and open /wp-login.php on desktop and phone.
+
 ## 2.3.22 - 19 October 2026: homepage AV company heading fix
 - The site-wide title swap (inc/section-titles.php) turned the small "Who we are" label into the big heading and shrank "Audio visual company in Rwanda". The two labels now use their own class (scrw-hfaq__kicker), so the keyword heading stays the H2.
 - Upload: child `functions.php`, `style.css`, `inc/seo-keywords.php`, `assets/css/scrw-ui.css`, `assets/css/scrw-ui.min.css`.

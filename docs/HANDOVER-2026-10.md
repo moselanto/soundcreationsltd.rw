@@ -1,8 +1,12 @@
-# Handover: work log 11-19 October 2026 (last updated 19 Oct 2026, 23:00 EAT)
+# Handover: work log 11 October - 31 October 2026 (last updated 31 Oct 2026, 21:30 EAT)
 
 Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENTS.md`, `CHANGELOG.md`, `SECURITY-AUDIT.md` and `docs/QUALITY-AUDIT-2026-10.md`.
 
-## Current state (19 Oct 2026, 23:00 EAT) - READ THIS FIRST
+## Update 31 Oct 2026 - READ THIS FIRST
+- New work session started (Agnes, via the AI assistant). Rule: every change also updates AGENTS.md, CHANGELOG.md and this file.
+- **2.3.23 committed to main, NOT yet uploaded:** sign-in page (wp-login.php) fix and redesign. Upload child `functions.php`, `style.css`, `inc/login.php`, `assets/css/scrw-login.css`, clear the cache, then check /wp-login.php on desktop and a phone (logo fully visible, card centred, lost-password screen shows "Reset your password").
+
+## Current state (19 Oct 2026, 23:00 EAT)
 - Live and verified: child theme **Sound Creations Rwanda 2.3.22**, parent **0.10.22**, Core **0.5.28**, Enquiries 0.2.1, Elementor 4.3.5, Rank Math. Nothing is committed-but-not-uploaded.
 - Lighthouse (2.3.14): homepage mobile 99 / desktop 100; About mobile 97; Brands mobile 97; Accessibility/Best Practices/SEO 100. Security headers A+. Schema 0 errors / 0 warnings.
 - Deploy method: owner uploads changed files by FTP/file manager, then clears the cache; no CI, no PHP runtime for the AI agent (code is never test-run before upload, so verify live after each upload). Theme File Editor is disabled (403). cPanel at d9742.usc1.stableserver.net does **not** host the .rw domain.
@@ -22,6 +26,7 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 | 2.3.8 | Strict CSP: per-request nonce + 'strict-dynamic', Trusted Types default policy (`inc/csp.php`). Visitors only. **Off switch: Settings > General > "Strict script security"** |
 | 2.3.9 | Hero video shipped in theme `assets/video/hero.mp4` (4 MB re-encode of the group-site 23 MB file), used when the setting points off-site |
 | 2.3.10 | Featured Projects carousel: working desktop arrows; mobile prev/next, dots, counter, swipe hint; keyboard |
+| 2.3.23 (31 Oct) | Sign-in page: clipped card/logo fixed, professional redesign, headings on lost/new password screens |
 | 2.3.22 | Homepage AV company H2 restored (labels no longer swapped by section-titles) |
 | 2.3.21 | WhatsApp teaser auto-hides; homepage AV company section two-column redesign with editable service links |
 | 2.3.20 | Settings > Our Clients (logos editable); project proof on Church/Conference; Intare Kivu Arena + brand titles |

@@ -311,3 +311,82 @@ body.login.scrw-login #nav { word-break: normal; }
 	body.login.scrw-login #login { width: calc(100% - 1.5rem); padding: 1.5rem 1.1rem 1.2rem; border-radius: 16px; }
 	.scrw-login-welcome h2 { font-size: 1.3rem; }
 }
+
+
+/* ---------- 2.3.23: layout fix and professional polish ---------- */
+/* Bug: WordPress core login.css sets html/body to height:100%, and 2.3.4
+   centred the column with justify-content:center. When the card is taller
+   than the window, flex centring pushes the top of the card (logo) off-screen
+   where it cannot be scrolled to. Fix: let the page grow and centre with auto
+   margins, which shrink to zero instead of clipping. */
+html { height: auto !important; min-height: 100%; background: #f6f4fa; }
+body.login.scrw-login {
+	height: auto !important;
+	min-height: 100vh;
+	min-height: 100dvh;
+	justify-content: flex-start;
+	padding: 3rem 0 2rem var(--scrw-panel-w);
+	background: #f6f4fa;
+}
+body.login.scrw-login #login {
+	position: relative;
+	width: min(440px, calc(100% - 2.5rem));
+	margin: auto auto 1.25rem;
+	padding: 2.5rem 2.5rem 1.75rem;
+	border: 1px solid var(--scrw-line);
+	border-top: 1px solid var(--scrw-line);
+	border-radius: 16px;
+	box-shadow: 0 1px 2px rgba(23, 20, 31, .04), 0 12px 40px rgba(35, 22, 60, .08);
+}
+.scrw-login-foot { width: min(440px, calc(100% - 2.5rem)); margin: 0 auto auto; padding: 0 0 1rem; }
+.scrw-login-foot__secure { display: flex; justify-content: center; align-items: flex-start; gap: .45rem; text-align: left; max-width: 34ch; margin-left: auto !important; margin-right: auto !important; }
+.scrw-login-foot__secure svg { margin-top: .2rem; }
+
+/* One logo per screen: the brand panel already shows it on desktop, so the
+   card logo is kept for screen readers only (it returns on phones). */
+@media (min-width: 901px) {
+	body.login.scrw-login #login h1 {
+		position: absolute !important;
+		width: 1px; height: 1px; margin: 0; padding: 0;
+		overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+	}
+}
+
+/* Typography: neutral heading, calmer hierarchy. */
+.scrw-login-welcome h2 { margin: 0 0 .4rem; font-size: 1.75rem; line-height: 1.2; font-weight: 700; letter-spacing: -.02em; color: var(--scrw-ink); }
+.scrw-login-welcome p { margin: 0 0 1.75rem; font-size: .95rem; color: var(--scrw-muted); }
+body.login.scrw-login label { font-size: .875rem; }
+body.login.scrw-login form .input,
+body.login.scrw-login input[type="text"],
+body.login.scrw-login input[type="email"],
+body.login.scrw-login input[type="password"] { border-radius: 10px; border-width: 1px !important; }
+
+/* Primary button: solid, no bounce, clear focus ring. */
+body.login.scrw-login .button-primary,
+body.login.scrw-login #wp-submit { min-height: 48px; border-radius: 10px; box-shadow: none; font-weight: 600; }
+body.login.scrw-login .button-primary:hover,
+body.login.scrw-login #wp-submit:hover { transform: none; box-shadow: none; }
+
+/* Links under the form: one tidy row. */
+body.login.scrw-login #nav { margin-top: 1.5rem; padding-top: 1.25rem; }
+body.login.scrw-login #nav a,
+body.login.scrw-login #backtoblog a { font-weight: 500; }
+body.login.scrw-login #nav a:focus-visible,
+body.login.scrw-login #backtoblog a:focus-visible,
+.scrw-login-brand a:focus-visible { outline: 2px solid var(--scrw-purple); outline-offset: 3px; border-radius: 4px; box-shadow: none; }
+
+/* Brand panel: quieter pill, tighter headline. */
+.scrw-login-brand__eyebrow { letter-spacing: .12em; }
+.scrw-login-brand__title { max-width: 20ch; font-size: clamp(1.8rem, 1rem + 2vw, 2.5rem); }
+.scrw-login-brand__lead { max-width: 40ch; }
+
+/* Tablets and phones. */
+@media (max-width: 900px) {
+	body.login.scrw-login { padding: 0 0 1.5rem; }
+	body.login.scrw-login #login { margin: -3rem auto 1.25rem; padding: 1.75rem 1.4rem 1.4rem; }
+	.scrw-login-foot { margin: 0 auto; }
+}
+@media (max-width: 420px) {
+	body.login.scrw-login #login { width: calc(100% - 1.5rem); padding: 1.5rem 1.1rem 1.2rem; }
+	.scrw-login-welcome h2 { font-size: 1.4rem; }
+}

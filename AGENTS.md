@@ -87,7 +87,7 @@ The owner's master brief ("SCL RWANDA SEO, AEO, GEO") governs this work: audit b
 
 ## Current state and standing rules (19 Oct 2026, 23:00 EAT)
 
-- Live: child **2.3.22**, parent **0.10.22**, Core 0.5.28, Enquiries 0.2.1. Full log and open items: `docs/HANDOVER-2026-10.md` (start with "Current state").
+- Live: child **2.3.22**, parent **0.10.22**, Core 0.5.28, Enquiries 0.2.1. **Committed, not yet uploaded (31 Oct 2026): child 2.3.23** (sign-in page fix, see CHANGELOG). Full log and open items: `docs/HANDOVER-2026-10.md` (start with "Current state").
 - **Keyword rule (owner):** never remove or weaken a keyword the site already ranks for; only add. Protected list: `docs/KEYWORD-STRATEGY.md` section 6 and `scrw_seo_keywords()` (`inc/seo-boost.php`, 100-phrase bank, protected first). Page titles per slug: `scrw_seo_slug_map` in `inc/seo-boost.php`.
 - **Homepage title/description are typed in Rank Math on page ID 10**, not in code. They must keep "Sound Creations Rwanda", Yamaha and Pro Audio.
 - Google Business Profile: waiting for Fred to approve access; do not change it.
@@ -100,6 +100,11 @@ The owner's master brief ("SCL RWANDA SEO, AEO, GEO") governs this work: audit b
 2. Add an entry to `CHANGELOG.md` and, for SEO work, a release section in `docs/SEO-PLAN.md`.
 3. Update the tables above if you add a file or close an open item.
 4. Deploy: back up, upload the whole changed folders, open wp-admin once, purge the page cache (no LiteSpeed plugin is installed), then test with the Rich Results Test and schema validator.
+
+## Sign-in page (wp-login.php), updated 2.3.23
+- Design lives in the child theme: `inc/login.php` (brand panel, card headings per screen, footer note) and `assets/css/scrw-login.css` (newest block at the bottom wins). Core `includes/login-branding.php` stays out of the way when `scrw_login_is_interim()` exists; do not re-enable its dark style.
+- Gotcha: WordPress core makes html/body height:100%. Never centre the login column with `justify-content:center`; use auto margins (2.3.23 fix) or the card top gets clipped.
+- The small re-auth pop-up inside wp-admin (interim login) is intentionally left plain.
 
 ## Recent additions (2.3.15 - 2.3.22)
 - `inc/seo-keywords.php`: homepage "Audio visual company in Rwanda" section (two-column: Who we are panel with service links + buttons, 01-07 FAQ accordion) and FAQPage JSON-LD (`#faq`); edited in Settings > Homepage FAQ (`page=scrw-home-faq`). CSS `.scrw-hfaq*` in `scrw-ui.css`.
