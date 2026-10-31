@@ -106,7 +106,7 @@ Channels (sessions, engagement rate): Direct 153 (22.9%); Organic Search 80 (77.
 | Indexed URLs | 13 (Site Explorer) |
 | Search | 4 clicks, 37 impressions, CTR 10.81% (7-29 Oct) |
 | Backlinks | 32 |
-| Action | Bing has indexed only 13 of 122 URLs: submit all URLs through Rank Math > Instant Indexing (IndexNow) in wp-admin, and re-check in a week. TODO (needs WordPress login). |
+| Action | DONE 31 Oct 2026 22:50 EAT: Agnes signed in; Rank Math > Instant Indexing > Submit URLs: "Successfully submitted 119 URLs." (all sitemap URLs except the two redirects). Submission only, not proof of indexing. Re-check Bing Site Explorer indexed count on 7 Nov 2026 (baseline 13). |
 
 ## Live check of 2.3.28 after re-upload (31 Oct 2026, 22:35 EAT): PASS
 - `soundcreations-rwanda/style.css` says Version 2.3.28.
