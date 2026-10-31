@@ -72,6 +72,10 @@ function scrw_seo_clip( $text, $max ) {
 function scrw_seo_slug_map() {
 	return array(
 		// Pages.
+		// 2.3.24: policy pages had one-line descriptions ("Cookie policy.").
+		'warranty'                => array( 'Warranty & After-Sales Support | Sound Creations Rwanda', 'Warranty terms and after-sales support for equipment supplied by Sound Creations Rwanda in Kigali: how to make a claim, servicing and genuine spare parts.' ),
+		'privacy-policy'          => array( 'Privacy Policy | Sound Creations Rwanda', 'How Sound Creations Ltd Rwanda collects, uses and protects personal data under Rwanda Law No. 058/2021, and how to contact us about your information.' ),
+		'cookie-policy'           => array( 'Cookie Policy | Sound Creations Rwanda', 'How soundcreationsltd.rw uses cookies and similar technologies, and how you can manage your cookie choices.' ),
 		'yamaha'                  => array( 'Yamaha Rwanda | Authorised Yamaha Distributor in Kigali', 'Sound Creations is the authorised Yamaha distributor in Rwanda. Yamaha mixers, speakers, keyboards, digital pianos and guitars in Kigali, with local warranty and support across East Africa.' ),
 		'fane'                    => array( 'FANE Africa | FANE Speakers & Loudspeaker Drivers Rwanda', 'FANE Africa partner in Kigali: FANE Sovereign, Colossus and compression drivers for PA, line array and installed sound across Rwanda and East Africa. Genuine parts, expert advice.' ),
 		'about'                   => array( 'Audio Visual Company in Kigali, Rwanda | About Sound Creations', 'Sound Creations Ltd Rwanda: Kigali audio visual company for sound systems, lighting, acoustics and studios. Part of the Sound Creations group serving East Africa since 2011.' ),

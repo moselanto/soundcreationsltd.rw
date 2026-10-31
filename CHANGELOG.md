@@ -2,6 +2,13 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.24 - 31 October 2026: Master Audit R2 fixes from the full-site crawl
+- Homepage FAQPage now joins the single JSON-LD graph via `sc_seo_graph` (was a second ld+json block). `inc/seo-keywords.php`.
+- New `inc/seo-cleanup.php`: /brands/fane/ and /brands/yamaha/ (both 301) removed from the Rank Math sitemap (filter `scrw_sitemap_excluded_paths`); untouched WordPress sample post /hello-world/ moved to draft once on admin load (option `scrw_cleanup_hello_world`; never touches an edited post).
+- Titles/descriptions for warranty, privacy-policy and cookie-policy added to `scrw_seo_slug_map()` (Rank Math values still win).
+- New docs: `docs/MASTER-AUDIT-2026-10-31.md` (owner brief), `docs/ROADMAP-2026-11.md` (tracker + 31 Oct live crawl results).
+- Upload: child `functions.php`, `style.css`, `inc/seo-keywords.php`, `inc/seo-cleanup.php`, `inc/seo-boost.php`. Then open wp-admin once, purge the cache, and re-test the homepage in the Rich Results Test (expect one graph containing FAQPage).
+
 ## 2.3.23 - 31 October 2026: sign-in page fix and professional redesign
 - Bug: the top of the sign-in card (logo) was cut off and could not be scrolled to. Cause: WordPress core sets html/body to height 100% and 2.3.4 centred the column with justify-content:center, so a card taller than the window overflowed upwards. Fix: page height is now auto (min 100vh/100dvh) and the card is centred with auto margins, which shrink to zero instead of clipping.
 - Polish: one logo per screen (card logo is screen-reader only on desktop, visible on phones), neutral dark heading, calmer card (no red top bar, softer shadow), solid button without bounce, visible keyboard focus rings, tidier security note.

@@ -4,7 +4,10 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 
 ## Update 31 Oct 2026 - READ THIS FIRST
 - New work session started (Agnes, via the AI assistant). Rule: every change also updates AGENTS.md, CHANGELOG.md and this file.
-- **2.3.23 committed to main, NOT yet uploaded:** sign-in page (wp-login.php) fix and redesign. Upload child `functions.php`, `style.css`, `inc/login.php`, `assets/css/scrw-login.css`, clear the cache, then check /wp-login.php on desktop and a phone (logo fully visible, card centred, lost-password screen shows "Reset your password").
+- 2.3.23 (sign-in page redesign) is live (verified 31 Oct).
+- **Master Audit received 31 Oct 2026** (`docs/MASTER-AUDIT-2026-10-31.md`). Programme and status: `docs/ROADMAP-2026-11.md`. Full crawl of 122 URLs done; results there.
+- Old domain 301s verified live (page-by-page) - no longer an open item.
+- **2.3.24 committed to main, NOT yet uploaded:** homepage single JSON-LD graph, sitemap clean-up, /hello-world/ unpublished, policy page descriptions. Files in CHANGELOG.
 
 ## Current state (19 Oct 2026, 23:00 EAT)
 - Live and verified: child theme **Sound Creations Rwanda 2.3.22**, parent **0.10.22**, Core **0.5.28**, Enquiries 0.2.1, Elementor 4.3.5, Rank Math. Nothing is committed-but-not-uploaded.
@@ -26,6 +29,7 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 | 2.3.8 | Strict CSP: per-request nonce + 'strict-dynamic', Trusted Types default policy (`inc/csp.php`). Visitors only. **Off switch: Settings > General > "Strict script security"** |
 | 2.3.9 | Hero video shipped in theme `assets/video/hero.mp4` (4 MB re-encode of the group-site 23 MB file), used when the setting points off-site |
 | 2.3.10 | Featured Projects carousel: working desktop arrows; mobile prev/next, dots, counter, swipe hint; keyboard |
+| 2.3.24 (31 Oct) | Crawl fixes: single homepage graph, sitemap final URLs only, sample post unpublished, policy descriptions |
 | 2.3.23 (31 Oct) | Sign-in page: clipped card/logo fixed, professional redesign, headings on lost/new password screens |
 | 2.3.22 | Homepage AV company H2 restored (labels no longer swapped by section-titles) |
 | 2.3.21 | WhatsApp teaser auto-hides; homepage AV company section two-column redesign with editable service links |

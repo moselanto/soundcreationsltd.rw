@@ -117,15 +117,20 @@ add_action(
 	30
 );
 
-add_action(
-	'wp_head',
-	function () {
-		if ( ! is_front_page() ) {
-			return;
+/*
+ * 2.3.24: the homepage FAQPage node now joins the one JSON-LD graph through
+ * the sc_seo_graph filter (AGENTS.md rule 2) instead of printing a second
+ * <script type="application/ld+json"> block in wp_head.
+ */
+add_filter(
+	'sc_seo_graph',
+	function ( $graph ) {
+		if ( ! is_front_page() || ! is_array( $graph ) ) {
+			return $graph;
 		}
 		$rows = scrw_home_faq_rows();
 		if ( ! $rows ) {
-			return;
+			return $graph;
 		}
 		$items = array();
 		foreach ( $rows as $r ) {
@@ -135,13 +140,13 @@ add_action(
 				'acceptedAnswer' => array( '@type' => 'Answer', 'text' => $r['a'] ),
 			);
 		}
-		$data = array(
-			'@context'   => 'https://schema.org',
+		$graph[] = array(
 			'@type'      => 'FAQPage',
 			'@id'        => home_url( '/#faq' ),
+			'isPartOf'   => array( '@id' => home_url( '/#website' ) ),
 			'mainEntity' => $items,
 		);
-		echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+		return $graph;
 	},
 	30
 );
