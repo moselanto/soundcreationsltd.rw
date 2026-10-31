@@ -7,7 +7,9 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 - 2.3.23 (sign-in page redesign) is live (verified 31 Oct).
 - **Master Audit received 31 Oct 2026** (`docs/MASTER-AUDIT-2026-10-31.md`). Programme and status: `docs/ROADMAP-2026-11.md`. Full crawl of 122 URLs done; results there.
 - Old domain 301s verified live (page-by-page) - no longer an open item.
-- **2.3.24 committed to main, NOT yet uploaded:** homepage single JSON-LD graph, sitemap clean-up, /hello-world/ unpublished, policy page descriptions. Files in CHANGELOG.
+- 2.3.24 verified live 31 Oct (single graph with FAQPage, /hello-world/ 404, descriptions). Sitemap still listed /brands/fane/ and /brands/yamaha/ (Rank Math cache).
+- **2.3.25 committed, NOT yet uploaded:** clears Rank Math sitemap cache once. Files in CHANGELOG.
+- Waiting on Agnes: brand relationship list (exclusive / authorised / supplied) and the one public email; her last message had blank placeholders.
 
 ## Current state (19 Oct 2026, 23:00 EAT)
 - Live and verified: child theme **Sound Creations Rwanda 2.3.22**, parent **0.10.22**, Core **0.5.28**, Enquiries 0.2.1, Elementor 4.3.5, Rank Math. Nothing is committed-but-not-uploaded.

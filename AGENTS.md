@@ -87,7 +87,7 @@ The owner's master brief ("SCL RWANDA SEO, AEO, GEO") governs this work: audit b
 
 ## Current state and standing rules (19 Oct 2026, 23:00 EAT)
 
-- Live: child **2.3.22**, parent **0.10.22**, Core 0.5.28, Enquiries 0.2.1. 2.3.23 (sign-in page) confirmed live 31 Oct 2026. **Committed, not yet uploaded: child 2.3.24** (homepage single graph, sitemap clean-up, hello-world unpublished, policy descriptions). Full log and open items: `docs/HANDOVER-2026-10.md` (start with "Current state").
+- Live: child **2.3.22**, parent **0.10.22**, Core 0.5.28, Enquiries 0.2.1. 2.3.23 (sign-in page) confirmed live 31 Oct 2026. 2.3.24 verified live 31 Oct 2026. **Committed, not yet uploaded: child 2.3.25** (clears the Rank Math sitemap cache once per version). Gotcha: Rank Math caches sitemaps; sitemap filter changes need a cache clear. Full log and open items: `docs/HANDOVER-2026-10.md` (start with "Current state").
 - **Keyword rule (owner):** never remove or weaken a keyword the site already ranks for; only add. Protected list: `docs/KEYWORD-STRATEGY.md` section 6 and `scrw_seo_keywords()` (`inc/seo-boost.php`, 100-phrase bank, protected first). Page titles per slug: `scrw_seo_slug_map` in `inc/seo-boost.php`.
 - **Homepage title/description are typed in Rank Math on page ID 10**, not in code. They must keep "Sound Creations Rwanda", Yamaha and Pro Audio.
 - Google Business Profile: waiting for Fred to approve access; do not change it.

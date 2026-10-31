@@ -19,11 +19,20 @@ Source: `docs/MASTER-AUDIT-2026-10-31.md`. Update this file in the same commit a
 | Contact consistency | Site-wide email is stefic@soundcreationsltd.com (+ fred@ in contact block); sign-in page help uses info@soundcreationsltd.com. BLOCKED: confirm the public email. |
 | Nairobi / Dubai mentions | /about/ and /service/distribution-dealership/ (group context). Review wording so Kenya address is never presented as the Rwanda business. TODO |
 
+## Live check after 2.3.24 upload (31 Oct 2026, 21:30 EAT)
+| Check | Result |
+|---|---|
+| Version | 2.3.24 live (hero.mp4?ver=2.3.24) |
+| Homepage JSON-LD | PASS: 1 block; graph has WebSite, WebPage, Organization, LocalBusiness, BreadcrumbList, ImageObject, FAQPage (#faq, 7 questions) |
+| /hello-world/ | PASS: 404 |
+| Warranty / cookie descriptions | PASS: new descriptions live |
+| /brands/fane/, /brands/yamaha/ | Redirect PASS (301). Sitemap FAIL: still listed (Rank Math sitemap cache). Fix: 2.3.25 clears the cache once; or Rank Math > Sitemap Settings > Save Changes. Re-check after upload. |
+
 ## Releases
 | Release | Workstream | Status |
 |---|---|---|
 | R1 | External identity and migration: old-domain 301 (DONE), Yamaha directory phone (BLOCKED: send drafted email), GBP access (BLOCKED: Fred), directory listings RwandaYP / contact.page / Shakisha (TODO, Agnes) | IN PROGRESS |
-| R2 | Technical + schema verification: crawl (DONE 31 Oct), homepage single graph (2.3.24), sitemap final URLs (2.3.24), Rich Results / validator re-test after upload (TODO) | IN PROGRESS |
+| R2 | Technical + schema verification: crawl (DONE 31 Oct), homepage single graph (2.3.24, verified live), sitemap final URLs (2.3.25 pending upload), Rich Results / validator re-test after upload (TODO) | IN PROGRESS |
 | R3 | Product catalogue completeness: 61 products; inventory of model, brand, category, specs, datasheet URL, image, applications (TODO) | TODO |
 | R4 | Brand authority pages: expand 11 thin brand pages with verified relationship status (authorised distributor / partner / supplied) | TODO, needs relationship facts |
 | R5 | Project case studies (target 15-20, approved facts only) | TODO, needs project facts/photos |

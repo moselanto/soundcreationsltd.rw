@@ -2,6 +2,12 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.25 - 31 October 2026: clear Rank Math sitemap cache
+- Live check after the 2.3.24 upload: one JSON-LD block with FAQPage (7 questions) OK; /hello-world/ 404 OK; policy descriptions OK; but /brands/fane/ and /brands/yamaha/ were still in sc_brand-sitemap.xml because Rank Math serves its cached sitemap.
+- `inc/seo-cleanup.php` now clears the Rank Math sitemap cache once per theme version on admin load (option `scrw_sitemap_cache_cleared`).
+- Manual alternative if it still shows: Rank Math > Sitemap Settings > Save Changes (rebuilds the cache).
+- Upload: child `functions.php`, `style.css`, `inc/seo-cleanup.php`. Then open wp-admin once.
+
 ## 2.3.24 - 31 October 2026: Master Audit R2 fixes from the full-site crawl
 - Homepage FAQPage now joins the single JSON-LD graph via `sc_seo_graph` (was a second ld+json block). `inc/seo-keywords.php`.
 - New `inc/seo-cleanup.php`: /brands/fane/ and /brands/yamaha/ (both 301) removed from the Rank Math sitemap (filter `scrw_sitemap_excluded_paths`); untouched WordPress sample post /hello-world/ moved to draft once on admin load (option `scrw_cleanup_hello_world`; never touches an edited post).

@@ -61,3 +61,21 @@ add_action(
 		);
 	}
 );
+
+/*
+ * 2.3.25: Rank Math stores built sitemaps in its own cache, so the exclusions
+ * above did not show after the 2.3.24 upload (verified 31 Oct 2026: both URLs
+ * still listed). Clear that cache once per theme version on admin load.
+ */
+add_action(
+	'admin_init',
+	function () {
+		if ( ! current_user_can( 'manage_options' ) || SCRW_VERSION === get_option( 'scrw_sitemap_cache_cleared' ) ) {
+			return;
+		}
+		update_option( 'scrw_sitemap_cache_cleared', SCRW_VERSION, false );
+		if ( class_exists( '\RankMath\Sitemap\Cache' ) && method_exists( '\RankMath\Sitemap\Cache', 'invalidate_storage' ) ) {
+			\RankMath\Sitemap\Cache::invalidate_storage();
+		}
+	}
+);
