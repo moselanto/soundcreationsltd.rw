@@ -174,3 +174,89 @@ add_filter(
 	},
 	40
 );
+
+/*
+ * 2.3.28: JSON-LD text clean-up. WordPress titles reach the graph already
+ * HTML-encoded, so names such as "Church Sound Systems &#038; Worship
+ * Lighting" and "&hellip;" were published literally (seen on solutions,
+ * services, guides, products and brand pages, 31 Oct 2026). Search and AI
+ * systems read that as text. Every string in the graph is decoded once, at
+ * the very end of the sc_seo_graph chain.
+ */
+function scrw_graph_decode( $value ) {
+	if ( is_array( $value ) ) {
+		foreach ( $value as $k => $v ) {
+			$value[ $k ] = scrw_graph_decode( $v );
+		}
+		return $value;
+	}
+	if ( is_string( $value ) && false !== strpos( $value, '&' ) ) {
+		return html_entity_decode( $value, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+	}
+	return $value;
+}
+add_filter(
+	'sc_seo_graph',
+	function ( $graph ) {
+		return is_array( $graph ) ? scrw_graph_decode( $graph ) : $graph;
+	},
+	999
+);
+
+/*
+ * 2.3.28 (Master Audit 5.3 C, entity graph): product pages say which brand
+ * the product belongs to. Products have no Product node (owner decision: no
+ * prices), so the ItemPage gets "mentions" -> the Brand entity, linked to our
+ * brand page (@id #brand) and the manufacturer's official site. Brand comes
+ * from the product's own data (_sc_brand_name or the sc_brand_tax term);
+ * nothing is inferred.
+ */
+function scrw_product_brand_name( $pid ) {
+	$brand = (string) get_post_meta( $pid, '_sc_brand_name', true );
+	if ( '' === $brand ) {
+		$terms = get_the_terms( $pid, 'sc_brand_tax' );
+		if ( $terms && ! is_wp_error( $terms ) ) {
+			$first = reset( $terms );
+			$brand = $first->name;
+		}
+	}
+	return html_entity_decode( $brand, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+}
+
+add_filter(
+	'sc_seo_graph',
+	function ( $graph ) {
+		if ( ! is_singular( 'sc_product' ) || ! is_array( $graph ) ) {
+			return $graph;
+		}
+		$pid   = get_queried_object_id();
+		$brand = scrw_product_brand_name( $pid );
+		if ( '' === $brand ) {
+			return $graph;
+		}
+		$node = array(
+			'@type' => 'Brand',
+			'name'  => $brand,
+		);
+		$slug  = sanitize_title( $brand );
+		$sites = function_exists( 'scrw_brand_official_sites' ) ? scrw_brand_official_sites() : array();
+		$bpost = get_page_by_path( $slug, OBJECT, 'sc_brand' );
+		$page  = get_page_by_path( $slug, OBJECT, 'page' ); // /yamaha/, /fane/ full pages.
+		if ( $page && 'publish' === $page->post_status ) {
+			$node['url'] = get_permalink( $page );
+		} elseif ( $bpost && 'publish' === $bpost->post_status ) {
+			$node['@id'] = trailingslashit( get_permalink( $bpost ) ) . '#brand';
+			$node['url'] = get_permalink( $bpost );
+		}
+		if ( ! empty( $sites[ $slug ] ) ) {
+			$node['sameAs'] = esc_url_raw( $sites[ $slug ] );
+		}
+		foreach ( $graph as $i => $n ) {
+			if ( is_array( $n ) && isset( $n['@type'] ) && 'ItemPage' === $n['@type'] ) {
+				$graph[ $i ]['mentions'] = array( $node );
+			}
+		}
+		return $graph;
+	},
+	40
+);

@@ -98,6 +98,20 @@ Channels (sessions, engagement rate): Direct 153 (22.9%); Organic Search 80 (77.
 ### Indexing queue for 1 Nov 2026 (in order, about 10/day)
 /products/yamaha-dbr12/, /become-a-dealer/, /products/yamaha-tf1/, yamaha-tf3, yamaha-psr-sx720, yamaha-psr-sx700, shure-beta-52a, shure-beta-98ds, fane-cd140, fane-sovereign-12-250tc; then yamaha-ydp-105, yamaha-c40, yamaha-f310, /brands/bose-professional/, /brands/midas/, /solutions/led-screens/, then the remaining discovered products and brand pages.
 
+## Bing Webmaster Tools (checked 31 Oct 2026; feeds Copilot and ChatGPT search)
+| Item | Value |
+|---|---|
+| Site | Already present, imported from Search Console, verified (no Bing code needed) |
+| Sitemap | sitemap_index.xml, Success, 122 URLs, submitted 18 Oct, last crawled 27 Oct, 0 errors |
+| Indexed URLs | 13 (Site Explorer) |
+| Search | 4 clicks, 37 impressions, CTR 10.81% (7-29 Oct) |
+| Backlinks | 32 |
+| Action | Bing has indexed only 13 of 122 URLs: submit all URLs through Rank Math > Instant Indexing (IndexNow) in wp-admin, and re-check in a week. TODO (needs WordPress login). |
+
+## Schema 2.3.28 (committed 31 Oct, upload pending)
+- Graph strings decoded (no more &#038; / &hellip; in names).
+- Product ItemPage `mentions` Brand -> our brand page + manufacturer site.
+
 ## Master Audit items not yet done (re-checked 31 Oct)
 | Audit item | Status / reason |
 |---|---|

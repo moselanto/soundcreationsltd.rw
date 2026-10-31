@@ -2,6 +2,12 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.28 - 31 October 2026: cleaner entity data for search and AI
+- JSON-LD text clean-up: titles reached the graph HTML-encoded ("Church Sound Systems &#038; Worship Lighting", "&hellip;") on solutions, services, guides, products and brand pages. Every string in the graph is now decoded once at the end of the `sc_seo_graph` chain (priority 999, `scrw_graph_decode()`).
+- Product pages: the ItemPage now `mentions` its Brand (from the product's own `_sc_brand_name` / `sc_brand_tax`), linked to our brand page (`#brand` @id or the /yamaha/ and /fane/ pages) and the manufacturer's official site. Still no Product/Offer node (owner decision: no prices).
+- Bing Webmaster Tools checked 31 Oct: site already imported from Search Console and verified; sitemap Success, 122 URLs; 13 indexed URLs, 32 backlinks. Recorded in docs/ROADMAP-2026-11.md.
+- Upload: child `functions.php`, `style.css`, `inc/seo-cleanup.php`. Clear the cache. Test a solution page and a product page in the Rich Results Test / validator.schema.org.
+
 ## 2.3.27 / parent 0.10.23 - 31 October 2026: GA4 lead events, speculative-loading fix, brand sameAs
 - GA4 lead tracking (`assets/js/scrw-ui.js`): `generate_lead` when an enquiry form returns ?sc_sent=1 (once per page per session), `whatsapp_click` (wa.me / api.whatsapp.com / whatsapp://), `phone_click` (tel:), `email_click` (mailto:). Uses addEventListener only (strict CSP safe). Only fires for visitors when a GA4 ID is set. All four registered as key events in GA4 property 558970445 on 31 Oct 2026.
 - Speculative loading: the script is printed by the PARENT theme (`soundcreations/inc/enqueue.php`), so 2.3.26's core filter did nothing (verified live). Parent 0.10.23 adds the `sc_speculation_rules` filter (default true, Kenya unchanged); the Rwanda child returns false.
