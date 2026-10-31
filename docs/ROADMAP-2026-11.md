@@ -59,7 +59,7 @@ Total 91 impressions. Top pages: / 39; /yamaha/ 12; /projects/christian-life-ass
 
 Channels (sessions, engagement rate): Direct 153 (22.9%); Organic Search 80 (77.5%); **AI Assistant 54 (59.3%, 17.4% of sessions; chatgpt.com 33 sessions in 24-30 Oct)**; Referral 19 (63.2%); Organic Social 3; Unassigned 2. Search Console is linked in GA4.
 
-**Action:** set up GA4 key events (enquiry form submit, WhatsApp click, tel: click, mailto: click) so leads can be measured. TODO.
+**Action:** GA4 key events created 31 Oct (generate_lead, whatsapp_click, phone_click, email_click); site code 2.3.27. Verify in Realtime after upload.
 
 ## Search Console page indexing (report dated 22 Oct 2026, read 31 Oct)
 | Reason | Pages | Cause | Action |
@@ -73,6 +73,31 @@ Channels (sessions, engagement rate): Direct 153 (22.9%); Organic Search 80 (77.
 | Crawled - currently not indexed | 1 | /service/integration/ (346 words, overlaps /solutions/installation/) | Content: expand or merge. TODO (needs approval). |
 | Discovered - currently not indexed | 41 | 7 brand pages, 32 products, /become-a-dealer/, /solutions/led-screens/ (first seen 20 Oct, never crawled yet) | Normal for a new domain. Thicken brand pages (R4), Request indexing for top products in batches (about 10/day), internal links from guides. |
 | Indexed, though blocked by robots.txt | 1 | Company profile PDF | 2.3.26 allows that PDF in robots.txt. |
+
+## Actions 31 Oct 2026 (evening)
+| Item | Result |
+|---|---|
+| Live sitemap after 2.3.25 | PASS: /brands/fane/ and /brands/yamaha/ no longer listed |
+| robots.txt after 2.3.26 | PASS: `Allow: /wp-content/uploads/2026/10/SCL-RW-COMPANY-PROFILE-2025.pdf` present; PDF returns 200 |
+| Speculative-loading script | FAIL on 2.3.26 (still printed: it comes from the parent theme). Fixed in 2.3.27 / parent 0.10.23. Re-check after upload: no `type="speculationrules"` in page source. |
+| Search Console Validate fix | Started 31/10/2026: "Page with redirect" (1 page) and "Not found (404)" (6 pages). Google reports the outcome in a few days to weeks. |
+| Request indexing (accepted) | /products/yamaha-tf5/, yamaha-dm3s, shure-sm58, yamaha-psr-sx920, yamaha-mg16xu, shure-blx288-sm58, fane-sovereign-15-600, db-opera-series, yamaha-hs7, /brands/shure/ |
+| Request indexing (retry on or after 1 Nov) | /products/yamaha-dbr12/ (Google error "something went wrong"), /become-a-dealer/ (daily quota reached). Next batch: remaining 22 "discovered" products, then brand pages. |
+| GA4 key events | Created 31 Oct: generate_lead, whatsapp_click, phone_click, email_click (counting once per event, no value). Website code: 2.3.27. Status "No stream data" until 2.3.27 is live and tested in Realtime. |
+
+## Master Audit items not yet done (re-checked 31 Oct)
+| Audit item | Status / reason |
+|---|---|
+| Exclusive-dealer wording, public email | BLOCKED: waiting for Agnes (brand list and email were blank placeholders) |
+| 11 thin brand pages (R4) | BLOCKED on the same brand-relationship list; schema sameAs done in 2.3.27 |
+| Product schema without prices (5.3 B) | DECISION KEPT: Google treats a Product with no offers/review/rating as an invalid product snippet (Search Console errors). Products stay as ItemPage + FAQ until real prices exist. Revisit if the owner publishes prices. |
+| Guide authors (5.3 E) | BLOCKED: needs a real engineer's name, role and approval; author stays the Organization |
+| Project case studies (R5), 15-20 | BLOCKED: needs approved project facts and real photos |
+| Knowledge-centre hubs (R6) | TODO: plan in next session from existing 4 guides |
+| AI visibility tests (R7) | TODO: dated prompt tests; GSC AI report baseline DONE |
+| Yamaha directory phone, GBP access, Rwanda directories (R1) | BLOCKED: business actions (drafts ready / Fred) |
+| /service/integration/ crawled-not-indexed | TODO: expand or merge with /solutions/installation/ (needs approval) |
+| Competitor database, agent architecture (sections 7-10) | TODO: separate project, outside the website code |
 
 ## Releases
 | Release | Workstream | Status |
@@ -88,6 +113,6 @@ Channels (sessions, engagement rate): Direct 153 (22.9%); Organic Search 80 (77.
 
 ## Needs login or the business
 - WordPress admin (wp-login.php): Rank Math fields, menu/content edits, cache purge.
-- Google Search Console + GA4: baselines DONE 31 Oct; still to do: Validate fix, Request indexing, GA4 key events.
+- Google Search Console + GA4: baselines DONE 31 Oct; Validate fix started, 10 indexing requests accepted, key events created (31 Oct).
 - Google Business Profile: waiting on Fred.
 - Fred / sales: exclusive-dealer wording, brand relationship status, public email, project facts.

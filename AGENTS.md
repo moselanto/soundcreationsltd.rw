@@ -87,7 +87,7 @@ The owner's master brief ("SCL RWANDA SEO, AEO, GEO") governs this work: audit b
 
 ## Current state and standing rules (19 Oct 2026, 23:00 EAT)
 
-- Live: child **2.3.22**, parent **0.10.22**, Core 0.5.28, Enquiries 0.2.1. 2.3.23 (sign-in page) confirmed live 31 Oct 2026. 2.3.24 verified live 31 Oct 2026. **Committed, not yet uploaded: child 2.3.26** (2.3.25 Rank Math sitemap cache clear + 2.3.26 speculative-loading off, company PDF allowed in robots). Search Console/GA4 baselines and indexing analysis: docs/ROADMAP-2026-11.md. Gotcha: Rank Math caches sitemaps; sitemap filter changes need a cache clear. Full log and open items: `docs/HANDOVER-2026-10.md` (start with "Current state").
+- Live: child **2.3.22**, parent **0.10.22**, Core 0.5.28, Enquiries 0.2.1. 2.3.23 (sign-in page) confirmed live 31 Oct 2026. 2.3.24 verified live 31 Oct 2026. 2.3.26 live 31 Oct. **Committed, not yet uploaded: child 2.3.27 / parent 0.10.23** (GA4 lead events, speculative-loading off via parent `sc_speculation_rules`, brand sameAs). Search Console/GA4 baselines and indexing analysis: docs/ROADMAP-2026-11.md. Gotcha: Rank Math caches sitemaps; sitemap filter changes need a cache clear. Full log and open items: `docs/HANDOVER-2026-10.md` (start with "Current state").
 - **Keyword rule (owner):** never remove or weaken a keyword the site already ranks for; only add. Protected list: `docs/KEYWORD-STRATEGY.md` section 6 and `scrw_seo_keywords()` (`inc/seo-boost.php`, 100-phrase bank, protected first). Page titles per slug: `scrw_seo_slug_map` in `inc/seo-boost.php`.
 - **Homepage title/description are typed in Rank Math on page ID 10**, not in code. They must keep "Sound Creations Rwanda", Yamaha and Pro Audio.
 - Google Business Profile: waiting for Fred to approve access; do not change it.
@@ -100,6 +100,9 @@ The owner's master brief ("SCL RWANDA SEO, AEO, GEO") governs this work: audit b
 2. Add an entry to `CHANGELOG.md` and, for SEO work, a release section in `docs/SEO-PLAN.md`.
 3. Update the tables above if you add a file or close an open item.
 4. Deploy: back up, upload the whole changed folders, open wp-admin once, purge the page cache (no LiteSpeed plugin is installed), then test with the Rich Results Test and schema validator.
+
+## GA4 lead tracking (2.3.27)
+- Events in `assets/js/scrw-ui.js`: generate_lead (?sc_sent=1 after an enquiry), whatsapp_click, phone_click, email_click. All four are key events in GA4 (property 558970445). Keep the names; GA4 reports depend on them. No inline handlers (strict CSP).
 
 ## Sign-in page (wp-login.php), updated 2.3.23
 - Design lives in the child theme: `inc/login.php` (brand panel, card headings per screen, footer note) and `assets/css/scrw-login.css` (newest block at the bottom wins). Core `includes/login-branding.php` stays out of the way when `scrw_login_is_interim()` exists; do not re-enable its dark style.

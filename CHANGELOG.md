@@ -2,6 +2,13 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.27 / parent 0.10.23 - 31 October 2026: GA4 lead events, speculative-loading fix, brand sameAs
+- GA4 lead tracking (`assets/js/scrw-ui.js`): `generate_lead` when an enquiry form returns ?sc_sent=1 (once per page per session), `whatsapp_click` (wa.me / api.whatsapp.com / whatsapp://), `phone_click` (tel:), `email_click` (mailto:). Uses addEventListener only (strict CSP safe). Only fires for visitors when a GA4 ID is set. All four registered as key events in GA4 property 558970445 on 31 Oct 2026.
+- Speculative loading: the script is printed by the PARENT theme (`soundcreations/inc/enqueue.php`), so 2.3.26's core filter did nothing (verified live). Parent 0.10.23 adds the `sc_speculation_rules` filter (default true, Kenya unchanged); the Rwanda child returns false.
+- Brand schema (Master Audit 5.3 C): Brand nodes get `sameAs` = official manufacturer site (filter `scrw_brand_official_sites`) when no `_sc_brand_url` is set. 11 brands; AID and Asona left out (official site not verified). No relationship claims.
+- Upload: child `functions.php`, `style.css`, `inc/seo-cleanup.php`, `assets/js/scrw-ui.js`; parent `soundcreations/inc/enqueue.php`, `soundcreations/style.css`. Then clear the cache.
+- Test: open the site in a private window, tap a phone, WhatsApp and email link, send a test enquiry; GA4 > Reports > Realtime should show the four events.
+
 ## 2.3.26 - 31 October 2026: Search Console indexing fixes
 - Search Console 404s for literal /wp-content/*, /wp-content/plugins/*, /* came from WordPress core's speculative-loading script. It is now off (`wp_speculation_rules_configuration` -> null; keep with filter `scrw_keep_speculation_rules`).
 - Company profile PDF (/wp-content/uploads/2026/10/SCL-RW-COMPANY-PROFILE-2025.pdf) allowed in robots.txt (core blocks PDFs in uploads); list in filter `scrw_public_pdfs`.

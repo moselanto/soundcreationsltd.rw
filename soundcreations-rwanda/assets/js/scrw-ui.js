@@ -329,4 +329,40 @@
 			f.focus();
 		});
 	});
+
+	/* ---------- 2.3.27: GA4 lead events (key events in GA4) ----------
+	   generate_lead  : enquiry form sent (page reloads with ?sc_sent=1)
+	   whatsapp_click : any wa.me / api.whatsapp.com / whatsapp:// link
+	   phone_click    : any tel: link
+	   email_click    : any mailto: link
+	   gtag only exists for visitors when a GA4 ID is set (inc/analytics.php);
+	   events queue in dataLayer until the delayed Google tag loads. */
+	function scrwTrack(name, params) {
+		if (typeof window.gtag === 'function') {
+			window.gtag('event', name, params || {});
+		}
+	}
+	doc.addEventListener('click', function (e) {
+		var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+		if (!a) { return; }
+		var href = a.getAttribute('href') || '';
+		var where = { link_url: href.slice(0, 100), page_path: window.location.pathname };
+		if (/^tel:/i.test(href)) {
+			scrwTrack('phone_click', where);
+		} else if (/^mailto:/i.test(href)) {
+			scrwTrack('email_click', where);
+		} else if (/(wa\.me\/|api\.whatsapp\.com|whatsapp:\/\/)/i.test(href)) {
+			scrwTrack('whatsapp_click', where);
+		}
+	}, true);
+	try {
+		var qs = new URLSearchParams(window.location.search);
+		if (qs.get('sc_sent') === '1') {
+			var key = 'scrw_lead_' + window.location.pathname;
+			if (!window.sessionStorage || !sessionStorage.getItem(key)) {
+				scrwTrack('generate_lead', { form_location: window.location.pathname });
+				if (window.sessionStorage) { sessionStorage.setItem(key, '1'); }
+			}
+		}
+	} catch (err) { /* old browsers: skip */ }
 })();

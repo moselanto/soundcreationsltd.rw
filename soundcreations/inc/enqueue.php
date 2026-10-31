@@ -157,7 +157,9 @@ add_filter( 'script_loader_tag', 'sc_defer_scripts', 10, 2 );
 add_action(
 	'wp_head',
 	function () {
-		if ( is_user_logged_in() ) {
+		// 0.10.23: off switch. Child themes return false from sc_speculation_rules
+		// (Rwanda does: Google read these URL patterns as links and reported 404s).
+		if ( is_user_logged_in() || ! apply_filters( 'sc_speculation_rules', true ) ) {
 			return;
 		}
 
