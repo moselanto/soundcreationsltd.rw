@@ -42,7 +42,7 @@ WordPress code for **soundcreationsltd.rw** (Sound Creations Ltd Rwanda, KN1 Rd,
 | `analytics.php` | 1.x | GA4 + Search Console fields |
 | `seo-ai.php` | 2.0.0, corrected 2.1.0 | Optional `/llms.txt` (off; `scrw_llms_enabled`), optional training-crawler opt-out (`scrw_ai_training_policy`). Never add named-bot Allow groups: they bypass the core hygiene rules |
 | `guides-seed.php` | 2.2.0 | Four buyer guides seeded once as drafts for engineer review; never overwrites existing posts |
-| `seo-cleanup.php` | 2.3.24 | Sitemap excludes redirecting URLs (`scrw_sitemap_excluded_paths`); one-time unpublish of the WP sample post |
+| `seo-cleanup.php` | 2.3.24-2.3.26 | Sitemap excludes redirecting URLs (`scrw_sitemap_excluded_paths`); one-time unpublish of WP sample post; Rank Math sitemap cache clear per version; speculative loading off (`scrw_keep_speculation_rules`); public PDFs allowed in robots (`scrw_public_pdfs`) |
 | `wording-rw.php` | 2.1.0 | Rwanda-first visible copy where the seeded value still says Africa / Middle East; never touches edited text |
 
 ## Open items (need the business or server access, not code)
@@ -87,7 +87,7 @@ The owner's master brief ("SCL RWANDA SEO, AEO, GEO") governs this work: audit b
 
 ## Current state and standing rules (19 Oct 2026, 23:00 EAT)
 
-- Live: child **2.3.22**, parent **0.10.22**, Core 0.5.28, Enquiries 0.2.1. 2.3.23 (sign-in page) confirmed live 31 Oct 2026. 2.3.24 verified live 31 Oct 2026. **Committed, not yet uploaded: child 2.3.25** (clears the Rank Math sitemap cache once per version). Gotcha: Rank Math caches sitemaps; sitemap filter changes need a cache clear. Full log and open items: `docs/HANDOVER-2026-10.md` (start with "Current state").
+- Live: child **2.3.22**, parent **0.10.22**, Core 0.5.28, Enquiries 0.2.1. 2.3.23 (sign-in page) confirmed live 31 Oct 2026. 2.3.24 verified live 31 Oct 2026. **Committed, not yet uploaded: child 2.3.26** (2.3.25 Rank Math sitemap cache clear + 2.3.26 speculative-loading off, company PDF allowed in robots). Search Console/GA4 baselines and indexing analysis: docs/ROADMAP-2026-11.md. Gotcha: Rank Math caches sitemaps; sitemap filter changes need a cache clear. Full log and open items: `docs/HANDOVER-2026-10.md` (start with "Current state").
 - **Keyword rule (owner):** never remove or weaken a keyword the site already ranks for; only add. Protected list: `docs/KEYWORD-STRATEGY.md` section 6 and `scrw_seo_keywords()` (`inc/seo-boost.php`, 100-phrase bank, protected first). Page titles per slug: `scrw_seo_slug_map` in `inc/seo-boost.php`.
 - **Homepage title/description are typed in Rank Math on page ID 10**, not in code. They must keep "Sound Creations Rwanda", Yamaha and Pro Audio.
 - Google Business Profile: waiting for Fred to approve access; do not change it.

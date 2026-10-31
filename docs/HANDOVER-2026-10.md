@@ -8,7 +8,8 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 - **Master Audit received 31 Oct 2026** (`docs/MASTER-AUDIT-2026-10-31.md`). Programme and status: `docs/ROADMAP-2026-11.md`. Full crawl of 122 URLs done; results there.
 - Old domain 301s verified live (page-by-page) - no longer an open item.
 - 2.3.24 verified live 31 Oct (single graph with FAQPage, /hello-world/ 404, descriptions). Sitemap still listed /brands/fane/ and /brands/yamaha/ (Rank Math cache).
-- **2.3.25 committed, NOT yet uploaded:** clears Rank Math sitemap cache once. Files in CHANGELOG.
+- **2.3.25 + 2.3.26 committed, NOT yet uploaded:** Rank Math sitemap cache clear; speculative-loading off (false 404s in Search Console); company profile PDF allowed in robots. Files in CHANGELOG.
+- Search Console + GA4 baselines and the page-indexing analysis (70 not indexed, 8 reasons) recorded in docs/ROADMAP-2026-11.md on 31 Oct. GA4 has 0 key events: lead tracking must be set up.
 - Waiting on Agnes: brand relationship list (exclusive / authorised / supplied) and the one public email; her last message had blank placeholders.
 
 ## Current state (19 Oct 2026, 23:00 EAT)

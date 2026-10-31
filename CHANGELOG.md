@@ -2,6 +2,13 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.26 - 31 October 2026: Search Console indexing fixes
+- Search Console 404s for literal /wp-content/*, /wp-content/plugins/*, /* came from WordPress core's speculative-loading script. It is now off (`wp_speculation_rules_configuration` -> null; keep with filter `scrw_keep_speculation_rules`).
+- Company profile PDF (/wp-content/uploads/2026/10/SCL-RW-COMPANY-PROFILE-2025.pdf) allowed in robots.txt (core blocks PDFs in uploads); list in filter `scrw_public_pdfs`.
+- "Page with redirect" (/brands/fane/) is an intentional 301; handled by the 2.3.24/2.3.25 sitemap exclusion.
+- Baselines (Search Console, generative AI report, GA4) and the full page-indexing analysis recorded in docs/ROADMAP-2026-11.md.
+- Upload: child `functions.php`, `style.css`, `inc/seo-cleanup.php`. Then open wp-admin once, check /robots.txt, and in Search Console click Validate fix on "Page with redirect" and "Not found (404)".
+
 ## 2.3.25 - 31 October 2026: clear Rank Math sitemap cache
 - Live check after the 2.3.24 upload: one JSON-LD block with FAQPage (7 questions) OK; /hello-world/ 404 OK; policy descriptions OK; but /brands/fane/ and /brands/yamaha/ were still in sc_brand-sitemap.xml because Rank Math serves its cached sitemap.
 - `inc/seo-cleanup.php` now clears the Rank Math sitemap cache once per theme version on admin load (option `scrw_sitemap_cache_cleared`).

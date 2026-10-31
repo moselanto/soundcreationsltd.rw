@@ -79,3 +79,44 @@ add_action(
 		}
 	}
 );
+
+/*
+ * 2.3.26: Search Console page-indexing fixes (report read 31 Oct 2026).
+ *
+ * 1. "Not found (404)" listed literal URLs such as /wp-content/*,
+ *    /wp-content/plugins/* and /*. They are not pages: they are the URL
+ *    patterns in WordPress core's speculative-loading script, which Google
+ *    reads as links. Turning that script off removes the false 404s (the
+ *    speed gain from it is small on this site, already 99-100 Lighthouse).
+ *    Off switch: filter scrw_keep_speculation_rules -> true.
+ * 2. "Indexed, though blocked by robots.txt": the company profile PDF. The
+ *    core hygiene rule blocks PDFs in uploads; this one is a public company
+ *    document worth having in search, so it is explicitly allowed.
+ */
+add_filter(
+	'wp_speculation_rules_configuration',
+	function ( $config ) {
+		return apply_filters( 'scrw_keep_speculation_rules', false ) ? $config : null;
+	},
+	20
+);
+
+/** Public PDFs in uploads that search engines may crawl. */
+function scrw_public_pdfs() {
+	return (array) apply_filters( 'scrw_public_pdfs', array( '/wp-content/uploads/2026/10/SCL-RW-COMPANY-PROFILE-2025.pdf' ) );
+}
+
+add_filter(
+	'robots_txt',
+	function ( $output ) {
+		$lines = '';
+		foreach ( scrw_public_pdfs() as $path ) {
+			$lines .= 'Allow: ' . esc_url_raw( $path ) . "\n";
+		}
+		if ( '' === $lines ) {
+			return $output;
+		}
+		return $output . "\n# Public documents (Sound Creations Rwanda)\nUser-agent: *\n" . $lines;
+	},
+	99
+);
