@@ -108,12 +108,18 @@ Channels (sessions, engagement rate): Direct 153 (22.9%); Organic Search 80 (77.
 | Backlinks | 32 |
 | Action | Bing has indexed only 13 of 122 URLs: submit all URLs through Rank Math > Instant Indexing (IndexNow) in wp-admin, and re-check in a week. TODO (needs WordPress login). |
 
-## Live check of 2.3.28 (31 Oct 2026, 22:30 EAT): NOT LIVE
+## Live check of 2.3.28 after re-upload (31 Oct 2026, 22:35 EAT): PASS
+- `soundcreations-rwanda/style.css` says Version 2.3.28.
+- No `&#038;`, `&amp;` or `&hellip;` left in the JSON-LD on /, two solution pages, /service/after-sale-services/, a guide and a brand page. Services now read "Church Sound Systems & Worship Lighting" and "Conference Room & Boardroom Sound Systems". Still one JSON-LD block per page.
+- Product ItemPages `mention` their brand: yamaha-dbr12 -> Yamaha (/yamaha/, yamaha.com); shure-blx288-sm58 -> Shure (/brands/shure/#brand, shure.com); fane-cd140 -> FANE (/fane/, fane-international.com); db-opera-series -> dB Technologies (/brands/db-technologies/#brand, dbtechnologies.com).
+- Nothing committed-but-not-uploaded.
+
+## Live check of 2.3.28 (31 Oct 2026, 22:30 EAT): NOT LIVE (superseded above)
 - Server still reports child 2.3.27: `soundcreations-rwanda/style.css` header says Version 2.3.27 and the homepage loads hero.mp4?ver=2.3.27.
 - Search data unchanged: `&#038;` still in names (e.g. Service "Church Sound Systems &#038; Worship Lighting", "Conference Room &#038; Boardroom Sound Systems"; `&hellip;` on /service/after-sale-services/); product ItemPages have no `mentions` (checked yamaha-dbr12, shure-blx288-sm58, fane-cd140, db-opera-series). One JSON-LD block per page (OK).
 - Likely cause: the files did not overwrite the ones on the server (wrong folder, or the upload did not finish). Re-upload into wp-content/themes/soundcreations-rwanda/ (functions.php, style.css, inc/seo-cleanup.php), clear the cache, re-check: style.css must say 2.3.28.
 
-## Schema 2.3.28 (committed 31 Oct, upload pending)
+## Schema 2.3.28 (live 31 Oct)
 - Graph strings decoded (no more &#038; / &hellip; in names).
 - Product ItemPage `mentions` Brand -> our brand page + manufacturer site.
 
