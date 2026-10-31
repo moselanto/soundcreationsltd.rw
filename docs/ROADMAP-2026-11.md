@@ -85,6 +85,19 @@ Channels (sessions, engagement rate): Direct 153 (22.9%); Organic Search 80 (77.
 | Request indexing (retry on or after 1 Nov) | /products/yamaha-dbr12/ (Google error "something went wrong"), /become-a-dealer/ (daily quota reached). Next batch: remaining 22 "discovered" products, then brand pages. |
 | GA4 key events | Created 31 Oct: generate_lead, whatsapp_click, phone_click, email_click (counting once per event, no value). Website code: 2.3.27. Status "No stream data" until 2.3.27 is live and tested in Realtime. |
 
+## Live check after 2.3.27 upload (31 Oct 2026, 22:20 EAT)
+| Check | Result |
+|---|---|
+| Version | 2.3.27 live |
+| Speculative-loading script | PASS: no `speculationrules` on /, /products/, /contact/ |
+| Brand sameAs | PASS on 11 brand pages (shure, db-technologies, bose-professional, allen-heath, midas, behringer, rockfon, barrisol, sommer-cable). /brands/yamaha/ and /brands/fane/ 301 to the /yamaha/ and /fane/ pages (no Brand node there; Yamaha/FANE brand links already in `inc/seo-boost.php`). AID and Asona: none by design. |
+| GA4 event code | PASS: live scrw-ui.js contains generate_lead, whatsapp_click, phone_click, email_click. CSP allows the Google tag. |
+| GA4 Realtime (22:18-22:19) | NOT CONFIRMED: 0 active users, no events. The Google tag does not load for logged-in WordPress users (inc/analytics.php) and ad blockers stop it. Re-test logged out, in a private window, no ad blocker; tap phone / WhatsApp / email, send one enquiry, then check Realtime within 30 minutes. |
+| Request indexing | Quota still exceeded at 22:19 (yamaha-dbr12). Nothing accepted in this batch. |
+
+### Indexing queue for 1 Nov 2026 (in order, about 10/day)
+/products/yamaha-dbr12/, /become-a-dealer/, /products/yamaha-tf1/, yamaha-tf3, yamaha-psr-sx720, yamaha-psr-sx700, shure-beta-52a, shure-beta-98ds, fane-cd140, fane-sovereign-12-250tc; then yamaha-ydp-105, yamaha-c40, yamaha-f310, /brands/bose-professional/, /brands/midas/, /solutions/led-screens/, then the remaining discovered products and brand pages.
+
 ## Master Audit items not yet done (re-checked 31 Oct)
 | Audit item | Status / reason |
 |---|---|

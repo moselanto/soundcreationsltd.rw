@@ -9,7 +9,8 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 - Old domain 301s verified live (page-by-page) - no longer an open item.
 - 2.3.24 verified live 31 Oct (single graph with FAQPage, /hello-world/ 404, descriptions). Sitemap still listed /brands/fane/ and /brands/yamaha/ (Rank Math cache).
 - 2.3.25 + 2.3.26 now live (verified 31 Oct evening: sitemap clean, robots PDF allow).
-- **2.3.27 / parent 0.10.23 committed, NOT yet uploaded:** GA4 lead events (key events already created in GA4), parent speculative-loading off switch, brand sameAs. Then test in GA4 Realtime.
+- 2.3.27 / parent 0.10.23 live (verified 31 Oct 22:20): speculation script gone, brand sameAs live, GA4 event code live. GA4 Realtime showed 0 users during the owner's test: re-test logged out / private window / no ad blocker (tag is skipped for logged-in users). Nothing committed-but-not-uploaded.
+- Indexing quota exhausted for 31 Oct; queue for 1 Nov is in docs/ROADMAP-2026-11.md.
 - Search Console 31 Oct: Validate fix started on Page with redirect + Not found (404); 10 indexing requests accepted; retry yamaha-dbr12 and become-a-dealer from 1 Nov.
 - Earlier note (2.3.25 + 2.3.26): Rank Math sitemap cache clear; speculative-loading off (false 404s in Search Console); company profile PDF allowed in robots. Files in CHANGELOG.
 - Search Console + GA4 baselines and the page-indexing analysis (70 not indexed, 8 reasons) recorded in docs/ROADMAP-2026-11.md on 31 Oct. GA4 has 0 key events: lead tracking must be set up.
