@@ -2,6 +2,10 @@
 
 Newest first. Every change must add an entry here (see AGENTS.md).
 
+## 2.3.30 - 31 October 2026: last info@ removed
+- Live check of 2.3.29 found info@soundcreationsltd.com only in the hidden office data (Nairobi, Kinshasa, Dubai entries) printed on /contact/ and /request-a-consultation/. `inc/offices.php` now uses stefic@soundcreationsltd.com there too.
+- Upload: child `functions.php`, `style.css`, `inc/offices.php`. Clear the cache.
+
 ## 2.3.29 / parent 0.10.24 - 31 October 2026: authorised (not exclusive) wording, one public email, brand authority sections
 - Owner decision 31 Oct 2026: every brand is an AUTHORISED dealer / partner relationship, not exclusive (Yamaha: authorised distributor in Rwanda). Public email: stefic@soundcreationsltd.com.
 - Parent 0.10.24: new filters `sc_home_services` (home service cards, `template-parts/designs/home.php`) and `sc_service_highlights` (`single-sc_service.php`), defaults unchanged for Kenya. Rwanda child rewrites "Certified exclusive dealers..." to "Authorised dealers and partners for leading global brands..." and "Exclusive authorised dealer" to "Authorised dealer and partner" (see `inc/brand-authority.php` filters).

@@ -11,7 +11,8 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 - 2.3.25 + 2.3.26 now live (verified 31 Oct evening: sitemap clean, robots PDF allow).
 - 2.3.27 / parent 0.10.23 live (verified 31 Oct 22:20): speculation script gone, brand sameAs live, GA4 event code live. GA4 Realtime showed 0 users during the owner's test: re-test logged out / private window / no ad blocker (tag is skipped for logged-in users). Nothing committed-but-not-uploaded.
 - Bing/IndexNow: 119 URLs submitted via Rank Math Instant Indexing on 31 Oct ("Successfully submitted 119 URLs."); re-check Bing indexed count 7 Nov (was 13).
-- **2.3.29 / parent 0.10.24 committed, NOT yet uploaded:** owner decisions 31 Oct (all brands authorised, not exclusive; email stefic@), brand authority sections on 11 brand pages. Files in CHANGELOG.
+- 2.3.29 / parent 0.10.24 live (verified 31 Oct 23:05). **2.3.30 committed, NOT yet uploaded** (hidden office email -> stefic@). Open: keep fred@ as second contact?
+- 2.3.29 contents: owner decisions 31 Oct (all brands authorised, not exclusive; email stefic@), brand authority sections on 11 brand pages. Files in CHANGELOG.
 - 2.3.28 live after re-upload (verified 31 Oct 22:35): graph text decoded, product -> brand mentions. Nothing committed-but-not-uploaded.
 - 2.3.28 contents: JSON-LD text decoding and product -> brand links. Bing Webmaster: already verified, 13 of 122 URLs indexed; next: Rank Math Instant Indexing for all URLs.
 - Indexing quota exhausted for 31 Oct; queue for 1 Nov is in docs/ROADMAP-2026-11.md.

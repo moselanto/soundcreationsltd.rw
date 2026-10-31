@@ -123,14 +123,22 @@ Channels (sessions, engagement rate): Direct 153 (22.9%); Organic Search 80 (77.
 - Graph strings decoded (no more &#038; / &hellip; in names).
 - Product ItemPage `mentions` Brand -> our brand page + manufacturer site.
 
-## Owner decisions 31 Oct 2026 and 2.3.29 (committed, upload pending)
+## Live check of 2.3.29 (31 Oct 2026, 23:05 EAT)
+| Check | Result |
+|---|---|
+| Versions | PASS: child style.css 2.3.29, parent 0.10.24 |
+| "Exclusive" | PASS: not found on /, /service/distribution-dealership/, /about/, /contact/, /warranty/, /privacy-policy/, /request-a-consultation/, /become-a-dealer/, /wp-login.php. Home and Distribution pages show "Authorised dealer(s)" wording. |
+| Email | PASS for visible text: stefic@ on all pages checked; sign-in page shows stefic@ only. info@ remained only in hidden office data on /contact/ and /request-a-consultation/ (Nairobi/Kinshasa/Dubai) - fixed in 2.3.30 (upload pending). fred@soundcreationsltd.com still shown as a second contact (contact block, warranty, privacy policy): QUESTION for Agnes - keep Fred as named contact or replace with stefic@? |
+| Brand pages (11) | PASS: "{Brand} in Rwanda" section on all 11; FAQPage with 3 questions in the single graph (1 JSON-LD block each); 533-621 words (were 188-231). Project links: dB Technologies (Christian Life Assembly, Romantic Garden), Shure (MINECOFIN), Allen & Heath (Christian Life Assembly). |
+
+## Owner decisions 31 Oct 2026 and 2.3.29 (live 31 Oct)
 - All brands: authorised dealer / partner, not exclusive. Public email: stefic@soundcreationsltd.com.
 - 2.3.29 fixes the exclusive wording (home card, Distribution & Dealership page, saved content), the email, and adds brand authority sections + FAQ to the 11 thin brand pages (R4 first pass).
 
 ## Master Audit items not yet done (re-checked 31 Oct)
 | Audit item | Status / reason |
 |---|---|
-| Exclusive-dealer wording, public email | DONE in code 2.3.29 (upload pending) |
+| Exclusive-dealer wording, public email | DONE, live 2.3.29 (hidden office email fix 2.3.30 pending upload; fred@ question open) |
 | 11 thin brand pages (R4) | First pass in 2.3.29 (relationship, manufacturer facts, projects, quote, FAQ). Next: brand-specific product guidance and photos |
 | Product schema without prices (5.3 B) | DECISION KEPT: Google treats a Product with no offers/review/rating as an invalid product snippet (Search Console errors). Products stay as ItemPage + FAQ until real prices exist. Revisit if the owner publishes prices. |
 | Guide authors (5.3 E) | BLOCKED: needs a real engineer's name, role and approval; author stays the Organization |

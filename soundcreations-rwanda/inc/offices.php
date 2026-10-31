@@ -51,7 +51,8 @@ add_filter(
 		$ke = array(
 			'phone'      => '+254 715 754 758',
 			'phone_link' => '+254715754758',
-			'email'      => 'info@soundcreationsltd.com',
+			// 2.3.30 owner decision: one public email on the Rwanda site, also in the hidden group-office data.
+			'email'      => 'stefic@soundcreationsltd.com',
 			'hours'      => 'Mon - Fri: 9:00 AM - 5:30 PM | Sat: 9:00 AM - 1:30 PM',
 		);
 		$out = array( 'kigali' => $rw );
