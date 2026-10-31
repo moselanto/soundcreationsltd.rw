@@ -10,6 +10,7 @@ Prepared by Pimofy Digital (Moses Munyi) with the AI assistant. Read with `AGENT
 - 2.3.24 verified live 31 Oct (single graph with FAQPage, /hello-world/ 404, descriptions). Sitemap still listed /brands/fane/ and /brands/yamaha/ (Rank Math cache).
 - 2.3.25 + 2.3.26 now live (verified 31 Oct evening: sitemap clean, robots PDF allow).
 - 2.3.27 / parent 0.10.23 live (verified 31 Oct 22:20): speculation script gone, brand sameAs live, GA4 event code live. GA4 Realtime showed 0 users during the owner's test: re-test logged out / private window / no ad blocker (tag is skipped for logged-in users). Nothing committed-but-not-uploaded.
+- 31 Oct 22:30: owner reported uploading 2.3.28, but the live style.css still says 2.3.27 and the schema is unchanged; re-upload needed.
 - **2.3.28 committed, NOT yet uploaded:** JSON-LD text decoding and product -> brand links. Bing Webmaster: already verified, 13 of 122 URLs indexed; next: Rank Math Instant Indexing for all URLs.
 - Indexing quota exhausted for 31 Oct; queue for 1 Nov is in docs/ROADMAP-2026-11.md.
 - Search Console 31 Oct: Validate fix started on Page with redirect + Not found (404); 10 indexing requests accepted; retry yamaha-dbr12 and become-a-dealer from 1 Nov.

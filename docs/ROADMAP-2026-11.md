@@ -108,6 +108,11 @@ Channels (sessions, engagement rate): Direct 153 (22.9%); Organic Search 80 (77.
 | Backlinks | 32 |
 | Action | Bing has indexed only 13 of 122 URLs: submit all URLs through Rank Math > Instant Indexing (IndexNow) in wp-admin, and re-check in a week. TODO (needs WordPress login). |
 
+## Live check of 2.3.28 (31 Oct 2026, 22:30 EAT): NOT LIVE
+- Server still reports child 2.3.27: `soundcreations-rwanda/style.css` header says Version 2.3.27 and the homepage loads hero.mp4?ver=2.3.27.
+- Search data unchanged: `&#038;` still in names (e.g. Service "Church Sound Systems &#038; Worship Lighting", "Conference Room &#038; Boardroom Sound Systems"; `&hellip;` on /service/after-sale-services/); product ItemPages have no `mentions` (checked yamaha-dbr12, shure-blx288-sm58, fane-cd140, db-opera-series). One JSON-LD block per page (OK).
+- Likely cause: the files did not overwrite the ones on the server (wrong folder, or the upload did not finish). Re-upload into wp-content/themes/soundcreations-rwanda/ (functions.php, style.css, inc/seo-cleanup.php), clear the cache, re-check: style.css must say 2.3.28.
+
 ## Schema 2.3.28 (committed 31 Oct, upload pending)
 - Graph strings decoded (no more &#038; / &hellip; in names).
 - Product ItemPage `mentions` Brand -> our brand page + manufacturer site.
